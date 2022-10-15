@@ -1,0 +1,137 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Entities/Glorper.gd" type="Script" id=1]
+
+[sub_resource type="SphereShape" id=1]
+radius = 0.5
+
+[sub_resource type="OpenSimplexNoise" id=6]
+
+[sub_resource type="NoiseTexture" id=7]
+width = 1000
+height = 1000
+seamless = true
+noise = SubResource( 6 )
+
+[sub_resource type="NoiseTexture" id=8]
+width = 700
+height = 700
+seamless = true
+noise = SubResource( 6 )
+noise_offset = Vector2( 400, 0 )
+
+[sub_resource type="NoiseTexture" id=9]
+width = 800
+height = 500
+seamless = true
+noise = SubResource( 6 )
+noise_offset = Vector2( -100, 0 )
+
+[sub_resource type="AnimatedTexture" id=10]
+flags = 7
+frames = 3
+fps = 2.0
+frame_0/texture = SubResource( 7 )
+frame_1/texture = SubResource( 8 )
+frame_1/delay_sec = 0.0
+frame_2/texture = SubResource( 9 )
+frame_2/delay_sec = 0.0
+
+[sub_resource type="SpatialMaterial" id=11]
+albedo_color = Color( 0.643137, 0.164706, 0.164706, 1 )
+albedo_texture = SubResource( 10 )
+
+[sub_resource type="SphereMesh" id=2]
+material = SubResource( 11 )
+radius = 0.5
+height = 1.0
+
+[sub_resource type="CylinderShape" id=3]
+height = 1.0
+
+[sub_resource type="SpatialMaterial" id=12]
+flags_transparent = true
+albedo_color = Color( 0.635294, 0.337255, 0.0941176, 0.447059 )
+
+[sub_resource type="SphereMesh" id=4]
+material = SubResource( 12 )
+
+[sub_resource type="Skin" id=5]
+
+[sub_resource type="SphereShape" id=13]
+radius = 7.0
+
+[node name="Glorper" type="KinematicBody"]
+script = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 1 )
+
+[node name="Core" type="MeshInstance" parent="."]
+mesh = SubResource( 2 )
+
+[node name="OmniLight" type="OmniLight" parent="Core"]
+light_color = Color( 0.00392157, 0, 0.717647, 1 )
+light_energy = 5.11
+light_indirect_energy = 2.468
+light_negative = true
+omni_shadow_mode = 0
+
+[node name="BlorpArea" type="Area" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="BlorpArea"]
+shape = SubResource( 3 )
+
+[node name="Skeleton" type="Skeleton" parent="."]
+
+[node name="CoreBone" type="BoneAttachment" parent="Skeleton"]
+
+[node name="SoftBody" type="SoftBody" parent="."]
+mesh = SubResource( 4 )
+skin = SubResource( 5 )
+parent_collision_ignore = NodePath("../CollisionShape")
+pinned_points = [ 1204, 1168, 1122, 1152, 208, 231, 221, 249, 1133, 1048, 1159, 1144, 238 ]
+attachments/0/point_index = 1204
+attachments/0/spatial_attachment_path = NodePath("")
+attachments/0/offset = Vector3( 0, 0, 0 )
+attachments/1/point_index = 1168
+attachments/1/spatial_attachment_path = NodePath("")
+attachments/1/offset = Vector3( 0, 0, 0 )
+attachments/2/point_index = 1122
+attachments/2/spatial_attachment_path = NodePath("")
+attachments/2/offset = Vector3( 0, 0, 0 )
+attachments/3/point_index = 1152
+attachments/3/spatial_attachment_path = NodePath("")
+attachments/3/offset = Vector3( 0, 0, 0 )
+attachments/4/point_index = 208
+attachments/4/spatial_attachment_path = NodePath("")
+attachments/4/offset = Vector3( 0, 0, 0 )
+attachments/5/point_index = 231
+attachments/5/spatial_attachment_path = NodePath("")
+attachments/5/offset = Vector3( 0, 0, 0 )
+attachments/6/point_index = 221
+attachments/6/spatial_attachment_path = NodePath("")
+attachments/6/offset = Vector3( 0, 0, 0 )
+attachments/7/point_index = 249
+attachments/7/spatial_attachment_path = NodePath("")
+attachments/7/offset = Vector3( 0, 0, 0 )
+attachments/8/point_index = 1133
+attachments/8/spatial_attachment_path = NodePath("")
+attachments/8/offset = Vector3( 0, 0, 0 )
+attachments/9/point_index = 1048
+attachments/9/spatial_attachment_path = NodePath("")
+attachments/9/offset = Vector3( 0, 0, 0 )
+attachments/10/point_index = 1159
+attachments/10/spatial_attachment_path = NodePath("")
+attachments/10/offset = Vector3( 0, 0, 0 )
+attachments/11/point_index = 1144
+attachments/11/spatial_attachment_path = NodePath("")
+attachments/11/offset = Vector3( 0, 0, 0 )
+attachments/12/point_index = 238
+attachments/12/spatial_attachment_path = NodePath("")
+attachments/12/offset = Vector3( 0, 0, 0 )
+
+[node name="VisionBox" type="Area" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="VisionBox"]
+shape = SubResource( 13 )

@@ -1,0 +1,41 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://UI/HUD1.gd" type="Script" id=1]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource( 1 )
+
+[node name="Dead" type="Label" parent="."]
+margin_right = 40.0
+margin_bottom = 14.0
+
+[node name="MarginContainer" type="VBoxContainer" parent="."]
+margin_right = 82.0
+margin_bottom = 57.0
+
+[node name="Sprint" type="Label" parent="MarginContainer"]
+margin_right = 82.0
+margin_bottom = 14.0
+size_flags_vertical = 5
+text = "Sprint On"
+
+[node name="Ammo" type="Label" parent="MarginContainer"]
+margin_top = 18.0
+margin_right = 82.0
+margin_bottom = 32.0
+size_flags_vertical = 5
+text = "Ammo"
+
+[node name="Health" type="Label" parent="MarginContainer"]
+margin_top = 36.0
+margin_right = 82.0
+margin_bottom = 50.0
+size_flags_vertical = 5
+text = "Health"
+
+[node name="Stamina" type="Label" parent="MarginContainer"]
+margin_top = 54.0
+margin_right = 82.0
+margin_bottom = 68.0
+size_flags_vertical = 5
+text = "Stamina"

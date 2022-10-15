@@ -5,6 +5,7 @@ var health = 80
 var damage = 5
 var Name = 'Glorper'
 
+var hurt = false
 var aggro = true
 
 onready var Blorp_Area = $BlorpArea
@@ -20,6 +21,7 @@ func _process(delta):
 func take_damage(incoming_damage):
 	health -= incoming_damage
 	print('Ouch!')
+	$Blouch.play()
 
 func death():
 	if health < -20:
@@ -30,6 +32,7 @@ func acid_hazard():
 		if body.is_in_group("Destructible"):
 			body.take_damage(damage)
 			print("Blorp!")
+			$Blorp.play()
 	
 
 func _on_BlorpArea_body_entered(body):

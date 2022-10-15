@@ -158,6 +158,7 @@ func handle_sprint():
 func take_damage(incoming_damage):
 	if hurt == false:
 		$OofTimer.start()
+		$Oof.play()
 		hurt = true
 	health -= incoming_damage
 
@@ -168,6 +169,7 @@ func knife_stab():
 			LMB_cooldown = true
 			$StabTimer.start()
 			anim.play("Stab")
+			$StabSound.play()
 			stamina -= 5
 			for body in StabZone.get_overlapping_bodies():
 				if body.is_in_group('Enemy'):

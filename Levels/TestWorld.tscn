@@ -145,9 +145,23 @@ height = 4.0
 depth = 12.0
 material = ExtResource( 7 )
 
-[node name="CSGCylinder" type="CSGCylinder" parent="CSGCombiner"]
+[node name="Hole" type="CSGCylinder" parent="CSGCombiner"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 1, -6 )
 invert_faces = true
+material = ExtResource( 6 )
+
+[node name="SmallHall7" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -37.503, 3, -14 )
+invert_faces = true
+width = 10.0
+height = 4.0
+depth = 3.0
+material = ExtResource( 5 )
+
+[node name="Hole2" type="CSGCylinder" parent="CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -37.457, 3, -19.797 )
+invert_faces = true
+height = 2.0
 material = ExtResource( 6 )
 
 [node name="OmniLight" type="OmniLight" parent="."]
@@ -159,4 +173,10 @@ __meta__ = {
 }
 
 [node name="Glorper" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 3, -6 )
+
+[node name="Glorper2" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -37.3938, 3, -20.061 )
+
+[node name="Glorper3" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 3, 0 )

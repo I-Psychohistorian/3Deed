@@ -1,8 +1,13 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://Entities/Glorper.gd" type="Script" id=1]
 [ext_resource path="res://Sounds/soundlib2water/row4.mp3" type="AudioStream" id=2]
 [ext_resource path="res://Sounds/soundlib1/awwough.mp3" type="AudioStream" id=3]
+[ext_resource path="res://Assets/asset package custom/particlePack_1.1/PNG (Transparent)/scorch_02.png" type="Texture" id=4]
+[ext_resource path="res://Assets/asset package custom/particlePack_1.1/PNG (Transparent)/spark_04.png" type="Texture" id=5]
+[ext_resource path="res://Effects/GlorpCoreParticles.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Assets/asset package custom/kenney sci fi sounds/slime_000.ogg" type="AudioStream" id=7]
+[ext_resource path="res://Assets/asset package custom/kenney sci fi sounds/slime_001.ogg" type="AudioStream" id=8]
 
 [sub_resource type="SphereShape" id=1]
 radius = 0.5
@@ -63,6 +68,73 @@ material = SubResource( 12 )
 [sub_resource type="SphereShape" id=13]
 radius = 7.0
 
+[sub_resource type="SpatialMaterial" id=14]
+flags_transparent = true
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_blend_mode = 1
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 4 )
+
+[sub_resource type="Gradient" id=15]
+offsets = PoolRealArray( 0, 0.135484, 0.567742, 0.96129 )
+colors = PoolColorArray( 0.504395, 0.246779, 0, 1, 0.254395, 0.169302, 0.00894356, 1, 0.0695581, 0.160784, 0, 1, 0.0980392, 0.027451, 0.0117647, 1 )
+
+[sub_resource type="GradientTexture" id=16]
+gradient = SubResource( 15 )
+
+[sub_resource type="Curve" id=17]
+max_value = 2.0
+_data = [ Vector2( 0.0280899, 1.31136 ), 0.0, 1.92937, 0, 0, Vector2( 0.370787, 1.71136 ), -1.06056, -1.06056, 0, 0, Vector2( 0.735955, 1.16591 ), 3.60979, 3.60979, 0, 0, Vector2( 0.932584, 0.802273 ), -1.43838, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=18]
+curve = SubResource( 17 )
+
+[sub_resource type="ParticlesMaterial" id=19]
+emission_shape = 1
+emission_sphere_radius = 0.1
+spread = 180.0
+gravity = Vector3( 0, -8, 0 )
+initial_velocity = 3.0
+angular_velocity = 10.0
+radial_accel = 2.0
+tangential_accel = 5.0
+scale_curve = SubResource( 18 )
+color = Color( 0.996078, 0.764706, 0.607843, 1 )
+color_ramp = SubResource( 16 )
+
+[sub_resource type="QuadMesh" id=20]
+
+[sub_resource type="SpatialMaterial" id=21]
+flags_transparent = true
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 5 )
+
+[sub_resource type="ParticlesMaterial" id=22]
+emission_shape = 1
+emission_sphere_radius = 0.3
+gravity = Vector3( 0, 3, 0 )
+initial_velocity = 1.0
+angular_velocity = 10.0
+angular_velocity_random = 1.0
+linear_accel = -1.0
+radial_accel = 1.0
+tangential_accel = 1.0
+damping = 2.0
+angle = 360.0
+scale = 0.7
+color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="QuadMesh" id=23]
+
 [node name="Glorper" type="KinematicBody" groups=["Enemy"]]
 script = ExtResource( 1 )
 
@@ -94,44 +166,44 @@ skin = SubResource( 5 )
 parent_collision_ignore = NodePath("../CollisionShape")
 pinned_points = [ 1204, 1168, 1122, 1152, 208, 231, 221, 249, 1133, 1048, 1159, 1144, 238 ]
 attachments/0/point_index = 1204
-attachments/0/spatial_attachment_path = NodePath("")
-attachments/0/offset = Vector3( 0, 0, 0 )
+attachments/0/spatial_attachment_path = NodePath("../Skeleton/CoreBone")
+attachments/0/offset = Vector3( -0.0952542, -0.235759, -0.967132 )
 attachments/1/point_index = 1168
-attachments/1/spatial_attachment_path = NodePath("")
-attachments/1/offset = Vector3( 0, 0, 0 )
+attachments/1/spatial_attachment_path = NodePath("../Skeleton/CoreBone")
+attachments/1/offset = Vector3( -0.193105, -0.142315, 0.970802 )
 attachments/2/point_index = 1122
-attachments/2/spatial_attachment_path = NodePath("")
-attachments/2/offset = Vector3( 0, 0, 0 )
+attachments/2/spatial_attachment_path = NodePath("../Skeleton/CoreBone")
+attachments/2/offset = Vector3( 0.989821, -0.142315, 6.06071e-17 )
 attachments/3/point_index = 1152
-attachments/3/spatial_attachment_path = NodePath("")
-attachments/3/offset = Vector3( 0, 0, 0 )
+attachments/3/spatial_attachment_path = NodePath("../Skeleton/CoreBone")
+attachments/3/offset = Vector3( -0.970802, -0.142315, -0.193105 )
 attachments/4/point_index = 208
-attachments/4/spatial_attachment_path = NodePath("")
-attachments/4/offset = Vector3( 0, 0, 0 )
+attachments/4/spatial_attachment_path = NodePath("../Skeleton/CoreBone")
+attachments/4/offset = Vector3( 0.343371, 0.928368, 0.142229 )
 attachments/5/point_index = 231
-attachments/5/spatial_attachment_path = NodePath("")
-attachments/5/offset = Vector3( 0, 0, 0 )
+attachments/5/spatial_attachment_path = NodePath("../Skeleton/CoreBone")
+attachments/5/offset = Vector3( -0.107888, 0.928368, -0.355659 )
 attachments/6/point_index = 221
-attachments/6/spatial_attachment_path = NodePath("")
-attachments/6/offset = Vector3( 0, 0, 0 )
+attachments/6/spatial_attachment_path = NodePath("../Skeleton/CoreBone")
+attachments/6/offset = Vector3( 0.23578, 0.928368, -0.287299 )
 attachments/7/point_index = 249
-attachments/7/spatial_attachment_path = NodePath("")
-attachments/7/offset = Vector3( 0, 0, 0 )
+attachments/7/spatial_attachment_path = NodePath("../Skeleton/CoreBone")
+attachments/7/offset = Vector3( -0.327777, 0.928368, 0.1752 )
 attachments/8/point_index = 1133
-attachments/8/spatial_attachment_path = NodePath("")
-attachments/8/offset = Vector3( 0, 0, 0 )
+attachments/8/spatial_attachment_path = NodePath("../Skeleton/CoreBone")
+attachments/8/offset = Vector3( 0.466599, -0.142315, -0.872945 )
 attachments/9/point_index = 1048
-attachments/9/spatial_attachment_path = NodePath("")
-attachments/9/offset = Vector3( 0, 0, 0 )
+attachments/9/spatial_attachment_path = NodePath("../Skeleton/CoreBone")
+attachments/9/offset = Vector3( 0.633675, -0.0475819, 0.772135 )
 attachments/10/point_index = 1159
-attachments/10/spatial_attachment_path = NodePath("")
-attachments/10/offset = Vector3( 0, 0, 0 )
+attachments/10/spatial_attachment_path = NodePath("../Skeleton/CoreBone")
+attachments/10/offset = Vector3( -0.872945, -0.142315, 0.466599 )
 attachments/11/point_index = 1144
-attachments/11/spatial_attachment_path = NodePath("")
-attachments/11/offset = Vector3( 0, 0, 0 )
+attachments/11/spatial_attachment_path = NodePath("../Skeleton/CoreBone")
+attachments/11/offset = Vector3( -0.549915, -0.142315, -0.823006 )
 attachments/12/point_index = 238
-attachments/12/spatial_attachment_path = NodePath("")
-attachments/12/offset = Vector3( 0, 0, 0 )
+attachments/12/spatial_attachment_path = NodePath("../Skeleton/CoreBone")
+attachments/12/offset = Vector3( -0.309026, 0.928368, -0.206485 )
 
 [node name="VisionBox" type="Area" parent="."]
 
@@ -150,7 +222,37 @@ max_db = 6.0
 stream = ExtResource( 3 )
 pitch_scale = 0.93
 
+[node name="SpeedModTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="GlorpSpew" type="Particles" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
+material_override = SubResource( 14 )
+emitting = false
+amount = 15
+one_shot = true
+process_material = SubResource( 19 )
+draw_pass_1 = SubResource( 20 )
+
+[node name="GlorpCoreParticlesDark" type="Particles" parent="."]
+material_override = SubResource( 21 )
+emitting = false
+process_material = SubResource( 22 )
+draw_pass_1 = SubResource( 23 )
+
+[node name="GlorpCoreParticles" parent="." instance=ExtResource( 6 )]
+emitting = false
+
+[node name="Ambient1" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 7 )
+pitch_scale = 0.19
+
+[node name="Ambient2" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 8 )
+pitch_scale = 0.72
+
 [connection signal="body_entered" from="BlorpArea" to="." method="_on_BlorpArea_body_entered"]
 [connection signal="body_entered" from="VisionBox" to="." method="_on_VisionBox_body_entered"]
 [connection signal="body_exited" from="VisionBox" to="." method="_on_VisionBox_body_exited"]
 [connection signal="timeout" from="BlorpTimer" to="." method="_on_BlorpTimer_timeout"]
+[connection signal="timeout" from="SpeedModTimer" to="." method="_on_SpeedModTimer_timeout"]

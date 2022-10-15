@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://Entities/Glorper.gd" type="Script" id=1]
 [ext_resource path="res://Sounds/soundlib2water/row4.mp3" type="AudioStream" id=2]
@@ -8,26 +8,28 @@
 [ext_resource path="res://Effects/GlorpCoreParticles.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Assets/asset package custom/kenney sci fi sounds/slime_000.ogg" type="AudioStream" id=7]
 [ext_resource path="res://Assets/asset package custom/kenney sci fi sounds/slime_001.ogg" type="AudioStream" id=8]
+[ext_resource path="res://Effects/GlorpSplosion.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Assets/asset package custom/kenney sci fi sounds/explosionCrunch_002.ogg" type="AudioStream" id=10]
 
 [sub_resource type="SphereShape" id=1]
 radius = 0.5
 
 [sub_resource type="OpenSimplexNoise" id=6]
 
-[sub_resource type="NoiseTexture" id=7]
+[sub_resource type="NoiseTexture" id=24]
 width = 1000
 height = 1000
 seamless = true
 noise = SubResource( 6 )
 
-[sub_resource type="NoiseTexture" id=8]
+[sub_resource type="NoiseTexture" id=25]
 width = 700
 height = 700
 seamless = true
 noise = SubResource( 6 )
 noise_offset = Vector2( 400, 0 )
 
-[sub_resource type="NoiseTexture" id=9]
+[sub_resource type="NoiseTexture" id=26]
 width = 800
 height = 500
 seamless = true
@@ -38,18 +40,18 @@ noise_offset = Vector2( -100, 0 )
 flags = 7
 frames = 3
 fps = 2.0
-frame_0/texture = SubResource( 7 )
-frame_1/texture = SubResource( 8 )
+frame_0/texture = SubResource( 24 )
+frame_1/texture = SubResource( 25 )
 frame_1/delay_sec = 0.0
-frame_2/texture = SubResource( 9 )
+frame_2/texture = SubResource( 26 )
 frame_2/delay_sec = 0.0
 
-[sub_resource type="SpatialMaterial" id=11]
+[sub_resource type="SpatialMaterial" id=27]
 albedo_color = Color( 0.643137, 0.164706, 0.164706, 1 )
 albedo_texture = SubResource( 10 )
 
 [sub_resource type="SphereMesh" id=2]
-material = SubResource( 11 )
+material = SubResource( 27 )
 radius = 0.5
 height = 1.0
 
@@ -83,14 +85,14 @@ albedo_texture = ExtResource( 4 )
 offsets = PoolRealArray( 0, 0.135484, 0.567742, 0.96129 )
 colors = PoolColorArray( 0.504395, 0.246779, 0, 1, 0.254395, 0.169302, 0.00894356, 1, 0.0695581, 0.160784, 0, 1, 0.0980392, 0.027451, 0.0117647, 1 )
 
-[sub_resource type="GradientTexture" id=16]
+[sub_resource type="GradientTexture" id=28]
 gradient = SubResource( 15 )
 
 [sub_resource type="Curve" id=17]
 max_value = 2.0
 _data = [ Vector2( 0.0280899, 1.31136 ), 0.0, 1.92937, 0, 0, Vector2( 0.370787, 1.71136 ), -1.06056, -1.06056, 0, 0, Vector2( 0.735955, 1.16591 ), 3.60979, 3.60979, 0, 0, Vector2( 0.932584, 0.802273 ), -1.43838, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=18]
+[sub_resource type="CurveTexture" id=29]
 curve = SubResource( 17 )
 
 [sub_resource type="ParticlesMaterial" id=19]
@@ -102,9 +104,9 @@ initial_velocity = 3.0
 angular_velocity = 10.0
 radial_accel = 2.0
 tangential_accel = 5.0
-scale_curve = SubResource( 18 )
+scale_curve = SubResource( 29 )
 color = Color( 0.996078, 0.764706, 0.607843, 1 )
-color_ramp = SubResource( 16 )
+color_ramp = SubResource( 28 )
 
 [sub_resource type="QuadMesh" id=20]
 
@@ -231,6 +233,7 @@ material_override = SubResource( 14 )
 emitting = false
 amount = 15
 one_shot = true
+explosiveness = 0.35
 process_material = SubResource( 19 )
 draw_pass_1 = SubResource( 20 )
 
@@ -251,8 +254,18 @@ pitch_scale = 0.19
 stream = ExtResource( 8 )
 pitch_scale = 0.72
 
+[node name="GlorpSplosion" parent="." instance=ExtResource( 9 )]
+
+[node name="DeathTimer" type="Timer" parent="."]
+wait_time = 0.6
+one_shot = true
+
+[node name="Boom" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 10 )
+
 [connection signal="body_entered" from="BlorpArea" to="." method="_on_BlorpArea_body_entered"]
 [connection signal="body_entered" from="VisionBox" to="." method="_on_VisionBox_body_entered"]
 [connection signal="body_exited" from="VisionBox" to="." method="_on_VisionBox_body_exited"]
 [connection signal="timeout" from="BlorpTimer" to="." method="_on_BlorpTimer_timeout"]
 [connection signal="timeout" from="SpeedModTimer" to="." method="_on_SpeedModTimer_timeout"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_DeathTimer_timeout"]

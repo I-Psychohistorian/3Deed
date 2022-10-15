@@ -1,0 +1,413 @@
+[gd_scene load_steps=42 format=2]
+
+[ext_resource path="res://Effects/glorpcore.tres" type="Material" id=1]
+[ext_resource path="res://Assets/asset package custom/particlePack_1.1/PNG (Transparent)/scorch_02.png" type="Texture" id=2]
+[ext_resource path="res://Assets/asset package custom/particlePack_1.1/PNG (Transparent)/spark_04.png" type="Texture" id=3]
+[ext_resource path="res://Sounds/soundlib2water/row4.mp3" type="AudioStream" id=4]
+[ext_resource path="res://Entities/MotherGlorper.gd" type="Script" id=5]
+[ext_resource path="res://Sounds/soundlib1/awwough.mp3" type="AudioStream" id=6]
+[ext_resource path="res://Sounds/smallsoundlibrary/mixkit-aggressive-beast-roar-13.wav" type="AudioStream" id=7]
+[ext_resource path="res://Assets/asset package custom/kenney sci fi sounds/explosionCrunch_003.ogg" type="AudioStream" id=8]
+[ext_resource path="res://Assets/asset package custom/kenney sci fi sounds/slime_001.ogg" type="AudioStream" id=9]
+[ext_resource path="res://Effects/GlorpSplosion.tscn" type="PackedScene" id=10]
+
+[sub_resource type="SphereMesh" id=1]
+material = ExtResource( 1 )
+radius = 2.0
+
+[sub_resource type="SphereShape" id=4]
+
+[sub_resource type="OpenSimplexNoise" id=5]
+
+[sub_resource type="NoiseTexture" id=6]
+width = 1000
+height = 1000
+seamless = true
+noise = SubResource( 5 )
+
+[sub_resource type="NoiseTexture" id=7]
+width = 700
+height = 700
+seamless = true
+noise = SubResource( 5 )
+noise_offset = Vector2( 400, 0 )
+
+[sub_resource type="NoiseTexture" id=8]
+width = 800
+height = 500
+seamless = true
+noise = SubResource( 5 )
+noise_offset = Vector2( -100, 0 )
+
+[sub_resource type="AnimatedTexture" id=9]
+flags = 7
+frames = 3
+fps = 2.0
+frame_0/texture = SubResource( 6 )
+frame_1/texture = SubResource( 7 )
+frame_1/delay_sec = 0.0
+frame_2/texture = SubResource( 8 )
+frame_2/delay_sec = 0.0
+
+[sub_resource type="SpatialMaterial" id=10]
+albedo_color = Color( 0.643137, 0.164706, 0.164706, 1 )
+albedo_texture = SubResource( 9 )
+
+[sub_resource type="SphereMesh" id=11]
+material = SubResource( 10 )
+radius = 0.5
+height = 1.0
+
+[sub_resource type="SpatialMaterial" id=12]
+flags_transparent = true
+albedo_color = Color( 0.596078, 0.254902, 0.0901961, 0.670588 )
+
+[sub_resource type="SphereMesh" id=13]
+material = SubResource( 12 )
+radius = 3.5
+
+[sub_resource type="SpatialMaterial" id=14]
+flags_transparent = true
+albedo_color = Color( 0.529412, 0.137255, 0.0588235, 0.305882 )
+
+[sub_resource type="SphereMesh" id=15]
+material = SubResource( 14 )
+radius = 4.0
+height = 1.0
+radial_segments = 32
+rings = 10
+
+[sub_resource type="SpatialMaterial" id=19]
+flags_transparent = true
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=20]
+emission_shape = 1
+emission_sphere_radius = 0.3
+gravity = Vector3( 0, 3, 0 )
+initial_velocity = 1.0
+angular_velocity = 10.0
+angular_velocity_random = 1.0
+linear_accel = -1.0
+radial_accel = 1.0
+tangential_accel = 1.0
+damping = 2.0
+angle = 360.0
+scale_random = 0.15
+color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="QuadMesh" id=21]
+
+[sub_resource type="ParticlesMaterial" id=22]
+emission_shape = 1
+emission_sphere_radius = 0.3
+gravity = Vector3( 0, 3, 0 )
+initial_velocity = 1.0
+angular_velocity = 10.0
+angular_velocity_random = 1.0
+linear_accel = -1.0
+radial_accel = 1.0
+tangential_accel = 1.0
+damping = 2.0
+angle = 360.0
+scale_random = 0.31
+color = Color( 0.611765, 0, 0, 1 )
+
+[sub_resource type="SpatialMaterial" id=23]
+flags_transparent = true
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_blend_mode = 1
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_color = Color( 0.701961, 0.694118, 0.694118, 1 )
+albedo_texture = ExtResource( 2 )
+
+[sub_resource type="Curve" id=24]
+max_value = 2.0
+_data = [ Vector2( 0.0280899, 1.31136 ), 0.0, 1.92937, 0, 0, Vector2( 0.370787, 1.71136 ), -1.06056, -1.06056, 0, 0, Vector2( 0.735955, 1.16591 ), 3.60979, 3.60979, 0, 0, Vector2( 0.932584, 0.802273 ), -1.43838, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=18]
+curve = SubResource( 24 )
+
+[sub_resource type="ParticlesMaterial" id=25]
+emission_shape = 1
+emission_sphere_radius = 0.1
+spread = 180.0
+gravity = Vector3( 0, -8, 0 )
+initial_velocity = 3.0
+angular_velocity = 10.0
+radial_accel = 2.0
+tangential_accel = 5.0
+scale = 2.0
+scale_curve = SubResource( 18 )
+color = Color( 0.176471, 0.0470588, 0.0313726, 1 )
+
+[sub_resource type="QuadMesh" id=26]
+
+[sub_resource type="SpatialMaterial" id=27]
+flags_transparent = true
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_blend_mode = 1
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 2 )
+
+[sub_resource type="Gradient" id=28]
+offsets = PoolRealArray( 0, 0.135484, 0.567742, 0.96129 )
+colors = PoolColorArray( 0.504395, 0.246779, 0, 1, 0.254395, 0.169302, 0.00894356, 1, 0.0695581, 0.160784, 0, 1, 0.0980392, 0.027451, 0.0117647, 1 )
+
+[sub_resource type="GradientTexture" id=29]
+gradient = SubResource( 28 )
+
+[sub_resource type="Curve" id=30]
+max_value = 2.0
+_data = [ Vector2( 0.0280899, 1.31136 ), 0.0, 1.92937, 0, 0, Vector2( 0.370787, 1.71136 ), -1.06056, -1.06056, 0, 0, Vector2( 0.735955, 1.16591 ), 3.60979, 3.60979, 0, 0, Vector2( 0.932584, 0.802273 ), -1.43838, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=31]
+curve = SubResource( 30 )
+
+[sub_resource type="ParticlesMaterial" id=32]
+emission_shape = 1
+emission_sphere_radius = 0.1
+spread = 180.0
+gravity = Vector3( 0, -8, 0 )
+initial_velocity = 3.0
+angular_velocity = 10.0
+radial_accel = 2.0
+tangential_accel = 5.0
+scale_curve = SubResource( 31 )
+color = Color( 0.996078, 0.764706, 0.607843, 1 )
+color_ramp = SubResource( 29 )
+
+[sub_resource type="QuadMesh" id=33]
+
+[sub_resource type="SphereShape" id=34]
+radius = 1.5
+
+[sub_resource type="SphereShape" id=35]
+radius = 34.0
+
+[node name="MotherGlorper" type="KinematicBody" groups=["Enemy"]]
+script = ExtResource( 5 )
+
+[node name="Core" type="MeshInstance" parent="."]
+mesh = SubResource( 1 )
+
+[node name="OmniLight" type="OmniLight" parent="Core"]
+light_color = Color( 0, 0.298039, 0.717647, 1 )
+light_energy = 6.302
+light_indirect_energy = 2.245
+light_negative = true
+omni_range = 7.0
+omni_shadow_mode = 0
+
+[node name="BlorpBone" type="Skeleton" parent="."]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Central" type="BoneAttachment" parent="BlorpBone"]
+
+[node name="Above" type="BoneAttachment" parent="BlorpBone"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 0, 0, 0 )
+shape = SubResource( 4 )
+
+[node name="Core2" type="MeshInstance" parent="."]
+mesh = SubResource( 11 )
+
+[node name="SoftBody" type="SoftBody" parent="."]
+mesh = SubResource( 13 )
+pinned_points = [ 390, 285, 447, 401, 566, 943, 1042, 1776, 1810, 1829, 1861, 1218, 1015, 1065, 925 ]
+attachments/0/point_index = 390
+attachments/0/spatial_attachment_path = NodePath("../BlorpBone/Central")
+attachments/0/offset = Vector3( -4.63451e-16, 0.841254, 1.89224 )
+attachments/1/point_index = 285
+attachments/1/spatial_attachment_path = NodePath("../BlorpBone/Central")
+attachments/1/offset = Vector3( 1.13405, 0.888835, -1.13405 )
+attachments/2/point_index = 447
+attachments/2/spatial_attachment_path = NodePath("../BlorpBone/Central")
+attachments/2/offset = Vector3( -1.52987, 0.786053, 1.52987 )
+attachments/3/point_index = 401
+attachments/3/spatial_attachment_path = NodePath("../BlorpBone/Central")
+attachments/3/offset = Vector3( 1.79893, 0.786053, 1.20201 )
+attachments/4/point_index = 566
+attachments/4/spatial_attachment_path = NodePath("../BlorpBone/Central")
+attachments/4/offset = Vector3( -2.53123, 0.654861, -0.767839 )
+attachments/5/point_index = 943
+attachments/5/spatial_attachment_path = NodePath("../BlorpBone/Central")
+attachments/5/offset = Vector3( 4.2425e-16, 0.142315, -3.46438 )
+attachments/6/point_index = 1042
+attachments/6/spatial_attachment_path = NodePath("../BlorpBone/Central")
+attachments/6/offset = Vector3( 0.342671, -0.0475819, 3.4792 )
+attachments/7/point_index = 1776
+attachments/7/spatial_attachment_path = NodePath("../BlorpBone/Central")
+attachments/7/offset = Vector3( 1.48171, -0.888835, -0.613745 )
+attachments/8/point_index = 1810
+attachments/8/spatial_attachment_path = NodePath("../BlorpBone/Central")
+attachments/8/offset = Vector3( -1.3335, -0.888835, 0.891019 )
+attachments/9/point_index = 1829
+attachments/9/spatial_attachment_path = NodePath("../BlorpBone/Central")
+attachments/9/offset = Vector3( 0.919818, -0.928368, 0.919818 )
+attachments/10/point_index = 1861
+attachments/10/spatial_attachment_path = NodePath("../BlorpBone/Central")
+attachments/10/offset = Vector3( -0.919818, -0.928368, -0.919818 )
+attachments/11/point_index = 1218
+attachments/11/spatial_attachment_path = NodePath("../BlorpBone/Central")
+attachments/11/offset = Vector3( -3.38496, -0.235759, -0.33339 )
+attachments/12/point_index = 1015
+attachments/12/spatial_attachment_path = NodePath("../BlorpBone/Central")
+attachments/12/offset = Vector3( -2.21786, 0.0475819, -2.70247 )
+attachments/13/point_index = 1065
+attachments/13/spatial_attachment_path = NodePath("../BlorpBone/Central")
+attachments/13/offset = Vector3( 2.47207, -0.0475819, -2.47207 )
+attachments/14/point_index = 925
+attachments/14/spatial_attachment_path = NodePath("../BlorpBone/Central")
+attachments/14/offset = Vector3( 3.39781, 0.142315, 0.675866 )
+
+[node name="Trailer" type="SoftBody" parent="." groups=["Enemy"]]
+mesh = SubResource( 15 )
+parent_collision_ignore = NodePath("../CollisionShape")
+pinned_points = [ 363, 360, 348, 354, 340, 37, 63, 46, 55, 0 ]
+attachments/0/point_index = 363
+attachments/0/spatial_attachment_path = NodePath("../BlorpBone/Above")
+attachments/0/offset = Vector3( -1.19973e-31, -1.5, 4.89843e-16 )
+attachments/1/point_index = 360
+attachments/1/spatial_attachment_path = NodePath("../BlorpBone/Above")
+attachments/1/offset = Vector3( -2.72142e-16, -1.5, 4.07289e-16 )
+attachments/2/point_index = 348
+attachments/2/spatial_attachment_path = NodePath("../BlorpBone/Above")
+attachments/2/offset = Vector3( -9.55635e-17, -1.5, -4.8043e-16 )
+attachments/3/point_index = 354
+attachments/3/spatial_attachment_path = NodePath("../BlorpBone/Above")
+attachments/3/offset = Vector3( -4.8043e-16, -1.5, -9.55635e-17 )
+attachments/4/point_index = 340
+attachments/4/spatial_attachment_path = NodePath("../BlorpBone/Central")
+attachments/4/offset = Vector3( 4.8043e-16, -0.5, -9.55635e-17 )
+attachments/5/point_index = 37
+attachments/5/spatial_attachment_path = NodePath("../BlorpBone/Central")
+attachments/5/offset = Vector3( 1.20146, 0.420627, 1.79811 )
+attachments/6/point_index = 63
+attachments/6/spatial_attachment_path = NodePath("../BlorpBone/Central")
+attachments/6/offset = Vector3( -1.20146, 0.420627, 1.79811 )
+attachments/7/point_index = 46
+attachments/7/spatial_attachment_path = NodePath("../BlorpBone/Central")
+attachments/7/offset = Vector3( 1.52916, 0.420627, -1.52916 )
+attachments/8/point_index = 55
+attachments/8/spatial_attachment_path = NodePath("../BlorpBone/Central")
+attachments/8/offset = Vector3( -1.79811, 0.420627, -1.20146 )
+attachments/9/point_index = 0
+attachments/9/spatial_attachment_path = NodePath("../BlorpBone/Central")
+attachments/9/offset = Vector3( 0, 0.5, 0 )
+
+[node name="GlorpCoreParticlesDark" type="Particles" parent="."]
+material_override = SubResource( 19 )
+emitting = false
+amount = 12
+lifetime = 1.5
+process_material = SubResource( 20 )
+draw_pass_1 = SubResource( 21 )
+
+[node name="GlorpCoreParticles" type="Particles" parent="."]
+material_override = SubResource( 19 )
+emitting = false
+amount = 12
+lifetime = 1.5
+process_material = SubResource( 22 )
+draw_pass_1 = SubResource( 21 )
+
+[node name="GlorpBirth" type="Particles" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+material_override = SubResource( 23 )
+emitting = false
+amount = 30
+one_shot = true
+explosiveness = 0.74
+process_material = SubResource( 25 )
+draw_pass_1 = SubResource( 26 )
+
+[node name="GlorpSpew" type="Particles" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+material_override = SubResource( 27 )
+emitting = false
+amount = 15
+one_shot = true
+explosiveness = 0.35
+process_material = SubResource( 32 )
+draw_pass_1 = SubResource( 33 )
+
+[node name="GlorperSpawn" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
+
+[node name="Hurt_area" type="Area" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="Hurt_area"]
+transform = Transform( 2.5, 0, 0, 0, 1, 0, 0, 0, 2.5, 0, 0, 0 )
+shape = SubResource( 34 )
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[node name="BlorpTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="DeathTimer" type="Timer" parent="."]
+
+[node name="Ambient" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 9 )
+pitch_scale = 0.22
+autoplay = true
+
+[node name="SpawnGlorp" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 7 )
+
+[node name="Boom" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 8 )
+
+[node name="Blouch" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 6 )
+pitch_scale = 0.89
+
+[node name="Blorp" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 4 )
+unit_db = 18.407
+max_db = 6.0
+
+[node name="RiseTimer" type="Timer" parent="."]
+
+[node name="GlorpSplosion" parent="." instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 0 )
+
+[node name="GlorpSplosion2" parent="." instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, -1 )
+
+[node name="GlorpSplosion3" parent="." instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1 )
+
+[node name="AggroArea" type="Area" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="AggroArea"]
+shape = SubResource( 35 )
+
+[connection signal="body_entered" from="Hurt_area" to="." method="_on_Hurt_area_body_entered"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
+[connection signal="timeout" from="BlorpTimer" to="." method="_on_BlorpTimer_timeout"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_DeathTimer_timeout"]
+[connection signal="timeout" from="RiseTimer" to="." method="_on_RiseTimer_timeout"]
+[connection signal="body_entered" from="AggroArea" to="." method="_on_AggroArea_body_entered"]
+[connection signal="body_exited" from="AggroArea" to="." method="_on_AggroArea_body_exited"]

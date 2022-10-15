@@ -59,6 +59,7 @@ func _process(delta):
 	
 	direction = Vector3()
 	handle_sprint()
+	handle_death()
 	status_upkeep()
 	update_hud()
 	if not is_on_floor():
@@ -78,7 +79,7 @@ func _process(delta):
 		elif mouse_hidden == false:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if Input.is_action_pressed("jump") and is_on_floor():
 		sprint_check()
 		fall.y += speed
 		
@@ -137,6 +138,10 @@ func switch_equipment():
 		knife.visible = false
 		equipped = weapons[2]
 	
+	#will be changed
+func handle_death():
+	if health < 0:
+		get_tree().change_scene("res://Levels/TestWorld.tscn")
 
 func sprint_check():
 	if sprint == true:

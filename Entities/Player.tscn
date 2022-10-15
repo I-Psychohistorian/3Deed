@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://UI/HUD1.tscn" type="PackedScene" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://Entities/StabScript.gd" type="Script" id=4]
 [ext_resource path="res://Sounds/soundlib1/metalslice1.mp3" type="AudioStream" id=5]
 [ext_resource path="res://Sounds/smallsoundlibrary/mixkit-female-astonished-gasp-964.wav" type="AudioStream" id=6]
+[ext_resource path="res://Assets/asset package custom/Objs/Staff_05.obj" type="ArrayMesh" id=7]
+[ext_resource path="res://Assets/weaponsk/Models/pistol.obj" type="ArrayMesh" id=8]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -106,7 +108,7 @@ __meta__ = {
 }
 
 [node name="Knife" type="MeshInstance" parent="Head/Camera/EquipNode"]
-transform = Transform( -7.98484, 0.368307, -0.326449, 0.443048, 3.06859, -7.37478, -0.214306, -7.3789, -3.08317, 0.319758, -0.176884, 0.464779 )
+transform = Transform( -7.98484, 0.368307, -0.326448, 0.443048, 3.06859, -7.37478, -0.214306, -7.3789, -3.08317, 0.319758, -0.176884, 0.464779 )
 visible = false
 mesh = ExtResource( 3 )
 
@@ -125,6 +127,18 @@ __meta__ = {
 "_editor_description_": ""
 }
 
+[node name="PistolRight" type="MeshInstance" parent="Head/Camera/EquipNode"]
+transform = Transform( -8, 0, -6.99382e-07, 0, 8, 0, 6.99382e-07, 0, -8, 0.309573, -0.256688, 0.390793 )
+visible = false
+mesh = ExtResource( 8 )
+
+[node name="FairyWand" type="MeshInstance" parent="Head/Camera/EquipNode"]
+transform = Transform( -0.1, 0, -1.50996e-08, 0, 0.1, 0, 1.50996e-08, 0, -0.1, 0.344526, -0.425142, 0.325309 )
+visible = false
+mesh = ExtResource( 7 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Head/Camera/EquipNode"]
+
 [node name="StatusTick" type="Timer" parent="."]
 wait_time = 0.5
 autostart = true
@@ -134,7 +148,6 @@ wait_time = 0.5
 one_shot = true
 
 [node name="OofTimer" type="Timer" parent="."]
-wait_time = 0.5
 one_shot = true
 
 [node name="StabSound" type="AudioStreamPlayer" parent="."]
@@ -142,6 +155,7 @@ stream = ExtResource( 5 )
 
 [node name="Oof" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
+volume_db = -4.37
 
 [connection signal="body_entered" from="Head/Camera/EquipNode/StabZone" to="." method="_on_StabZone_body_entered"]
 [connection signal="body_entered" from="Head/Camera/EquipNode/StabZone" to="Head/Camera/EquipNode/StabZone" method="_on_StabZone_body_entered"]

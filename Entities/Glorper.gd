@@ -9,6 +9,7 @@ var gravity = 1
 var hurt = false
 var aggro = true
 var scared = false
+var dead = false
 
 #random speed modifier to add eratic behavior
 var mod = 0
@@ -70,7 +71,7 @@ func movement():
 	if aggro == true:
 		for body in sight_area.get_overlapping_bodies():
 			if body.is_in_group("Player"):
-				direction = body.transform.origin - self.transform.origin
+				direction = body.global_transform.origin - self.global_transform.origin
 				move_and_slide(direction * (speed_direction * (speed + hp_speed)), Vector3.UP)
 
 
@@ -86,7 +87,11 @@ func death():
 	elif health >= -20:
 		scared = false
 	if health < -65:
-		queue_free()
+		if dead == false:
+			$DeathTimer.start()
+			$GlorpSplosion.emitting = true
+			$Boom.play()
+			dead = true
 
 func acid_hazard():
 	for body in Blorp_Area.get_overlapping_bodies():
@@ -118,3 +123,7 @@ func _on_SpeedModTimer_timeout():
 	random.randomize()
 	mod = random.randf_range(0.7, 1.4)
 
+
+
+func _on_DeathTimer_timeout():
+	queue_free()

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/row1234normal.mp3-113218900336a606b5954dff07b490bb.mp3str"
+
+[deps]
+
+source_file="res://Sounds/soundlib2water/row1234normal.mp3"
+dest_files=[ "res://.import/row1234normal.mp3-113218900336a606b5954dff07b490bb.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

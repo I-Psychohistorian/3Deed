@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/lemon.obj-e1d1e25b93c7a35a21280020ec6487dd.mesh"
+
+[deps]
+
+files=[ "res://.import/lemon.obj-e1d1e25b93c7a35a21280020ec6487dd.mesh" ]
+
+source_file="res://Assets/kenneyfood/Models/OBJ format/lemon.obj"
+dest_files=[ "res://.import/lemon.obj-e1d1e25b93c7a35a21280020ec6487dd.mesh", "res://.import/lemon.obj-e1d1e25b93c7a35a21280020ec6487dd.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

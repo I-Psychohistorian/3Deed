@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/laserSmall_002.ogg-d7fab1154c5bb82c30ac479f7fea4dfd.oggstr"
+
+[deps]
+
+source_file="res://Assets/asset package custom/kenney sci fi sounds/laserSmall_002.ogg"
+dest_files=[ "res://.import/laserSmall_002.ogg-d7fab1154c5bb82c30ac479f7fea4dfd.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

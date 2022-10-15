@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/shakerSalt.obj-41ae4f046ae3b19fddf9268bfe0bb5ce.mesh"
+
+[deps]
+
+files=[ "res://.import/shakerSalt.obj-41ae4f046ae3b19fddf9268bfe0bb5ce.mesh" ]
+
+source_file="res://Assets/kenneyfood/Models/OBJ format/shakerSalt.obj"
+dest_files=[ "res://.import/shakerSalt.obj-41ae4f046ae3b19fddf9268bfe0bb5ce.mesh", "res://.import/shakerSalt.obj-41ae4f046ae3b19fddf9268bfe0bb5ce.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

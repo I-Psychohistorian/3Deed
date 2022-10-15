@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/styrofoamDinner.obj-0d52f843917363f3b3d5b649dd4e0b07.mesh"
+
+[deps]
+
+files=[ "res://.import/styrofoamDinner.obj-0d52f843917363f3b3d5b649dd4e0b07.mesh" ]
+
+source_file="res://Assets/kenneyfood/Models/OBJ format/styrofoamDinner.obj"
+dest_files=[ "res://.import/styrofoamDinner.obj-0d52f843917363f3b3d5b649dd4e0b07.mesh", "res://.import/styrofoamDinner.obj-0d52f843917363f3b3d5b649dd4e0b07.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

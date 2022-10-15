@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Hmph.mp3-b05761e808bf84fc890be02393c1d7be.mp3str"
+
+[deps]
+
+source_file="res://Sounds/SoundEffects/HumanSounds/Hmph.mp3"
+dest_files=[ "res://.import/Hmph.mp3-b05761e808bf84fc890be02393c1d7be.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

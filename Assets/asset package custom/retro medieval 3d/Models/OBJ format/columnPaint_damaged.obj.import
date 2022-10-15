@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/columnPaint_damaged.obj-1e1b10183c505df91cc24def7f4a00dd.mesh"
+
+[deps]
+
+files=[ "res://.import/columnPaint_damaged.obj-1e1b10183c505df91cc24def7f4a00dd.mesh" ]
+
+source_file="res://Assets/asset package custom/retro medieval 3d/Models/OBJ format/columnPaint_damaged.obj"
+dest_files=[ "res://.import/columnPaint_damaged.obj-1e1b10183c505df91cc24def7f4a00dd.mesh", "res://.import/columnPaint_damaged.obj-1e1b10183c505df91cc24def7f4a00dd.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

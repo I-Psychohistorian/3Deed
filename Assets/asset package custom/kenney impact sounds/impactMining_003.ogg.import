@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/impactMining_003.ogg-81d3891a6918f32c10d34603598536ba.oggstr"
+
+[deps]
+
+source_file="res://Assets/asset package custom/kenney impact sounds/impactMining_003.ogg"
+dest_files=[ "res://.import/impactMining_003.ogg-81d3891a6918f32c10d34603598536ba.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

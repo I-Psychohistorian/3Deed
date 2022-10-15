@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/pan.obj-e515915843aa908d0acc1bd4246c728d.mesh"
+
+[deps]
+
+files=[ "res://.import/pan.obj-e515915843aa908d0acc1bd4246c728d.mesh" ]
+
+source_file="res://Assets/kenneyfood/Models/OBJ format/pan.obj"
+dest_files=[ "res://.import/pan.obj-e515915843aa908d0acc1bd4246c728d.mesh", "res://.import/pan.obj-e515915843aa908d0acc1bd4246c728d.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

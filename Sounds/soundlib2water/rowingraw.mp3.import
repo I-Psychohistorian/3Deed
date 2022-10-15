@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/rowingraw.mp3-382bbda2925b900c2975ea3443c36d08.mp3str"
+
+[deps]
+
+source_file="res://Sounds/soundlib2water/rowingraw.mp3"
+dest_files=[ "res://.import/rowingraw.mp3-382bbda2925b900c2975ea3443c36d08.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

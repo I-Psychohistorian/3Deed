@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/soy.obj-2767e0e24eaacae5cf844eac2b0af952.mesh"
+
+[deps]
+
+files=[ "res://.import/soy.obj-2767e0e24eaacae5cf844eac2b0af952.mesh" ]
+
+source_file="res://Assets/kenneyfood/Models/OBJ format/soy.obj"
+dest_files=[ "res://.import/soy.obj-2767e0e24eaacae5cf844eac2b0af952.mesh", "res://.import/soy.obj-2767e0e24eaacae5cf844eac2b0af952.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

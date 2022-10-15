@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/poorwhistle.mp3-46f255458fd9dd66724899cd6ae4a7ea.mp3str"
+
+[deps]
+
+source_file="res://Sounds/soundlib1/poorwhistle.mp3"
+dest_files=[ "res://.import/poorwhistle.mp3-46f255458fd9dd66724899cd6ae4a7ea.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

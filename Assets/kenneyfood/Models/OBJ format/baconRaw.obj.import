@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/baconRaw.obj-6530a907c8879cd43f8dff79a622831c.mesh"
+
+[deps]
+
+files=[ "res://.import/baconRaw.obj-6530a907c8879cd43f8dff79a622831c.mesh" ]
+
+source_file="res://Assets/kenneyfood/Models/OBJ format/baconRaw.obj"
+dest_files=[ "res://.import/baconRaw.obj-6530a907c8879cd43f8dff79a622831c.mesh", "res://.import/baconRaw.obj-6530a907c8879cd43f8dff79a622831c.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

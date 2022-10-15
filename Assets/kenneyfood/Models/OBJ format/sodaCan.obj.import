@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/sodaCan.obj-d7fb3fcb0cf3d34d4bde593318cba99a.mesh"
+
+[deps]
+
+files=[ "res://.import/sodaCan.obj-d7fb3fcb0cf3d34d4bde593318cba99a.mesh" ]
+
+source_file="res://Assets/kenneyfood/Models/OBJ format/sodaCan.obj"
+dest_files=[ "res://.import/sodaCan.obj-d7fb3fcb0cf3d34d4bde593318cba99a.mesh", "res://.import/sodaCan.obj-d7fb3fcb0cf3d34d4bde593318cba99a.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

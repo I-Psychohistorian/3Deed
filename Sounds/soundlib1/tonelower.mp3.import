@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/tonelower.mp3-8fb9a920b6aea820bb0a6e37b761ab85.mp3str"
+
+[deps]
+
+source_file="res://Sounds/soundlib1/tonelower.mp3"
+dest_files=[ "res://.import/tonelower.mp3-8fb9a920b6aea820bb0a6e37b761ab85.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

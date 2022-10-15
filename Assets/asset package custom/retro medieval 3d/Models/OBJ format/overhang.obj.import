@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/overhang.obj-535f576cb1f28bb24a82bc5a2aa5663a.mesh"
+
+[deps]
+
+files=[ "res://.import/overhang.obj-535f576cb1f28bb24a82bc5a2aa5663a.mesh" ]
+
+source_file="res://Assets/asset package custom/retro medieval 3d/Models/OBJ format/overhang.obj"
+dest_files=[ "res://.import/overhang.obj-535f576cb1f28bb24a82bc5a2aa5663a.mesh", "res://.import/overhang.obj-535f576cb1f28bb24a82bc5a2aa5663a.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

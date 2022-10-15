@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/pearHalf.obj-9d7abbb808fa0a7feb4509fc6ad7cadd.mesh"
+
+[deps]
+
+files=[ "res://.import/pearHalf.obj-9d7abbb808fa0a7feb4509fc6ad7cadd.mesh" ]
+
+source_file="res://Assets/kenneyfood/Models/OBJ format/pearHalf.obj"
+dest_files=[ "res://.import/pearHalf.obj-9d7abbb808fa0a7feb4509fc6ad7cadd.mesh", "res://.import/pearHalf.obj-9d7abbb808fa0a7feb4509fc6ad7cadd.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

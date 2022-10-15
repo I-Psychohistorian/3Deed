@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/tone.mp3-1b679b94d0aa16b272da4e93f3aacbe2.mp3str"
+
+[deps]
+
+source_file="res://Sounds/soundlib1/tone.mp3"
+dest_files=[ "res://.import/tone.mp3-1b679b94d0aa16b272da4e93f3aacbe2.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

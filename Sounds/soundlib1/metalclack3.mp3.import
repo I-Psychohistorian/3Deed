@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/metalclack3.mp3-274b9ec9401c70e4282b1275a7a323d8.mp3str"
+
+[deps]
+
+source_file="res://Sounds/soundlib1/metalclack3.mp3"
+dest_files=[ "res://.import/metalclack3.mp3-274b9ec9401c70e4282b1275a7a323d8.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

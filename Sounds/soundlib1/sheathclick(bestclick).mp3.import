@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/sheathclick(bestclick).mp3-7bd2aae1a2436c751667d0987eee1c1c.mp3str"
+
+[deps]
+
+source_file="res://Sounds/soundlib1/sheathclick(bestclick).mp3"
+dest_files=[ "res://.import/sheathclick(bestclick).mp3-7bd2aae1a2436c751667d0987eee1c1c.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

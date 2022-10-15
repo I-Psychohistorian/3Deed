@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Wilhelm Scream Remastered.ogg-fe3572306da3bb8f8eaf3d29e595e6e4.oggstr"
+
+[deps]
+
+source_file="res://Assets/asset package custom/Wilhelm Scream Remastered.ogg"
+dest_files=[ "res://.import/Wilhelm Scream Remastered.ogg-fe3572306da3bb8f8eaf3d29e595e6e4.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

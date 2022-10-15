@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/splooshingslowed.mp3-b81f4dba5f92d9f480ecff73cb63a964.mp3str"
+
+[deps]
+
+source_file="res://Sounds/soundlib2water/splooshingslowed.mp3"
+dest_files=[ "res://.import/splooshingslowed.mp3-b81f4dba5f92d9f480ecff73cb63a964.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

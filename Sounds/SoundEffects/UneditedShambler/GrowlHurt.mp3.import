@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/GrowlHurt.mp3-909a1e3fdd5c1a8d73313e103faf624e.mp3str"
+
+[deps]
+
+source_file="res://Sounds/SoundEffects/UneditedShambler/GrowlHurt.mp3"
+dest_files=[ "res://.import/GrowlHurt.mp3-909a1e3fdd5c1a8d73313e103faf624e.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

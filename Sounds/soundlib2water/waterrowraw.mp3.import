@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/waterrowraw.mp3-c19b46f28190dfa19c92f07a7af61086.mp3str"
+
+[deps]
+
+source_file="res://Sounds/soundlib2water/waterrowraw.mp3"
+dest_files=[ "res://.import/waterrowraw.mp3-c19b46f28190dfa19c92f07a7af61086.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

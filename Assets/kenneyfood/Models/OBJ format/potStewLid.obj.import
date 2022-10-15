@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/potStewLid.obj-b959504253c8bdd1313a2698db7878fd.mesh"
+
+[deps]
+
+files=[ "res://.import/potStewLid.obj-b959504253c8bdd1313a2698db7878fd.mesh" ]
+
+source_file="res://Assets/kenneyfood/Models/OBJ format/potStewLid.obj"
+dest_files=[ "res://.import/potStewLid.obj-b959504253c8bdd1313a2698db7878fd.mesh", "res://.import/potStewLid.obj-b959504253c8bdd1313a2698db7878fd.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

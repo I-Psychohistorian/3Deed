@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/sausageHalf.obj-9e4e48ac3889514abae1bc3debb149b9.mesh"
+
+[deps]
+
+files=[ "res://.import/sausageHalf.obj-9e4e48ac3889514abae1bc3debb149b9.mesh" ]
+
+source_file="res://Assets/kenneyfood/Models/OBJ format/sausageHalf.obj"
+dest_files=[ "res://.import/sausageHalf.obj-9e4e48ac3889514abae1bc3debb149b9.mesh", "res://.import/sausageHalf.obj-9e4e48ac3889514abae1bc3debb149b9.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/impactWood_medium_000.ogg-885bebb77a6f1f466def7ea7b4096954.oggstr"
+
+[deps]
+
+source_file="res://Assets/asset package custom/kenney impact sounds/impactWood_medium_000.ogg"
+dest_files=[ "res://.import/impactWood_medium_000.ogg-885bebb77a6f1f466def7ea7b4096954.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

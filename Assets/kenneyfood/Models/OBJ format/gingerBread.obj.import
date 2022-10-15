@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/gingerBread.obj-d579a97a15b445130d3330ba0b3e013a.mesh"
+
+[deps]
+
+files=[ "res://.import/gingerBread.obj-d579a97a15b445130d3330ba0b3e013a.mesh" ]
+
+source_file="res://Assets/kenneyfood/Models/OBJ format/gingerBread.obj"
+dest_files=[ "res://.import/gingerBread.obj-d579a97a15b445130d3330ba0b3e013a.mesh", "res://.import/gingerBread.obj-d579a97a15b445130d3330ba0b3e013a.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

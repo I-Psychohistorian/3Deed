@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/squeak.mp3-064322460da5539a2aa4dc96706fbf9c.mp3str"
+
+[deps]
+
+source_file="res://Sounds/soundlib1/squeak.mp3"
+dest_files=[ "res://.import/squeak.mp3-064322460da5539a2aa4dc96706fbf9c.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

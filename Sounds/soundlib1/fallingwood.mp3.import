@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/fallingwood.mp3-db500e799d06a6bd12eaa6d4e6f32696.mp3str"
+
+[deps]
+
+source_file="res://Sounds/soundlib1/fallingwood.mp3"
+dest_files=[ "res://.import/fallingwood.mp3-db500e799d06a6bd12eaa6d4e6f32696.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

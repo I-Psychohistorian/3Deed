@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/computerNoise_003.ogg-93067c93f1aa1d1775e703b0179e77c7.oggstr"
+
+[deps]
+
+source_file="res://Assets/asset package custom/kenney sci fi sounds/computerNoise_003.ogg"
+dest_files=[ "res://.import/computerNoise_003.ogg-93067c93f1aa1d1775e703b0179e77c7.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

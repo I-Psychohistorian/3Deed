@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/AtALoss.mp3-c0e783de8a1fe6bf820240efa8d4a382.mp3str"
+
+[deps]
+
+source_file="res://Sounds/SoundEffects/HumanSounds/AtALoss.mp3"
+dest_files=[ "res://.import/AtALoss.mp3-c0e783de8a1fe6bf820240efa8d4a382.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/knife_smooth.obj-9f75404d4b36d5cb27779971fb819fff.mesh"
+
+[deps]
+
+files=[ "res://.import/knife_smooth.obj-9f75404d4b36d5cb27779971fb819fff.mesh" ]
+
+source_file="res://Assets/weaponsk/Models/knife_smooth.obj"
+dest_files=[ "res://.import/knife_smooth.obj-9f75404d4b36d5cb27779971fb819fff.mesh", "res://.import/knife_smooth.obj-9f75404d4b36d5cb27779971fb819fff.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

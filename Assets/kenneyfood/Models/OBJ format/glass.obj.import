@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/glass.obj-88ab1ed16113fd260276a7ba3f9e7323.mesh"
+
+[deps]
+
+files=[ "res://.import/glass.obj-88ab1ed16113fd260276a7ba3f9e7323.mesh" ]
+
+source_file="res://Assets/kenneyfood/Models/OBJ format/glass.obj"
+dest_files=[ "res://.import/glass.obj-88ab1ed16113fd260276a7ba3f9e7323.mesh", "res://.import/glass.obj-88ab1ed16113fd260276a7ba3f9e7323.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

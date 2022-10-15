@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Staff_04.obj-198ba016d4f810fad49405f448374a9a.mesh"
+
+[deps]
+
+files=[ "res://.import/Staff_04.obj-198ba016d4f810fad49405f448374a9a.mesh" ]
+
+source_file="res://Assets/Objs/Staff_04.obj"
+dest_files=[ "res://.import/Staff_04.obj-198ba016d4f810fad49405f448374a9a.mesh", "res://.import/Staff_04.obj-198ba016d4f810fad49405f448374a9a.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

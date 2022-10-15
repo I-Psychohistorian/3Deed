@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/iceCreamCone.obj-e2cb225ba613faaea6b2a62a959b5c1e.mesh"
+
+[deps]
+
+files=[ "res://.import/iceCreamCone.obj-e2cb225ba613faaea6b2a62a959b5c1e.mesh" ]
+
+source_file="res://Assets/kenneyfood/Models/OBJ format/iceCreamCone.obj"
+dest_files=[ "res://.import/iceCreamCone.obj-e2cb225ba613faaea6b2a62a959b5c1e.mesh", "res://.import/iceCreamCone.obj-e2cb225ba613faaea6b2a62a959b5c1e.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

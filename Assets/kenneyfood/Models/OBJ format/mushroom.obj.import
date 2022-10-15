@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/mushroom.obj-d65df652499348ba139e4f6c5e2f675c.mesh"
+
+[deps]
+
+files=[ "res://.import/mushroom.obj-d65df652499348ba139e4f6c5e2f675c.mesh" ]
+
+source_file="res://Assets/kenneyfood/Models/OBJ format/mushroom.obj"
+dest_files=[ "res://.import/mushroom.obj-d65df652499348ba139e4f6c5e2f675c.mesh", "res://.import/mushroom.obj-d65df652499348ba139e4f6c5e2f675c.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

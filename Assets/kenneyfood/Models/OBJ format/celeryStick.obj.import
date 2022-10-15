@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/celeryStick.obj-4c6910b8fb697a051711e9cb8bc3fefe.mesh"
+
+[deps]
+
+files=[ "res://.import/celeryStick.obj-4c6910b8fb697a051711e9cb8bc3fefe.mesh" ]
+
+source_file="res://Assets/kenneyfood/Models/OBJ format/celeryStick.obj"
+dest_files=[ "res://.import/celeryStick.obj-4c6910b8fb697a051711e9cb8bc3fefe.mesh", "res://.import/celeryStick.obj-4c6910b8fb697a051711e9cb8bc3fefe.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

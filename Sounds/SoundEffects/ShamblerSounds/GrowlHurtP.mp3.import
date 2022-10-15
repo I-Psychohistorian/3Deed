@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/GrowlHurtP.mp3-fd4911ce265b02b7140e6752c32298bc.mp3str"
+
+[deps]
+
+source_file="res://Sounds/SoundEffects/ShamblerSounds/GrowlHurtP.mp3"
+dest_files=[ "res://.import/GrowlHurtP.mp3-fd4911ce265b02b7140e6752c32298bc.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

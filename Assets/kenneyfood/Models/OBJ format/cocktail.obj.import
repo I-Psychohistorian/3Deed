@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/cocktail.obj-8ee4be39e073134e8228b46594593c0a.mesh"
+
+[deps]
+
+files=[ "res://.import/cocktail.obj-8ee4be39e073134e8228b46594593c0a.mesh" ]
+
+source_file="res://Assets/kenneyfood/Models/OBJ format/cocktail.obj"
+dest_files=[ "res://.import/cocktail.obj-8ee4be39e073134e8228b46594593c0a.mesh", "res://.import/cocktail.obj-8ee4be39e073134e8228b46594593c0a.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/metalslice2.mp3-5b9a605957c0f33a6ba9dd62b1e0c34b.mp3str"
+
+[deps]
+
+source_file="res://Sounds/soundlib1/metalslice2.mp3"
+dest_files=[ "res://.import/metalslice2.mp3-5b9a605957c0f33a6ba9dd62b1e0c34b.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

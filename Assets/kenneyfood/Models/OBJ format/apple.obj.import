@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/apple.obj-58ecbde73147889e67d17c0ae614d496.mesh"
+
+[deps]
+
+files=[ "res://.import/apple.obj-58ecbde73147889e67d17c0ae614d496.mesh" ]
+
+source_file="res://Assets/kenneyfood/Models/OBJ format/apple.obj"
+dest_files=[ "res://.import/apple.obj-58ecbde73147889e67d17c0ae614d496.mesh", "res://.import/apple.obj-58ecbde73147889e67d17c0ae614d496.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

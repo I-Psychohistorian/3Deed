@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/watersploosh1.mp3-ef9d3d00c8f130565211b5da339fd5d9.mp3str"
+
+[deps]
+
+source_file="res://Sounds/soundlib2water/watersploosh1.mp3"
+dest_files=[ "res://.import/watersploosh1.mp3-ef9d3d00c8f130565211b5da339fd5d9.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

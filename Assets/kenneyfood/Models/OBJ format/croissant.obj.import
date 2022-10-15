@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/croissant.obj-45cf059c5e0fd4c580bb183c86b5c80a.mesh"
+
+[deps]
+
+files=[ "res://.import/croissant.obj-45cf059c5e0fd4c580bb183c86b5c80a.mesh" ]
+
+source_file="res://Assets/kenneyfood/Models/OBJ format/croissant.obj"
+dest_files=[ "res://.import/croissant.obj-45cf059c5e0fd4c580bb183c86b5c80a.mesh", "res://.import/croissant.obj-45cf059c5e0fd4c580bb183c86b5c80a.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

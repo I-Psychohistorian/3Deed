@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/beet.obj-88c4dad29f92389eae26eb2ca6bf1cba.mesh"
+
+[deps]
+
+files=[ "res://.import/beet.obj-88c4dad29f92389eae26eb2ca6bf1cba.mesh" ]
+
+source_file="res://Assets/kenneyfood/Models/OBJ format/beet.obj"
+dest_files=[ "res://.import/beet.obj-88c4dad29f92389eae26eb2ca6bf1cba.mesh", "res://.import/beet.obj-88c4dad29f92389eae26eb2ca6bf1cba.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

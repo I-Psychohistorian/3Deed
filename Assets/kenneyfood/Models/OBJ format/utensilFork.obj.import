@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/utensilFork.obj-e83d30c3c4fa3181fcf60bea4143c6c3.mesh"
+
+[deps]
+
+files=[ "res://.import/utensilFork.obj-e83d30c3c4fa3181fcf60bea4143c6c3.mesh" ]
+
+source_file="res://Assets/kenneyfood/Models/OBJ format/utensilFork.obj"
+dest_files=[ "res://.import/utensilFork.obj-e83d30c3c4fa3181fcf60bea4143c6c3.mesh", "res://.import/utensilFork.obj-e83d30c3c4fa3181fcf60bea4143c6c3.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

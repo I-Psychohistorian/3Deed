@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/skewer.obj-5288b32caea1a31677e4ca5a7f596b7b.mesh"
+
+[deps]
+
+files=[ "res://.import/skewer.obj-5288b32caea1a31677e4ca5a7f596b7b.mesh" ]
+
+source_file="res://Assets/kenneyfood/Models/OBJ format/skewer.obj"
+dest_files=[ "res://.import/skewer.obj-5288b32caea1a31677e4ca5a7f596b7b.mesh", "res://.import/skewer.obj-5288b32caea1a31677e4ca5a7f596b7b.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

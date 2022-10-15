@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Staff_02.obj-b0b11e1db1ce90c0622aa2589394ab8d.mesh"
+
+[deps]
+
+files=[ "res://.import/Staff_02.obj-b0b11e1db1ce90c0622aa2589394ab8d.mesh" ]
+
+source_file="res://Assets/Objs/Staff_02.obj"
+dest_files=[ "res://.import/Staff_02.obj-b0b11e1db1ce90c0622aa2589394ab8d.mesh", "res://.import/Staff_02.obj-b0b11e1db1ce90c0622aa2589394ab8d.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

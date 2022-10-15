@@ -7,6 +7,7 @@ var status = false
 var sprint = false
 var ammo = 0 
 var tooltip = 'testing'
+var equipped = []
 
 # Declare member variables here. Examples:
 onready var health_display = $MarginContainer/Health

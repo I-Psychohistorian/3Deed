@@ -15,11 +15,20 @@ var health = 100
 var status = false
 var ammo = 0 
 var sprint = false
-var exertion = false
-#exertion is for checking sprint
+var exertion = false #for checking sprint stamina drain
+var hurt = false #ticks for hurt sound and possibly stuns?
+
+
+var LMB_cooldown = false #when true, cannot attack with left click
+
+var knife_damage = 10
+
 
 var mouse_hidden = true
 var mouse_sensitivity = 0.05
+
+var weapons = ["BasicGun", "Knife", "Nothing", "Wizard"]
+var equipped = []
 
 var direction = Vector3()
 var velocity = Vector3()
@@ -27,10 +36,14 @@ var fall = Vector3()
 
 onready var head = $Head
 onready var hud = $Head/Camera/HUD
+onready var knife = $Head/Camera/EquipNode/Knife
+onready var anim = $Head/Camera/EquipNode/AnimationPlayer
+onready var StabZone = $Head/Camera/EquipNode/StabZone
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	equipped = weapons[2]
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -55,6 +68,9 @@ func _process(delta):
 	if is_on_floor():
 		fall.y = 0
 	
+	if Input.is_action_just_pressed("swap weapon"):
+		switch_equipment()
+	
 	if Input.is_action_just_pressed("menu"):
 		if mouse_hidden == true:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -65,6 +81,12 @@ func _process(delta):
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		sprint_check()
 		fall.y += speed
+		
+	if Input.is_action_pressed("LMB"):
+		if equipped == "Nothing":
+			pass
+		elif equipped == "Knife":
+			knife_stab()
 	
 	if Input.is_action_pressed("forward"):
 		direction -= transform.basis.z
@@ -89,6 +111,7 @@ func update_hud():
 	hud.ammo = ammo
 	hud.status = status
 	hud.sprint = sprint
+	hud.equipped = equipped
 	
 #this is for stamina regen and health and status effects
 #status effects will come later
@@ -104,6 +127,16 @@ func status_upkeep():
 		sprint = false
 		speed = 5
 		stamina = 0
+
+#will toggle weapon, will add additional weapons and overhaul this
+func switch_equipment():
+	if equipped == "Nothing":
+		equipped = weapons[1]
+		knife.visible = true
+	elif equipped == "Knife":
+		knife.visible = false
+		equipped = weapons[2]
+	
 
 func sprint_check():
 	if sprint == true:
@@ -122,6 +155,38 @@ func handle_sprint():
 			speed = 5
 			acceleration = 20
 
+func take_damage(incoming_damage):
+	if hurt == false:
+		$OofTimer.start()
+		hurt = true
+	health -= incoming_damage
+
+#weapon functions
+func knife_stab():
+	if LMB_cooldown == false:
+		if stamina > 0:
+			LMB_cooldown = true
+			$StabTimer.start()
+			anim.play("Stab")
+			stamina -= 5
+			for body in StabZone.get_overlapping_bodies():
+				if body.is_in_group('Enemy'):
+					body.take_damage(knife_damage)
+	
 
 func _on_StatusTick_timeout():
 	status_tick = true
+
+
+func _on_StabZone_body_entered(body):
+	if body.is_in_group("Enemy"):
+		print('Stabbable Target!')
+		print("Name: " + String(body.Name) + " Health: " + String(body.health))
+
+
+func _on_StabTimer_timeout():
+	LMB_cooldown = false
+
+
+func _on_OofTimer_timeout():
+	hurt = false

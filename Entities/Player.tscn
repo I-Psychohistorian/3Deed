@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://UI/HUD1.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Assets/asset package custom/Objs/Staff_05.obj" type="ArrayMesh" id=7]
 [ext_resource path="res://Assets/weaponsk/Models/pistol.obj" type="ArrayMesh" id=8]
 [ext_resource path="res://Sounds/soundlib1/bew.mp3" type="AudioStream" id=9]
+[ext_resource path="res://Assets/WhiteCircleCross20x20.png" type="Texture" id=10]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -139,6 +140,19 @@ visible = false
 mesh = ExtResource( 7 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Head/Camera/EquipNode"]
+
+[node name="Crosshair" type="TextureRect" parent="Head/Camera"]
+margin_left = 502.0
+margin_top = 290.0
+margin_right = 522.0
+margin_bottom = 310.0
+texture = ExtResource( 10 )
+
+[node name="InteractPoint" type="RayCast" parent="Head/Camera"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 2.6, 0, 0, 0 )
+enabled = true
+cast_to = Vector3( 0, 0, -1 )
+debug_shape_thickness = 3
 
 [node name="StatusTick" type="Timer" parent="."]
 wait_time = 0.5

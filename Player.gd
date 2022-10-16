@@ -47,6 +47,8 @@ onready var knife = $Head/Camera/EquipNode/Knife
 onready var anim = $Head/Camera/EquipNode/AnimationPlayer
 onready var StabZone = $Head/Camera/EquipNode/StabZone
 
+onready var interact_range = $Head/Camera/InteractPoint
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	print(weapons)
@@ -77,6 +79,7 @@ func _process(delta):
 	handle_sprint()
 	handle_death()
 	status_upkeep()
+	interact_raycast()
 	update_hud()
 	if not is_on_floor():
 		fall.y -= gravity * delta
@@ -121,6 +124,23 @@ func _process(delta):
 	
 	velocity = velocity.linear_interpolate(direction * speed, acceleration * delta)
 	velocity = move_and_slide(velocity, Vector3.UP)
+
+
+#Interactable objects must have use() function
+func interact_raycast():
+	if interact_range.is_colliding():
+		var object = interact_range.get_collider()
+		print(object)
+		if object.is_in_group("Interactable"):
+			hud.see_e()
+			if Input.is_action_pressed("interact"):
+				object.use()
+		else:
+			hud.unsee_e()
+	else:
+		hud.unsee_e()
+		
+
 
 func update_hud():
 	hud.health = health

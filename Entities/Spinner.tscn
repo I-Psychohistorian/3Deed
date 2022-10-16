@@ -296,14 +296,17 @@ stream = ExtResource( 12 )
 
 [node name="Hurt" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 14 )
+unit_db = 9.911
 pitch_scale = 2.84
 
 [node name="Death" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 13 )
+unit_db = 7.08
 
 [node name="Fwoosh" type="AudioStreamPlayer3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.20683, 0.846127, 0.1284 )
 stream = ExtResource( 3 )
+unit_db = 42.478
 
 [connection signal="body_entered" from="spike_barrier/hurt_zone" to="." method="_on_hurt_zone_body_entered"]
 [connection signal="body_entered" from="sight_radius" to="." method="_on_sight_radius_body_entered"]

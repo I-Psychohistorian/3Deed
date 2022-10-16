@@ -10,12 +10,15 @@ var powerups = 0
 var tooltip = 'testing'
 var equipped = []
 
+var interactable_seen = false
+
 # Declare member variables here. Examples:
 onready var health_display = $MarginContainer/Health
 onready var stamina_display = $MarginContainer/Stamina
 onready var ammo_display = $MarginContainer/Ammo
 onready var sprint_display = $MarginContainer/Sprint
 onready var powerups_display = $MarginContainer/Powerups
+onready var interact_text = $Interact/InteractText
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -32,4 +35,13 @@ func _process(delta):
 		sprint_display.text = "Sprint Off"
 	if sprint == true:
 		sprint_display.text = "Sprint On"
+
+	
+func see_e():
+	interactable_seen = true
+	interact_text.show()
+	
+func unsee_e():
+	interactable_seen = false
+	interact_text.hide()
 	

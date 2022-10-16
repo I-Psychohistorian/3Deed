@@ -10,8 +10,9 @@ material = ExtResource( 2 )
 [sub_resource type="CapsuleShape" id=2]
 
 [sub_resource type="SphereShape" id=3]
+radius = 18.7259
 
-[node name="BingoBean1" type="RigidBody" groups=["Powerups"]]
+[node name="BingoBean1" type="RigidBody" groups=["Interactable", "Powerups"]]
 collision_layer = 3
 collision_mask = 3
 script = ExtResource( 3 )

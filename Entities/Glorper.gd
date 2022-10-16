@@ -95,11 +95,15 @@ func death():
 
 func acid_hazard():
 	for body in Blorp_Area.get_overlapping_bodies():
-		if body.is_in_group("Destructible"):
+		if body.is_in_group("Player"):
 			body.take_damage(damage)
 			print("Blorp!")
 			$Blorp.play()
-	
+		if body.is_in_group("Spinner"):
+			body.take_damage(damage)
+			print("Blorp!")
+			$Blorp.play()
+
 
 func _on_BlorpArea_body_entered(body):
 	pass # Replace with function body.
@@ -116,7 +120,8 @@ func _on_VisionBox_body_entered(body):
 		aggro = true
 
 func _on_VisionBox_body_exited(body):
-	aggro = false
+	if body.is_in_group('Player'):
+		aggro = false
 
 
 func _on_SpeedModTimer_timeout():

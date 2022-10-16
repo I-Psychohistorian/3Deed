@@ -1,4 +1,4 @@
-extends Spatial
+extends RigidBody
 
 
 # Declare member variables here. Examples:
@@ -16,11 +16,8 @@ func _ready():
 #	pass
 
 
-func _on_Teleporter_body_entered(body):
+func _on_Area_body_entered(body):
 	if body.is_in_group("Player"):
-		get_tree().change_scene("res://Levels/GlorpChamber.tscn")
-
-
-func _on_SecondTeleporter_body_entered(body):
-	if body.is_in_group("Player"):
-		get_tree().change_scene("res://Levels/TestDungeon.tscn")
+		body.powerups +=1
+		body.bingo()
+		queue_free()

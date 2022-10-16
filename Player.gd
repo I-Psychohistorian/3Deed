@@ -21,8 +21,15 @@ var hurt = false #ticks for hurt sound and possibly stuns?
 
 var LMB_cooldown = false #when true, cannot attack with left click
 
-var knife_damage = 10
 
+#weapon values
+var knife_damage = 10
+var gun_damage = 30
+var fairy_damage = 15
+
+#inventory stuff
+var inv_weapons = []
+var powerups = 1
 
 var mouse_hidden = true
 var mouse_sensitivity = 0.05
@@ -42,14 +49,22 @@ onready var StabZone = $Head/Camera/EquipNode/StabZone
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	print(weapons)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	equipped = weapons[2]
+	print(equipped)
 
 func _input(event):
 	if event is InputEventMouseMotion:
 		rotate_y(deg2rad(-event.relative.x * mouse_sensitivity))
 		head.rotate_x(deg2rad(-event.relative.y * mouse_sensitivity))
 		head.rotation.x = clamp(head.rotation.x, deg2rad(-90), deg2rad(90))
+	if event.is_action_released("powerup"):
+		if powerups > 0:
+			powerups -= 1
+			use_powerup()
+		else:
+			print('No bingo beans left!')
 	if event.is_action_pressed("quit"):
 		get_tree().quit()
 
@@ -113,6 +128,7 @@ func update_hud():
 	hud.status = status
 	hud.sprint = sprint
 	hud.equipped = equipped
+	hud.powerups = powerups
 	
 #this is for stamina regen and health and status effects
 #status effects will come later
@@ -129,6 +145,23 @@ func status_upkeep():
 		speed = 5
 		stamina = 0
 
+#players powerup sound
+func bingo():
+	$Bingo.play()
+
+#determines powerup effect
+func use_powerup():
+	print(equipped)
+	if String(equipped) == "Nothing":
+		print("Nothing in hand, major stamina + health gained")
+		stamina += 30
+		health += 30
+	elif String(equipped) == "Knife":
+		print("Knife in hand, major stamina, minor health and 1 second attack boost gained")
+		stamina += 30
+		health +=20
+		knife_damage = 20
+		$KnifePowerupTimer.start()
 #will toggle weapon, will add additional weapons and overhaul this
 func switch_equipment():
 	if equipped == "Nothing":
@@ -179,6 +212,8 @@ func knife_stab():
 			for body in StabZone.get_overlapping_bodies():
 				if body.is_in_group('Enemy'):
 					body.take_damage(knife_damage)
+				if body.is_in_group('Destructible'):
+					body.take_damage(knife_damage)
 	
 
 func _on_StatusTick_timeout():
@@ -197,3 +232,7 @@ func _on_StabTimer_timeout():
 
 func _on_OofTimer_timeout():
 	hurt = false
+
+
+func _on_KnifePowerupTimer_timeout():
+	knife_damage = 10

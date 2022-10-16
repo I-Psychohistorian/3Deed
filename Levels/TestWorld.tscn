@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Assets/asset package custom/retro medieval 3d/Models/GLTF format/bricks.material" type="Material" id=1]
 [ext_resource path="res://Assets/asset package custom/retro medieval 3d/Models/FBX format/roof.material" type="Material" id=2]
@@ -10,6 +10,11 @@
 [ext_resource path="res://Levels/TestWorld.gd" type="Script" id=8]
 [ext_resource path="res://Assets/asset package custom/retro medieval 3d/Models/GLTF format/planks.material" type="Material" id=9]
 [ext_resource path="res://Assets/asset package custom/kenney sci fi sounds/spaceEngineLow_000.ogg" type="AudioStream" id=10]
+[ext_resource path="res://Entities/BingoBean1.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Entities/Spinner.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Entities/Barrel.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Entities/BingoBarrel.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Entities/DestructibleColumn.tscn" type="PackedScene" id=15]
 
 [sub_resource type="OpenSimplexNoise" id=1]
 
@@ -42,6 +47,51 @@ frame_2/delay_sec = 0.0
 albedo_color = Color( 0.407843, 0.415686, 0.933333, 1 )
 albedo_texture = SubResource( 7 )
 
+[sub_resource type="SpatialMaterial" id=10]
+flags_transparent = true
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+params_line_width = 3.0
+
+[sub_resource type="Image" id=15]
+data = {
+"data": PoolByteArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 37, 0, 0, 0, 52, 0, 0, 0, 67, 0, 0, 0, 67, 0, 0, 0, 52, 0, 0, 0, 37, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 32, 38, 38, 38, 80, 194, 194, 194, 161, 226, 226, 226, 199, 247, 247, 247, 236, 247, 247, 247, 236, 226, 226, 226, 199, 194, 194, 194, 161, 38, 38, 38, 80, 0, 0, 0, 32, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 52, 135, 135, 135, 119, 245, 245, 245, 231, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 245, 245, 245, 231, 135, 135, 135, 119, 0, 0, 0, 52, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 32, 135, 135, 135, 119, 255, 255, 255, 254, 255, 255, 255, 255, 255, 226, 226, 255, 255, 169, 169, 255, 255, 144, 144, 255, 255, 144, 144, 255, 255, 169, 169, 255, 255, 226, 226, 255, 255, 255, 255, 255, 255, 255, 255, 254, 133, 133, 133, 118, 0, 0, 0, 32, 0, 0, 0, 0, 0, 0, 0, 10, 41, 41, 41, 80, 245, 245, 245, 231, 255, 255, 255, 255, 255, 197, 197, 255, 255, 132, 132, 255, 255, 132, 132, 255, 255, 132, 132, 255, 255, 132, 132, 255, 255, 132, 132, 255, 255, 132, 132, 255, 255, 197, 197, 255, 255, 255, 255, 255, 245, 245, 245, 231, 38, 38, 38, 79, 0, 0, 0, 10, 0, 0, 0, 36, 192, 192, 192, 159, 255, 255, 255, 255, 255, 226, 226, 255, 255, 132, 132, 255, 255, 132, 132, 255, 255, 132, 132, 255, 255, 132, 132, 255, 255, 132, 132, 255, 255, 132, 132, 255, 255, 132, 132, 255, 255, 132, 132, 255, 255, 227, 227, 255, 255, 255, 255, 255, 192, 192, 192, 159, 0, 0, 0, 36, 0, 0, 0, 51, 225, 225, 225, 198, 255, 255, 255, 255, 255, 170, 170, 255, 255, 132, 132, 255, 255, 132, 132, 255, 255, 132, 132, 255, 255, 132, 132, 255, 255, 132, 132, 255, 255, 132, 132, 255, 255, 132, 132, 255, 255, 132, 132, 255, 255, 170, 170, 255, 255, 255, 255, 255, 225, 225, 225, 198, 0, 0, 0, 51, 0, 0, 0, 66, 246, 246, 246, 233, 255, 255, 255, 255, 255, 146, 146, 255, 255, 132, 132, 255, 255, 132, 132, 255, 255, 132, 132, 255, 255, 132, 132, 255, 255, 132, 132, 255, 255, 132, 132, 255, 255, 132, 132, 255, 255, 132, 132, 255, 255, 146, 146, 255, 255, 255, 255, 255, 246, 246, 246, 233, 0, 0, 0, 66, 0, 0, 0, 66, 246, 246, 246, 234, 255, 255, 255, 255, 255, 145, 145, 255, 255, 132, 132, 255, 255, 132, 132, 255, 255, 132, 132, 255, 255, 132, 132, 255, 255, 132, 132, 255, 255, 132, 132, 255, 255, 132, 132, 255, 255, 132, 132, 255, 255, 146, 146, 255, 255, 255, 255, 255, 246, 246, 246, 233, 0, 0, 0, 66, 0, 0, 0, 51, 225, 225, 225, 198, 255, 255, 255, 255, 255, 170, 170, 255, 255, 132, 132, 255, 255, 132, 132, 255, 255, 132, 132, 255, 255, 132, 132, 255, 255, 132, 132, 255, 255, 132, 132, 255, 255, 132, 132, 255, 255, 132, 132, 255, 255, 170, 170, 255, 255, 255, 255, 255, 225, 225, 225, 198, 0, 0, 0, 51, 0, 0, 0, 36, 192, 192, 192, 159, 255, 255, 255, 255, 255, 226, 226, 255, 255, 132, 132, 255, 255, 132, 132, 255, 255, 132, 132, 255, 255, 132, 132, 255, 255, 132, 132, 255, 255, 132, 132, 255, 255, 132, 132, 255, 255, 132, 132, 255, 255, 226, 226, 255, 255, 255, 255, 255, 192, 192, 192, 159, 0, 0, 0, 36, 0, 0, 0, 10, 41, 41, 41, 80, 245, 245, 245, 231, 255, 255, 255, 255, 255, 197, 197, 255, 255, 132, 132, 255, 255, 132, 132, 255, 255, 132, 132, 255, 255, 132, 132, 255, 255, 132, 132, 255, 255, 132, 132, 255, 255, 197, 197, 255, 255, 255, 255, 255, 245, 245, 245, 231, 41, 41, 41, 80, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 32, 135, 135, 135, 119, 255, 255, 255, 254, 255, 255, 255, 255, 255, 226, 226, 255, 255, 169, 169, 255, 255, 144, 144, 255, 255, 144, 144, 255, 255, 169, 169, 255, 255, 226, 226, 255, 255, 255, 255, 255, 255, 255, 255, 254, 135, 135, 135, 119, 0, 0, 0, 32, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 52, 138, 138, 138, 120, 245, 245, 245, 231, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 245, 245, 245, 231, 136, 136, 136, 120, 0, 0, 0, 52, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 32, 38, 38, 38, 80, 194, 194, 194, 161, 226, 226, 226, 199, 247, 247, 247, 236, 247, 247, 247, 236, 226, 226, 226, 199, 194, 194, 194, 161, 38, 38, 38, 80, 0, 0, 0, 32, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 37, 0, 0, 0, 52, 0, 0, 0, 67, 0, 0, 0, 67, 0, 0, 0, 52, 0, 0, 0, 37, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ),
+"format": "RGBA8",
+"height": 16,
+"mipmaps": false,
+"width": 16
+}
+
+[sub_resource type="ImageTexture" id=12]
+flags = 0
+flags = 0
+image = SubResource( 15 )
+size = Vector2( 16, 16 )
+
+[sub_resource type="SpatialMaterial" id=13]
+flags_transparent = true
+flags_unshaded = true
+flags_use_point_size = true
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+params_point_size = 16.0
+albedo_texture = SubResource( 12 )
+
+[sub_resource type="ArrayMesh" id=14]
+surfaces/0 = {
+"aabb": AABB( -2, -1, 0, 4, 4, 1e-05 ),
+"array_data": PoolByteArray( 0, 0, 0, 0, 0, 0, 128, 191, 0, 0, 0, 0, 0, 0, 0, 192, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 64, 64, 0, 0, 0, 0, 0, 0, 0, 64, 0, 0, 0, 0, 0, 0, 0, 0 ),
+"array_index_data": PoolByteArray(  ),
+"blend_shape_data": [  ],
+"format": 2194433,
+"index_count": 0,
+"material": SubResource( 13 ),
+"primitive": 0,
+"skeleton_aabb": [  ],
+"vertex_count": 4
+}
+
 [sub_resource type="BoxShape" id=9]
 extents = Vector3( 3, 3, 1 )
 
@@ -56,6 +106,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
 
 [node name="CSGCombiner" type="CSGCombiner" parent="."]
 use_collision = true
+collision_layer = 3
+collision_mask = 3
 
 [node name="FirstBox" type="CSGBox" parent="CSGCombiner"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0 )
@@ -189,6 +241,31 @@ height = 1.5
 depth = 1.5
 material = ExtResource( 9 )
 
+[node name="WallInterfaceSpace2" type="CSGPolygon" parent="CSGCombiner"]
+transform = Transform( -1.31134e-07, 0, 2, 0, 3, 0, -3, 0, -8.74228e-08, 54, 8, 77 )
+invert_faces = true
+polygon = PoolVector2Array( 0, -1, -2, 0, 0, 3, 2, 0 )
+material = SubResource( 8 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ImmediateGeometry" type="ImmediateGeometry" parent="CSGCombiner/WallInterfaceSpace2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1e-05 )
+material_override = SubResource( 10 )
+
+[node name="11631" type="MeshInstance" parent="CSGCombiner/WallInterfaceSpace2/ImmediateGeometry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1e-05 )
+mesh = SubResource( 14 )
+
+[node name="OmniLight" type="OmniLight" parent="CSGCombiner/WallInterfaceSpace2"]
+transform = Transform( 0.333333, 0, 4.9738e-14, 0, 0.333333, 0, -7.4607e-14, 0, 0.5, 5.72205e-06, 0.333328, -3 )
+light_color = Color( 0.447059, 0.270588, 0.996078, 1 )
+omni_range = 21.0
+__meta__ = {
+"_edit_group_": true
+}
+
 [node name="OmniLight" type="OmniLight" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 9, 94 )
 light_color = Color( 0.447059, 0.270588, 0.996078, 1 )
@@ -203,8 +280,18 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 3, -6 )
 [node name="Glorper2" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -37.3938, 3, -20.061 )
 
-[node name="Glorper3" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 3, 0 )
+[node name="SecondTeleporter" type="Area" parent="."]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 53, 9, 77 )
+
+[node name="CollisionShape" type="CollisionShape" parent="SecondTeleporter"]
+transform = Transform( 0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 0, 0, 1 )
+shape = SubResource( 9 )
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SecondTeleporter"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.956059, 0 )
+stream = ExtResource( 10 )
+pitch_scale = 0.61
+autoplay = true
 
 [node name="Teleporter" type="Area" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 10, 99 )
@@ -217,5 +304,25 @@ shape = SubResource( 9 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.956059, 0 )
 stream = ExtResource( 10 )
 pitch_scale = 0.61
+autoplay = true
 
+[node name="BingoBean1" parent="." instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.67439, 25.1965 )
+
+[node name="BingoBean2" parent="." instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.69233, 2.67439, 25.1965 )
+
+[node name="Spinner" parent="." instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.47722, 1.97495, -12.778 )
+
+[node name="Barrel" parent="." instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 22 )
+
+[node name="BingoBarrel" parent="." instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 22 )
+
+[node name="DestructibleColumn" parent="." instance=ExtResource( 15 )]
+transform = Transform( 2, 0, 0, 0, -1.5, 1.74846e-07, 0, -1.31134e-07, -2, -3, 2.38474, 0 )
+
+[connection signal="body_entered" from="SecondTeleporter" to="." method="_on_SecondTeleporter_body_entered"]
 [connection signal="body_entered" from="Teleporter" to="." method="_on_Teleporter_body_entered"]

@@ -11,5 +11,5 @@ dest_files=[ "res://.import/Wilhelm Scream Remastered.ogg-fe3572306da3bb8f8eaf3d
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

@@ -11,7 +11,8 @@ config_version=4
 [application]
 
 config/name="FPSDungeon"
-config/icon="res://icon.png"
+run/main_scene="res://Levels/TestWorld.tscn"
+config/icon="res://Assets/weaponsk/Sprites/Silhouette/knife_sharp.png"
 
 [gui]
 
@@ -77,6 +78,11 @@ menu={
 "swap weapon"={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":81,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+powerup={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":70,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 

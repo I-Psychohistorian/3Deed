@@ -16,11 +16,5 @@ func _ready():
 #	pass
 
 
-func _on_Teleporter_body_entered(body):
-	if body.is_in_group("Player"):
-		get_tree().change_scene("res://Levels/GlorpChamber.tscn")
-
-
-func _on_SecondTeleporter_body_entered(body):
-	if body.is_in_group("Player"):
-		get_tree().change_scene("res://Levels/TestDungeon.tscn")
+func _on_BarrelBody_wood_break():
+	$Break.play()

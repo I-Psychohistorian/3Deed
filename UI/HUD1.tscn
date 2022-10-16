@@ -39,3 +39,11 @@ margin_right = 82.0
 margin_bottom = 68.0
 size_flags_vertical = 5
 text = "Stamina"
+
+[node name="Powerups" type="Label" parent="MarginContainer"]
+margin_top = 72.0
+margin_right = 82.0
+margin_bottom = 86.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "BingoBeans"

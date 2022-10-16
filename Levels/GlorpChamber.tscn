@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Assets/asset package custom/retro medieval 3d/Models/GLTF format/stones.material" type="Material" id=1]
 [ext_resource path="res://Assets/asset package custom/Hypno's Fantsy Village Pack/wood_sharpened.material" type="Material" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Entities/MotherGlorper.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Entities/Glorper.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Assets/asset package custom/retro medieval 3d/Models/GLTF format/stonesPainted.material" type="Material" id=7]
+[ext_resource path="res://Entities/BingoBean1.tscn" type="PackedScene" id=8]
 
 [node name="GlorpChamber" type="Spatial"]
 __meta__ = {
@@ -147,7 +148,7 @@ height = 2.0
 material = ExtResource( 3 )
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 37, -4, 21 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1, 0 )
 
 [node name="Glorper" parent="." instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -1, 9 )
@@ -157,3 +158,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16, -1, 13 )
 
 [node name="MotherGlorper" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 64, -7, 23 )
+
+[node name="BingoBean1" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.9574, -0.9492, -9.27668 )

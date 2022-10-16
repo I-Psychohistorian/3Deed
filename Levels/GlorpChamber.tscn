@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Assets/asset package custom/retro medieval 3d/Models/GLTF format/stones.material" type="Material" id=1]
 [ext_resource path="res://Assets/asset package custom/Hypno's Fantsy Village Pack/wood_sharpened.material" type="Material" id=2]
@@ -8,6 +8,28 @@
 [ext_resource path="res://Entities/Glorper.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Assets/asset package custom/retro medieval 3d/Models/GLTF format/stonesPainted.material" type="Material" id=7]
 [ext_resource path="res://Entities/BingoBean1.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Assets/asset package custom/AllSkyFree_Godot-10e858fef0a9c5fa071de8bc191c3b4bef00edda/Screenshots/_0004_AllSkyFree_Screen_06.jpg" type="Texture" id=9]
+[ext_resource path="res://Assets/asset package custom/AllSkyFree_Godot-10e858fef0a9c5fa071de8bc191c3b4bef00edda/Screenshots/_0003_AllSkyFree_Screen_06.jpg" type="Texture" id=10]
+[ext_resource path="res://Assets/kenneyfood/Models/GLTF format/hotDog.glb" type="PackedScene" id=11]
+[ext_resource path="res://Assets/asset package custom/AllSkyFree_Godot-10e858fef0a9c5fa071de8bc191c3b4bef00edda/Screenshots/_0008_AllSkyFree_Screen_02.jpg" type="Texture" id=12]
+[ext_resource path="res://Levels/Area.gd" type="Script" id=13]
+
+[sub_resource type="AnimatedTexture" id=1]
+flags = 23
+frames = 3
+frame_0/texture = ExtResource( 12 )
+frame_0/delay_sec = 0.04
+frame_1/texture = ExtResource( 10 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 9 )
+frame_2/delay_sec = 0.0
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_texture = SubResource( 1 )
+
+[sub_resource type="CapsuleShape" id=3]
+radius = 0.1
+height = 0.444087
 
 [node name="GlorpChamber" type="Spatial"]
 __meta__ = {
@@ -147,6 +169,53 @@ invert_faces = true
 height = 2.0
 material = ExtResource( 3 )
 
+[node name="Stair1" type="CSGCylinder" parent="CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 47.4667, -5.15098, 34.9921 )
+invert_faces = true
+radius = 1.24119
+height = 3.86705
+material = ExtResource( 7 )
+
+[node name="Stair2" type="CSGCylinder" parent="CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 47.0369, -4.33145, 35.9036 )
+invert_faces = true
+radius = 1.24119
+height = 3.86705
+material = ExtResource( 7 )
+
+[node name="Stair3" type="CSGCylinder" parent="CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 46.7215, -3.63566, 36.7996 )
+invert_faces = true
+radius = 1.24119
+height = 3.86705
+material = ExtResource( 7 )
+
+[node name="Stair4" type="CSGCylinder" parent="CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 46.7857, -3.04272, 38.5171 )
+invert_faces = true
+radius = 1.24119
+height = 3.86705
+material = ExtResource( 1 )
+
+[node name="Sky" type="CSGCylinder" parent="CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 46.7857, -1.09262, 38.5171 )
+invert_faces = true
+height = 0.281704
+material = SubResource( 2 )
+
+[node name="OmniLight" type="OmniLight" parent="CSGCombiner/Sky"]
+
+[node name="Area" type="Area" parent="CSGCombiner/Sky"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0622406, -3.29943, 0.266846 )
+script = ExtResource( 13 )
+
+[node name="CollisionShape" type="CollisionShape" parent="CSGCombiner/Sky/Area"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.0787525, 0 )
+shape = SubResource( 3 )
+
+[node name="hotDog" parent="CSGCombiner/Sky/Area/CollisionShape" instance=ExtResource( 11 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -0.0787525, 0 )
+
 [node name="Player" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1, 0 )
 
@@ -161,3 +230,5 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 64, -7, 23 )
 
 [node name="BingoBean1" parent="." instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.9574, -0.9492, -9.27668 )
+
+[connection signal="body_entered" from="CSGCombiner/Sky/Area" to="CSGCombiner/Sky/Area" method="_on_Area_body_entered"]

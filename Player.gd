@@ -63,6 +63,7 @@ func _input(event):
 		if powerups > 0:
 			powerups -= 1
 			use_powerup()
+			bingo()
 		else:
 			print('No bingo beans left!')
 	if event.is_action_pressed("quit"):

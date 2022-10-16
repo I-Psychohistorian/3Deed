@@ -13,6 +13,7 @@ var equipped = []
 var interactable_seen = false
 
 # Declare member variables here. Examples:
+onready var weapon_display = $WeaponType
 onready var health_display = $MarginContainer/Health
 onready var stamina_display = $MarginContainer/Stamina
 onready var ammo_display = $MarginContainer/Ammo
@@ -31,6 +32,7 @@ func _process(delta):
 	stamina_display.text = "Stamina " + String(stamina)
 	ammo_display.text = "Ammo " + String(ammo)
 	powerups_display.text = "Bingo Beans " + String(powerups)
+	weapon_display.text = String(equipped) + " equipped"
 	if sprint == false:
 		sprint_display.text = "Sprint Off"
 	if sprint == true:

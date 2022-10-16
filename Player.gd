@@ -25,7 +25,9 @@ var LMB_cooldown = false #when true, cannot attack with left click
 #weapon values
 var knife_damage = 10
 var gun_damage = 30
-var fairy_damage = 15
+var fairy_damage = 40
+
+var dashing = false
 
 #inventory stuff
 var inv_weapons = []
@@ -34,8 +36,8 @@ var powerups = 1
 var mouse_hidden = true
 var mouse_sensitivity = 0.05
 
-var weapons = ["BasicGun", "Knife", "Nothing", "Wizard"]
-var equipped = []
+var weapons = ["Handgun", "Knife", "Nothing", "Fairy Wand"]
+var equipped = ["Nothing"]
 
 var direction = Vector3()
 var velocity = Vector3()
@@ -46,8 +48,10 @@ onready var hud = $Head/Camera/HUD
 onready var knife = $Head/Camera/EquipNode/Knife
 onready var anim = $Head/Camera/EquipNode/AnimationPlayer
 onready var StabZone = $Head/Camera/EquipNode/StabZone
+onready var wand = $Head/Camera/EquipNode/FairyWand
 
 onready var interact_range = $Head/Camera/InteractPoint
+onready var AoE = $Head/Camera/EquipNode/AoE_area
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -107,6 +111,20 @@ func _process(delta):
 			pass
 		elif equipped == "Knife":
 			knife_stab()
+		elif equipped == "Fairy Wand":
+			wand_aoe()
+	
+	if Input.is_action_pressed("RMB"):
+		if equipped == "Nothing":
+			pass 
+		elif equipped == "Knife":
+			pass
+		elif equipped == "Fairy Wand":
+			wand_dash()
+	
+	if Input.is_action_just_released("RMB"):
+		dashing = false
+		anim.play("IdleReturn")
 	
 	if Input.is_action_pressed("forward"):
 		direction -= transform.basis.z
@@ -179,19 +197,32 @@ func use_powerup():
 		health += 30
 	elif String(equipped) == "Knife":
 		print("Knife in hand, major stamina, minor health and 1 second attack boost gained")
-		stamina += 30
+		stamina += 20
 		health +=20
 		knife_damage = 20
 		$KnifePowerupTimer.start()
+	elif String(equipped) == "Fairy Wand":
+		print("Fairy wand in hand, huge stamina increase")
+		stamina += 60
+	else:
+		stamina += 30
+		health += 30
 #will toggle weapon, will add additional weapons and overhaul this
+#0 = handgun 1 = knife 2 = nothing 3 = fairy wand
 func switch_equipment():
-	if equipped == "Nothing":
+	if equipped == weapons[2]:
+		equipped = weapons[3]
+		wand.visible = true
+	elif equipped == weapons[3]:
+		equipped = weapons[0]
+		wand.visible = false
+	elif equipped == weapons[0]:
 		equipped = weapons[1]
 		knife.visible = true
-	elif equipped == "Knife":
+	elif equipped == weapons[1]:
+		equipped = weapons [2]
 		knife.visible = false
-		equipped = weapons[2]
-	
+	print(equipped)
 	#will be changed
 func handle_death():
 	if health < 0:
@@ -235,7 +266,20 @@ func knife_stab():
 					body.take_damage(knife_damage)
 				if body.is_in_group('Destructible'):
 					body.take_damage(knife_damage)
-	
+
+func wand_aoe():
+	if LMB_cooldown == false:
+		LMB_cooldown = true
+		$AoETimer.start()
+		anim.play("AoESpell")
+		stamina -= 50
+		if stamina < 0:
+			take_damage(-stamina)
+
+func wand_dash():
+	dashing = true
+	anim.play("FairyDash")
+
 
 func _on_StatusTick_timeout():
 	status_tick = true
@@ -257,3 +301,17 @@ func _on_OofTimer_timeout():
 
 func _on_KnifePowerupTimer_timeout():
 	knife_damage = 10
+
+
+func _on_AoE_area_body_entered(body):
+		if body.is_in_group("Enemy"):
+			print('AoE')
+
+
+func _on_AoETimer_timeout():
+	LMB_cooldown = false
+	for body in AoE.get_overlapping_bodies():
+		if body.is_in_group('Enemy'):
+			body.take_damage(fairy_damage)
+		if body.is_in_group('Destructible'):
+			body.take_damage(fairy_damage)

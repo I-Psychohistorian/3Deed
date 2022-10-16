@@ -11,5 +11,5 @@ dest_files=[ "res://.import/MagicShort2.mp3-5d07bef96d5a2a6fa309e61ac8ddbf04.mp3
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

@@ -11,5 +11,5 @@ dest_files=[ "res://.import/ShadowBolt.mp3-116bac26813d4c9553aaed4094517123.mp3s
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

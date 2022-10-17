@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://BasicFlora.gd" type="Script" id=1]
+[ext_resource path="res://Assets/asset package custom/kenney impact sounds/footstep_grass_001.ogg" type="AudioStream" id=2]
+[ext_resource path="res://Assets/asset package custom/kenney platform models/flowersLow.glb" type="PackedScene" id=3]
+[ext_resource path="res://Assets/asset package custom/kenney platform models/plant.glb" type="PackedScene" id=4]
+[ext_resource path="res://Assets/asset package custom/kenney platform models/flowers.glb" type="PackedScene" id=5]
+
+[sub_resource type="CylinderShape" id=1]
+height = 0.138755
+radius = 0.357364
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 1.16334, 1.0646, 1.25614 )
+
+[node name="BasicFlora" type="KinematicBody" groups=["Destructible", "Flora", "Interactable"]]
+script = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 1 )
+
+[node name="flowersLow" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.00472, 0, -0.481384 )
+
+[node name="flowers" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.00472, 0, -0.481384 )
+visible = false
+
+[node name="plant" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.00472, 0, -0.481384 )
+visible = false
+
+[node name="flowersLow2" parent="." instance=ExtResource( 3 )]
+transform = Transform( 0.725218, 0, -0.688519, 0, 1, 0, 0.688519, 0, 0.725218, 1.06126, 0, 0.347726 )
+visible = false
+
+[node name="Surrounding" type="Area" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="Surrounding"]
+shape = SubResource( 2 )
+
+[node name="GrowthTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="Sound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 2 )
+
+[connection signal="timeout" from="GrowthTimer" to="." method="_on_GrowthTimer_timeout"]

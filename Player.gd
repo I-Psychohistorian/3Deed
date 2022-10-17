@@ -52,6 +52,8 @@ onready var StabZone = $Head/Camera/EquipNode/StabZone
 onready var wand = $Head/Camera/EquipNode/FairyWand
 onready var handgun = $Head/Camera/EquipNode/PistolRight
 
+onready var crunch = $Cronch
+
 onready var interact_range = $Head/Camera/InteractPoint
 onready var gun_range = $Head/Camera/GunRayCast
 onready var AoE = $Head/Camera/EquipNode/AoE_area
@@ -155,7 +157,7 @@ func _process(delta):
 func interact_raycast():
 	if interact_range.is_colliding():
 		var object = interact_range.get_collider()
-		print(object)
+		#print(object)
 		if object.is_in_group("Interactable"):
 			hud.see_e()
 			if Input.is_action_pressed("interact"):

@@ -199,7 +199,7 @@ radius = 1.5
 [sub_resource type="SphereShape" id=35]
 radius = 34.0
 
-[node name="MotherGlorper" type="KinematicBody" groups=["Enemy"]]
+[node name="MotherGlorper" type="KinematicBody" groups=["Blob", "Enemy"]]
 script = ExtResource( 5 )
 
 [node name="Core" type="MeshInstance" parent="."]

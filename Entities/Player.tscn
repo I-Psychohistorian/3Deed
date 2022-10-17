@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=2]
+[gd_scene load_steps=72 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://UI/HUD1.tscn" type="PackedScene" id=2]
@@ -24,6 +24,7 @@
 [ext_resource path="res://Sounds/audio assets/mixkit-handgun-click-1660.mp3" type="AudioStream" id=22]
 [ext_resource path="res://Sounds/audio assets/mixkit-handgun-release-1664.wav" type="AudioStream" id=23]
 [ext_resource path="res://Entities/MagazineModel.tscn" type="PackedScene" id=24]
+[ext_resource path="res://Assets/asset package custom/kenney impact sounds/footstep_snow_000.ogg" type="AudioStream" id=25]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -1358,6 +1359,9 @@ stream = ExtResource( 21 )
 [node name="ReloadTimer" type="Timer" parent="."]
 
 [node name="SmokeTimer" type="Timer" parent="."]
+
+[node name="Cronch" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 25 )
 
 [connection signal="body_entered" from="Head/Camera/EquipNode/StabZone" to="." method="_on_StabZone_body_entered"]
 [connection signal="body_entered" from="Head/Camera/EquipNode/StabZone" to="Head/Camera/EquipNode/StabZone" method="_on_StabZone_body_entered"]

@@ -2,7 +2,7 @@ extends KinematicBody
 
 
 var health = 50
-var damage = 5
+var damage = 6
 var Name = 'Glorper'
 
 var gravity = 1
@@ -14,6 +14,12 @@ var dead = false
 #random speed modifier to add eratic behavior
 var mod = 0
 
+#used for multiplying glorpers if they are sated
+signal not_hungry
+onready var spawnpoint = $UpGlorp
+var divided = false
+
+onready var spawn = preload("res://Entities/Glorper2.tscn")
 
 var random = RandomNumberGenerator.new()
 
@@ -31,16 +37,20 @@ func _ready():
 	var ambient = random.randi_range(0,1)
 	if ambient == 0:
 		$Ambient1.play()
-		print('Ambient1')
+		#print('Ambient1')
 	elif ambient == 1:
 		$Ambient2.play()
-		print('Ambient2')
+		#print('Ambient2')
 
-
+func reparent():
+	var new_parent = get_parent().get_parent()
+	get_parent().remove_child(self)
+	new_parent.add_child(self)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	death()
 	movement()
+	mitosis()
 	if not is_on_floor():
 		fall.y -= gravity * delta
 		move_and_slide(fall, Vector3.UP)
@@ -49,11 +59,11 @@ func _process(delta):
 	if is_on_wall():
 		fall.y = 0.4
 		move_and_slide(fall, Vector3.UP)
-		print('hugged wall')
+		#print('hugged wall')
 		
 func take_damage(incoming_damage):
 	health -= incoming_damage
-	print('Ouch!')
+	#print('Ouch!')
 	$Blouch.play()
 	$GlorpSpew.emitting = true
 
@@ -73,6 +83,14 @@ func movement():
 			if body.is_in_group("Player"):
 				direction = body.global_transform.origin - self.global_transform.origin
 				move_and_slide(direction * (speed_direction * (speed + hp_speed)), Vector3.UP)
+	if aggro == false:
+		for body in sight_area.get_overlapping_bodies():
+			if scared == true:
+				if body.is_in_group("Flora"):
+					direction = body.global_transform.origin - self.global_transform.origin
+					random.randomize()
+					var scavenge_mod = random.randf_range(-0.3,0.3)
+					move_and_slide(direction * ((speed+scavenge_mod)), Vector3.UP)
 
 
 func death():
@@ -103,7 +121,24 @@ func acid_hazard():
 			body.take_damage(damage)
 			print("Blorp!")
 			$Blorp.play()
+		if body.is_in_group("Flora"):
+			body.take_damage(damage)
+			print("Blorp is tasty!")
+			$Blorp.play()
 
+func mitosis():
+	if divided == false:
+		if health > 50:
+			health -= 5
+			$Blorp.play()
+			health -= 5
+			$GlorpSpew.emitting = true
+			emit_signal("not_hungry")
+			var b = spawn.instance()
+			spawnpoint.add_child(b)
+			b.divided = true
+			#to prevent infinite reproduction and because instanced scenes can't be edited??
+			b.reparent()
 
 func _on_BlorpArea_body_entered(body):
 	pass # Replace with function body.
@@ -115,9 +150,10 @@ func _on_BlorpTimer_timeout():
 
 func _on_VisionBox_body_entered(body):
 	if body.is_in_group('Player'):
-		var coords = body.get_global_transform()
-		print(coords)
+		#var coords = body.get_global_transform()
 		aggro = true
+	if body.is_in_group('Flora'):
+		print('PLANT SPOTTED')
 
 func _on_VisionBox_body_exited(body):
 	if body.is_in_group('Player'):

@@ -1,6 +1,6 @@
 [gd_scene load_steps=34 format=2]
 
-[ext_resource path="res://Entities/Glorper.gd" type="Script" id=1]
+[ext_resource path="res://Entities/Glorper2.gd" type="Script" id=1]
 [ext_resource path="res://Sounds/soundlib2water/row4.mp3" type="AudioStream" id=2]
 [ext_resource path="res://Sounds/soundlib1/awwough.mp3" type="AudioStream" id=3]
 [ext_resource path="res://Assets/asset package custom/particlePack_1.1/PNG (Transparent)/scorch_02.png" type="Texture" id=4]
@@ -265,6 +265,9 @@ stream = ExtResource( 10 )
 
 [node name="UpGlorp" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.44553, 0 )
+
+[node name="tester" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.87213 )
 
 [connection signal="body_entered" from="BlorpArea" to="." method="_on_BlorpArea_body_entered"]
 [connection signal="body_entered" from="VisionBox" to="." method="_on_VisionBox_body_entered"]

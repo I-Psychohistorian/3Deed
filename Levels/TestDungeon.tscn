@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Assets/asset package custom/retro medieval 3d/Models/GLTF format/bricks.material" type="Material" id=1]
 [ext_resource path="res://Entities/DestructibleColumn.tscn" type="PackedScene" id=2]
@@ -20,6 +20,8 @@
 [ext_resource path="res://Assets/kenneyfood/Models/GLTF format/donut.gd" type="Script" id=18]
 [ext_resource path="res://Levels/Elevating.gd" type="Script" id=19]
 [ext_resource path="res://Levels/TestDungeon.gd" type="Script" id=20]
+[ext_resource path="res://Entities/InteractableObjects/FairyWandKinematic.tscn" type="PackedScene" id=21]
+[ext_resource path="res://Entities/InteractableObjects/RigidKnifePowerup.tscn" type="PackedScene" id=22]
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_texture = ExtResource( 15 )
@@ -339,6 +341,12 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.8404, 0.378048, 26.2923 )
 
 [node name="Glorper3" parent="." instance=ExtResource( 12 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.7875, 0.531761, 29.887 )
+
+[node name="RigidKnifePowerup" parent="." instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.01889, -1.79782 )
+
+[node name="FairyWandKinematic" parent="." instance=ExtResource( 21 )]
+transform = Transform( -0.0962975, 0, -0.995353, 0, 1, 0, 0.995353, 0, -0.0962975, 6.88141, 0, 0 )
 
 [connection signal="body_entered" from="CSGCombiner/Magic_Zone_1" to="CSGCombiner/SlidingHallGlorp" method="_on_Magic_Zone_1_body_entered"]
 [connection signal="timeout" from="CSGCombiner/SlidingHallGlorp/Timer" to="CSGCombiner/SlidingHallGlorp" method="_on_Timer_timeout"]

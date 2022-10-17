@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Assets/asset package custom/retro medieval 3d/Models/GLTF format/stonesPainted.material" type="Material" id=1]
 [ext_resource path="res://Assets/asset package custom/retro medieval 3d/Models/GLTF format/stones.material" type="Material" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Levels/BasicFlora.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Entities/Glorper.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Levels/GlorpSoul.gd" type="Script" id=7]
+[ext_resource path="res://Entities/InteractableObjects/RigidKnifePowerup.tscn" type="PackedScene" id=8]
 
 [sub_resource type="Image" id=5]
 data = {
@@ -116,3 +117,6 @@ script = ExtResource( 7 )
 
 [node name="Glorper" parent="GlorpSoul" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 25.6645, 0.760692, -1.97875 )
+
+[node name="RigidKnifePowerup" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.162929, 0.971781, -1.71838 )

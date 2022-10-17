@@ -6,7 +6,7 @@
 [ext_resource path="res://Entities/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Levels/BasicFlora.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Entities/Glorper.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Levels/GlorpSoul.gd" type="Script" id=7]
+[ext_resource path="res://Entities/SpawnersAndManagers/GlorperMitosisManager.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Entities/InteractableObjects/RigidKnifePowerup.tscn" type="PackedScene" id=8]
 
 [sub_resource type="Image" id=5]
@@ -111,12 +111,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.10639, -2.08609, -3.35847 )
 [node name="BasicFlora3" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.07895, -2.02748, 2.08543 )
 
-[node name="GlorpSoul" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.10639, -2.08609, -3.35847 )
-script = ExtResource( 7 )
-
-[node name="Glorper" parent="GlorpSoul" instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 25.6645, 0.760692, -1.97875 )
-
 [node name="RigidKnifePowerup" parent="." instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.162929, 0.971781, -1.71838 )
+
+[node name="GlorperMitosisManager" parent="." instance=ExtResource( 7 )]
+
+[node name="Glorper" parent="GlorperMitosisManager" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 21.5581, -1.3254, -5.33722 )

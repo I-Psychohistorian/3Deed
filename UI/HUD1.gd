@@ -6,6 +6,7 @@ var health = 0
 var status = false
 var sprint = false
 var ammo = 0 
+var ammo2 = 0
 var powerups = 0
 var tooltip = 'testing'
 var equipped = []

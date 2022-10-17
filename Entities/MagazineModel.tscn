@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/weaponsk/Models/ammo_pistol.obj" type="ArrayMesh" id=1]
+
+[sub_resource type="CubeMesh" id=1]
+size = Vector3( 0.05, 0.2, 0.08 )
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 0.309804, 0.309804, 0.309804, 1 )
+
+[node name="Magazine" type="Spatial"]
+
+[node name="mag" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="round" type="MeshInstance" parent="."]
+transform = Transform( 6, 0, 0, 0, -2.62268e-07, -6, 0, 6, -2.62268e-07, 0, 0.0918097, 0 )
+mesh = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}

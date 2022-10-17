@@ -14,6 +14,7 @@ var stamina = 100
 var health = 100
 var status = false
 var ammo = 0 
+var ammo_in_gun = 0
 var sprint = false
 var exertion = false #for checking sprint stamina drain
 var hurt = false #ticks for hurt sound and possibly stuns?
@@ -49,8 +50,10 @@ onready var knife = $Head/Camera/EquipNode/Knife
 onready var anim = $Head/Camera/EquipNode/AnimationPlayer
 onready var StabZone = $Head/Camera/EquipNode/StabZone
 onready var wand = $Head/Camera/EquipNode/FairyWand
+onready var handgun = $Head/Camera/EquipNode/PistolRight
 
 onready var interact_range = $Head/Camera/InteractPoint
+onready var gun_range = $Head/Camera/GunRayCast
 onready var AoE = $Head/Camera/EquipNode/AoE_area
 
 # Called when the node enters the scene tree for the first time.
@@ -113,6 +116,8 @@ func _process(delta):
 			knife_stab()
 		elif equipped == "Fairy Wand":
 			wand_aoe()
+		elif equipped == "Handgun":
+			shoot()
 	
 	if Input.is_action_pressed("RMB"):
 		if equipped == "Nothing":
@@ -121,6 +126,8 @@ func _process(delta):
 			pass
 		elif equipped == "Fairy Wand":
 			wand_dash()
+		elif equipped == "Handgun":
+			reload()
 	
 	if Input.is_action_just_released("RMB"):
 		dashing = false
@@ -164,6 +171,7 @@ func update_hud():
 	hud.health = health
 	hud.stamina = stamina
 	hud.ammo = ammo
+	hud.ammo2 = ammo_in_gun
 	hud.status = status
 	hud.sprint = sprint
 	hud.equipped = equipped
@@ -204,6 +212,9 @@ func use_powerup():
 	elif String(equipped) == "Fairy Wand":
 		print("Fairy wand in hand, huge stamina increase")
 		stamina += 60
+	elif String(equipped) == "Handgun":
+		print("Granted more ammo")
+		ammo += 12
 	else:
 		stamina += 30
 		health += 30
@@ -216,8 +227,10 @@ func switch_equipment():
 	elif equipped == weapons[3]:
 		equipped = weapons[0]
 		wand.visible = false
+		handgun.visible = true
 	elif equipped == weapons[0]:
 		equipped = weapons[1]
+		handgun.visible = false
 		knife.visible = true
 	elif equipped == weapons[1]:
 		equipped = weapons [2]
@@ -280,6 +293,11 @@ func wand_dash():
 	dashing = true
 	anim.play("FairyDash")
 
+func shoot():
+	anim.play("Shoot")
+
+func reload():
+	anim.play("Reload")
 
 func _on_StatusTick_timeout():
 	status_tick = true

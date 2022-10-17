@@ -11,5 +11,5 @@ dest_files=[ "res://.import/dropLeather.ogg-fa8ea3e8bbe47ec5c97ae47fabad4219.ogg
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

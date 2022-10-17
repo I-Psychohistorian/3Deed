@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Assets/asset package custom/retro medieval 3d/Models/GLTF format/bricks.material" type="Material" id=1]
 [ext_resource path="res://Assets/asset package custom/retro medieval 3d/Models/FBX format/roof.material" type="Material" id=2]
@@ -15,6 +15,9 @@
 [ext_resource path="res://Entities/Barrel.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Entities/BingoBarrel.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Entities/DestructibleColumn.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Entities/InteractableObjects/RigidKnifePowerup.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Entities/InteractableObjects/FairyWandKinematic.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Entities/InteractableObjects/HandgunKinematic.tscn" type="PackedScene" id=18]
 
 [sub_resource type="OpenSimplexNoise" id=1]
 
@@ -323,6 +326,15 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 22 )
 
 [node name="DestructibleColumn" parent="." instance=ExtResource( 15 )]
 transform = Transform( 2, 0, 0, 0, -1.5, 1.74846e-07, 0, -1.31134e-07, -2, -3, 2.38474, 0 )
+
+[node name="RigidKnifePowerup" parent="." instance=ExtResource( 16 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.83826, 3.12795, -0.17893 )
+
+[node name="HandgunKinematic" parent="." instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.36002, 3.67047, 1.21635 )
+
+[node name="FairyWandKinematic" parent="." instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.4209, 1.20066 )
 
 [connection signal="body_entered" from="SecondTeleporter" to="." method="_on_SecondTeleporter_body_entered"]
 [connection signal="body_entered" from="Teleporter" to="." method="_on_Teleporter_body_entered"]

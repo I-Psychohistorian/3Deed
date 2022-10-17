@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://HandgunKinematic.gd" type="Script" id=1]
+[ext_resource path="res://Assets/weaponsk/Models/pistol.obj" type="ArrayMesh" id=2]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 0.073013, 0.170557, 0.208914 )
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 3, 3, 3 )
+
+[node name="HandgunKinematic" type="KinematicBody" groups=["Interactable"]]
+script = ExtResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 8, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, 0 )
+mesh = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 1 )
+
+[node name="PickupArea" type="Area" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="PickupArea"]
+shape = SubResource( 2 )

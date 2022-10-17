@@ -13,14 +13,20 @@ var stamina_regen = 1
 var stamina = 100
 var health = 100
 var status = false
+
 var ammo = 0 
 var ammo_in_gun = 0
+var loaded = true
+var mag_size = 12
+
+
 var sprint = false
 var exertion = false #for checking sprint stamina drain
 var hurt = false #ticks for hurt sound and possibly stuns?
 
 
 var LMB_cooldown = false #when true, cannot attack with left click
+var RMB_cooldown = false #when true keeps actions like reloading from stuttering
 
 
 #weapon values
@@ -33,6 +39,15 @@ var dashing = false
 #inventory stuff
 var inv_weapons = []
 var powerups = 1
+
+#inventory swapping variables
+var id = 2
+var startid = 3
+var item = 0
+var command = 0
+var swap_equip = false
+
+
 
 var mouse_hidden = true
 var mouse_sensitivity = 0.05
@@ -61,6 +76,7 @@ onready var AoE = $Head/Camera/EquipNode/AoE_area
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	print(weapons)
+	inv_weapons.append(weapons[2])
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	equipped = weapons[2]
 	print(equipped)
@@ -98,7 +114,11 @@ func _process(delta):
 		fall.y = 0
 	
 	if Input.is_action_just_pressed("swap weapon"):
-		switch_equipment()
+		if LMB_cooldown == false:
+			#older, known to be functional
+			#switch_equipment()
+			swap_equipment()
+			anim.play("IdleReturn")
 	
 	if Input.is_action_just_pressed("menu"):
 		if mouse_hidden == true:
@@ -130,11 +150,12 @@ func _process(delta):
 			wand_dash()
 		elif equipped == "Handgun":
 			reload()
-	
 	if Input.is_action_just_released("RMB"):
 		dashing = false
-		anim.play("IdleReturn")
-	
+		if equipped == 'Fairy Wand':
+			anim.play("IdleReturn")
+
+
 	if Input.is_action_pressed("forward"):
 		direction -= transform.basis.z
 		sprint_check()
@@ -197,6 +218,8 @@ func status_upkeep():
 #players powerup sound
 func bingo():
 	$Bingo.play()
+func PickupSound():
+	$PickupSound.play()
 
 #determines powerup effect
 func use_powerup():
@@ -235,10 +258,117 @@ func switch_equipment():
 		handgun.visible = false
 		knife.visible = true
 	elif equipped == weapons[1]:
-		equipped = weapons [2]
+		equipped = weapons[2]
 		knife.visible = false
 	print(equipped)
 	#will be changed
+
+
+#leaving old switch_equipment in just in case new version breaks
+
+#	var id = 2
+#	var startid = 3
+#startid is the weapon id that is currently being searched for in the forloop
+#	var item = 0
+#	var command = equip_nothing()
+#	var swap_equip = true
+func swap_equipment():
+	#print(String(equipped))
+	swap_equip = true
+	if equipped == "Nothing":
+		startid = 3
+	elif equipped == "Fairy Wand":
+		startid = 0
+	elif equipped == "Handgun":
+		startid = 1
+	elif equipped == "Knife":
+		startid = 2
+	#print(startid)
+	set_equip_id()
+	swap_loop()
+	if swap_equip == true:
+		swap_shift()
+		swap_loop()
+		#print('1st loop complete')
+	if swap_equip == true:
+		swap_shift()
+		swap_loop()
+	if swap_equip == true:
+		swap_shift()
+		swap_loop()
+	if swap_equip == true:
+		swap_equip = false
+
+
+func swap_loop():
+	for n in inv_weapons:
+		if swap_equip == true:
+			if n == item:
+				command
+				swap_equip = false
+				weapon_chooser()
+func swap_shift():
+	startid +=1
+	if startid == 4:
+		startid = 0
+	set_equip_id()
+	
+	#setting functions to variables doesn't work apparently
+func set_equip_id():
+	var current_loadout = equipped
+	if startid == 3:
+		item = weapons[3]
+		command = equip_wand()
+		#print(command)
+	elif startid == 2:
+		item = weapons[2]
+		command = equip_nothing()
+	elif startid == 1:
+		item = weapons[1]
+		command = equip_knife()
+	elif startid == 0:
+		item = weapons[0]
+		command = equip_gun()
+	equipped = current_loadout
+	if equipped == "Nothing":
+		equip_nothing()
+	elif equipped == "Handgun":
+		equip_gun()
+	elif equipped == "Fairy Wand":
+		equip_wand()
+	elif equipped == "Knife":
+		equip_knife()
+func equip_gun():
+	equipped = weapons[0]
+	hide_weapons()
+	handgun.visible = true
+func equip_knife():
+	equipped = weapons[1]
+	hide_weapons()
+	knife.visible = true
+func equip_nothing():
+	equipped = weapons[2]
+	hide_weapons()
+func equip_wand():
+	equipped = weapons[3]
+	hide_weapons()
+	wand.visible = true
+func hide_weapons():
+	handgun.visible = false
+	knife.visible = false
+	wand.visible = false
+
+func weapon_chooser():
+	if item == "Nothing":
+		equip_nothing()
+	if item == "Handgun":
+		equip_gun()
+	elif item == "Knife":
+		equip_knife()
+	elif item == "Fairy Wand":
+		equip_wand()
+	
+	
 func handle_death():
 	if health < 0:
 		get_tree().change_scene("res://Levels/TestWorld.tscn")
@@ -296,10 +426,38 @@ func wand_dash():
 	anim.play("FairyDash")
 
 func shoot():
-	anim.play("Shoot")
+	if LMB_cooldown == false:
+		LMB_cooldown = true
+		$BetweenShots.start()
+		if ammo_in_gun > 0:
+			ammo_in_gun -= 1
+			anim.play("Shoot")
+			if gun_range.is_colliding():
+				var target = gun_range.get_collider()
+				if target.is_in_group('Enemy'):
+					target.take_damage(gun_damage)
+				elif target.is_in_group("Destructible"):
+					target.take_damage(gun_damage)
+		elif ammo_in_gun == 0:
+			$Click.play()
 
 func reload():
-	anim.play("Reload")
+	var ejected_mag = 0
+	if RMB_cooldown == false:
+		if ammo > 0:
+			anim.play("Reload")
+			LMB_cooldown = true
+			RMB_cooldown = true
+			if ammo_in_gun == 0:
+				print('ejecting empty')
+			elif ammo_in_gun > 0:
+				ejected_mag = ammo_in_gun
+				ammo += ejected_mag
+				print('ejected mag' + String(ejected_mag))
+				ammo_in_gun = 0
+			loaded = false
+			$ReloadTimer.start()
+
 
 func _on_StatusTick_timeout():
 	status_tick = true
@@ -335,3 +493,22 @@ func _on_AoETimer_timeout():
 			body.take_damage(fairy_damage)
 		if body.is_in_group('Destructible'):
 			body.take_damage(fairy_damage)
+
+
+func _on_BetweenShots_timeout():
+	LMB_cooldown = false
+
+
+func _on_ReloadTimer_timeout():
+	var new_mag = 0
+	if ammo < mag_size:
+		new_mag = ammo
+		ammo = 0
+	elif ammo >= mag_size:
+		new_mag = mag_size
+		ammo -= mag_size
+	ammo_in_gun += mag_size
+	LMB_cooldown = false
+	RMB_cooldown = false
+	loaded = true
+	print('loaded')

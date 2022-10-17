@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=2]
+[gd_scene load_steps=73 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://UI/HUD1.tscn" type="PackedScene" id=2]
@@ -25,6 +25,7 @@
 [ext_resource path="res://Sounds/audio assets/mixkit-handgun-release-1664.wav" type="AudioStream" id=23]
 [ext_resource path="res://Entities/MagazineModel.tscn" type="PackedScene" id=24]
 [ext_resource path="res://Assets/asset package custom/kenney impact sounds/footstep_snow_000.ogg" type="AudioStream" id=25]
+[ext_resource path="res://Assets/asset package custom/kenney rpg audio/metalClick.ogg" type="AudioStream" id=26]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -1162,7 +1163,7 @@ __meta__ = {
 }
 
 [node name="Knife" type="MeshInstance" parent="Head/Camera/EquipNode"]
-transform = Transform( -7.98483, 0.368307, -0.326448, 0.443047, 3.06859, -7.37477, -0.214305, -7.3789, -3.08317, 0.319758, -0.176884, 0.464779 )
+transform = Transform( -7.98482, 0.368307, -0.326448, 0.443047, 3.06859, -7.37477, -0.214305, -7.3789, -3.08317, 0.319758, -0.176884, 0.464779 )
 visible = false
 mesh = ExtResource( 3 )
 
@@ -1238,7 +1239,6 @@ draw_pass_1 = SubResource( 14 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.39318, -0.30614 )
 material_override = SubResource( 15 )
 material_overlay = SubResource( 16 )
-emitting = false
 process_material = SubResource( 21 )
 draw_pass_1 = SubResource( 22 )
 
@@ -1262,7 +1262,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0650048 )
 shape = SubResource( 31 )
 
 [node name="Magazine" parent="Head/Camera/EquipNode" instance=ExtResource( 24 )]
-transform = Transform( 0.821271, 0.561039, 0.103672, -0.566251, 0.823763, 0.0277976, -0.0698054, -0.0815336, 0.994223, 0.229374, -0.376916, 0.406957 )
+transform = Transform( 0.821271, 0.561039, 0.103672, -0.566251, 0.823763, 0.0277976, -0.0698054, -0.0815335, 0.994223, 0.229374, -0.376916, 0.406957 )
 visible = false
 
 [node name="round" parent="Head/Camera/EquipNode/Magazine" index="1"]
@@ -1355,13 +1355,20 @@ stream = ExtResource( 22 )
 stream = ExtResource( 21 )
 
 [node name="BetweenShots" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
 
 [node name="ReloadTimer" type="Timer" parent="."]
+wait_time = 2.3
+one_shot = true
 
 [node name="SmokeTimer" type="Timer" parent="."]
 
 [node name="Cronch" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 25 )
+
+[node name="PickupSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 26 )
 
 [connection signal="body_entered" from="Head/Camera/EquipNode/StabZone" to="." method="_on_StabZone_body_entered"]
 [connection signal="body_entered" from="Head/Camera/EquipNode/StabZone" to="Head/Camera/EquipNode/StabZone" method="_on_StabZone_body_entered"]
@@ -1371,5 +1378,7 @@ stream = ExtResource( 25 )
 [connection signal="timeout" from="OofTimer" to="." method="_on_OofTimer_timeout"]
 [connection signal="timeout" from="KnifePowerupTimer" to="." method="_on_KnifePowerupTimer_timeout"]
 [connection signal="timeout" from="AoETimer" to="." method="_on_AoETimer_timeout"]
+[connection signal="timeout" from="BetweenShots" to="." method="_on_BetweenShots_timeout"]
+[connection signal="timeout" from="ReloadTimer" to="." method="_on_ReloadTimer_timeout"]
 
 [editable path="Head/Camera/EquipNode/Magazine"]

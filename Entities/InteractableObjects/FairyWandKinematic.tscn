@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://FairyWandKinematic.gd" type="Script" id=1]
+[ext_resource path="res://Assets/asset package custom/Objs/Staff_05.obj" type="ArrayMesh" id=2]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 0.156749, 0.545699, 0.0909648 )
+
+[sub_resource type="BoxShape" id=2]
+
+[node name="FairyWandKinematic" type="KinematicBody" groups=["Interactable"]]
+script = ExtResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0 )
+mesh = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 1 )
+
+[node name="PickupArea" type="Area" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="PickupArea"]
+transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0 )
+shape = SubResource( 2 )

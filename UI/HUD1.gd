@@ -31,7 +31,7 @@ func _ready():
 func _process(delta):
 	health_display.text = "Health " + String(health)
 	stamina_display.text = "Stamina " + String(stamina)
-	ammo_display.text = "Ammo " + String(ammo)
+	ammo_display.text = "Ammo " + String(ammo2) + "/" + String(ammo)
 	powerups_display.text = "Bingo Beans " + String(powerups)
 	weapon_display.text = String(equipped) + " equipped"
 	if sprint == false:

@@ -81,6 +81,7 @@ func _on_RiseTimer_timeout():
 		$GlorpBirth.emitting = true
 		var b = babyglorp.instance()
 		spawnpoint.add_child(b)
+		b.reparent()
 		spawning = false
 
 #will kill all children suddenly, may want to change this somewhat

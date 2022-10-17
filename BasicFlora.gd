@@ -60,8 +60,8 @@ func check_growth():
 	elif health > 15:
 		current_stage = stages[2]
 		overgrowth.visible = true
-	print(current_stage)
-	print(health)
+	#print(current_stage)
+	#print(health)
 
 func die():
 	if dead == false:

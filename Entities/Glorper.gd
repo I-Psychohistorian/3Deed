@@ -19,7 +19,7 @@ signal not_hungry
 onready var spawnpoint = $UpGlorp
 var divided = false
 
-onready var spawn = preload("res://Entities/Glorper2.tscn")
+onready var spawn = preload("res://Entities/GlorpDivider.tscn")
 
 var random = RandomNumberGenerator.new()
 
@@ -42,10 +42,21 @@ func _ready():
 		$Ambient2.play()
 		#print('Ambient2')
 
+#used with mother glorper
 func reparent():
 	var new_parent = get_parent().get_parent()
+	#print(new_parent)
+	#print(get_parent())
+	#print(new_parent.get_parent())
 	get_parent().remove_child(self)
-	new_parent.add_child(self)
+	new_parent.get_parent().add_child(self)
+
+#moves one step up as is used in mitosis
+func reparent2():
+	var new_parent = get_parent().get_parent().get_parent()
+	get_parent().remove_child(self)
+	new_parent.get_parent().get_parent().add_child(self)
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	death()
@@ -136,9 +147,8 @@ func mitosis():
 			emit_signal("not_hungry")
 			var b = spawn.instance()
 			spawnpoint.add_child(b)
-			b.divided = true
-			#to prevent infinite reproduction and because instanced scenes can't be edited??
-			b.reparent()
+			divided = true
+
 
 func _on_BlorpArea_body_entered(body):
 	pass # Replace with function body.

@@ -4,7 +4,7 @@ extends KinematicBody
 var Name = "Wand Powerup"
 var pickup = "Fairy Wand"
 onready var radius = $PickupArea
-
+var active = true
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.

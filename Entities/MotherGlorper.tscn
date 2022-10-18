@@ -279,7 +279,7 @@ attachments/14/point_index = 925
 attachments/14/spatial_attachment_path = NodePath("../BlorpBone/Central")
 attachments/14/offset = Vector3( 3.39781, 0.142315, 0.675866 )
 
-[node name="Trailer" type="SoftBody" parent="." groups=["Enemy"]]
+[node name="Trailer" type="SoftBody" parent="."]
 mesh = SubResource( 15 )
 parent_collision_ignore = NodePath("../CollisionShape")
 pinned_points = [ 363, 360, 348, 354, 340, 37, 63, 46, 55, 0 ]
@@ -404,6 +404,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1 )
 [node name="CollisionShape" type="CollisionShape" parent="AggroArea"]
 shape = SubResource( 35 )
 
+[node name="ReparentTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="body_entered" from="Hurt_area" to="." method="_on_Hurt_area_body_entered"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
 [connection signal="timeout" from="BlorpTimer" to="." method="_on_BlorpTimer_timeout"]
@@ -411,3 +414,4 @@ shape = SubResource( 35 )
 [connection signal="timeout" from="RiseTimer" to="." method="_on_RiseTimer_timeout"]
 [connection signal="body_entered" from="AggroArea" to="." method="_on_AggroArea_body_entered"]
 [connection signal="body_exited" from="AggroArea" to="." method="_on_AggroArea_body_exited"]
+[connection signal="timeout" from="ReparentTimer" to="." method="_on_ReparentTimer_timeout"]

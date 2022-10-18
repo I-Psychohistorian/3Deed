@@ -18,6 +18,7 @@ var direction = Vector3()
 var fall = Vector3()
 
 onready var Blorp_Area = $Hurt_area
+signal death
 
 onready var spawnpoint = $GlorperSpawn
 onready var babyglorp = preload("res://Entities/Glorper.tscn")
@@ -40,7 +41,7 @@ func take_damage(incoming_damage):
 	
 func acid_hazard():
 	for body in Blorp_Area.get_overlapping_bodies():
-		if body.is_in_group("Destructible"):
+		if body.is_in_group("Player"):
 			body.take_damage(damage)
 			print("Blorp!")
 			$Blorp.play()
@@ -54,6 +55,7 @@ func die():
 			$GlorpSplosion2.emitting = true
 			$GlorpSplosion3.emitting = true
 			dead = true
+			emit_signal("death")
 
 func SpawnGlorp():
 	if spawning == false:
@@ -76,7 +78,7 @@ func _on_SpawnTimer_timeout():
 
 func _on_RiseTimer_timeout():
 	if spawning == true:
-		gravity = -10
+		gravity = -8
 		$SpawnGlorp.play()
 		$GlorpBirth.emitting = true
 		var b = babyglorp.instance()
@@ -97,3 +99,7 @@ func _on_AggroArea_body_entered(body):
 func _on_AggroArea_body_exited(body):
 	if body.is_in_group("Player"):
 		aggro = true
+
+
+func _on_ReparentTimer_timeout():
+	pass # Replace with function body.

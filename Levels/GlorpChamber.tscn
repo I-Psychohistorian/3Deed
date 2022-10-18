@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Assets/asset package custom/retro medieval 3d/Models/GLTF format/stones.material" type="Material" id=1]
 [ext_resource path="res://Assets/asset package custom/Hypno's Fantsy Village Pack/wood_sharpened.material" type="Material" id=2]
@@ -15,6 +15,10 @@
 [ext_resource path="res://Levels/Area.gd" type="Script" id=13]
 [ext_resource path="res://Entities/InteractableObjects/RigidKnifePowerup.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Entities/InteractableObjects/HandgunKinematic.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Sounds/smallsoundlibrary/mixkit-melodical-flute-music-notification-2310.wav" type="AudioStream" id=16]
+[ext_resource path="res://Levels/Garden_Pipe.gd" type="Script" id=17]
+[ext_resource path="res://Levels/SecretExit.gd" type="Script" id=18]
+[ext_resource path="res://Entities/SpawnersAndManagers/GlorperMitosisManager.tscn" type="PackedScene" id=19]
 
 [sub_resource type="AnimatedTexture" id=1]
 flags = 23
@@ -32,6 +36,10 @@ albedo_texture = SubResource( 1 )
 [sub_resource type="CapsuleShape" id=3]
 radius = 0.1
 height = 0.444087
+
+[sub_resource type="CylinderShape" id=4]
+height = 1.0985
+radius = 0.706105
 
 [node name="GlorpChamber" type="Spatial"]
 __meta__ = {
@@ -135,12 +143,6 @@ radius = 16.0
 height = 12.0
 material = ExtResource( 7 )
 
-[node name="Box" type="CSGBox" parent="CSGCombiner"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 49, -8, 16 )
-operation = 2
-invert_faces = true
-material = ExtResource( 2 )
-
 [node name="Pipe" type="CSGCylinder" parent="CSGCombiner"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -13, -1, -10 )
 invert_faces = true
@@ -218,6 +220,37 @@ shape = SubResource( 3 )
 [node name="hotDog" parent="CSGCombiner/Sky/Area/CollisionShape" instance=ExtResource( 11 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -0.0787525, 0 )
 
+[node name="SecretExit" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( 0.903874, 0, -0.4278, 0, 1, 0, 0.4278, 0, 0.903874, 59.331, -5.748, 0.939 )
+invert_faces = true
+width = 4.0
+height = 4.0
+depth = 4.0
+material = ExtResource( 7 )
+script = ExtResource( 18 )
+
+[node name="CSGCylinder2" type="CSGCylinder" parent="CSGCombiner/SecretExit"]
+transform = Transform( 0.903874, 0, 0.4278, 0, 1, 0, -0.4278, 0, 0.903874, -0.129276, -2.98567, -0.682665 )
+invert_faces = true
+height = 2.24906
+material = ExtResource( 3 )
+
+[node name="Garden_Pipe" type="Area" parent="CSGCombiner/SecretExit"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.143127, -2.76539, -0.63485 )
+script = ExtResource( 17 )
+
+[node name="CollisionShape" type="CollisionShape" parent="CSGCombiner/SecretExit/Garden_Pipe"]
+shape = SubResource( 4 )
+
+[node name="OpenSesame" type="AudioStreamPlayer" parent="CSGCombiner/SecretExit"]
+stream = ExtResource( 16 )
+
+[node name="Box" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 50.6646, -7.47897, 15.02 )
+operation = 2
+invert_faces = true
+material = ExtResource( 2 )
+
 [node name="Player" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.06744, -1, 0 )
 
@@ -227,15 +260,20 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -1, 9 )
 [node name="Glorper2" parent="." instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16, -1, 13 )
 
-[node name="MotherGlorper" parent="." instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 64, -7, 23 )
-
 [node name="BingoBean1" parent="." instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.9574, -0.9492, -9.27668 )
 
 [node name="RigidKnifePowerup" parent="." instance=ExtResource( 14 )]
 
-[node name="HandgunKinematic" parent="RigidKnifePowerup" instance=ExtResource( 15 )]
+[node name="HandgunKinematic" parent="." instance=ExtResource( 15 )]
 transform = Transform( 0.0526323, 0.998614, 0, -0.998614, 0.0526323, 0, 0, 0, 1, 0, -1.89566, -4.06564 )
 
+[node name="GlorperMitosisManager" parent="." instance=ExtResource( 19 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 63.9986, -3.20709, 23.127 )
+
+[node name="MotherGlorper" parent="GlorperMitosisManager" instance=ExtResource( 5 )]
+transform = Transform( 1, -3.72529e-09, 0, 3.72529e-09, 1, 0, 0, 0, 1, 0.0013504, -3.7952, -0.126976 )
+
 [connection signal="body_entered" from="CSGCombiner/Sky/Area" to="CSGCombiner/Sky/Area" method="_on_Area_body_entered"]
+[connection signal="body_entered" from="CSGCombiner/SecretExit/Garden_Pipe" to="CSGCombiner/SecretExit/Garden_Pipe" method="_on_Garden_Pipe_body_entered"]
+[connection signal="death" from="GlorperMitosisManager/MotherGlorper" to="CSGCombiner/SecretExit" method="_on_MotherGlorper_death"]

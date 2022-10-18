@@ -3,7 +3,7 @@ extends KinematicBody
 var Name = "Gun Powerup"
 var pickup = "Handgun"
 onready var radius = $PickupArea
-
+var active = true
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.

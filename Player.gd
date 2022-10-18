@@ -75,11 +75,12 @@ onready var AoE = $Head/Camera/EquipNode/AoE_area
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print(weapons)
+	print(global_transform.origin)
+	#print(weapons)
 	inv_weapons.append(weapons[2])
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	equipped = weapons[2]
-	print(equipped)
+	#print(equipped)
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -178,11 +179,17 @@ func _process(delta):
 func interact_raycast():
 	if interact_range.is_colliding():
 		var object = interact_range.get_collider()
+		var active_interactor = false
 		#print(object)
 		if object.is_in_group("Interactable"):
-			hud.see_e()
-			if Input.is_action_pressed("interact"):
-				object.use()
+			if object.active == true:
+				active_interactor = true
+			elif object.active == false:
+				active_interactor = false
+			if active_interactor == true:
+				hud.see_e()
+				if Input.is_action_pressed("interact"):
+					object.use()
 		else:
 			hud.unsee_e()
 	else:
@@ -465,7 +472,7 @@ func _on_StatusTick_timeout():
 
 func _on_StabZone_body_entered(body):
 	if body.is_in_group("Enemy"):
-		print('Stabbable Target!')
+		#print('Stabbable Target!')
 		print("Name: " + String(body.Name) + " Health: " + String(body.health))
 
 
@@ -483,7 +490,8 @@ func _on_KnifePowerupTimer_timeout():
 
 func _on_AoE_area_body_entered(body):
 		if body.is_in_group("Enemy"):
-			print('AoE')
+			#print('AoE')
+			pass
 
 
 func _on_AoETimer_timeout():
@@ -511,4 +519,4 @@ func _on_ReloadTimer_timeout():
 	LMB_cooldown = false
 	RMB_cooldown = false
 	loaded = true
-	print('loaded')
+	#print('loaded')

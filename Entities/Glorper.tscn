@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://Entities/Glorper.gd" type="Script" id=1]
 [ext_resource path="res://Sounds/soundlib2water/row4.mp3" type="AudioStream" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Assets/asset package custom/kenney sci fi sounds/slime_001.ogg" type="AudioStream" id=8]
 [ext_resource path="res://Effects/GlorpSplosion.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Assets/asset package custom/kenney sci fi sounds/explosionCrunch_002.ogg" type="AudioStream" id=10]
+[ext_resource path="res://Effects/glorpcore.tres" type="Material" id=11]
 
 [sub_resource type="SphereShape" id=1]
 radius = 0.5
@@ -55,6 +56,16 @@ material = SubResource( 27 )
 radius = 0.5
 height = 1.0
 
+[sub_resource type="SphereMesh" id=30]
+material = ExtResource( 11 )
+radius = 0.1
+height = 0.2
+
+[sub_resource type="SphereMesh" id=31]
+material = ExtResource( 11 )
+radius = 0.1
+height = 0.2
+
 [sub_resource type="CylinderShape" id=3]
 height = 1.0
 
@@ -66,9 +77,6 @@ albedo_color = Color( 0.635294, 0.337255, 0.0941176, 0.447059 )
 material = SubResource( 12 )
 
 [sub_resource type="Skin" id=5]
-
-[sub_resource type="SphereShape" id=13]
-radius = 7.0
 
 [sub_resource type="SpatialMaterial" id=14]
 flags_transparent = true
@@ -137,6 +145,89 @@ color = Color( 0, 0, 0, 1 )
 
 [sub_resource type="QuadMesh" id=23]
 
+[sub_resource type="SphereShape" id=13]
+radius = 7.0
+
+[sub_resource type="Animation" id=32]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Core/Buds:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0.408989, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Core/Buds/MeshInstance:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0.088237, -0.166576, 0.326542 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Core/Buds/MeshInstance2:translation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0.207108, -0.0820155, 0.111503 ) ]
+}
+
+[sub_resource type="Animation" id=33]
+resource_name = "bud_idle"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Core/Buds:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0.408989, 0 ), Vector3( 0, 0.391003, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Core/Buds/MeshInstance:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.088237, -0.166576, 0.326542 ), Vector3( 0.088237, -0.166576, -0.324735 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Core/Buds/MeshInstance2:translation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1, 1.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.207108, -0.0820155, 0.111503 ), Vector3( 0.230818, -0.0820155, 0.111503 ), Vector3( 0.17765, -0.0820155, 0.111503 ) ]
+}
+
 [node name="Glorper" type="KinematicBody" groups=["Blob", "Enemy"]]
 script = ExtResource( 1 )
 
@@ -152,6 +243,18 @@ light_energy = 5.11
 light_indirect_energy = 2.468
 light_negative = true
 omni_shadow_mode = 0
+
+[node name="Buds" type="MeshInstance" parent="Core"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.408989, 0 )
+mesh = SubResource( 30 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Core/Buds"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.088237, -0.166576, 0.326542 )
+mesh = SubResource( 31 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="Core/Buds"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.207108, -0.0820155, 0.111503 )
+mesh = SubResource( 31 )
 
 [node name="BlorpArea" type="Area" parent="."]
 
@@ -207,11 +310,6 @@ attachments/12/point_index = 238
 attachments/12/spatial_attachment_path = NodePath("../Skeleton/CoreBone")
 attachments/12/offset = Vector3( -0.309026, 0.928368, -0.206485 )
 
-[node name="VisionBox" type="Area" parent="."]
-
-[node name="CollisionShape" type="CollisionShape" parent="VisionBox"]
-shape = SubResource( 13 )
-
 [node name="BlorpTimer" type="Timer" parent="."]
 autostart = true
 
@@ -266,9 +364,38 @@ stream = ExtResource( 10 )
 [node name="UpGlorp" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.44553, 0 )
 
+[node name="VisionBox" type="Area" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="VisionBox"]
+shape = SubResource( 13 )
+
+[node name="SeedTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="PlantTimer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
+[node name="RandomWalkTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 32 )
+anims/bud_idle = SubResource( 33 )
+
+[node name="ReparentTimer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
 [connection signal="body_entered" from="BlorpArea" to="." method="_on_BlorpArea_body_entered"]
-[connection signal="body_entered" from="VisionBox" to="." method="_on_VisionBox_body_entered"]
-[connection signal="body_exited" from="VisionBox" to="." method="_on_VisionBox_body_exited"]
 [connection signal="timeout" from="BlorpTimer" to="." method="_on_BlorpTimer_timeout"]
 [connection signal="timeout" from="SpeedModTimer" to="." method="_on_SpeedModTimer_timeout"]
 [connection signal="timeout" from="DeathTimer" to="." method="_on_DeathTimer_timeout"]
+[connection signal="body_entered" from="VisionBox" to="." method="_on_VisionBox_body_entered"]
+[connection signal="body_exited" from="VisionBox" to="." method="_on_VisionBox_body_exited"]
+[connection signal="timeout" from="SeedTimer" to="." method="_on_SeedTimer_timeout"]
+[connection signal="timeout" from="PlantTimer" to="." method="_on_PlantTimer_timeout"]
+[connection signal="timeout" from="RandomWalkTimer" to="." method="_on_RandomWalkTimer_timeout"]
+[connection signal="timeout" from="ReparentTimer" to="." method="_on_ReparentTimer_timeout"]

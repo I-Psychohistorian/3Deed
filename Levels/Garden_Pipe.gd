@@ -1,10 +1,11 @@
-extends RigidBody
+extends Area
 
 
-var player = 0
-var contains = "Nothing"
-var Name = "Bingo Bean"
-var active = true
+# Declare member variables here. Examples:
+# var a = 2
+# var b = "text"
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -14,12 +15,7 @@ func _ready():
 #func _process(delta):
 #	pass
 
-func use():
-	player.powerups +=1
-	player.bingo()
-	queue_free()
 
-func _on_Area_body_entered(body):
+func _on_Garden_Pipe_body_entered(body):
 	if body.is_in_group("Player"):
-		player = body
-		print('player in range of bean')
+		get_tree().change_scene("res://Levels/SlimeGarden.tscn")

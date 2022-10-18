@@ -1219,7 +1219,7 @@ process_material = SubResource( 41 )
 draw_pass_1 = SubResource( 42 )
 
 [node name="FairyWand" type="MeshInstance" parent="Head/Camera/EquipNode"]
-transform = Transform( -0.0991378, -0.0131028, -1.49435e-08, -0.0129674, 0.0981132, -0.0143406, 0.00187904, -0.014217, -0.0989664, 0.344526, -0.342276, 0.280668 )
+transform = Transform( -0.0991378, -0.0131028, 8.65192e-09, -0.0129674, 0.0981132, -0.0143406, 0.00187901, -0.014217, -0.0989664, 0.344526, -0.342276, 0.280668 )
 visible = false
 mesh = ExtResource( 7 )
 
@@ -1262,14 +1262,14 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0650048 )
 shape = SubResource( 31 )
 
 [node name="Magazine" parent="Head/Camera/EquipNode" instance=ExtResource( 24 )]
-transform = Transform( 0.821271, 0.561039, 0.103672, -0.566251, 0.823763, 0.0277976, -0.0698054, -0.0815335, 0.994223, 0.229374, -0.376916, 0.406957 )
+transform = Transform( 0.821271, 0.561038, 0.103672, -0.56625, 0.823763, 0.0277976, -0.0698055, -0.0815334, 0.994223, 0.229374, -0.376916, 0.406957 )
 visible = false
 
 [node name="round" parent="Head/Camera/EquipNode/Magazine" index="1"]
 visible = false
 
 [node name="Casing" type="MeshInstance" parent="Head/Camera/EquipNode"]
-transform = Transform( 3.82258, -4.54736, 0.842285, 0.531266, -0.653752, -5.94057, 4.59409, 3.8593, -0.0138598, 0.529216, -0.045908, 0.500665 )
+transform = Transform( 3.8226, -4.54735, 0.842287, 0.53127, -0.653752, -5.94057, 4.59408, 3.85931, -0.0138597, 0.529216, -0.045908, 0.500665 )
 visible = false
 mesh = SubResource( 46 )
 

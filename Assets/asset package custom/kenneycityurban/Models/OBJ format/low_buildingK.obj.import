@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/low_buildingK.obj-889fdd6307c552c4da19103967eb3eba.mesh"
+
+[deps]
+
+files=[ "res://.import/low_buildingK.obj-889fdd6307c552c4da19103967eb3eba.mesh" ]
+
+source_file="res://Assets/asset package custom/kenneycityurban/Models/OBJ format/low_buildingK.obj"
+dest_files=[ "res://.import/low_buildingK.obj-889fdd6307c552c4da19103967eb3eba.mesh", "res://.import/low_buildingK.obj-889fdd6307c552c4da19103967eb3eba.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

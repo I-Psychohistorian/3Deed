@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/truck_grey.obj-9d67a91a606993e604fe96ae7b36c11a.mesh"
+
+[deps]
+
+files=[ "res://.import/truck_grey.obj-9d67a91a606993e604fe96ae7b36c11a.mesh" ]
+
+source_file="res://Assets/asset package custom/kenneyretrourban/Models/OBJ format/truck_grey.obj"
+dest_files=[ "res://.import/truck_grey.obj-9d67a91a606993e604fe96ae7b36c11a.mesh", "res://.import/truck_grey.obj-9d67a91a606993e604fe96ae7b36c11a.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

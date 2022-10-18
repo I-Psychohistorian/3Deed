@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/skyscraperD.obj-359cee1261ed5967798672720f77335b.mesh"
+
+[deps]
+
+files=[ "res://.import/skyscraperD.obj-359cee1261ed5967798672720f77335b.mesh" ]
+
+source_file="res://Assets/asset package custom/kenneycityurban/Models/OBJ format/skyscraperD.obj"
+dest_files=[ "res://.import/skyscraperD.obj-359cee1261ed5967798672720f77335b.mesh", "res://.import/skyscraperD.obj-359cee1261ed5967798672720f77335b.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/roofMetal_typeB.obj-4b10b93ca5d8f33c0f2a8fe6b82f02fd.mesh"
+
+[deps]
+
+files=[ "res://.import/roofMetal_typeB.obj-4b10b93ca5d8f33c0f2a8fe6b82f02fd.mesh" ]
+
+source_file="res://Assets/asset package custom/kenneyretrourban/Models/OBJ format/roofMetal_typeB.obj"
+dest_files=[ "res://.import/roofMetal_typeB.obj-4b10b93ca5d8f33c0f2a8fe6b82f02fd.mesh", "res://.import/roofMetal_typeB.obj-4b10b93ca5d8f33c0f2a8fe6b82f02fd.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/wall_windowF.obj-b0ab7e43eed34fbc1ce15da05228a3b6.mesh"
+
+[deps]
+
+files=[ "res://.import/wall_windowF.obj-b0ab7e43eed34fbc1ce15da05228a3b6.mesh" ]
+
+source_file="res://Assets/asset package custom/kenneycityurban/Models/OBJ format/wall_windowF.obj"
+dest_files=[ "res://.import/wall_windowF.obj-b0ab7e43eed34fbc1ce15da05228a3b6.mesh", "res://.import/wall_windowF.obj-b0ab7e43eed34fbc1ce15da05228a3b6.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

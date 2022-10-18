@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/detailBeam.obj-e30c81c6788c9e5a576e68b09663a332.mesh"
+
+[deps]
+
+files=[ "res://.import/detailBeam.obj-e30c81c6788c9e5a576e68b09663a332.mesh" ]
+
+source_file="res://Assets/asset package custom/kenneyretrourban/Models/OBJ format/detailBeam.obj"
+dest_files=[ "res://.import/detailBeam.obj-e30c81c6788c9e5a576e68b09663a332.mesh", "res://.import/detailBeam.obj-e30c81c6788c9e5a576e68b09663a332.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

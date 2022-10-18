@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/detailBarrier_typeA.obj-43a33acdd9f4bdb3f8b92f37c3f701ca.mesh"
+
+[deps]
+
+files=[ "res://.import/detailBarrier_typeA.obj-43a33acdd9f4bdb3f8b92f37c3f701ca.mesh" ]
+
+source_file="res://Assets/asset package custom/kenneyretrourban/Models/OBJ format/detailBarrier_typeA.obj"
+dest_files=[ "res://.import/detailBarrier_typeA.obj-43a33acdd9f4bdb3f8b92f37c3f701ca.mesh", "res://.import/detailBarrier_typeA.obj-43a33acdd9f4bdb3f8b92f37c3f701ca.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

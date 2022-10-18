@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/roof_corner.obj-6b6cf73c81c94c916c5b5a2921b1bbde.mesh"
+
+[deps]
+
+files=[ "res://.import/roof_corner.obj-6b6cf73c81c94c916c5b5a2921b1bbde.mesh" ]
+
+source_file="res://Assets/asset package custom/kenneycityurban/Models/OBJ format/roof_corner.obj"
+dest_files=[ "res://.import/roof_corner.obj-6b6cf73c81c94c916c5b5a2921b1bbde.mesh", "res://.import/roof_corner.obj-6b6cf73c81c94c916c5b5a2921b1bbde.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

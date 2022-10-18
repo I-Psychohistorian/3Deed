@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/wallSteps_typeA.obj-2f81e89d6d5c4c2754a77e5271393580.mesh"
+
+[deps]
+
+files=[ "res://.import/wallSteps_typeA.obj-2f81e89d6d5c4c2754a77e5271393580.mesh" ]
+
+source_file="res://Assets/asset package custom/kenneyretrourban/Models/OBJ format/wallSteps_typeA.obj"
+dest_files=[ "res://.import/wallSteps_typeA.obj-2f81e89d6d5c4c2754a77e5271393580.mesh", "res://.import/wallSteps_typeA.obj-2f81e89d6d5c4c2754a77e5271393580.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

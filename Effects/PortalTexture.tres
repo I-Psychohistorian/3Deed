@@ -1,0 +1,32 @@
+[gd_resource type="SpatialMaterial" load_steps=8 format=2]
+
+[sub_resource type="OpenSimplexNoise" id=1]
+
+[sub_resource type="NoiseTexture" id=2]
+noise = SubResource( 1 )
+
+[sub_resource type="OpenSimplexNoise" id=3]
+
+[sub_resource type="NoiseTexture" id=4]
+noise = SubResource( 3 )
+noise_offset = Vector2( -10, 30 )
+
+[sub_resource type="OpenSimplexNoise" id=5]
+
+[sub_resource type="NoiseTexture" id=6]
+noise = SubResource( 5 )
+noise_offset = Vector2( 54, 43 )
+
+[sub_resource type="AnimatedTexture" id=7]
+flags = 7
+frames = 3
+fps = 10.0
+frame_0/texture = SubResource( 2 )
+frame_1/texture = SubResource( 4 )
+frame_1/delay_sec = 0.0
+frame_2/texture = SubResource( 6 )
+frame_2/delay_sec = 0.0
+
+[resource]
+albedo_color = Color( 0.407843, 0.415686, 0.933333, 1 )
+albedo_texture = SubResource( 7 )

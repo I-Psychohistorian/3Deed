@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/roadDirt_pavement.obj-83644681ec7d532db0e63265fb91107c.mesh"
+
+[deps]
+
+files=[ "res://.import/roadDirt_pavement.obj-83644681ec7d532db0e63265fb91107c.mesh" ]
+
+source_file="res://Assets/asset package custom/kenneyretrourban/Models/OBJ format/roadDirt_pavement.obj"
+dest_files=[ "res://.import/roadDirt_pavement.obj-83644681ec7d532db0e63265fb91107c.mesh", "res://.import/roadDirt_pavement.obj-83644681ec7d532db0e63265fb91107c.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

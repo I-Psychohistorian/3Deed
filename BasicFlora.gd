@@ -3,7 +3,7 @@ extends KinematicBody
 
 # Declare member variables here. Examples:
 var health = 5
-var Name = "Plant"
+var Name = "Edible Flower"
 var stages = ["Sprout", "Mid", "FullyGrown"]
 var current_stage = "Sprout"
 var dead = false
@@ -53,6 +53,7 @@ func use():
 	for body in $Surrounding.get_overlapping_bodies():
 		if body.is_in_group('Player'):
 			body.stamina += health
+			body.health += 1
 			body.crunch.play()
 			queue_free()
 

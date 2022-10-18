@@ -1,0 +1,109 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Assets/asset package custom/particlePack_1.1/PNG (Transparent)/dirt_02.png" type="Texture" id=1]
+[ext_resource path="res://Effects/glorpcore.tres" type="Material" id=2]
+[ext_resource path="res://FleshLump.gd" type="Script" id=3]
+
+[sub_resource type="SphereShape" id=12]
+radius = 0.499597
+
+[sub_resource type="Curve" id=30]
+_data = [ Vector2( 0, 0.5125 ), 0.0, 0.56855, 0, 0, Vector2( 1, 0.154545 ), -0.723923, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=16]
+curve = SubResource( 30 )
+
+[sub_resource type="ParticlesMaterial" id=17]
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 1.0
+angular_velocity = 800.0
+angular_velocity_random = 1.0
+radial_accel = 3.0
+tangential_accel = 3.0
+scale = 0.5
+scale_curve = SubResource( 16 )
+color = Color( 0.196078, 0.0117647, 0.0117647, 1 )
+
+[sub_resource type="SpatialMaterial" id=18]
+flags_transparent = true
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 1 )
+
+[sub_resource type="QuadMesh" id=19]
+material = SubResource( 18 )
+
+[sub_resource type="SphereShape" id=31]
+radius = 0.519235
+
+[node name="FleshLump" type="KinematicBody" groups=["Enemy"]]
+script = ExtResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.15, 0, 0, 0, 1, 0, 0, 0 )
+shape = SubResource( 12 )
+
+[node name="CSGSphere" type="CSGSphere" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 0, 0 )
+radius = 0.5
+material = ExtResource( 2 )
+
+[node name="Pocking" type="CSGCylinder" parent="CSGSphere"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.334723, 0.340823, -0.0741456 )
+operation = 2
+radius = 0.1
+height = 0.2
+cone = true
+material = ExtResource( 2 )
+
+[node name="Pocking2" type="CSGCylinder" parent="CSGSphere"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.328813, 0.259949, 0.218249 )
+operation = 2
+radius = 0.1
+height = 0.365476
+cone = true
+material = ExtResource( 2 )
+
+[node name="Pocking3" type="CSGCylinder" parent="CSGSphere"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.205388, 0.470601, 0.120933 )
+operation = 2
+radius = 0.1
+height = 0.2
+cone = true
+material = ExtResource( 2 )
+
+[node name="Pocking4" type="CSGCylinder" parent="CSGSphere"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0632325, 0.432116, -0.0741456 )
+operation = 2
+radius = 0.1
+height = 0.2
+cone = true
+material = ExtResource( 2 )
+
+[node name="HeadSplatter" type="Particles" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0573053, 0.0363178 )
+emitting = false
+amount = 16
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.75
+process_material = SubResource( 17 )
+draw_pass_1 = SubResource( 19 )
+
+[node name="DeathTimer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
+[node name="Area" type="Area" parent="."]
+
+[node name="CollisionShape2" type="CollisionShape" parent="Area"]
+transform = Transform( 1, 0, 0, 0, 0.15, 0, 0, 0, 1, 0, 0, 0 )
+shape = SubResource( 31 )
+
+[connection signal="timeout" from="DeathTimer" to="." method="_on_DeathTimer_timeout"]
+[connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]

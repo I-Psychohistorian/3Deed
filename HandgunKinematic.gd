@@ -1,6 +1,6 @@
 extends KinematicBody
 
-var Name = "Gun Powerup"
+var Name = "Handgun"
 var pickup = "Handgun"
 onready var radius = $PickupArea
 var active = true

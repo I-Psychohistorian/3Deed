@@ -1,19 +1,92 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://Effects/glorpcore.tres" type="Material" id=1]
 [ext_resource path="res://Entities/FleshThing/FleshPoker.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/asset package custom/particlePack_1.1/PNG (Transparent)/dirt_02.png" type="Texture" id=3]
+[ext_resource path="res://Assets/asset package custom/particlePack_1.1/PNG (Transparent)/dirt_01.png" type="Texture" id=4]
+[ext_resource path="res://Entities/FleshThing/FleshThing.gd" type="Script" id=5]
+
+[sub_resource type="SphereShape" id=17]
+radius = 0.2
 
 [sub_resource type="CapsuleShape" id=2]
-radius = 0.3
+radius = 0.13607
 height = 0.6
 
 [sub_resource type="CapsuleMesh" id=1]
 material = ExtResource( 1 )
 radius = 0.1
-mid_height = 0.5
+mid_height = 0.6
+
+[sub_resource type="Gradient" id=18]
+offsets = PoolRealArray( 0.270968, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 0.5, 0, 0, 1 )
+
+[sub_resource type="GradientTexture" id=19]
+gradient = SubResource( 18 )
+
+[sub_resource type="Curve" id=20]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.225 ), 0.514876, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=21]
+curve = SubResource( 20 )
+
+[sub_resource type="ParticlesMaterial" id=22]
+spread = 13.24
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 1.0
+angular_velocity = 1000.0
+angular_velocity_random = 1.0
+scale = 0.2
+scale_curve = SubResource( 21 )
+color_ramp = SubResource( 19 )
+
+[sub_resource type="SpatialMaterial" id=23]
+flags_transparent = true
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 4 )
+
+[sub_resource type="QuadMesh" id=24]
+material = SubResource( 23 )
+
+[sub_resource type="Curve" id=7]
+_data = [ Vector2( 0, 0.5125 ), 0.0, 0.56855, 0, 0, Vector2( 1, 0.154545 ), -0.723923, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=28]
+curve = SubResource( 7 )
+
+[sub_resource type="ParticlesMaterial" id=9]
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 1.0
+angular_velocity = 800.0
+angular_velocity_random = 1.0
+radial_accel = 3.0
+tangential_accel = 3.0
+scale = 0.5
+scale_curve = SubResource( 28 )
+color = Color( 0.196078, 0.0117647, 0.0117647, 1 )
+
+[sub_resource type="SpatialMaterial" id=29]
+flags_transparent = true
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 3 )
+
+[sub_resource type="QuadMesh" id=11]
+material = SubResource( 29 )
 
 [sub_resource type="Animation" id=3]
-resource_name = "StartAttack1"
+resource_name = "Attack1Fast"
 length = 0.8
 tracks/0/type = "value"
 tracks/0/path = NodePath("MainBody/Head/CSGCombiner/MouthHole:translation")
@@ -62,6 +135,268 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector3( 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "Attack2Fast"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("MainBody/Arms/Arm1:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 68.8853, 103.181, 89.158 ), Vector3( 58.936, 128.197, 127.919 ), Vector3( 71.8613, -140.895, -112.817 ), Vector3( 24.2179, -145.251, -96.4363 ), Vector3( 75.0391, -145.375, -95.628 ), Vector3( 68.8853, 103.181, 89.158 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MainBody/Arms/Arm2:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3, 0.4, 0.6, 0.7, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -71.6783, -106.386, 89.2327 ), Vector3( -59.614, -143.32, 129.397 ), Vector3( -58.2106, 141.224, -107.259 ), Vector3( -52.0126, 144.797, -93.0253 ), Vector3( -39.1846, 143.21, -82.6899 ), Vector3( -67.0715, 126.182, -101.951 ), Vector3( -71.6783, -106.386, 89.2327 ) ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "Awaken"
+tracks/0/type = "value"
+tracks/0/path = NodePath("MainBody/Head/CSGCombiner/MouthHole:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.262851, 0, 0 ), Vector3( 0.079944, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MainBody/Arms/Arm1:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 0.8, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -24.806, 6.01097, -14.0891 ), Vector3( -24.806, 6.01097, -14.0891 ), Vector3( 1.99341, 6.3689, -11.3691 ), Vector3( 11.7697, 6.50232, -10.2598 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("MainBody/Arms/Arm2:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 20.8762, -5.96499, -16.3418 ), Vector3( 20.8762, -5.96499, -16.3418 ), Vector3( -10.919, -6.00201, -11.2394 ) ]
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "Death"
+tracks/0/type = "value"
+tracks/0/path = NodePath("MainBody/Arms/Arm2:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -3.97014, -5.58557, -13.8215 ), Vector3( -40.7869, 55.6289, -31.9355 ), Vector3( -40.8992, -10.5576, 14.8981 ), Vector3( -12.2822, -51.1729, 75.2253 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MainBody/Arms/Arm1:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -0.186666, 5.45462, -11.5774 ), Vector3( 35.0983, -49.2538, -26.1336 ), Vector3( -14.1464, 48.6779, 83.8014 ), Vector3( -31.3231, 36.6213, 112.513 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("MainBody/Head/CSGCombiner/MouthHole:translation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.0968947, 0, 0 ), Vector3( 0.0978284, 0, 0 ), Vector3( -0.0921689, 0.0623167, 0 ), Vector3( 0.101563, 0, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("MainBody/Head/CSGCombiner/MouthHole:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 2 ), Vector3( 1, 1, 2 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("MainBody/Arms:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( -90, 0, 0 ), Vector3( -90, 51.033, 0 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("MainBody/Legs/Leg8:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 2.82452, 14.7794, 0.744837 ), Vector3( 27.1726, 16.6423, 7.77324 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("MainBody/Legs/Leg4:rotation_degrees")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( -4.10586, -161.491, -1.37309 ), Vector3( 23.9461, -159.729, 8.52551 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("MainBody/Legs/Leg5:rotation_degrees")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 3.79658, -63.8806, 8.76528 ), Vector3( 30.9444, -63.9924, 14.0837 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("MainBody/Head/CSGCombiner/MouthHole:rotation_degrees")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 95.455 ), Vector3( 0, 0, 128.069 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("MainBody/Head/CSGCombiner/MouthHole:radius")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0759932, 0.656578 ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("MainBody/Head/HeadSplatter:emitting")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0.7, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, true ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("Splatter:emitting")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("MainBody/Head/CSGCombiner/MouthHole:height")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.227509, 1.116 ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("MainBody/Arms:scale")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0, 0.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ), Vector3( 0.5, 0.5, 1 ) ]
+}
+tracks/14/type = "value"
+tracks/14/path = NodePath("MainBody:mesh:radius")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0, 0.3, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.1, 0.1, 0.03 ]
+}
+tracks/15/type = "value"
+tracks/15/path = NodePath("MainBody/Legs:scale")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 0, 0.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ), Vector3( 0.7, 1, 0.7 ) ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -250,6 +585,166 @@ tracks/11/keys = {
 "update": 0,
 "values": [ Vector3( 0, 14.761, 0 ) ]
 }
+tracks/12/type = "value"
+tracks/12/path = NodePath("MainBody/Head/CSGCombiner/MouthHole:scale")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 2 ) ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("MainBody/Arms:rotation_degrees")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -90, -4.051, 0 ) ]
+}
+tracks/14/type = "value"
+tracks/14/path = NodePath("MainBody/Head/CSGCombiner/MouthHole:rotation_degrees")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 128.069 ) ]
+}
+tracks/15/type = "value"
+tracks/15/path = NodePath("MainBody/Head/CSGCombiner/MouthHole:radius")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0759932 ]
+}
+tracks/16/type = "value"
+tracks/16/path = NodePath("MainBody/Head/HeadSplatter:emitting")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/17/type = "value"
+tracks/17/path = NodePath("Splatter:emitting")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/18/type = "value"
+tracks/18/path = NodePath("MainBody/Head/CSGCombiner/MouthHole:height")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.227509 ]
+}
+tracks/19/type = "value"
+tracks/19/path = NodePath("MainBody/Arms:scale")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ) ]
+}
+tracks/20/type = "value"
+tracks/20/path = NodePath("MainBody:mesh:radius")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.1 ]
+}
+tracks/21/type = "value"
+tracks/21/path = NodePath("MainBody/Legs:scale")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=15]
+resource_name = "StartAttack"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("MainBody/Head/CSGCombiner/MouthHole:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0.0968947, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MainBody/Arms/Arm1:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.4, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -0.186666, 5.45462, -11.5774 ), Vector3( 76.4047, 120.322, 96.5687 ), Vector3( 76.4047, 120.322, 96.5687 ), Vector3( 69.3344, -150.233, -65.5537 ), Vector3( 76.4047, 120.322, 96.5687 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("MainBody/Arms/Arm2:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3, 0.4, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -3.97014, -5.58557, -13.8215 ), Vector3( -81.8842, -147.051, 122.623 ), Vector3( -81.8842, -147.051, 122.623 ), Vector3( -85.4137, 60.9429, -5.41013 ), Vector3( -81.8842, -147.051, 122.623 ) ]
+}
 
 [sub_resource type="Animation" id=6]
 resource_name = "WalkCycle1"
@@ -400,7 +895,43 @@ tracks/11/keys = {
 "values": [ Vector3( 0, 14.761, 0 ), Vector3( 0, -2.398, 0 ), Vector3( 19.6622, 11.7671, 4.00938 ), Vector3( 14.6393, -12.0974, -3.10063 ), Vector3( 0, 12.481, 0 ), Vector3( 0, 14.761, 0 ) ]
 }
 
-[node name="FleshThing" type="KinematicBody"]
+[sub_resource type="Curve" id=30]
+_data = [ Vector2( 0, 0.5125 ), 0.0, 0.56855, 0, 0, Vector2( 1, 0.154545 ), -0.723923, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=16]
+curve = SubResource( 30 )
+
+[sub_resource type="ParticlesMaterial" id=31]
+emission_shape = 2
+emission_box_extents = Vector3( 0.1, 0.4, 0.1 )
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 1.0
+angular_velocity = 800.0
+angular_velocity_random = 1.0
+radial_accel = 3.0
+tangential_accel = 3.0
+scale = 0.5
+scale_curve = SubResource( 16 )
+color = Color( 0.196078, 0.0117647, 0.0117647, 1 )
+
+[sub_resource type="CylinderShape" id=25]
+height = 1.32307
+radius = 4.80142
+
+[sub_resource type="CylinderShape" id=26]
+height = 1.20451
+radius = 4.16314
+
+[sub_resource type="BoxShape" id=27]
+extents = Vector3( 0.2, 0.4, 0.3 )
+
+[node name="FleshThing" type="KinematicBody" groups=["Enemy"]]
+script = ExtResource( 5 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.490773, 0 )
+shape = SubResource( 17 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
@@ -421,14 +952,34 @@ radius = 0.15
 material = ExtResource( 1 )
 
 [node name="MouthHole" type="CSGCylinder" parent="MainBody/Head/CSGCombiner"]
-transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 2, 0.262851, 0, 0 )
+transform = Transform( -0.61661, -0.787269, 0, 0.787269, -0.61661, 0, 0, 0, 2, 0.262851, 0, 0 )
 operation = 2
-radius = 0.05
-height = 0.2
+radius = 0.0759932
+height = 0.227509
 cone = true
 material = ExtResource( 1 )
 
-[node name="Particles" type="Particles" parent="MainBody/Head"]
+[node name="BarfAttack" type="Particles" parent="MainBody/Head"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.100521, 0, 0 )
+emitting = false
+amount = 20
+one_shot = true
+explosiveness = 0.67
+process_material = SubResource( 22 )
+draw_pass_1 = SubResource( 24 )
+
+[node name="HeadSplatter" type="Particles" parent="MainBody/Head"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0573053, 0 )
+emitting = false
+amount = 16
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.75
+process_material = SubResource( 9 )
+draw_pass_1 = SubResource( 11 )
+
+[node name="MouthSpawn" type="Spatial" parent="MainBody/Head"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.121917, 0, 0 )
 
 [node name="Legs" type="Spatial" parent="MainBody"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.20882e-08, 0.276545 )
@@ -461,7 +1012,7 @@ __meta__ = {
 }
 
 [node name="Leg4" type="Spatial" parent="MainBody/Legs"]
-transform = Transform( -0.948545, 0, -0.316642, 0, 1, 0, 0.316642, 0, -0.948545, 0, 0, 0 )
+transform = Transform( -0.948545, 0, -0.316643, 0, 1, 0, 0.316642, 0, -0.948545, 0, 0, -3.10862e-14 )
 
 [node name="FleshPoker" parent="MainBody/Legs/Leg4" instance=ExtResource( 2 )]
 transform = Transform( -1, -7.64274e-15, 8.74228e-08, 0, -1, -8.74228e-08, 8.74228e-08, -8.74228e-08, 1, 0, 0, -0.154262 )
@@ -471,7 +1022,7 @@ __meta__ = {
 }
 
 [node name="Leg5" type="Spatial" parent="MainBody/Legs"]
-transform = Transform( 0.376079, 0, -0.926588, 0, 1, 0, 0.926588, 0, 0.376079, 0, 0, 0 )
+transform = Transform( 0.376079, 0, -0.926588, 0, 1, 0, 0.926588, 0, 0.376079, 0, 0, -3.10862e-14 )
 
 [node name="FleshPoker" parent="MainBody/Legs/Leg5" instance=ExtResource( 2 )]
 transform = Transform( -1, -7.64274e-15, 8.74228e-08, 0, -1, -8.74228e-08, 8.74228e-08, -8.74228e-08, 1, 0, 0, -0.154262 )
@@ -501,7 +1052,7 @@ __meta__ = {
 }
 
 [node name="Leg8" type="Spatial" parent="MainBody/Legs"]
-transform = Transform( 0.966997, 0, 0.254788, 0, 1, 0, -0.254788, 0, 0.966997, 0, 0, 0 )
+transform = Transform( 0.966997, 0, 0.254788, 0, 1, 0, -0.254788, 0, 0.966997, 0, 0, -3.10862e-14 )
 
 [node name="FleshPoker" parent="MainBody/Legs/Leg8" instance=ExtResource( 2 )]
 transform = Transform( -1, -7.64274e-15, 8.74228e-08, 0, -1, -8.74228e-08, 8.74228e-08, -8.74228e-08, 1, 0, 0, -0.154262 )
@@ -511,10 +1062,10 @@ __meta__ = {
 }
 
 [node name="Arms" type="Spatial" parent="MainBody"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -1.31914e-08, -0.301785 )
+transform = Transform( 0.997502, 0.0706444, 3.08796e-09, 0, -4.37114e-08, 1, 0.0706444, -0.997502, -4.36022e-08, 0, -1.31914e-08, -0.301785 )
 
 [node name="Arm1" type="Spatial" parent="MainBody/Arms"]
-transform = Transform( 0.97528, 0.199479, 0.0950568, -0.22097, 0.880428, 0.419546, 7.45058e-09, -0.43018, 0.902743, 0, -0.0651402, -0.0403072 )
+transform = Transform( 0.97528, 0.199479, 0.0950568, -0.22097, 0.880427, 0.419547, 2.90572e-07, -0.430181, 0.902742, 0, -0.0651402, -0.0403072 )
 
 [node name="FleshPoker" parent="MainBody/Arms/Arm1" instance=ExtResource( 2 )]
 transform = Transform( -0.0102222, 1.16185, 0.3, -0.539652, -0.272411, 1.03661, 1.07176, -0.126082, 0.524816, 0, -0.126713, -0.0818108 )
@@ -524,7 +1075,7 @@ __meta__ = {
 }
 
 [node name="Arm2" type="Spatial" parent="MainBody/Arms"]
-transform = Transform( 0.964824, 0.244308, -0.0970985, -0.262896, 0.896605, -0.356349, 1.49012e-08, 0.369341, 0.929293, 0, -0.0471624, 0.0482839 )
+transform = Transform( 0.964824, 0.244307, -0.0970986, -0.262896, 0.896605, -0.35635, 2.08616e-07, 0.369342, 0.929294, 0, -0.0471624, 0.0482839 )
 
 [node name="FleshPoker2" parent="MainBody/Arms/Arm2" instance=ExtResource( 2 )]
 transform = Transform( -0.0102265, 1.16185, 0.300004, 0.529016, -0.26492, 1.04401, 1.07705, 0.141153, -0.509939, 0, -0.12649, 0.0543389 )
@@ -534,11 +1085,49 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Awaken = SubResource( 3 )
+anims/Attack1Fast = SubResource( 3 )
+anims/Attack2Fast = SubResource( 12 )
+anims/Awaken = SubResource( 13 )
+anims/Death = SubResource( 14 )
 anims/Idle = SubResource( 4 )
 anims/RESET = SubResource( 5 )
-anims/StartAttack1 = SubResource( 3 )
-"anims/StartAttack1 2" = SubResource( 3 )
+anims/StartAttack = SubResource( 15 )
 anims/WalkCycle1 = SubResource( 6 )
 
-[node name="Particles" type="Particles" parent="."]
+[node name="Splatter" type="Particles" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0573053, 0 )
+emitting = false
+amount = 16
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.75
+process_material = SubResource( 31 )
+draw_pass_1 = SubResource( 11 )
+
+[node name="WakeUpTimer" type="Timer" parent="."]
+
+[node name="AttackTimer" type="Timer" parent="."]
+
+[node name="DeathTimer" type="Timer" parent="."]
+
+[node name="SoundTimer" type="Timer" parent="."]
+
+[node name="BehaviorTimer" type="Timer" parent="."]
+
+[node name="Sight_radius" type="Area" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="Sight_radius"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.345484, 0 )
+shape = SubResource( 25 )
+
+[node name="Behavior_radius" type="Area" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="Behavior_radius"]
+shape = SubResource( 26 )
+
+[node name="attack_area" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.127174, 0.282883, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="attack_area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0695728, 0.0113462, 0 )
+shape = SubResource( 27 )

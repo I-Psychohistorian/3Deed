@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Assets/asset package custom/kenneyretrourban/Models/GLTF format/roof.material" type="Material" id=1]
 [ext_resource path="res://Assets/asset package custom/kenneyretrourban/Models/GLTF format/asphalt.material" type="Material" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Entities/InteractableObjects/AmmoKinematic.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Assets/asset package custom/kenneyretrourban/Models/GLTF format/concreteSmooth.material" type="Material" id=10]
 [ext_resource path="res://Entities/FleshThing/FleshBody.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Entities/FleshThing/FleshBud.tscn" type="PackedScene" id=12]
 
 [node name="Level" type="Spatial"]
 
@@ -113,7 +114,10 @@ transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9.75853
 transform = Transform( 0.707106, 0.000617061, 0.707107, -0.000872656, 1, 4.65661e-10, -0.707106, -0.000617061, 0.707107, 14.6381, -1.49559, 1.051 )
 
 [node name="FleshLump" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.98202, -1.61731, 3.16937 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.05713, -2.23454, -19.5105 )
 
 [node name="HallAreaNode" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.96802, 0.020618, -0.900137 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.96802, 0.020618, -18.8599 )
+
+[node name="FleshBud" parent="HallAreaNode" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.37822, -1.86145, -1.75025 )

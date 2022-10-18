@@ -9,6 +9,10 @@ var dialogue3  = "..."
 var active = true
 
 var dead = false
+var disease = true
+
+onready var parasite = preload("res://Entities/FleshThing/FleshBud.tscn")
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -49,6 +53,8 @@ func die():
 	$Body.visible = false
 	$Head/CSGCylinder/HeadHole.visible = true
 	$BodyColider.disabled = true
+	var p = parasite.instance()
+	add_child(p)
 	#deathtimer
 	#deaethsound
 	#SpawnEbolaWorm

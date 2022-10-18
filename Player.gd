@@ -24,6 +24,7 @@ var sprint = false
 var exertion = false #for checking sprint stamina drain
 var hurt = false #ticks for hurt sound and possibly stuns?
 
+var disease = false #checked for flesh damage and checked briefly afterwards
 
 var LMB_cooldown = false #when true, cannot attack with left click
 var RMB_cooldown = false #when true keeps actions like reloading from stuttering
@@ -247,6 +248,7 @@ func use_powerup():
 		print("Nothing in hand, major stamina + health gained")
 		stamina += 30
 		health += 30
+		disease = false
 	elif String(equipped) == "Knife":
 		print("Knife in hand, major stamina, minor health and 1 second attack boost gained")
 		stamina += 20
@@ -536,3 +538,8 @@ func _on_ReloadTimer_timeout():
 
 func _on_E_cooldown_timeout():
 	interact_cooldown = false
+
+
+func _on_DiseaseTimer_timeout():
+	if disease == true:
+		health -= 1

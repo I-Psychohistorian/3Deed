@@ -41,7 +41,7 @@ material = SubResource( 18 )
 [sub_resource type="SphereShape" id=31]
 radius = 0.519235
 
-[node name="FleshLump" type="KinematicBody" groups=["Enemy"]]
+[node name="FleshLump" type="KinematicBody" groups=["Enemy", "Flesh"]]
 script = ExtResource( 3 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]

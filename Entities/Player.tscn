@@ -1372,6 +1372,10 @@ stream = ExtResource( 26 )
 
 [node name="E_cooldown" type="Timer" parent="."]
 
+[node name="DiseaseTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
 [connection signal="body_entered" from="Head/Camera/EquipNode/StabZone" to="." method="_on_StabZone_body_entered"]
 [connection signal="body_entered" from="Head/Camera/EquipNode/StabZone" to="Head/Camera/EquipNode/StabZone" method="_on_StabZone_body_entered"]
 [connection signal="body_entered" from="Head/Camera/EquipNode/AoE_area" to="." method="_on_AoE_area_body_entered"]
@@ -1383,5 +1387,6 @@ stream = ExtResource( 26 )
 [connection signal="timeout" from="BetweenShots" to="." method="_on_BetweenShots_timeout"]
 [connection signal="timeout" from="ReloadTimer" to="." method="_on_ReloadTimer_timeout"]
 [connection signal="timeout" from="E_cooldown" to="." method="_on_E_cooldown_timeout"]
+[connection signal="timeout" from="DiseaseTimer" to="." method="_on_DiseaseTimer_timeout"]
 
 [editable path="Head/Camera/EquipNode/Magazine"]

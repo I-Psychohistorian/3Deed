@@ -959,7 +959,7 @@ height = 0.227509
 cone = true
 material = ExtResource( 1 )
 
-[node name="BarfAttack" type="Particles" parent="MainBody/Head"]
+[node name="BarfAttack" type="Particles" parent="MainBody/Head" groups=["Enemy", "Flesh"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.100521, 0, 0 )
 emitting = false
 amount = 20

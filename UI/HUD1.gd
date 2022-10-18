@@ -10,6 +10,8 @@ var ammo2 = 0
 var powerups = 0
 var tooltip = 'testing'
 var equipped = []
+var examine_text = 'N'
+var dialogue_text = 'G'
 
 var interactable_seen = false
 
@@ -21,6 +23,8 @@ onready var ammo_display = $MarginContainer/Ammo
 onready var sprint_display = $MarginContainer/Sprint
 onready var powerups_display = $MarginContainer/Powerups
 onready var interact_text = $Interact/InteractText
+onready var examine_display = $TextOverlay/Text
+onready var dialogue_display = $DialogueBox/DialogueLabel
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -34,17 +38,28 @@ func _process(delta):
 	ammo_display.text = "Ammo " + String(ammo2) + "/" + String(ammo)
 	powerups_display.text = "Bingo Beans " + String(powerups)
 	weapon_display.text = String(equipped) + " equipped"
+	examine_display.text = examine_text
+	dialogue_display.text = dialogue_text
 	if sprint == false:
 		sprint_display.text = "Sprint Off"
 	if sprint == true:
 		sprint_display.text = "Sprint On"
 
+func dialogue():
+	dialogue_display.show()
+	$DialogueTimer.start()
 	
 func see_e():
 	interactable_seen = true
 	interact_text.show()
+	examine_display.show()
 	
 func unsee_e():
 	interactable_seen = false
 	interact_text.hide()
+	examine_display.hide()
 	
+
+
+func _on_DialogueTimer_timeout():
+	dialogue_display.hide()

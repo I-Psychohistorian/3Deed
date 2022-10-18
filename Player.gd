@@ -48,6 +48,9 @@ var command = 0
 var swap_equip = false
 
 
+var examine_text = "Generic Examine"
+var dialogue_text = "GenericDialogue"
+var interact_cooldown = false
 
 var mouse_hidden = true
 var mouse_sensitivity = 0.05
@@ -187,9 +190,13 @@ func interact_raycast():
 			elif object.active == false:
 				active_interactor = false
 			if active_interactor == true:
+				examine_text = object.Name
 				hud.see_e()
 				if Input.is_action_pressed("interact"):
-					object.use()
+					if interact_cooldown == false:
+						object.use()
+						interact_cooldown = true
+						$E_cooldown.start()
 		else:
 			hud.unsee_e()
 	else:
@@ -198,6 +205,8 @@ func interact_raycast():
 
 
 func update_hud():
+	hud.examine_text = examine_text
+	hud.dialogue_text = dialogue_text
 	hud.health = health
 	hud.stamina = stamina
 	hud.ammo = ammo
@@ -206,7 +215,10 @@ func update_hud():
 	hud.sprint = sprint
 	hud.equipped = equipped
 	hud.powerups = powerups
-	
+
+func tick_dialogue():
+	hud.dialogue()
+
 #this is for stamina regen and health and status effects
 #status effects will come later
 func status_upkeep():
@@ -520,3 +532,7 @@ func _on_ReloadTimer_timeout():
 	RMB_cooldown = false
 	loaded = true
 	#print('loaded')
+
+
+func _on_E_cooldown_timeout():
+	interact_cooldown = false

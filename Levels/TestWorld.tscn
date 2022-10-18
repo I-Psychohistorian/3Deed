@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Assets/asset package custom/retro medieval 3d/Models/GLTF format/bricks.material" type="Material" id=1]
 [ext_resource path="res://Assets/asset package custom/retro medieval 3d/Models/FBX format/roof.material" type="Material" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://Entities/InteractableObjects/HandgunKinematic.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Entities/InteractableObjects/AmmoKinematic.tscn" type="PackedScene" id=19]
 [ext_resource path="res://Effects/PortalTexture.tres" type="Material" id=20]
+[ext_resource path="res://Entities/InteractableObjects/Blungus.tscn" type="PackedScene" id=21]
 
 [sub_resource type="SpatialMaterial" id=10]
 flags_transparent = true
@@ -317,6 +318,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.4209, 1.20066 )
 
 [node name="AmmoKinematic" parent="." instance=ExtResource( 19 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.29379, 2.90436, 0.559573 )
+
+[node name="Blungus" parent="." instance=ExtResource( 21 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -33.2465, 2.90734, 27.6493 )
 
 [connection signal="body_entered" from="SecondTeleporter" to="." method="_on_SecondTeleporter_body_entered"]
 [connection signal="body_entered" from="Teleporter" to="." method="_on_Teleporter_body_entered"]

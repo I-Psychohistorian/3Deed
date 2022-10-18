@@ -1163,7 +1163,7 @@ __meta__ = {
 }
 
 [node name="Knife" type="MeshInstance" parent="Head/Camera/EquipNode"]
-transform = Transform( -7.98482, 0.368307, -0.326448, 0.443047, 3.06859, -7.37477, -0.214305, -7.3789, -3.08317, 0.319758, -0.176884, 0.464779 )
+transform = Transform( -7.98481, 0.368307, -0.326448, 0.443046, 3.06859, -7.37477, -0.214305, -7.3789, -3.08317, 0.319758, -0.176884, 0.464779 )
 visible = false
 mesh = ExtResource( 3 )
 
@@ -1262,14 +1262,14 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0650048 )
 shape = SubResource( 31 )
 
 [node name="Magazine" parent="Head/Camera/EquipNode" instance=ExtResource( 24 )]
-transform = Transform( 0.821271, 0.561038, 0.103672, -0.56625, 0.823763, 0.0277976, -0.0698055, -0.0815334, 0.994223, 0.229374, -0.376916, 0.406957 )
+transform = Transform( 0.821271, 0.561038, 0.103672, -0.56625, 0.823763, 0.0277976, -0.0698054, -0.0815334, 0.994223, 0.229374, -0.376916, 0.406957 )
 visible = false
 
 [node name="round" parent="Head/Camera/EquipNode/Magazine" index="1"]
 visible = false
 
 [node name="Casing" type="MeshInstance" parent="Head/Camera/EquipNode"]
-transform = Transform( 3.8226, -4.54735, 0.842287, 0.53127, -0.653752, -5.94057, 4.59408, 3.85931, -0.0138597, 0.529216, -0.045908, 0.500665 )
+transform = Transform( 3.8226, -4.54735, 0.842287, 0.531271, -0.653752, -5.94057, 4.59408, 3.85931, -0.0138597, 0.529216, -0.045908, 0.500665 )
 visible = false
 mesh = SubResource( 46 )
 
@@ -1370,6 +1370,8 @@ stream = ExtResource( 25 )
 [node name="PickupSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 26 )
 
+[node name="E_cooldown" type="Timer" parent="."]
+
 [connection signal="body_entered" from="Head/Camera/EquipNode/StabZone" to="." method="_on_StabZone_body_entered"]
 [connection signal="body_entered" from="Head/Camera/EquipNode/StabZone" to="Head/Camera/EquipNode/StabZone" method="_on_StabZone_body_entered"]
 [connection signal="body_entered" from="Head/Camera/EquipNode/AoE_area" to="." method="_on_AoE_area_body_entered"]
@@ -1380,5 +1382,6 @@ stream = ExtResource( 26 )
 [connection signal="timeout" from="AoETimer" to="." method="_on_AoETimer_timeout"]
 [connection signal="timeout" from="BetweenShots" to="." method="_on_BetweenShots_timeout"]
 [connection signal="timeout" from="ReloadTimer" to="." method="_on_ReloadTimer_timeout"]
+[connection signal="timeout" from="E_cooldown" to="." method="_on_E_cooldown_timeout"]
 
 [editable path="Head/Camera/EquipNode/Magazine"]

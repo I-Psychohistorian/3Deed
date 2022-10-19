@@ -54,6 +54,9 @@ func use():
 		if body.is_in_group('Player'):
 			body.stamina += health
 			body.health += 1
+			if body.disease == true:
+				print('cured disease!')
+			body.disease = false
 			body.crunch.play()
 			queue_free()
 

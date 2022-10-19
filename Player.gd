@@ -25,7 +25,7 @@ var exertion = false #for checking sprint stamina drain
 var hurt = false #ticks for hurt sound and possibly stuns?
 
 var disease = false #checked for flesh damage and checked briefly afterwards
-var immunity = 5 #out of 100, subtracted from random integers to check infection
+var immunity = 20 #out of 100, subtracted from random integers to check infection
 
 var rng = RandomNumberGenerator.new()
 
@@ -82,7 +82,7 @@ onready var AoE = $Head/Camera/EquipNode/AoE_area
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print(global_transform.origin)
+	#print(global_transform.origin)
 	#print(weapons)
 	inv_weapons.append(weapons[2])
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -492,11 +492,10 @@ func infection_check():
 		disease = false
 		print('Fought off infection')
 	elif infection_calc >= 0:
-		if disease == true:
-			print('Infected!')
-		else:
-			print('No disease.. yet...')
-	
+		disease = true
+		print('Infected!')
+		
+		
 func _on_StatusTick_timeout():
 	status_tick = true
 
@@ -558,7 +557,6 @@ func _on_E_cooldown_timeout():
 
 
 func _on_DiseaseTimer_timeout():
-	infection_check()
 	if disease == true:
 		health -= 1
 		if stamina_regen >= -1:

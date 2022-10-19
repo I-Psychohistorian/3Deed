@@ -11,6 +11,10 @@ var spin_speed = 15
 var move_speed = 1
 var hurt = false
 
+onready var NotWall = $NotWall #must not intersect wall to allow climbing
+onready var IsWall = $IsWall #must intersect wall to allow climbing
+onready var HeightMax = $StepHeightRay #max climb height
+
 var aggro = false
 var chase = false
 
@@ -21,8 +25,15 @@ var slime_aggro = false
 var spitting = false
 var spit_cooldown = false
 
+#reorient ai behavior
+
 var reorient_behavior = false
 var reorienting = false
+onready var RightRay = $RightObstacleRay
+onready var MidRay = $MidObstacleRay
+onready var LeftRay = $LeftObstacleRay
+onready var SightLine = $LineOfSight
+var move_modify_x = 0
 
 var dead = false
 
@@ -39,6 +50,8 @@ onready var barf = $MainBody/Head/BarfAttack
 onready var sight_area = $Sight_radius
 
 var fall = Vector3()
+var spawn_coords = Vector3()
+var player_last_seen = Vector3()
 #planned behaviors
 #dormant, until aggroed will give chase
 #if players run and exit range it will make a ranged attack
@@ -52,7 +65,7 @@ var fall = Vector3()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	connect_to_parent()
 
 
 
@@ -60,26 +73,46 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	movement()
-	if not is_on_floor():
-		fall.y -= gravity * delta
-		move_and_slide(fall, Vector3.UP)
-	elif is_on_floor():
-		fall.y = 0
+	if not HeightMax.is_colliding():
+		gravity = 8
+	elif IsWall.is_colliding():
+		if not NotWall.is_colliding():
+			gravity = -1
+	fall.y -= gravity
+	move_and_slide(fall, Vector3.UP)
+	fall.y = 0
+func connect_to_parent():
+	var FleshManager = get_parent()
+	connect('spawn_ebola', FleshManager, "spawn_seeker")
+
+
 
 func movement():
+	if slime_aggro == true:
+		if chase == false:
+			for body in sight_area.get_overlapping_bodies():
+				if body.is_in_group("Blob"):
+					look_at(body.global_transform.origin, Vector3.UP)
+					self.rotation.x = clamp(self.rotation.x, deg2rad(0), deg2rad(-0))
+					self.rotation.z = clamp(self.rotation.z, deg2rad(0), deg2rad(-0))
 	if spitting == true:
 		spitting = false
 		spit_cooldown = true
 		$BarfCooldown.start()
 		barf.emitting = true
+		spawn_coords = $MainBody/Head/MouthSpawn.global_transform.origin
 		emit_signal("spawn_ebola")
-		print('spawning ebola')
+		#print('spawning ebola')
 	elif aggro == true:
+		#print('aggro step 1')
 		if chase == false:
+			#print('aggro step 2')
 			if decide_chase == false:
+				#print('aggro step 3')
 				decide_chase = true
 				$WakeUpTimer.start()
 				$AnimationPlayer.play("Awaken")
+				print('Woke up')
 		if chase == true:
 			if walking == false:
 				walking = true
@@ -89,19 +122,45 @@ func movement():
 					var direction = body.global_transform.origin - self.global_transform.origin
 					move_and_slide(direction * (move_speed), Vector3.UP)
 					look_at(body.global_transform.origin, Vector3.UP)
-					
+					self.rotation.x = clamp(self.rotation.x, deg2rad(0), deg2rad(-0))
+					self.rotation.z = clamp(self.rotation.z, deg2rad(0), deg2rad(-0))
 	elif reorient_behavior == true:
+
 		if reorienting == false:
 			reorienting = true
 			rng.randomize()
-			var x_or_y = rng.randi_range(1,2)
+			var choice = rng.randi_range(1,2)
+			if RightRay.is_colliding() and not LeftRay.is_colliding():
+				#print('behavior left')#-x
+				move_modify_x = -1
+			if LeftRay.is_colliding() and not RightRay.is_colliding():
+				#print('behavior right') #+x
+				move_modify_x = 1
+			if MidRay.is_colliding():
+				pass
+				#print('obstacle in front')
+			if RightRay.is_colliding() and LeftRay.is_colliding():
+				move_modify_x = 0
+				#print('double colision')
+			elif not RightRay.is_colliding() and not LeftRay.is_colliding():
+				if choice == 1:
+					move_modify_x = -1
+				elif choice == 2:
+					move_modify_x = 1
+				#print('random vector')
+			print(move_modify_x)
 			$BehaviorTimer.start()
-			print('no reorienting yet')
+		var direction = player_last_seen - self.global_transform.origin
+		direction.x += move_modify_x
+		print(move_modify_x)
+		move_and_slide(direction * (-0.1), Vector3.UP)
+
+
 	elif aggro == false:
-		$AnimationPlayer.play("RESET")
-	if reorient_behavior == false:
-		if chase == false:
+		if reorient_behavior == false:
 			walking = false
+			#print('Went dormant')
+			$AnimationPlayer.play("RESET")
 		
 	
 
@@ -132,19 +191,29 @@ func _on_Sight_radius_body_entered(body):
 	if body.is_in_group('Player'):
 		aggro = true
 	if body.is_in_group('Blob'):
+		print('Spotted Corrupted Threat')
 		slime_aggro = true #have to make some way of getting them unaggroed after slimes are dead or prioritizing one enemy first
-
+		$Slime_aggro.start()
 
 func _on_Sight_radius_body_exited(body):
 	if body.is_in_group('Player'):
 		aggro = false
 		chase = false
+		decide_chase = false
 		reorient_behavior = true
+		player_last_seen = body.global_transform.origin
+	if body.is_in_group('Blob'):
+		slime_aggro = false
 
 
 func _on_Behavior_radius_body_exited(body):
 	if spit_cooldown == false:
-		spitting = true
+		rng.randomize()
+		var choice = rng.randi_range(1,5)
+		print(choice)
+		if choice >= 3:
+			spitting = true
+			print('spitting')
 
 
 func _on_WakeUpTimer_timeout():
@@ -156,12 +225,22 @@ func _on_BarfCooldown_timeout():
 
 
 func _on_AttackTimer_timeout():
+	#if NotWall.is_colliding():
+		#print('NotWall colliding')
+	#if IsWall.is_colliding():
+		#print('IsWall colliding')
+	#if HeightMax.is_colliding():
+		#print('Heightmax colliding')
+	#print(fall.y)
+	#climbing debug
 	var attack_zone = $attack_area.get_overlapping_bodies()
 	for body in attack_zone:
 		if body.is_in_group('Player'):
 			body.take_damage(damage)
-			body.disease = true
+			body.infection_check()
 		if body.is_in_group('Blob'):
+			body.take_damage(damage)
+		if body.is_in_group('Destructible'):
 			body.take_damage(damage)
 	walking = false
 
@@ -174,6 +253,10 @@ func _on_attack_area_body_entered(body):
 				$NextAttackTimer.start()
 				$AnimationPlayer.play("StartAttack")
 			if body.is_in_group('Blob'):
+				$NextAttackTimer.start()
+				$AttackTimer.start()
+				$AnimationPlayer.play("StartAttack")
+			if body.is_in_group('Obstacle'):
 				$NextAttackTimer.start()
 				$AttackTimer.start()
 				$AnimationPlayer.play("StartAttack")
@@ -190,6 +273,10 @@ func _on_NextAttackTimer_timeout():
 				$NextAttackTimer.start()
 				$AttackTimer.start()
 				attack_animation()
+			if body.is_in_group('Obstacle'):
+				$NextAttackTimer.start()
+				$AttackTimer.start()
+				attack_animation()
 
 
 func _on_BehaviorTimer_timeout():
@@ -203,3 +290,14 @@ func _on_DeathTimer_timeout():
 
 func _on_attack_area_body_exited(body):
 	walking = false
+
+
+func _on_Slime_aggro_timeout():
+	slime_aggro = false
+
+
+
+
+func _on_Behavior_radius_body_entered(body):
+	if SightLine.is_colliding():
+		var sight = SightLine.get_collision_point()

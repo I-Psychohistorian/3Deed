@@ -7,19 +7,26 @@ var damage = 4
 var aggro = false
 var dead = false
 
-var move_speed = 2.2
-var gravity = 2
+var move_speed = 1.8
+var gravity = 1
+var shot = true
 var fall = Vector3()
 
 onready var aggro_zone = $Sight
 onready var damage_zone = $DamageArea
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	$Spawn_Antigrav.start()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if shot == true:
+		gravity = 0
+		move_speed = 3
+	elif shot == false:
+		gravity = 2
+		move_speed = 2.2
 	movement()
 	if not is_on_floor():
 		fall.y -= gravity * delta
@@ -37,6 +44,9 @@ func die():
 	if dead == false:
 		if health <= 0:
 			dead = true
+			$CollisionShape/Csgsphere.visible = false
+			$CollisionShape/Spike.visible = false
+			$SoftBody.visible = false
 			$DeathTimer.start()
 
 func movement():
@@ -57,4 +67,8 @@ func _on_AttackTimer_timeout():
 	for body in bodies:
 		if body.is_in_group('Player'):
 			body.take_damage(damage)
-			body.disease = true
+			body.infection_check()
+
+
+func _on_Spawn_Antigrav_timeout():
+	shot = false

@@ -85,7 +85,7 @@ func _on_DamageTimer_timeout():
 	for body in bodies:
 		if body.is_in_group('Player'):
 			body.take_damage(damage)
-			body.disease = true
+			body.infection_check()
 
 
 func _on_RandomTimer_timeout():

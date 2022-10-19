@@ -31,6 +31,7 @@ func use():
 
 func take_damage(damage):
 	health -= damage
+	print('Door Ouch')
 	emit_signal("hurt_space")
 
 func die():

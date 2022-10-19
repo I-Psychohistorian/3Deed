@@ -113,7 +113,7 @@ bottom_radius = 0.3
 radial_segments = 6
 
 [node name="EbolaWorm" type="KinematicBody" groups=["Enemy", "Flesh"]]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.248519 )
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.8, 0, 0, -0.248519 )
 script = ExtResource( 2 )
 
 [node name="Skeleton" type="Skeleton" parent="."]
@@ -196,5 +196,10 @@ attachments/3/point_index = 36
 attachments/3/spatial_attachment_path = NodePath("../Skeleton/BoneAttachment")
 attachments/3/offset = Vector3( 0.259808, -0.103977, -0.181008 )
 
+[node name="Spawn_Antigrav" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
 [connection signal="timeout" from="DeathTimer" to="." method="_on_DeathTimer_timeout"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_AttackTimer_timeout"]
+[connection signal="timeout" from="Spawn_Antigrav" to="." method="_on_Spawn_Antigrav_timeout"]

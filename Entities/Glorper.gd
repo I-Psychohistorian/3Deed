@@ -102,6 +102,7 @@ func begin_planting():
 func movement():
 	random.randomize()
 	var speed = 0.5
+	var flesh_speed = 0.1
 	var speed_direction = 1
 	var hp_speed = (health/50)
 	
@@ -117,6 +118,9 @@ func movement():
 			if body.is_in_group("Player"):
 				direction = body.global_transform.origin - self.global_transform.origin
 				move_and_slide(direction * (speed_direction * (speed + hp_speed)), Vector3.UP)
+			if body.is_in_group("Flesh"):
+				direction = body.global_transform.origin - self.global_transform.origin
+				move_and_slide(direction * (speed_direction * (flesh_speed + (hp_speed/2))), Vector3.UP)
 	if aggro == false:
 		for body in sight_area.get_overlapping_bodies():
 			if scared == true:
@@ -184,6 +188,10 @@ func acid_hazard():
 			body.take_damage(damage)
 			print("Blorp is tasty!")
 			$Blorp.play()
+		if body.is_in_group("Flesh"):
+			body.take_damage(damage)
+			print("Foreign Flesh Asimilated")
+			$Blorp.play()
 
 func mitosis():
 	if divided == true:
@@ -226,12 +234,16 @@ func _on_VisionBox_body_entered(body):
 	if body.is_in_group('Player'):
 		#var coords = body.get_global_transform()
 		aggro = true
+	if body.is_in_group('Flesh'):
+		aggro = true
 	if body.is_in_group('Flora'):
 		#print('PLANT SPOTTED')
 		pass
 
 func _on_VisionBox_body_exited(body):
 	if body.is_in_group('Player'):
+		aggro = false
+	if body.is_in_group('Flesh'):
 		aggro = false
 
 

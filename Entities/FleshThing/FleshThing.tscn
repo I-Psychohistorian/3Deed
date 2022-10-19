@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://Effects/glorpcore.tres" type="Material" id=1]
 [ext_resource path="res://Entities/FleshThing/FleshPoker.tscn" type="PackedScene" id=2]
@@ -12,6 +12,10 @@ radius = 0.2
 [sub_resource type="CapsuleShape" id=2]
 radius = 0.13607
 height = 0.6
+
+[sub_resource type="CylinderShape" id=32]
+height = 0.2
+radius = 0.257789
 
 [sub_resource type="CapsuleMesh" id=1]
 material = ExtResource( 1 )
@@ -924,9 +928,9 @@ height = 1.20451
 radius = 4.16314
 
 [sub_resource type="BoxShape" id=27]
-extents = Vector3( 0.2, 0.4, 0.3 )
+extents = Vector3( 0.2, 0.458761, 0.3 )
 
-[node name="FleshThing" type="KinematicBody" groups=["Enemy", "Flesh"]]
+[node name="FleshThing" type="KinematicBody" groups=["Enemy", "Flesh", "FleshShooter"]]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
 script = ExtResource( 5 )
 
@@ -937,6 +941,10 @@ shape = SubResource( 17 )
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
 shape = SubResource( 2 )
+
+[node name="CollisionShape3" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.407825, 0 )
+shape = SubResource( 32 )
 
 [node name="MainBody" type="MeshInstance" parent="."]
 transform = Transform( -4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 0, -0.00786418, 0 )
@@ -980,7 +988,7 @@ process_material = SubResource( 9 )
 draw_pass_1 = SubResource( 11 )
 
 [node name="MouthSpawn" type="Spatial" parent="MainBody/Head"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.228769, 0.0537375, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.338285, 0.0537375, 4.78708e-09 )
 
 [node name="Legs" type="Spatial" parent="MainBody"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.20882e-08, 0.276545 )
@@ -1121,6 +1129,7 @@ wait_time = 0.9
 [node name="SoundTimer" type="Timer" parent="."]
 
 [node name="BehaviorTimer" type="Timer" parent="."]
+wait_time = 3.0
 
 [node name="Sight_radius" type="Area" parent="."]
 
@@ -1137,12 +1146,61 @@ shape = SubResource( 26 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.16315, 0.282883, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="attack_area"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0695728, 0.0113462, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0988679, -0.160634, 0 )
 shape = SubResource( 27 )
 
 [node name="BarfCooldown" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
+
+[node name="Spit" type="AudioStreamPlayer3D" parent="."]
+
+[node name="Splat" type="AudioStreamPlayer3D" parent="."]
+
+[node name="Attack" type="AudioStreamPlayer3D" parent="."]
+
+[node name="Walk" type="AudioStreamPlayer3D" parent="."]
+
+[node name="Ambient" type="AudioStreamPlayer3D" parent="."]
+
+[node name="Slime_aggro" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="NotWall" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.290023, -0.0404016 )
+enabled = true
+cast_to = Vector3( 0, 0, -0.3 )
+
+[node name="IsWall" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.493768, -0.0404016 )
+enabled = true
+cast_to = Vector3( 0, 0, -0.3 )
+
+[node name="StepHeightRay" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.29952, -0.326176 )
+enabled = true
+cast_to = Vector3( 0, -0.3, 0 )
+
+[node name="RightObstacleRay" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, 0, 0 )
+enabled = true
+cast_to = Vector3( 0, 0, -0.5 )
+
+[node name="MidObstacleRay" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.344533, 0 )
+enabled = true
+cast_to = Vector3( 0, 0, -1 )
+
+[node name="LeftObstacleRay" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4, 0, 0 )
+enabled = true
+cast_to = Vector3( 0, 0, -0.5 )
+
+[node name="LineOfSight" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.479495, 0 )
+enabled = true
+cast_to = Vector3( 0, 0, -5 )
 
 [connection signal="timeout" from="WakeUpTimer" to="." method="_on_WakeUpTimer_timeout"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_AttackTimer_timeout"]
@@ -1151,7 +1209,9 @@ one_shot = true
 [connection signal="timeout" from="BehaviorTimer" to="." method="_on_BehaviorTimer_timeout"]
 [connection signal="body_entered" from="Sight_radius" to="." method="_on_Sight_radius_body_entered"]
 [connection signal="body_exited" from="Sight_radius" to="." method="_on_Sight_radius_body_exited"]
+[connection signal="body_entered" from="Behavior_radius" to="." method="_on_Behavior_radius_body_entered"]
 [connection signal="body_exited" from="Behavior_radius" to="." method="_on_Behavior_radius_body_exited"]
 [connection signal="body_entered" from="attack_area" to="." method="_on_attack_area_body_entered"]
 [connection signal="body_exited" from="attack_area" to="." method="_on_attack_area_body_exited"]
 [connection signal="timeout" from="BarfCooldown" to="." method="_on_BarfCooldown_timeout"]
+[connection signal="timeout" from="Slime_aggro" to="." method="_on_Slime_aggro_timeout"]

@@ -1,14 +1,8 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Effects/glorpcore.tres" type="Material" id=1]
 [ext_resource path="res://EbolaWorm.gd" type="Script" id=2]
-
-[sub_resource type="CapsuleMesh" id=12]
-material = ExtResource( 1 )
-radius = 0.3
-mid_height = 5.0
-radial_segments = 4
-rings = 2
+[ext_resource path="res://Assets/asset package custom/particlePack_1.1/PNG (Transparent)/dirt_02.png" type="Texture" id=3]
 
 [sub_resource type="SphereShape" id=13]
 radius = 0.277987
@@ -53,24 +47,83 @@ metallic = 1.0
 [sub_resource type="BoxShape" id=15]
 extents = Vector3( 0.3, 0.3, 0.3 )
 
+[sub_resource type="SphereShape" id=33]
+radius = 21.5908
+
+[sub_resource type="Curve" id=34]
+_data = [ Vector2( 0, 0.5125 ), 0.0, 0.56855, 0, 0, Vector2( 1, 0.154545 ), -0.723923, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=31]
+curve = SubResource( 34 )
+
+[sub_resource type="ParticlesMaterial" id=35]
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 1.0
+angular_velocity = 800.0
+angular_velocity_random = 1.0
+radial_accel = 3.0
+tangential_accel = 3.0
+scale = 0.5
+scale_curve = SubResource( 31 )
+color = Color( 0.196078, 0.0117647, 0.0117647, 1 )
+
+[sub_resource type="SpatialMaterial" id=32]
+flags_transparent = true
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 3 )
+
+[sub_resource type="QuadMesh" id=36]
+material = SubResource( 32 )
+
+[sub_resource type="OpenSimplexNoise" id=37]
+
+[sub_resource type="NoiseTexture" id=38]
+width = 2000
+height = 2000
+noise = SubResource( 37 )
+
+[sub_resource type="OpenSimplexNoise" id=39]
+
+[sub_resource type="NoiseTexture" id=40]
+width = 3000
+height = 3000
+noise = SubResource( 39 )
+
+[sub_resource type="AnimatedTexture" id=41]
+flags = 7
+frames = 2
+frame_0/texture = SubResource( 38 )
+frame_1/texture = SubResource( 40 )
+frame_1/delay_sec = 0.0
+
+[sub_resource type="SpatialMaterial" id=42]
+albedo_color = Color( 0.388235, 0.0470588, 0.0470588, 1 )
+albedo_texture = SubResource( 41 )
+
+[sub_resource type="CylinderMesh" id=43]
+material = SubResource( 42 )
+top_radius = 0.1
+bottom_radius = 0.3
+radial_segments = 6
+
 [node name="EbolaWorm" type="KinematicBody" groups=["Enemy", "Flesh"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.248519 )
 script = ExtResource( 2 )
 
 [node name="Skeleton" type="Skeleton" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.42557 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.378908 )
 
 [node name="BoneAttachment" type="BoneAttachment" parent="Skeleton"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.143249 )
-
-[node name="SoftBody" type="SoftBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.11619 )
-mesh = SubResource( 12 )
-skeleton = NodePath("../Skeleton")
-collision_layer = 2
-parent_collision_ignore = NodePath("../CollisionShape")
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.139416 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.63222 )
+transform = Transform( -1, 0, 8.9407e-08, 0, 1, 0, -8.9407e-08, 0, -1, 0, 0, 0.234704 )
 shape = SubResource( 13 )
 
 [node name="Csgsphere" type="CSGSphere" parent="CollisionShape"]
@@ -94,7 +147,54 @@ cone = true
 material = SubResource( 14 )
 
 [node name="DamageArea" type="Area" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.96694 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.027873 )
 
 [node name="CollisionShape" type="CollisionShape" parent="DamageArea"]
 shape = SubResource( 15 )
+
+[node name="Sight" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.297668 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Sight"]
+shape = SubResource( 33 )
+
+[node name="DeathTimer" type="Timer" parent="."]
+wait_time = 0.2
+
+[node name="HeadSplatter2" type="Particles" parent="."]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.0573053, 0.167403 )
+emitting = false
+amount = 16
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.75
+process_material = SubResource( 35 )
+draw_pass_1 = SubResource( 36 )
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[node name="SoftBody" type="SoftBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.118213, -0.992988, 0, 0.992988, 0.118213, 0, 0.163184, 1.31257 )
+mesh = SubResource( 43 )
+total_mass = 0.01
+linear_stiffness = 0.72
+areaAngular_stiffness = 0.07
+volume_stiffness = 0.11
+pinned_points = [ 35, 37, 40, 36 ]
+attachments/0/point_index = 35
+attachments/0/spatial_attachment_path = NodePath("../Skeleton/BoneAttachment")
+attachments/0/offset = Vector3( 0, -0.252925, -0.163276 )
+attachments/1/point_index = 37
+attachments/1/spatial_attachment_path = NodePath("../Skeleton/BoneAttachment")
+attachments/1/offset = Vector3( 0.259808, 0.193919, -0.216472 )
+attachments/2/point_index = 40
+attachments/2/spatial_attachment_path = NodePath("../Skeleton/BoneAttachment")
+attachments/2/offset = Vector3( -0.259808, -0.103977, -0.181008 )
+attachments/3/point_index = 36
+attachments/3/spatial_attachment_path = NodePath("../Skeleton/BoneAttachment")
+attachments/3/offset = Vector3( 0.259808, -0.103977, -0.181008 )
+
+[connection signal="timeout" from="DeathTimer" to="." method="_on_DeathTimer_timeout"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_AttackTimer_timeout"]

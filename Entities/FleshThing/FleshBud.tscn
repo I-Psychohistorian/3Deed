@@ -311,7 +311,7 @@ tracks/7/keys = {
 [sub_resource type="Curve" id=35]
 _data = [ Vector2( 0, 0.5125 ), 0.0, 0.56855, 0, 0, Vector2( 1, 0.154545 ), -0.723923, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=31]
+[sub_resource type="CurveTexture" id=41]
 curve = SubResource( 35 )
 
 [sub_resource type="ParticlesMaterial" id=36]
@@ -323,10 +323,10 @@ angular_velocity_random = 1.0
 radial_accel = 3.0
 tangential_accel = 3.0
 scale = 0.5
-scale_curve = SubResource( 31 )
+scale_curve = SubResource( 41 )
 color = Color( 0.196078, 0.0117647, 0.0117647, 1 )
 
-[sub_resource type="SpatialMaterial" id=32]
+[sub_resource type="SpatialMaterial" id=42]
 flags_transparent = true
 flags_unshaded = true
 vertex_color_use_as_albedo = true
@@ -337,7 +337,7 @@ particles_anim_loop = false
 albedo_texture = ExtResource( 3 )
 
 [sub_resource type="QuadMesh" id=37]
-material = SubResource( 32 )
+material = SubResource( 42 )
 
 [sub_resource type="SphereShape" id=38]
 radius = 0.306272

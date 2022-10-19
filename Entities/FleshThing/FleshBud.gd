@@ -93,7 +93,7 @@ func _on_RandomTimer_timeout():
 	x_spin = random.randf_range(-0.2,0.2)
 	y_spin = random.randf_range(-0.2,0.2)
 	z_spin = random.randf_range(-0.2,0.2)
-	print(x_spin)
-	print(y_spin)
-	print(z_spin)
+	#print(x_spin)
+	#print(y_spin)
+	#print(z_spin)
 	

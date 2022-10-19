@@ -1262,7 +1262,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0650048 )
 shape = SubResource( 31 )
 
 [node name="Magazine" parent="Head/Camera/EquipNode" instance=ExtResource( 24 )]
-transform = Transform( 0.821271, 0.561038, 0.103672, -0.56625, 0.823763, 0.0277976, -0.0698054, -0.0815334, 0.994223, 0.229374, -0.376916, 0.406957 )
+transform = Transform( 0.821271, 0.561038, 0.103672, -0.56625, 0.823763, 0.0277976, -0.0698055, -0.0815334, 0.994223, 0.229374, -0.376916, 0.406957 )
 visible = false
 
 [node name="round" parent="Head/Camera/EquipNode/Magazine" index="1"]
@@ -1373,7 +1373,7 @@ stream = ExtResource( 26 )
 [node name="E_cooldown" type="Timer" parent="."]
 
 [node name="DiseaseTimer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 10.0
 autostart = true
 
 [connection signal="body_entered" from="Head/Camera/EquipNode/StabZone" to="." method="_on_StabZone_body_entered"]

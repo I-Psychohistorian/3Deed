@@ -25,6 +25,9 @@ var exertion = false #for checking sprint stamina drain
 var hurt = false #ticks for hurt sound and possibly stuns?
 
 var disease = false #checked for flesh damage and checked briefly afterwards
+var immunity = 5 #out of 100, subtracted from random integers to check infection
+
+var rng = RandomNumberGenerator.new()
 
 var LMB_cooldown = false #when true, cannot attack with left click
 var RMB_cooldown = false #when true keeps actions like reloading from stuttering
@@ -479,7 +482,21 @@ func reload():
 			loaded = false
 			$ReloadTimer.start()
 
-
+func infection_check():
+	rng.randomize()
+	var infection_roll = rng.randi_range(0, 100)
+	print(infection_roll)
+	var infection_calc = infection_roll - immunity
+	print(infection_calc)
+	if infection_calc < 0:
+		disease = false
+		print('Fought off infection')
+	elif infection_calc >= 0:
+		if disease == true:
+			print('Infected!')
+		else:
+			print('No disease.. yet...')
+	
 func _on_StatusTick_timeout():
 	status_tick = true
 
@@ -541,5 +558,11 @@ func _on_E_cooldown_timeout():
 
 
 func _on_DiseaseTimer_timeout():
+	infection_check()
 	if disease == true:
 		health -= 1
+		if stamina_regen >= -1:
+			stamina_regen -= 0.1
+	elif disease == false:
+		stamina_regen = 1
+		

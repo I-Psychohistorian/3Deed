@@ -34,3 +34,4 @@ func _on_DeathTimer_timeout():
 func _on_Area_body_entered(body):
 	if body.is_in_group('Player'):
 		body.take_damage(damage)
+		body.disease = true

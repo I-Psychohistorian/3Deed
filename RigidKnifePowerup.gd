@@ -1,7 +1,7 @@
 extends RigidBody
 
 
-var Name = "Knife Powerup"
+var Name = "Knife"
 var pickup = "Knife"
 onready var radius = $PickupArea
 var active = true

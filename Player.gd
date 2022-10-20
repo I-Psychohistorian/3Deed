@@ -61,6 +61,7 @@ var mouse_sensitivity = 0.05
 
 var weapons = ["Handgun", "Knife", "Nothing", "Fairy Wand"]
 var equipped = ["Nothing"]
+var status_effects = []
 
 var direction = Vector3()
 var velocity = Vector3()
@@ -483,18 +484,21 @@ func reload():
 			$ReloadTimer.start()
 
 func infection_check():
-	rng.randomize()
-	var infection_roll = rng.randi_range(0, 100)
-	print(infection_roll)
-	var infection_calc = infection_roll - immunity
-	print(infection_calc)
-	if infection_calc < 0:
-		disease = false
-		print('Fought off infection')
-	elif infection_calc >= 0:
-		disease = true
-		print('Infected!')
-		
+	if disease == false:
+		rng.randomize()
+		var infection_roll = rng.randi_range(0, 100)
+		print(infection_roll)
+		var infection_calc = infection_roll - immunity
+		print(infection_calc)
+		if infection_calc < 0:
+			disease = false
+			print('Fought off infection')
+		elif infection_calc >= 0:
+			disease = true
+			print('Infected!')
+	elif disease == true:
+		print('Already infected')
+		#pass
 		
 func _on_StatusTick_timeout():
 	status_tick = true

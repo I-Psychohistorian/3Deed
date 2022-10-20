@@ -1163,7 +1163,7 @@ __meta__ = {
 }
 
 [node name="Knife" type="MeshInstance" parent="Head/Camera/EquipNode"]
-transform = Transform( -7.9848, 0.368307, -0.326448, 0.443046, 3.06859, -7.37477, -0.214305, -7.3789, -3.08317, 0.319758, -0.176884, 0.464779 )
+transform = Transform( -7.9848, 0.368307, -0.326448, 0.443045, 3.06859, -7.37477, -0.214304, -7.3789, -3.08317, 0.319758, -0.176884, 0.464779 )
 visible = false
 mesh = ExtResource( 3 )
 
@@ -1262,7 +1262,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0650048 )
 shape = SubResource( 31 )
 
 [node name="Magazine" parent="Head/Camera/EquipNode" instance=ExtResource( 24 )]
-transform = Transform( 0.821271, 0.561038, 0.103672, -0.56625, 0.823763, 0.0277976, -0.0698055, -0.0815334, 0.994223, 0.229374, -0.376916, 0.406957 )
+transform = Transform( 0.821271, 0.561038, 0.103672, -0.56625, 0.823763, 0.0277976, -0.0698054, -0.0815334, 0.994223, 0.229374, -0.376916, 0.406957 )
 visible = false
 
 [node name="round" parent="Head/Camera/EquipNode/Magazine" index="1"]
@@ -1373,7 +1373,7 @@ stream = ExtResource( 26 )
 [node name="E_cooldown" type="Timer" parent="."]
 
 [node name="DiseaseTimer" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 20.0
 autostart = true
 
 [connection signal="body_entered" from="Head/Camera/EquipNode/StabZone" to="." method="_on_StabZone_body_entered"]

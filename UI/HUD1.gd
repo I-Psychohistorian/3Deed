@@ -12,6 +12,7 @@ var tooltip = 'testing'
 var equipped = []
 var examine_text = 'N'
 var dialogue_text = 'G'
+var status_text = 'S'
 
 var interactable_seen = false
 
@@ -25,7 +26,7 @@ onready var powerups_display = $MarginContainer/Powerups
 onready var interact_text = $Interact/InteractText
 onready var examine_display = $TextOverlay/Text
 onready var dialogue_display = $DialogueBox/DialogueLabel
-
+onready var status_display = $DialogueBox/Status
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -40,6 +41,7 @@ func _process(delta):
 	weapon_display.text = String(equipped) + " equipped"
 	examine_display.text = examine_text
 	dialogue_display.text = dialogue_text
+	status_display.text = status_text
 	if sprint == false:
 		sprint_display.text = "Sprint Off"
 	if sprint == true:
@@ -48,7 +50,11 @@ func _process(delta):
 func dialogue():
 	dialogue_display.show()
 	$DialogueTimer.start()
-	
+
+func status():
+	status_display.show()
+	$StatusTimer.start()
+
 func see_e():
 	interactable_seen = true
 	interact_text.show()
@@ -63,3 +69,7 @@ func unsee_e():
 
 func _on_DialogueTimer_timeout():
 	dialogue_display.hide()
+
+
+func _on_StatusTimer_timeout():
+	status_display.hide()

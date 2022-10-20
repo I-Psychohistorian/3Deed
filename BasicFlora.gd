@@ -55,6 +55,8 @@ func use():
 			body.stamina += health
 			body.health += 1
 			if body.disease == true:
+				body.dialogue_text = "As you chew the plant you feel tension leave your muscles."
+				body.tick_dialogue()
 				print('cured disease!')
 			body.disease = false
 			body.crunch.play()

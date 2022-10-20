@@ -96,8 +96,18 @@ margin_right = 83.0
 margin_bottom = 14.0
 text = "TestDialogue"
 
+[node name="Status" type="Label" parent="DialogueBox"]
+visible = false
+margin_right = 82.0
+margin_bottom = 14.0
+
 [node name="DialogueTimer" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
 
+[node name="StatusTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
 [connection signal="timeout" from="DialogueTimer" to="." method="_on_DialogueTimer_timeout"]
+[connection signal="timeout" from="StatusTimer" to="." method="_on_StatusTimer_timeout"]

@@ -19,8 +19,9 @@ func use():
 	var bodies = radius.get_overlapping_bodies()
 	for n in bodies:
 		if n.is_in_group("Player"):
-			print(String(n.status_effects))
 			n.status_effects.append(pickup)
+			n.vaccinated = true
+			print(String(n.status_effects))
 			n.dialogue_text = dialogue
 			n.tick_dialogue()
 			$AudioStreamPlayer3D.play()

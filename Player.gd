@@ -54,6 +54,7 @@ var swap_equip = false
 
 var examine_text = "Generic Examine"
 var dialogue_text = "GenericDialogue"
+var status_text = 'GenericStatus'
 var interact_cooldown = false
 
 var mouse_hidden = true
@@ -62,6 +63,7 @@ var mouse_sensitivity = 0.05
 var weapons = ["Handgun", "Knife", "Nothing", "Fairy Wand"]
 var equipped = ["Nothing"]
 var status_effects = []
+var vaccinated = false
 
 var direction = Vector3()
 var velocity = Vector3()
@@ -220,6 +222,7 @@ func update_hud():
 	hud.sprint = sprint
 	hud.equipped = equipped
 	hud.powerups = powerups
+	hud.status_text = status_text
 
 func tick_dialogue():
 	hud.dialogue()
@@ -562,9 +565,18 @@ func _on_E_cooldown_timeout():
 
 func _on_DiseaseTimer_timeout():
 	if disease == true:
-		health -= 1
-		if stamina_regen >= -1:
-			stamina_regen -= 0.1
+		if vaccinated == false:
+			status_text = "You feel an an achey chill in your muscles."
+			hud.status()
+			health -= 1
+			if stamina_regen >= -1:
+				stamina_regen -= 0.2
+		if vaccinated == true:
+			status_text = "You feel an light ache, and somewhat feverish"
+			hud.status()
+			health -= 0.5
+			if stamina_regen >= -1:
+				stamina_regen -= 0.05
 	elif disease == false:
 		stamina_regen = 1
 		

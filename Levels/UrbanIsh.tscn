@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://Assets/asset package custom/kenneyretrourban/Models/GLTF format/roof.material" type="Material" id=1]
 [ext_resource path="res://Assets/asset package custom/kenneyretrourban/Models/GLTF format/asphalt.material" type="Material" id=2]
@@ -26,6 +26,7 @@
 [ext_resource path="res://Assets/asset package custom/retro medieval 3d/Models/GLTF format/fence.material" type="Material" id=24]
 [ext_resource path="res://Entities/InteractableObjects/Vaccine.tscn" type="PackedScene" id=25]
 [ext_resource path="res://Entities/InteractableObjects/FirstAid.tscn" type="PackedScene" id=26]
+[ext_resource path="res://Entities/InteractableObjects/TestNotes.tscn" type="PackedScene" id=27]
 
 [sub_resource type="Image" id=14]
 data = {
@@ -249,10 +250,10 @@ light_color = Color( 1, 0.768627, 0.545098, 1 )
 omni_range = 7.0
 
 [node name="CSGBox2" type="CSGBox" parent="CSGCombiner/SkyRoom"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.14423, -1.09135, 4.88796 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.95751, -1.09135, 4.88796 )
 operation = 2
 invert_faces = true
-width = 1.39948
+width = 4.04307
 height = 1.12232
 depth = 1.2347
 material = ExtResource( 10 )
@@ -262,6 +263,9 @@ transform = Transform( 0.5, -0.866025, 3.78552e-08, 0, -4.37114e-08, -1, 0.86602
 
 [node name="FirstAid" parent="CSGCombiner/SkyRoom" instance=ExtResource( 26 )]
 transform = Transform( 0.542661, 0, -0.839952, 0, 1, 0, 0.839952, 0, 0.542661, 3.10115, -0.476512, 4.90919 )
+
+[node name="CrumpledNotes" parent="CSGCombiner/SkyRoom" instance=ExtResource( 27 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.756611, -0.498739, 4.77167 )
 
 [node name="Stair4" type="CSGBox" parent="CSGCombiner"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.0415, 1.7002, 16.6986 )

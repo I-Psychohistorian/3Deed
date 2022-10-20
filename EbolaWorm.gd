@@ -7,7 +7,7 @@ var damage = 4
 var aggro = false
 var dead = false
 
-var move_speed = 1.8
+var move_speed = 2.2
 var gravity = 1
 var shot = true
 var fall = Vector3()
@@ -23,7 +23,7 @@ func _ready():
 func _process(delta):
 	if shot == true:
 		gravity = 0
-		move_speed = 3
+		move_speed = 3.1
 	elif shot == false:
 		gravity = 2
 		move_speed = 2.2

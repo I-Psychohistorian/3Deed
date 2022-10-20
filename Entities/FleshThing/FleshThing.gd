@@ -1,14 +1,14 @@
 extends KinematicBody
 
 
-var health = 90
+var health = 100
 var damage = 15
 var Name = "FleshPhage"
 
 var gravity = 8
 var spin_factor = 9
 var spin_speed = 15
-var move_speed = 1
+var move_speed = 0.8
 var hurt = false
 
 onready var NotWall = $NotWall #must not intersect wall to allow climbing
@@ -262,7 +262,7 @@ func _on_Behavior_radius_body_exited(body):
 			rng.randomize()
 			var choice = rng.randi_range(1,5)
 			#print(choice)
-			if choice >= 3:
+			if choice >= 2:
 				spitting = true
 				#print('spitting')
 

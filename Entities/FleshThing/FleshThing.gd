@@ -333,6 +333,7 @@ func _on_NextAttackTimer_timeout():
 
 
 func _on_BehaviorTimer_timeout():
+	print('behaving')
 	move_modify_x = 0
 	move_modify_z = 0
 	reorient_behavior = false

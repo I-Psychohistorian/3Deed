@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Rip1.mp3-aa144debf6e5e62307f8616f973c989b.mp3str"
+
+[deps]
+
+source_file="res://Sounds/CompleteMouthSounds/Rip1.mp3"
+dest_files=[ "res://.import/Rip1.mp3-aa144debf6e5e62307f8616f973c989b.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

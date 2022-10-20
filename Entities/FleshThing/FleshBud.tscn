@@ -1,9 +1,13 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Entities/FleshThing/FleshPoker.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Effects/glorpcore.tres" type="Material" id=2]
 [ext_resource path="res://Assets/asset package custom/particlePack_1.1/PNG (Transparent)/dirt_02.png" type="Texture" id=3]
 [ext_resource path="res://Entities/FleshThing/FleshBud.gd" type="Script" id=4]
+[ext_resource path="res://Sounds/CompleteMouthSounds/RGurk5.mp3" type="AudioStream" id=5]
+[ext_resource path="res://Sounds/CompleteMouthSounds/cornstarchloop3.mp3" type="AudioStream" id=6]
+[ext_resource path="res://Sounds/CompleteMouthSounds/FleshiestBlorp.mp3" type="AudioStream" id=7]
+[ext_resource path="res://Sounds/CompleteMouthSounds/cornstarchloop1.mp3" type="AudioStream" id=8]
 
 [sub_resource type="SphereShape" id=1]
 radius = 0.233189
@@ -422,14 +426,26 @@ autostart = true
 
 [node name="DeathTimer" type="Timer" parent="."]
 wait_time = 0.4
+one_shot = true
 
 [node name="HurtSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 7 )
+pitch_scale = 1.32
 
-[node name="AmbientSound" type="AudioStreamPlayer3D" parent="."]
+[node name="AttackSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 5 )
 
 [node name="RandomTimer" type="Timer" parent="."]
 wait_time = 5.0
 autostart = true
+
+[node name="Ambient1" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 8 )
+autoplay = true
+
+[node name="AmbientAggro" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 6 )
+autoplay = true
 
 [connection signal="body_entered" from="Sight" to="." method="_on_Sight_body_entered"]
 [connection signal="body_exited" from="Sight" to="." method="_on_Sight_body_exited"]

@@ -37,13 +37,13 @@ func _process(delta):
 func take_damage(damage):
 	health -= damage
 	$HeadSplatter2.emitting = true
-	
 	die()
 
 func die():
 	if dead == false:
 		if health <= 0:
 			dead = true
+			$Hurt.play()
 			$CollisionShape/Csgsphere.visible = false
 			$CollisionShape/Spike.visible = false
 			$SoftBody.visible = false
@@ -66,6 +66,7 @@ func _on_AttackTimer_timeout():
 	var bodies = damage_zone.get_overlapping_bodies()
 	for body in bodies:
 		if body.is_in_group('Player'):
+			$SuckAttack.play()
 			body.take_damage(damage)
 			body.infection_check()
 

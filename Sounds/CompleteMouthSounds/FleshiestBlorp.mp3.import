@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/FleshiestBlorp.mp3-b7f30b3c6bb39b151f51935df6aba46e.mp3str"
+
+[deps]
+
+source_file="res://Sounds/CompleteMouthSounds/FleshiestBlorp.mp3"
+dest_files=[ "res://.import/FleshiestBlorp.mp3-b7f30b3c6bb39b151f51935df6aba46e.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

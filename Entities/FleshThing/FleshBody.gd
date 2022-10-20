@@ -8,6 +8,8 @@ var dialogue2 = "ll meeee"
 var dialogue3  = "..."
 var active = true
 
+var hurt = false
+
 var dead = false
 var disease = true
 
@@ -16,7 +18,7 @@ onready var parasite = preload("res://Entities/FleshThing/FleshBud.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	$AnimationPlayer.play("IdleBreathing")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -31,7 +33,11 @@ func _process(delta):
 func take_damage(damage):
 	if dead == false:
 		health -= damage
-		#play hurt sound
+		$HeadSplatter2.emitting = true
+		if hurt == false:
+			hurt = true
+			$Squelch.play()
+			$HurtTimer.start()
 
 func use():
 	var bodies = $Player_interact.get_overlapping_bodies()
@@ -61,3 +67,7 @@ func die():
 
 func _on_DeathTimer_timeout():
 	pass
+
+
+func _on_HurtTimer_timeout():
+	hurt = false

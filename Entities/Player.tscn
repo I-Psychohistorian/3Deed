@@ -1163,7 +1163,7 @@ __meta__ = {
 }
 
 [node name="Knife" type="MeshInstance" parent="Head/Camera/EquipNode"]
-transform = Transform( -7.98481, 0.368307, -0.326448, 0.443046, 3.06859, -7.37477, -0.214305, -7.3789, -3.08317, 0.319758, -0.176884, 0.464779 )
+transform = Transform( -7.9848, 0.368307, -0.326448, 0.443046, 3.06859, -7.37477, -0.214305, -7.3789, -3.08317, 0.319758, -0.176884, 0.464779 )
 visible = false
 mesh = ExtResource( 3 )
 

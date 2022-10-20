@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Rip1Reverse.mp3-a830b1403af303c888140d54e0944c96.mp3str"
+
+[deps]
+
+source_file="res://Sounds/CompleteMouthSounds/Rip1Reverse.mp3"
+dest_files=[ "res://.import/Rip1Reverse.mp3-a830b1403af303c888140d54e0944c96.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

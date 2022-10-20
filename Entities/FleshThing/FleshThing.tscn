@@ -1,10 +1,17 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=49 format=2]
 
 [ext_resource path="res://Effects/glorpcore.tres" type="Material" id=1]
 [ext_resource path="res://Entities/FleshThing/FleshPoker.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/asset package custom/particlePack_1.1/PNG (Transparent)/dirt_02.png" type="Texture" id=3]
 [ext_resource path="res://Assets/asset package custom/particlePack_1.1/PNG (Transparent)/dirt_01.png" type="Texture" id=4]
 [ext_resource path="res://Entities/FleshThing/FleshThing.gd" type="Script" id=5]
+[ext_resource path="res://Sounds/CompleteMouthSounds/FleshiestBlorp.mp3" type="AudioStream" id=6]
+[ext_resource path="res://Sounds/CompleteMouthSounds/DeepHurl.mp3" type="AudioStream" id=7]
+[ext_resource path="res://Sounds/CompleteMouthSounds/Rip1Reverse.mp3" type="AudioStream" id=8]
+[ext_resource path="res://Sounds/CompleteMouthSounds/WetSound.mp3" type="AudioStream" id=9]
+[ext_resource path="res://Sounds/CompleteMouthSounds/DeepHurl2.mp3" type="AudioStream" id=10]
+[ext_resource path="res://Sounds/CompleteMouthSounds/Rip1.mp3" type="AudioStream" id=11]
+[ext_resource path="res://Sounds/CompleteMouthSounds/WetSoundLong.mp3" type="AudioStream" id=12]
 
 [sub_resource type="SphereShape" id=17]
 radius = 0.2
@@ -21,6 +28,43 @@ radius = 0.257789
 material = ExtResource( 1 )
 radius = 0.1
 mid_height = 0.6
+
+[sub_resource type="OpenSimplexNoise" id=10]
+
+[sub_resource type="NoiseTexture" id=7]
+width = 1000
+height = 1000
+seamless = true
+noise = SubResource( 10 )
+
+[sub_resource type="NoiseTexture" id=8]
+width = 700
+height = 700
+seamless = true
+noise = SubResource( 10 )
+noise_offset = Vector2( 400, 0 )
+
+[sub_resource type="NoiseTexture" id=9]
+width = 800
+height = 500
+seamless = true
+noise = SubResource( 10 )
+noise_offset = Vector2( -100, 0 )
+
+[sub_resource type="AnimatedTexture" id=33]
+flags = 7
+frames = 3
+fps = 2.0
+frame_0/texture = SubResource( 7 )
+frame_1/texture = SubResource( 8 )
+frame_1/delay_sec = 0.0
+frame_2/texture = SubResource( 9 )
+frame_2/delay_sec = 0.0
+
+[sub_resource type="SpatialMaterial" id=37]
+albedo_color = Color( 1, 0.0117647, 0.0117647, 1 )
+albedo_texture = SubResource( 33 )
+metallic = 1.0
 
 [sub_resource type="Gradient" id=18]
 offsets = PoolRealArray( 0.270968, 1 )
@@ -58,13 +102,13 @@ albedo_texture = ExtResource( 4 )
 [sub_resource type="QuadMesh" id=24]
 material = SubResource( 23 )
 
-[sub_resource type="Curve" id=7]
+[sub_resource type="Curve" id=34]
 _data = [ Vector2( 0, 0.5125 ), 0.0, 0.56855, 0, 0, Vector2( 1, 0.154545 ), -0.723923, 0.0, 0, 0 ]
 
 [sub_resource type="CurveTexture" id=28]
-curve = SubResource( 7 )
+curve = SubResource( 34 )
 
-[sub_resource type="ParticlesMaterial" id=9]
+[sub_resource type="ParticlesMaterial" id=35]
 spread = 180.0
 gravity = Vector3( 0, 0, 0 )
 initial_velocity = 1.0
@@ -86,7 +130,7 @@ particles_anim_v_frames = 1
 particles_anim_loop = false
 albedo_texture = ExtResource( 3 )
 
-[sub_resource type="QuadMesh" id=11]
+[sub_resource type="QuadMesh" id=36]
 material = SubResource( 29 )
 
 [sub_resource type="Animation" id=3]
@@ -210,6 +254,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id=14]
 resource_name = "Death"
+length = 0.9
 tracks/0/type = "value"
 tracks/0/path = NodePath("MainBody/Arms/Arm2:rotation_degrees")
 tracks/0/interp = 1
@@ -241,7 +286,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.2, 0.5, 1 ),
+"times": PoolRealArray( 0, 0.2, 0.5, 0.9 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector3( 0.0968947, 0, 0 ), Vector3( 0.0978284, 0, 0 ), Vector3( -0.0921689, 0.0623167, 0 ), Vector3( 0.101563, 0, 0 ) ]
@@ -253,7 +298,7 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 1 ),
+"times": PoolRealArray( 0, 0.9 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector3( 1, 1, 2 ), Vector3( 1, 1, 2 ) ]
@@ -313,7 +358,7 @@ tracks/8/loop_wrap = true
 tracks/8/imported = false
 tracks/8/enabled = true
 tracks/8/keys = {
-"times": PoolRealArray( 0, 1 ),
+"times": PoolRealArray( 0, 0.9 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector3( 0, 0, 95.455 ), Vector3( 0, 0, 128.069 ) ]
@@ -325,7 +370,7 @@ tracks/9/loop_wrap = true
 tracks/9/imported = false
 tracks/9/enabled = true
 tracks/9/keys = {
-"times": PoolRealArray( 0, 1 ),
+"times": PoolRealArray( 0, 0.9 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ 0.0759932, 0.656578 ]
@@ -337,7 +382,7 @@ tracks/10/loop_wrap = true
 tracks/10/imported = false
 tracks/10/enabled = true
 tracks/10/keys = {
-"times": PoolRealArray( 0.7, 1 ),
+"times": PoolRealArray( 0.3, 0.6 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ true, true ]
@@ -349,7 +394,7 @@ tracks/11/loop_wrap = true
 tracks/11/imported = false
 tracks/11/enabled = true
 tracks/11/keys = {
-"times": PoolRealArray( 0.3 ),
+"times": PoolRealArray( 0.1 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
@@ -361,7 +406,7 @@ tracks/12/loop_wrap = true
 tracks/12/imported = false
 tracks/12/enabled = true
 tracks/12/keys = {
-"times": PoolRealArray( 0, 1 ),
+"times": PoolRealArray( 0, 0.9 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ 0.227509, 1.116 ]
@@ -966,7 +1011,7 @@ operation = 2
 radius = 0.0759932
 height = 0.227509
 cone = true
-material = ExtResource( 1 )
+material = SubResource( 37 )
 
 [node name="BarfAttack" type="Particles" parent="MainBody/Head"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.100521, 0, 0 )
@@ -984,11 +1029,21 @@ amount = 16
 lifetime = 0.5
 one_shot = true
 explosiveness = 0.75
-process_material = SubResource( 9 )
-draw_pass_1 = SubResource( 11 )
+process_material = SubResource( 35 )
+draw_pass_1 = SubResource( 36 )
 
 [node name="MouthSpawn" type="Spatial" parent="MainBody/Head"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.338285, 0.0537375, 4.78708e-09 )
+
+[node name="HeadSplatter2" type="Particles" parent="MainBody/Head"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0573053, 0 )
+emitting = false
+amount = 16
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.75
+process_material = SubResource( 35 )
+draw_pass_1 = SubResource( 36 )
 
 [node name="Legs" type="Spatial" parent="MainBody"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.20882e-08, 0.276545 )
@@ -1111,7 +1166,7 @@ lifetime = 0.5
 one_shot = true
 explosiveness = 0.75
 process_material = SubResource( 31 )
-draw_pass_1 = SubResource( 11 )
+draw_pass_1 = SubResource( 36 )
 
 [node name="WakeUpTimer" type="Timer" parent="."]
 wait_time = 0.8
@@ -1125,6 +1180,7 @@ autostart = true
 wait_time = 0.9
 
 [node name="DeathTimer" type="Timer" parent="."]
+wait_time = 0.9
 
 [node name="SoundTimer" type="Timer" parent="."]
 
@@ -1154,14 +1210,30 @@ wait_time = 3.0
 one_shot = true
 
 [node name="Spit" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 10 )
 
-[node name="Splat" type="AudioStreamPlayer3D" parent="."]
+[node name="Spit2" type="AudioStreamPlayer3D" parent="."]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
+stream = ExtResource( 7 )
+
+[node name="Hurt" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 6 )
 
 [node name="Attack" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 11 )
+
+[node name="Attack2" type="AudioStreamPlayer3D" parent="."]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
+stream = ExtResource( 8 )
 
 [node name="Walk" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 12 )
+autoplay = true
 
-[node name="Ambient" type="AudioStreamPlayer3D" parent="."]
+[node name="Aggro" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 9 )
+unit_db = 7.08
+pitch_scale = 0.82
 
 [node name="Slime_aggro" type="Timer" parent="."]
 wait_time = 2.0
@@ -1188,9 +1260,9 @@ enabled = true
 cast_to = Vector3( 0, 0, -0.5 )
 
 [node name="MidObstacleRay" type="RayCast" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.344533, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.266067, 0 )
 enabled = true
-cast_to = Vector3( 0, 0, -1 )
+cast_to = Vector3( 0, 0, -0.3 )
 
 [node name="LeftObstacleRay" type="RayCast" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4, 0, 0 )
@@ -1201,6 +1273,10 @@ cast_to = Vector3( 0, 0, -0.5 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.479495, 0 )
 enabled = true
 cast_to = Vector3( 0, 0, -5 )
+
+[node name="HurtTimer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
 
 [connection signal="timeout" from="WakeUpTimer" to="." method="_on_WakeUpTimer_timeout"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_AttackTimer_timeout"]
@@ -1215,3 +1291,4 @@ cast_to = Vector3( 0, 0, -5 )
 [connection signal="body_exited" from="attack_area" to="." method="_on_attack_area_body_exited"]
 [connection signal="timeout" from="BarfCooldown" to="." method="_on_BarfCooldown_timeout"]
 [connection signal="timeout" from="Slime_aggro" to="." method="_on_Slime_aggro_timeout"]
+[connection signal="timeout" from="HurtTimer" to="." method="_on_HurtTimer_timeout"]

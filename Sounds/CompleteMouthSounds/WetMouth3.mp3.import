@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/WetMouth3.mp3-d1f56b3d785efe4b683cf5d2a148648f.mp3str"
+
+[deps]
+
+source_file="res://Sounds/CompleteMouthSounds/WetMouth3.mp3"
+dest_files=[ "res://.import/WetMouth3.mp3-d1f56b3d785efe4b683cf5d2a148648f.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

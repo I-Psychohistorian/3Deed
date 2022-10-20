@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/DeepHurl.mp3-407c8d9a93f037ab515568e92ce7f0c8.mp3str"
+
+[deps]
+
+source_file="res://Sounds/CompleteMouthSounds/DeepHurl.mp3"
+dest_files=[ "res://.import/DeepHurl.mp3-407c8d9a93f037ab515568e92ce7f0c8.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

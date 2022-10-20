@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/RGurk2.mp3-c772808b2f348ee391b0519dbfcb9c76.mp3str"
+
+[deps]
+
+source_file="res://Sounds/CompleteMouthSounds/RGurk2.mp3"
+dest_files=[ "res://.import/RGurk2.mp3-c772808b2f348ee391b0519dbfcb9c76.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

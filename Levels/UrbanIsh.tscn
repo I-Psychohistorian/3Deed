@@ -338,12 +338,15 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.05713, -2.23454, -13.8962 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.96802, 0.020618, -18.8599 )
 
 [node name="FleshBud" parent="HallAreaNode" instance=ExtResource( 12 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.37822, -1.86145, 5.38643 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.590561, 1.09465, 5.38643 )
 
 [node name="FleshManager" parent="HallAreaNode" instance=ExtResource( 13 )]
 
 [node name="FleshThing" parent="HallAreaNode/FleshManager" instance=ExtResource( 14 )]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, -17.4144 )
+
+[node name="FleshThing2" parent="HallAreaNode/FleshManager" instance=ExtResource( 14 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -4.78455, 0.254474, -10.6075 )
 
 [node name="GlorperMitosisManager" parent="HallAreaNode" instance=ExtResource( 19 )]
 
@@ -435,3 +438,6 @@ width = 0.19464
 height = 2.57181
 depth = 1.31411
 material = ExtResource( 21 )
+
+[node name="AmmoKinematic2" parent="." instance=ExtResource( 9 )]
+transform = Transform( 0.000872612, -1, 0, 1, 0.000872612, 0, 0, 0, 1, 16.9828, -0.495587, 3.3182 )

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/cornstarchloop2.mp3-0153d61e98ae2fed7f2eb3ca6105d0ac.mp3str"
+
+[deps]
+
+source_file="res://Sounds/CompleteMouthSounds/cornstarchloop2.mp3"
+dest_files=[ "res://.import/cornstarchloop2.mp3-0153d61e98ae2fed7f2eb3ca6105d0ac.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

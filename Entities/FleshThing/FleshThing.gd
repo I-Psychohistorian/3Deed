@@ -1,8 +1,8 @@
 extends KinematicBody
 
 
-var health = 80
-var damage = 10
+var health = 90
+var damage = 15
 var Name = "FleshPhage"
 
 var gravity = 8
@@ -34,6 +34,9 @@ onready var MidRay = $MidObstacleRay
 onready var LeftRay = $LeftObstacleRay
 onready var SightLine = $LineOfSight
 var move_modify_x = 0
+var move_modify_z = 0
+var unseen_attacker = false
+#chase behavior circling
 
 var dead = false
 
@@ -60,12 +63,14 @@ var player_last_seen = Vector3()
 #when players exit aggro range, fleshphage will do a random walk in a direction and go dormant, unless agrroed during
 #this action or after
 #spooky sound design
-
+var walksound_on = false
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	player_last_seen = self.global_transform.origin
 	connect_to_parent()
+	$Walk.stream_paused = true
 
 
 
@@ -85,8 +90,6 @@ func connect_to_parent():
 	var FleshManager = get_parent()
 	connect('spawn_ebola', FleshManager, "spawn_seeker")
 
-
-
 func movement():
 	if slime_aggro == true:
 		if chase == false:
@@ -96,13 +99,20 @@ func movement():
 					self.rotation.x = clamp(self.rotation.x, deg2rad(0), deg2rad(-0))
 					self.rotation.z = clamp(self.rotation.z, deg2rad(0), deg2rad(-0))
 	if spitting == true:
-		spitting = false
-		spit_cooldown = true
-		$BarfCooldown.start()
-		barf.emitting = true
-		spawn_coords = $MainBody/Head/MouthSpawn.global_transform.origin
-		emit_signal("spawn_ebola")
-		#print('spawning ebola')
+		if not MidRay.is_colliding():
+			spit_cooldown = true
+			$BarfCooldown.start()
+			barf.emitting = true
+			rng.randomize()
+			var choice = rng.randi_range(1,2)
+			if choice == 1:
+				$Spit.play()
+			elif choice == 2:
+				$Spit2.play()
+			spawn_coords = $MainBody/Head/MouthSpawn.global_transform.origin
+			emit_signal("spawn_ebola")
+			spitting = false
+			#print('spawning ebola')
 	elif aggro == true:
 		#print('aggro step 1')
 		if chase == false:
@@ -111,11 +121,13 @@ func movement():
 				#print('aggro step 3')
 				decide_chase = true
 				$WakeUpTimer.start()
+				$Aggro.play()
 				$AnimationPlayer.play("Awaken")
-				print('Woke up')
+				#print('Woke up')
 		if chase == true:
 			if walking == false:
 				walking = true
+				$Walk.stream_paused = false
 				$AnimationPlayer.play("WalkCycle1")
 			for body in sight_area.get_overlapping_bodies():
 				if body.is_in_group("Player"):
@@ -127,9 +139,11 @@ func movement():
 	elif reorient_behavior == true:
 
 		if reorienting == false:
+			$AnimationPlayer.play("WalkCycle1")
 			reorienting = true
 			rng.randomize()
 			var choice = rng.randi_range(1,2)
+			var x_z = rng.randi_range(0,3)
 			if RightRay.is_colliding() and not LeftRay.is_colliding():
 				#print('behavior left')#-x
 				move_modify_x = -1
@@ -148,10 +162,28 @@ func movement():
 				elif choice == 2:
 					move_modify_x = 1
 				#print('random vector')
-			print(move_modify_x)
+			else:
+				move_modify_x = 0
+			if unseen_attacker == true:
+				unseen_attacker = false
+				var neg_pos = 0
+				if choice == 1:
+					neg_pos = -3
+				elif choice == 2:
+					neg_pos = 3
+				if x_z == 0: #x
+					move_modify_x = neg_pos
+				elif x_z == 1: #z
+					move_modify_z = neg_pos
+				elif x_z == 3: #both
+					move_modify_z = neg_pos
+					move_modify_x = neg_pos
+				print(move_modify_x)
+				print(move_modify_z)
 			$BehaviorTimer.start()
 		var direction = player_last_seen - self.global_transform.origin
 		direction.x += move_modify_x
+		direction.z += move_modify_z
 		print(move_modify_x)
 		move_and_slide(direction * (-0.1), Vector3.UP)
 
@@ -160,19 +192,33 @@ func movement():
 		if reorient_behavior == false:
 			walking = false
 			#print('Went dormant')
-			$AnimationPlayer.play("RESET")
+			if dead == false:
+				$AnimationPlayer.play("RESET")
+				$Walk.stream_paused = true
 		
 	
 
 func take_damage(damage):
-	health -= damage
-	blood.emitting = true
+	if dead == false:
+		health -= damage
+		if hurt == false:
+			blood.emitting = true
+			$Hurt.play()
+			hurt = true
+			$HurtTimer.start()
+		elif hurt == true:
+			headblood.emitting = true
+	###
+		if aggro ==  false:
+			unseen_attacker = true
+			reorient_behavior = true
 	die()
 	
 func die():
 	if dead == false:
 		if health <= 0:
 			dead = true
+			$MainBody/Head/HeadSplatter2.emitting = true
 			can_attack = false
 			$AnimationPlayer.play("Death")
 			#sounds
@@ -182,10 +228,14 @@ func attack_animation():
 	var attack_pattern = rng.randi_range(1, 3)
 	if attack_pattern == 1:
 		$AnimationPlayer.play("StartAttack")
+		$Attack2.play()
 	elif attack_pattern == 2:
 		$AnimationPlayer.play("Attack1Fast")
+		$Attack.play()
 	elif attack_pattern == 3:
 		$AnimationPlayer.play("Attack2Fast")
+		$Attack2.play()
+	
 
 func _on_Sight_radius_body_entered(body):
 	if body.is_in_group('Player'):
@@ -207,13 +257,14 @@ func _on_Sight_radius_body_exited(body):
 
 
 func _on_Behavior_radius_body_exited(body):
-	if spit_cooldown == false:
-		rng.randomize()
-		var choice = rng.randi_range(1,5)
-		print(choice)
-		if choice >= 3:
-			spitting = true
-			print('spitting')
+	if body.is_in_group('Player'):
+		if spit_cooldown == false:
+			rng.randomize()
+			var choice = rng.randi_range(1,5)
+			#print(choice)
+			if choice >= 3:
+				spitting = true
+				#print('spitting')
 
 
 func _on_WakeUpTimer_timeout():
@@ -260,6 +311,7 @@ func _on_attack_area_body_entered(body):
 				$NextAttackTimer.start()
 				$AttackTimer.start()
 				$AnimationPlayer.play("StartAttack")
+				$Attack.play()
 
 func _on_NextAttackTimer_timeout():
 	if can_attack == true:
@@ -280,6 +332,8 @@ func _on_NextAttackTimer_timeout():
 
 
 func _on_BehaviorTimer_timeout():
+	move_modify_x = 0
+	move_modify_z = 0
 	reorient_behavior = false
 	reorienting = false
 
@@ -301,3 +355,7 @@ func _on_Slime_aggro_timeout():
 func _on_Behavior_radius_body_entered(body):
 	if SightLine.is_colliding():
 		var sight = SightLine.get_collision_point()
+
+
+func _on_HurtTimer_timeout():
+	hurt = false

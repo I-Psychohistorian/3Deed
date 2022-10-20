@@ -178,13 +178,13 @@ func movement():
 				elif x_z == 3: #both
 					move_modify_z = neg_pos
 					move_modify_x = neg_pos
-				print(move_modify_x)
-				print(move_modify_z)
+				#print(move_modify_x)
+				#print(move_modify_z)
 			$BehaviorTimer.start()
 		var direction = player_last_seen - self.global_transform.origin
 		direction.x += move_modify_x
 		direction.z += move_modify_z
-		print(move_modify_x)
+		#print(move_modify_x)
 		move_and_slide(direction * (-0.1), Vector3.UP)
 
 
@@ -326,9 +326,10 @@ func _on_NextAttackTimer_timeout():
 				$AttackTimer.start()
 				attack_animation()
 			if body.is_in_group('Obstacle'):
-				$NextAttackTimer.start()
-				$AttackTimer.start()
-				attack_animation()
+				if aggro == true:
+					$NextAttackTimer.start()
+					$AttackTimer.start()
+					attack_animation()
 
 
 func _on_BehaviorTimer_timeout():
@@ -343,7 +344,8 @@ func _on_DeathTimer_timeout():
 
 
 func _on_attack_area_body_exited(body):
-	walking = false
+	#walking = false
+	pass
 
 
 func _on_Slime_aggro_timeout():

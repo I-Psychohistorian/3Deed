@@ -9,7 +9,7 @@ var dead = false
 var anim_playing = false
 
 var move_speed = 0.6
-var gravity = 3
+var gravity = 5
 var fall = Vector3()
 var falling = true
 
@@ -52,7 +52,7 @@ func _process(delta):
 		rotate_x(deg2rad(x_spin))
 		rotate_z(deg2rad(z_spin))
 	if is_on_wall():
-		fall.y += 0.3
+		fall.y += 0.4
 	elif is_on_ceiling():
 		fall.y = 0
 	elif not is_on_floor():

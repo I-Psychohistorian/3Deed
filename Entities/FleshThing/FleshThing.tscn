@@ -973,7 +973,7 @@ height = 1.20451
 radius = 4.16314
 
 [sub_resource type="BoxShape" id=27]
-extents = Vector3( 0.291429, 0.458761, 0.3 )
+extents = Vector3( 0.347223, 0.458761, 0.3 )
 
 [node name="FleshThing" type="KinematicBody" groups=["Enemy", "Flesh", "FleshShooter"]]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
@@ -1203,7 +1203,7 @@ shape = SubResource( 26 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.16315, 0.282883, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="attack_area"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.160546, -0.160634, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.200567, -0.160634, 0 )
 shape = SubResource( 27 )
 
 [node name="BarfCooldown" type="Timer" parent="."]

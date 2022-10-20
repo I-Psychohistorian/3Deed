@@ -1,13 +1,32 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://CrumpledNotes.gd" type="Script" id=1]
-[ext_resource path="res://Assets/asset package custom/Hypno's Fantsy Village Pack/Material_005.material" type="Material" id=2]
+[ext_resource path="res://Assets/asset package custom/paintpngs/bad poetry1.png" type="Texture" id=2]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.4, 0.01, 0.50946 )
 
-[sub_resource type="CubeMesh" id=2]
-material = ExtResource( 2 )
+[sub_resource type="OpenSimplexNoise" id=4]
+period = 28.2
+persistence = 0.0
+lacunarity = 4.0
+
+[sub_resource type="NoiseTexture" id=2]
+width = 80
+height = 1000
+noise = SubResource( 4 )
+
+[sub_resource type="SpatialMaterial" id=5]
+resource_name = "Material.005"
+flags_world_triplanar = true
+albedo_color = Color( 1, 0.992157, 0.992157, 1 )
+albedo_texture = ExtResource( 2 )
+metallic = 1.0
+metallic_texture = SubResource( 2 )
+uv1_triplanar = true
+
+[sub_resource type="CubeMesh" id=6]
+material = SubResource( 5 )
 size = Vector3( 0.6, 0, 0.9 )
 
 [sub_resource type="BoxShape" id=3]
@@ -21,11 +40,11 @@ transform = Transform( 0.994875, 0, -0.101108, 0, 1, 0, 0.101108, 0, 0.994875, -
 shape = SubResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
-mesh = SubResource( 2 )
+mesh = SubResource( 6 )
 
 [node name="MeshInstance2" type="MeshInstance" parent="."]
 transform = Transform( 0.965208, 0, -0.261482, 0, 1, 0, 0.261482, 0, 0.965208, -0.115, 0.01, 0.047 )
-mesh = SubResource( 2 )
+mesh = SubResource( 6 )
 
 [node name="Area" type="Area" parent="."]
 

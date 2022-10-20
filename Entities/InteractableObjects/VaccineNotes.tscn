@@ -1,0 +1,174 @@
+[gd_scene load_steps=30 format=2]
+
+[ext_resource path="res://Entities/InteractableObjects/lightlycrumpledpapernoiseEmission.tres" type="Texture" id=1]
+[ext_resource path="res://Assets/asset package custom/paintpngs/VaccineNotesFinal.png" type="Texture" id=2]
+[ext_resource path="res://Assets/asset package custom/paintpngs/VaccineNotes6.png" type="Texture" id=3]
+[ext_resource path="res://Assets/asset package custom/paintpngs/VaccineNotes2.png" type="Texture" id=4]
+[ext_resource path="res://Assets/asset package custom/paintpngs/VaccineNotes8.png" type="Texture" id=5]
+[ext_resource path="res://Assets/asset package custom/paintpngs/VaccineNotes1.png" type="Texture" id=6]
+[ext_resource path="res://Assets/asset package custom/Hypno's Fantsy Village Pack/Window_001.material" type="Material" id=7]
+[ext_resource path="res://Assets/asset package custom/kenneycityurban/Models/GLTF format/door.material" type="Material" id=8]
+[ext_resource path="res://Entities/InteractableObjects/VaccineNotes.gd" type="Script" id=9]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 1.23843, 0.1, 0.8 )
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 0.670588, 0.670588, 0.670588, 1 )
+albedo_texture = ExtResource( 6 )
+emission_enabled = true
+emission = Color( 0, 0, 0, 1 )
+emission_energy = 0.21
+emission_operator = 0
+emission_on_uv2 = false
+emission_texture = ExtResource( 1 )
+
+[sub_resource type="PlaneMesh" id=3]
+material = SubResource( 2 )
+size = Vector2( 0.6, 0.9 )
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_color = Color( 0.733333, 0.733333, 0.733333, 1 )
+albedo_texture = ExtResource( 4 )
+emission_enabled = true
+emission = Color( 0, 0, 0, 1 )
+emission_energy = 0.21
+emission_operator = 0
+emission_on_uv2 = false
+emission_texture = ExtResource( 1 )
+
+[sub_resource type="PlaneMesh" id=5]
+material = SubResource( 4 )
+size = Vector2( 0.6, 0.9 )
+
+[sub_resource type="SpatialMaterial" id=6]
+albedo_color = Color( 0.529412, 0.529412, 0.529412, 1 )
+albedo_texture = ExtResource( 3 )
+emission_enabled = true
+emission = Color( 0, 0, 0, 1 )
+emission_energy = 0.21
+emission_operator = 0
+emission_on_uv2 = false
+emission_texture = ExtResource( 1 )
+
+[sub_resource type="PlaneMesh" id=7]
+material = SubResource( 6 )
+size = Vector2( 0.6, 0.9 )
+
+[sub_resource type="SpatialMaterial" id=8]
+albedo_color = Color( 0.85098, 0.839216, 0.839216, 1 )
+albedo_texture = ExtResource( 5 )
+emission_enabled = true
+emission = Color( 0, 0, 0, 1 )
+emission_energy = 0.1
+emission_operator = 0
+emission_on_uv2 = false
+emission_texture = ExtResource( 1 )
+
+[sub_resource type="PlaneMesh" id=9]
+material = SubResource( 8 )
+size = Vector2( 0.6, 0.9 )
+
+[sub_resource type="SpatialMaterial" id=10]
+albedo_color = Color( 0.960784, 0.929412, 0.929412, 1 )
+albedo_texture = ExtResource( 2 )
+
+[sub_resource type="PlaneMesh" id=11]
+material = SubResource( 10 )
+size = Vector2( 0.6, 0.9 )
+
+[sub_resource type="BoxShape" id=12]
+extents = Vector3( 3, 3, 1 )
+
+[sub_resource type="OpenSimplexNoise" id=13]
+period = 43.0
+persistence = 1.0
+lacunarity = 1.63
+
+[sub_resource type="NoiseTexture" id=14]
+width = 1000
+height = 60
+noise = SubResource( 13 )
+
+[sub_resource type="SpatialMaterial" id=15]
+albedo_texture = SubResource( 14 )
+
+[sub_resource type="SpatialMaterial" id=16]
+albedo_color = Color( 0.686275, 0.666667, 0.666667, 1 )
+albedo_texture = ExtResource( 3 )
+
+[sub_resource type="CapsuleMesh" id=17]
+material = ExtResource( 8 )
+radius = 0.02
+mid_height = 0.2
+
+[sub_resource type="SpatialMaterial" id=18]
+albedo_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="CylinderMesh" id=19]
+material = SubResource( 18 )
+top_radius = 0.0
+bottom_radius = 0.005
+height = 0.04
+
+[sub_resource type="CubeMesh" id=20]
+material = ExtResource( 7 )
+size = Vector3( 0.02, 0.01, 0.05 )
+
+[node name="VaccineNotes" type="KinematicBody" groups=["Interactable"]]
+script = ExtResource( 9 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.120271, 0, -0.154388 )
+shape = SubResource( 1 )
+
+[node name="Note1" type="MeshInstance" parent="."]
+transform = Transform( 0.991738, 0, -0.128276, 0, 1, 0, 0.128276, 0, 0.991738, -1.04939, 0.000786483, -0.135734 )
+mesh = SubResource( 3 )
+
+[node name="Note2" type="MeshInstance" parent="."]
+transform = Transform( 0.972447, 0, -0.233123, 0, 1, 0, 0.233123, 0, 0.972447, 0.115619, -0.00245452, -0.123828 )
+mesh = SubResource( 5 )
+
+[node name="Note3" type="MeshInstance" parent="."]
+transform = Transform( 0.994189, 0, 0.107652, 0, 1, 0, -0.107652, 0, 0.994189, -0.55935, -0.00388944, -0.161399 )
+mesh = SubResource( 7 )
+
+[node name="Note4" type="MeshInstance" parent="."]
+transform = Transform( 0.993292, 0, 0.115631, 0, 1, 0, -0.115631, 0, 0.993292, -1.10865, -0.00802445, -0.391707 )
+mesh = SubResource( 9 )
+
+[node name="Note5" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.388685, 0, 0.161076 )
+mesh = SubResource( 11 )
+
+[node name="Area" type="Area" parent="."]
+visible = false
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+shape = SubResource( 12 )
+
+[node name="CSGCylinder" type="CSGCylinder" parent="."]
+transform = Transform( 4.8535e-08, 0.554293, -0.832322, -0.997271, -0.0614504, -0.0409235, -0.0738301, 0.83005, 0.55278, 0.767312, 0.139184, -0.166867 )
+radius = 0.2
+height = 0.6
+material = SubResource( 15 )
+
+[node name="CSGCylinder" type="CSGCylinder" parent="CSGCylinder"]
+transform = Transform( -1.3, -1.50996e-07, 0, 1.96295e-07, -1, 0, 0, 1.69407e-21, 1.1, -0.0415036, 0, -0.00145239 )
+operation = 2
+radius = 0.18
+height = 0.6
+material = SubResource( 16 )
+
+[node name="Pen" type="MeshInstance" parent="."]
+transform = Transform( 0.962493, 0, 0.271306, 0, 1, 0, -0.271306, 0, 0.962493, 0.365585, 0.0258307, 0.349052 )
+mesh = SubResource( 17 )
+
+[node name="tip" type="MeshInstance" parent="Pen"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 8.81886e-10, -0.133978 )
+mesh = SubResource( 19 )
+
+[node name="Button" type="MeshInstance" parent="Pen"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0183413, 0.062049 )
+mesh = SubResource( 20 )

@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=2]
+[gd_scene load_steps=80 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://UI/HUD1.tscn" type="PackedScene" id=2]
@@ -1137,6 +1137,48 @@ surfaces/3 = {
 "vertex_count": 482
 }
 
+[sub_resource type="OpenSimplexNoise" id=47]
+
+[sub_resource type="NoiseTexture" id=48]
+width = 1000
+height = 1000
+seamless = true
+noise = SubResource( 47 )
+
+[sub_resource type="NoiseTexture" id=49]
+width = 700
+height = 700
+seamless = true
+noise = SubResource( 47 )
+noise_offset = Vector2( 400, 0 )
+
+[sub_resource type="NoiseTexture" id=50]
+width = 800
+height = 500
+seamless = true
+noise = SubResource( 47 )
+noise_offset = Vector2( -100, 0 )
+
+[sub_resource type="AnimatedTexture" id=51]
+flags = 7
+frames = 3
+fps = 2.0
+frame_0/texture = SubResource( 48 )
+frame_1/texture = SubResource( 49 )
+frame_1/delay_sec = 0.0
+frame_2/texture = SubResource( 50 )
+frame_2/delay_sec = 0.0
+
+[sub_resource type="SpatialMaterial" id=52]
+flags_transparent = true
+albedo_color = Color( 0.643137, 0.164706, 0.164706, 0.87451 )
+albedo_texture = SubResource( 51 )
+metallic = 1.0
+
+[sub_resource type="CubeMesh" id=53]
+material = SubResource( 52 )
+size = Vector3( 2, 2, 0.1 )
+
 [node name="Player" type="KinematicBody" groups=["Player"]]
 script = ExtResource( 1 )
 
@@ -1291,6 +1333,11 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 100, 0, 0, 0 )
 enabled = true
 cast_to = Vector3( 0, 0, -1 )
 debug_shape_custom_color = Color( 1, 0, 0, 1 )
+
+[node name="FluDeath" type="MeshInstance" parent="Head"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.357316 )
+visible = false
+mesh = SubResource( 53 )
 
 [node name="StatusTick" type="Timer" parent="."]
 wait_time = 0.5

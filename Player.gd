@@ -91,6 +91,7 @@ func _ready():
 	#print(global_transform.origin)
 	#print(weapons)
 	hud.undie()
+	$Head/FluDeath.visible = false
 	inv_weapons.append(weapons[2])
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	equipped = weapons[2]
@@ -418,6 +419,9 @@ func handle_death():
 			status_text = "You are dead!"
 			hud.status()
 			hud.die()
+			if disease == true:
+				$Head/FluDeath.visible = true
+				print('diseased death')
 
 
 func sprint_check():
@@ -438,11 +442,12 @@ func handle_sprint():
 			acceleration = 20
 
 func take_damage(incoming_damage):
-	if hurt == false:
-		$OofTimer.start()
-		$Oof.play()
-		hurt = true
-	health -= incoming_damage
+	if dead == false:
+		if hurt == false:
+			$OofTimer.start()
+			$Oof.play()
+			hurt = true
+		health -= incoming_damage
 
 #weapon functions
 func knife_stab():

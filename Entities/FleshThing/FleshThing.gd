@@ -111,8 +111,12 @@ func movement():
 				$Spit2.play()
 			spawn_coords = $MainBody/Head/MouthSpawn.global_transform.origin
 			emit_signal("spawn_ebola")
-			spitting = false
 			#print('spawning ebola')
+			spitting = false
+		if MidRay.is_colliding():
+			#print('spit path blocked, rotating')
+			#rotate_y(deg2rad(2)) #spins until spit
+			spitting = false
 	elif aggro == true:
 		#print('aggro step 1')
 		if chase == false:
@@ -123,7 +127,7 @@ func movement():
 				$WakeUpTimer.start()
 				$Aggro.play()
 				$AnimationPlayer.play("Awaken")
-				#print('Woke up')
+				print('Woke up')
 		if chase == true:
 			if walking == false:
 				walking = true
@@ -140,8 +144,6 @@ func movement():
 		if reorienting == false:
 			$AnimationPlayer.play("WalkCycle1")
 			reorienting = true
-			print('timerstart')
-			$BehaviorTimer.start()
 			rng.randomize()
 			var choice = rng.randi_range(1,2)
 			var x_z = rng.randi_range(0,3)
@@ -189,7 +191,7 @@ func movement():
 		move_and_slide(direction * (-0.1), Vector3.UP)
 
 
-	elif aggro == false:
+	if aggro == false:
 		if reorient_behavior == false:
 			walking = false
 			#print('Went dormant')
@@ -213,6 +215,8 @@ func take_damage(damage):
 		if aggro == false:
 			unseen_attacker = true
 			reorient_behavior = true
+			#print('timerstart')
+			$BehaviorTimer.start()
 	die()
 	
 func die():
@@ -252,6 +256,8 @@ func _on_Sight_radius_body_exited(body):
 		chase = false
 		if reorient_behavior == false:
 			reorient_behavior = true
+			#print('timerstart')
+			$BehaviorTimer.start()
 		player_last_seen = body.global_transform.origin
 	if body.is_in_group('Blob'):
 		slime_aggro = false
@@ -337,7 +343,7 @@ func _on_NextAttackTimer_timeout():
 
 
 func _on_BehaviorTimer_timeout():
-	print('behaving')
+	#print('behaving')
 	move_modify_x = 0
 	move_modify_z = 0
 	reorient_behavior = false
@@ -369,9 +375,11 @@ func _on_HurtTimer_timeout():
 
 
 func _on_DebugTimer_timeout():
-	print("aggro is ", aggro)
-	print("reorienting behavior is ", reorient_behavior)
-	print("reorienting is", reorienting)
-	print('walking is ', walking)
-	print('chase is ', chase)
-	
+	#print("aggro is ", aggro)
+	#print("reorienting behavior is ", reorient_behavior)
+	#print("reorienting is", reorienting)
+	#print('walking is ', walking)
+	#print('chase is ', chase)
+	#print('spitting is ', spitting)
+	#print('slime aggro is ', slime_aggro)
+	pass

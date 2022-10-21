@@ -91,6 +91,7 @@ margin_right = 369.0
 margin_bottom = 432.0
 
 [node name="DialogueLabel" type="Label" parent="DialogueBox"]
+visible = false
 margin_right = 83.0
 margin_bottom = 14.0
 text = "TestDialogue"

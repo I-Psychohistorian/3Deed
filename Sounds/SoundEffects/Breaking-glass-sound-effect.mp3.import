@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Breaking-glass-sound-effect.mp3-3cf7fb6c3c6ddc5b272e7c31f00f2878.mp3str"
+
+[deps]
+
+source_file="res://Sounds/SoundEffects/Breaking-glass-sound-effect.mp3"
+dest_files=[ "res://.import/Breaking-glass-sound-effect.mp3-3cf7fb6c3c6ddc5b272e7c31f00f2878.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -32,14 +32,20 @@ func use():
 				n.dialogue_text = n1
 				n.tick_dialogue()
 				current = 2
+				note1.visible = false
+				note2.visible = true
 				Name = "Read Messy Science Notes 2/3"
 			elif current == 2:
 				n.dialogue_text = n2
 				n.tick_dialogue()
 				current = 3
+				note2.visible = false
+				note3.visible = true
 				Name = "Read Messy Science Notes 3/3"
 			elif current == 3:
 				Name = "Read Messy Science Notes 1/3"
 				n.dialogue_text = n3
 				n.tick_dialogue()
+				note3.visible = false
+				note1.visible = true
 				current = 1

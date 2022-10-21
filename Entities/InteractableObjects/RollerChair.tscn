@@ -1,0 +1,181 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Assets/asset package custom/kenneyretrourban/Models/GLTF format/asphalt.material" type="Material" id=1]
+[ext_resource path="res://RollyChair.gd" type="Script" id=2]
+[ext_resource path="res://Entities/InteractableObjects/RollerChair.gd" type="Script" id=3]
+
+[sub_resource type="CylinderMesh" id=1]
+material = ExtResource( 1 )
+top_radius = 0.1
+bottom_radius = 0.1
+height = 1.0
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 0.470588, 0.470588, 0.470588, 1 )
+metallic = 0.78
+
+[sub_resource type="CapsuleMesh" id=3]
+material = SubResource( 2 )
+
+[sub_resource type="CubeMesh" id=4]
+material = ExtResource( 1 )
+size = Vector3( 0.06, 0.5, 0.1 )
+
+[sub_resource type="CapsuleMesh" id=5]
+material = ExtResource( 1 )
+radius = 0.06
+mid_height = 0.08
+
+[sub_resource type="CylinderShape" id=6]
+height = 1.3931
+
+[sub_resource type="CapsuleShape" id=7]
+radius = 0.893818
+height = 0.391818
+
+[sub_resource type="BoxShape" id=8]
+extents = Vector3( 0.2, 0.4, 0.2 )
+
+[sub_resource type="BoxShape" id=9]
+extents = Vector3( 3, 3, 3 )
+
+[sub_resource type="SphereMesh" id=10]
+material = ExtResource( 1 )
+radius = 0.15
+height = 0.3
+
+[sub_resource type="CylinderMesh" id=11]
+material = ExtResource( 1 )
+top_radius = 0.15
+bottom_radius = 0.15
+height = 0.4
+
+[node name="RollerChair" type="Spatial"]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
+script = ExtResource( 3 )
+
+[node name="RollyChair" type="KinematicBody" parent="." groups=["Interactable"]]
+script = ExtResource( 2 )
+
+[node name="Tube" type="MeshInstance" parent="RollyChair"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.694455, 0 )
+mesh = SubResource( 1 )
+skeleton = NodePath("../..")
+
+[node name="Seat" type="MeshInstance" parent="RollyChair"]
+transform = Transform( 1, 0, 0, 0, 0.2, 0, 0, 0, 0.7, 0, 0, 0 )
+mesh = SubResource( 3 )
+skeleton = NodePath("../..")
+
+[node name="MetalBackRound" type="CSGCylinder" parent="RollyChair"]
+transform = Transform( 0.994609, 2.16357e-09, 0.103695, 0.103695, -4.1617e-08, -0.994609, 2.16357e-09, 1, -4.1617e-08, -0.833694, 0.239755, 1.00319e-08 )
+radius = 0.5
+height = 0.6
+material = ExtResource( 1 )
+
+[node name="NegSpace" type="CSGCylinder" parent="RollyChair/MetalBackRound"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0929661, 0, -0.0410975 )
+operation = 2
+radius = 0.5
+height = 0.6
+material = ExtResource( 1 )
+
+[node name="Back" type="MeshInstance" parent="RollyChair"]
+transform = Transform( 0.0649802, -0.199339, 0, 0.797357, 0.0162451, 0, 0, 0, 0.7, -0.889658, 1.27203, 0 )
+mesh = SubResource( 3 )
+skeleton = NodePath("../..")
+
+[node name="MetalBack" type="MeshInstance" parent="RollyChair"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.07522, 0.829647, 0 )
+mesh = SubResource( 4 )
+skeleton = NodePath("../..")
+
+[node name="MetalBack2" type="MeshInstance" parent="RollyChair"]
+transform = Transform( -4.37114e-08, -2, 0, 1, -8.74228e-08, 0, 0, 0, 1, -0.316811, -0.10696, 0 )
+mesh = SubResource( 4 )
+skeleton = NodePath("../..")
+
+[node name="MetalBack3" type="MeshInstance" parent="RollyChair"]
+transform = Transform( 0.263419, -1.20768, 0.752321, 0.945746, 0.630815, -0.0779874, -0.190196, 1.4641, 0.654164, 0.218015, -0.300514, -0.288936 )
+mesh = SubResource( 4 )
+skeleton = NodePath("../..")
+
+[node name="MeshInstance" type="MeshInstance" parent="RollyChair/MetalBack3"]
+transform = Transform( 0.987442, 0.0752204, -0.153441, 0.0766483, 0.00669533, 0.494079, 0.0381922, -1.99854, 0.00084582, 0.00653534, -0.261743, -0.00313817 )
+mesh = SubResource( 5 )
+
+[node name="BotCollide" type="CollisionShape" parent="RollyChair"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.601853, 0 )
+shape = SubResource( 6 )
+
+[node name="BackCollide" type="CollisionShape" parent="RollyChair"]
+transform = Transform( 0.297747, 0.122337, 0, -0.0367011, 0.992489, 0, 0, 0, 1, -0.898706, 1.20621, 0.000207096 )
+shape = SubResource( 7 )
+
+[node name="CollisionShape" type="CollisionShape" parent="RollyChair"]
+transform = Transform( 0.932608, -0.360892, 0, 0.360892, 0.932608, 0, 0, 0, 1, -1.08352, 0.168855, 0 )
+shape = SubResource( 8 )
+
+[node name="Area" type="Area" parent="RollyChair"]
+
+[node name="CollisionShape" type="CollisionShape" parent="RollyChair/Area"]
+shape = SubResource( 9 )
+
+[node name="Spin_timer" type="Timer" parent="RollyChair"]
+wait_time = 2.5
+one_shot = true
+
+[node name="BottomSupport2" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.20097, 0 )
+
+[node name="Leg" type="CSGCylinder" parent="BottomSupport2"]
+transform = Transform( 0.978678, -0.203431, -0.028384, 0, -0.138188, 0.990406, -0.205401, -0.969288, -0.135241, -0.104448, 0, -0.478433 )
+radius = 0.12
+material = ExtResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="BottomSupport2/Leg"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.550619, -0.0631106 )
+mesh = SubResource( 10 )
+
+[node name="Leg2" type="CSGCylinder" parent="BottomSupport2"]
+transform = Transform( -0.932784, -0.356978, -0.049808, 0, -0.138188, 0.990406, -0.360436, 0.923835, 0.128899, -0.150269, 0, 0.481506 )
+radius = 0.12
+material = ExtResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="BottomSupport2/Leg2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.550619, -0.0631106 )
+mesh = SubResource( 10 )
+
+[node name="Leg3" type="CSGCylinder" parent="BottomSupport2"]
+transform = Transform( -0.659411, 0.74457, 0.103887, 0, -0.138188, 0.990406, 0.751782, 0.653085, 0.0911227, 0.430909, 0, 0.337483 )
+radius = 0.12
+material = ExtResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="BottomSupport2/Leg3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.550619, -0.0631106 )
+mesh = SubResource( 10 )
+
+[node name="Leg4" type="CSGCylinder" parent="BottomSupport2"]
+transform = Transform( 0.520577, 0.845623, 0.117987, 0, -0.138188, 0.990406, 0.853814, -0.515583, -0.0719375, 0.473395, 0, -0.300237 )
+radius = 0.12
+material = ExtResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="BottomSupport2/Leg4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.550619, -0.0631106 )
+mesh = SubResource( 10 )
+
+[node name="Leg5" type="CSGCylinder" parent="BottomSupport2"]
+transform = Transform( 0.0127406, -0.990326, -0.138177, 0, -0.138188, 0.990406, -0.999919, -0.0126183, -0.00176059, -0.455993, 0, -0.0252356 )
+radius = 0.12
+material = ExtResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="BottomSupport2/Leg5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.550619, -0.0631106 )
+mesh = SubResource( 10 )
+
+[node name="BaseTube" type="MeshInstance" parent="BottomSupport2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.194183, 0 )
+mesh = SubResource( 11 )
+skeleton = NodePath("../../RollyChair/Tube")
+
+[connection signal="timeout" from="RollyChair/Spin_timer" to="RollyChair" method="_on_Spin_timer_timeout"]

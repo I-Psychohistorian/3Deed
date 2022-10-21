@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=2]
+[gd_scene load_steps=51 format=2]
 
 [ext_resource path="res://Assets/asset package custom/kenneyretrourban/Models/GLTF format/roof.material" type="Material" id=1]
 [ext_resource path="res://Assets/asset package custom/kenneyretrourban/Models/GLTF format/asphalt.material" type="Material" id=2]
@@ -34,6 +34,12 @@
 [ext_resource path="res://Entities/InteractableObjects/VaccineNotes.tscn" type="PackedScene" id=32]
 [ext_resource path="res://Entities/InteractableObjects/RollerChair.tscn" type="PackedScene" id=33]
 [ext_resource path="res://Entities/InteractableObjects/Biohazardbin.tscn" type="PackedScene" id=34]
+[ext_resource path="res://Entities/InteractableObjects/Glassware.tscn" type="PackedScene" id=35]
+[ext_resource path="res://Entities/InteractableObjects/laptop.tscn" type="PackedScene" id=36]
+[ext_resource path="res://Entities/InteractableObjects/EmptyNeedleModel.tscn" type="PackedScene" id=37]
+[ext_resource path="res://Entities/InteractableObjects/Sink.tscn" type="PackedScene" id=38]
+[ext_resource path="res://Entities/InteractableObjects/UsedNeedle.tscn" type="PackedScene" id=39]
+[ext_resource path="res://Entities/InteractableObjects/FridgeUnit.tscn" type="PackedScene" id=40]
 
 [sub_resource type="Image" id=17]
 data = {
@@ -510,7 +516,7 @@ depth = 1.2347
 material = ExtResource( 10 )
 
 [node name="CSGBox3" type="CSGBox" parent="CSGCombiner/Lab Office"]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.35131, -1.09135, -2.60559 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.35131, -1.09135, -1.60559 )
 operation = 2
 invert_faces = true
 width = 2.73591
@@ -518,11 +524,14 @@ height = 1.12232
 depth = 1.2347
 material = ExtResource( 10 )
 
+[node name="Glassware" parent="CSGCombiner/Lab Office/CSGBox3" instance=ExtResource( 35 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.387611, 0.724086, 0.213114 )
+
 [node name="CSGBox4" type="CSGBox" parent="CSGCombiner/Lab Office"]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.35131, -1.09135, 2.46671 )
 operation = 2
 invert_faces = true
-width = 2.73591
+width = 3.8548
 height = 1.12232
 depth = 1.2347
 material = ExtResource( 10 )
@@ -540,13 +549,43 @@ material = ExtResource( 10 )
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.118607, 0.632466, -0.118191 )
 
 [node name="RollerChair" parent="CSGCombiner/Lab Office" instance=ExtResource( 33 )]
-transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 2.48964, -0.891538, 1.81797 )
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.691803, -0.891538, 3.63621 )
 
 [node name="Biohazardbin" parent="CSGCombiner/Lab Office" instance=ExtResource( 34 )]
-transform = Transform( -0.028445, 0, -0.999595, 0, 1, 0, 0.999595, 0, -0.028445, -1.30463, -1.00259, -3.5208 )
+transform = Transform( -0.028445, 0, -0.999595, 0, 1, 0, 0.999595, 0, -0.028445, 1.69537, -1.00259, -3.5208 )
 
-[node name="FleshLump" parent="CSGCombiner/Lab Office" instance=ExtResource( 7 )]
-transform = Transform( 0.9, 0, 0, 0, 1, 0, 0, 0, 0.9, -1.30124, -1.37316, -3.5182 )
+[node name="FleshLump" parent="CSGCombiner/Lab Office/Biohazardbin" instance=ExtResource( 7 )]
+transform = Transform( -0.0256005, 0, 0.899636, 0, 1, 0, -0.899636, 0, -0.0256005, 0.00249481, -0.37057, -0.00346184 )
+
+[node name="UsedNeedle" parent="CSGCombiner/Lab Office/Biohazardbin/FleshLump" instance=ExtResource( 39 )]
+transform = Transform( 0.014299, 0.287284, 0.574103, 0.239753, -0.406653, 0.249719, 0.422938, 0.274186, -0.189548, -0.245272, 0.085662, 0.075325 )
+
+[node name="UsedNeedle" parent="CSGCombiner/Lab Office/Biohazardbin" instance=ExtResource( 39 )]
+transform = Transform( 0.499606, -0.0170614, -0.0166248, 0.0142179, 0.0153083, 0.599562, -0.013854, -0.599562, 0.0157816, -0.2537, -0.333041, 0.0130882 )
+
+[node name="laptop" parent="CSGCombiner/Lab Office" instance=ExtResource( 36 )]
+transform = Transform( -0.0169115, 0, 0.999857, 0, 1, 0, -0.999857, 0, -0.0169115, -3.6992, 0, 3.65551 )
+
+[node name="Sink" parent="CSGCombiner/Lab Office" instance=ExtResource( 38 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.33423, -1.08354, -3.70286 )
+
+[node name="UsedNeedle" parent="CSGCombiner/Lab Office/Sink" instance=ExtResource( 39 )]
+transform = Transform( 0.723413, -0.690388, 0.00613343, 4.37097e-08, -0.00888364, -0.999961, 0.690415, 0.723385, -0.00642651, 0.264412, 0.308732, 0 )
+
+[node name="FridgeUnit" parent="CSGCombiner/Lab Office" instance=ExtResource( 40 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2.97235, 0.239737, -3.76591 )
+
+[node name="Vaccine" parent="CSGCombiner/Lab Office/FridgeUnit" instance=ExtResource( 25 )]
+transform = Transform( 0.208347, 0.545421, -0.00288066, -4.36546e-08, 0.0031689, 0.599992, 0.454524, -0.250012, 0.00132051, 0.250742, -0.151488, -0.227806 )
+
+[node name="Vaccine2" parent="CSGCombiner/Lab Office/FridgeUnit" instance=ExtResource( 25 )]
+transform = Transform( 0.213458, 0.541253, 0.0378474, -4.68437e-08, -0.0418531, 0.598539, 0.452146, -0.255526, -0.0178677, 0.0543251, -0.141691, -0.261307 )
+
+[node name="Vaccine3" parent="CSGCombiner/Lab Office/FridgeUnit" instance=ExtResource( 25 )]
+transform = Transform( 0.208347, 0.545421, -0.00288066, -4.36546e-08, 0.0031689, 0.599992, 0.454524, -0.250012, 0.00132051, -0.169998, -0.142603, -0.261528 )
+
+[node name="EmptyNeedleModel" parent="CSGCombiner/Lab Office/FridgeUnit" instance=ExtResource( 37 )]
+transform = Transform( 0.0216702, 0.599436, -2.62022e-08, 0, -2.62268e-08, -0.6, -0.49953, 0.0260042, -1.13668e-09, 1.90735e-06, -0.395952, -0.22818 )
 
 [node name="Hall7" type="CSGBox" parent="CSGCombiner"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.1223, -0.163481, -66.6166 )
@@ -589,9 +628,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.96802, 0.020618, -18.8599 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.590561, 1.09465, 5.38643 )
 
 [node name="FleshManager" parent="HallAreaNode" instance=ExtResource( 13 )]
-
-[node name="FleshThing" parent="HallAreaNode/FleshManager" instance=ExtResource( 14 )]
-transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, -17.4144 )
 
 [node name="FleshThing2" parent="HallAreaNode/FleshManager" instance=ExtResource( 14 )]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -4.78455, 0.254474, -10.6075 )

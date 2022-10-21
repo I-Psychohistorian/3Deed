@@ -2,18 +2,19 @@ extends KinematicBody
 
 
 
-var Name = "Read Messier Science Notes"
+var Name = "Read Messier Science Notes 1/9"
 var pickup = "Notes"
 onready var radius = $Area
 var active = true
 var n1 = "...infection with fleshphage seemingly inevitible, but slow buildup may have exploit"
-var n2 = "...survivable, temporary physiological changes could maladapt fleshphage buying us time"
-var n3 = "attempt 1: typical IFN inducers failed to slow metamorphosis of sample"
-var n4 = "attempt 6: culture media mostly contaminated.. but inflammosome bypass slowed proccess marginally."
-var n5 = "attempt 11: ..treatments show diminishing rewards, started using personel samples"
-var n6 = "attempt 38: ...human toe with plantar warts lasted hours longer all samples. Viral competitive inhibition??"
-var n7 = "...enough for a few doses of counter viral-drug cocktail. Not a cure, but it will slow infection dramatically"
-var n8 = "There are only two of us left, but my work wasn't for nothing. Maybe someone can survive this."
+var n2 = "since low on media, started using personel samples"
+var n3 = "human toe with plantar warts lastsed longer than all samples"
+var n4 = "...survivable, temporary physiological changes maladapt fleshphage, slowing infection"
+var n5 = "bizzare viral-viral inhibition occurance, combined .... homeostasis affecting compounds..."
+var n6 = "...slow acting metabolism modifiers and late pathway inflammosome stimulators"
+var n7 = "...serum can slow symptoms immensely but is hard on the body."
+var n8 = "The serum is not a cure, but preventative and ameliorating. I'm still infected."
+var n9 = "I'm going to the armory to end myself before I turn. Maybe someone can survive this if not us."
 
 var current = 1
 onready var note1 = $Notes1
@@ -34,7 +35,7 @@ func use():
 	for n in bodies:
 		if n.is_in_group("Player"):
 			if current == 1:
-				Name = "Messier Science Notes 2/8"
+				Name = "Read Messier Science Notes 2/9"
 				n.dialogue_text = n1
 				n.tick_dialogue()
 				current = 2
@@ -43,32 +44,37 @@ func use():
 				n.tick_dialogue()
 				current = 3
 			elif current == 3:
-				Name = "Messier Science Notes 3/8"
+				Name = "Read Messier Science Notes 3/9"
 				n.dialogue_text = n3
 				n.tick_dialogue()
 				current = 4
 			elif current == 4:
-				Name = "Messier Science Notes 4/8"
+				Name = "Read Messier Science Notes 4/9"
 				n.dialogue_text = n4
 				n.tick_dialogue()
 				current = 5
 			elif current == 5:
-				Name = "Messier Science Notes 5/8"
+				Name = "Messier Science Notes 5/9"
 				n.dialogue_text = n5
 				n.tick_dialogue()
 				current = 6
 			elif current == 6:
-				Name = "Read Messier Science Notes 6/8"
+				Name = "Read Messier Science Notes 6/9"
 				n.dialogue_text = n6
 				n.tick_dialogue()
 				current = 7
 			elif current == 7:
-				Name = "Read Messier Science Notes 7/8"
+				Name = "Read Messier Science Notes7/9"
 				n.dialogue_text = n7
 				n.tick_dialogue()
 				current = 8
 			elif current == 8:
-				Name = "Read Messier Science Notes Again"
+				Name = "Read Messier Science Notes 9/9"
 				n.dialogue_text = n8
+				n.tick_dialogue()
+				current = 9
+			elif current == 9:
+				Name = "Read Messier Science Notes 1/9"
+				n.dialogue_text = n9
 				n.tick_dialogue()
 				current = 1

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/purifierambient.mp3-cf7076df4988a3fe578415ad8e6879c6.mp3str"
+
+[deps]
+
+source_file="res://Sounds/SoundEffects/purifierambient.mp3"
+dest_files=[ "res://.import/purifierambient.mp3-cf7076df4988a3fe578415ad8e6879c6.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

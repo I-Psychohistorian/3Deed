@@ -1187,6 +1187,7 @@ one_shot = true
 
 [node name="BehaviorTimer" type="Timer" parent="."]
 wait_time = 3.0
+one_shot = true
 
 [node name="Sight_radius" type="Area" parent="."]
 
@@ -1291,6 +1292,9 @@ cast_to = Vector3( 0, 0, -5 )
 wait_time = 0.4
 one_shot = true
 
+[node name="DebugTimer" type="Timer" parent="."]
+wait_time = 2.0
+
 [connection signal="timeout" from="WakeUpTimer" to="." method="_on_WakeUpTimer_timeout"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_AttackTimer_timeout"]
 [connection signal="timeout" from="NextAttackTimer" to="." method="_on_NextAttackTimer_timeout"]
@@ -1305,3 +1309,4 @@ one_shot = true
 [connection signal="timeout" from="BarfCooldown" to="." method="_on_BarfCooldown_timeout"]
 [connection signal="timeout" from="Slime_aggro" to="." method="_on_Slime_aggro_timeout"]
 [connection signal="timeout" from="HurtTimer" to="." method="_on_HurtTimer_timeout"]
+[connection signal="timeout" from="DebugTimer" to="." method="_on_DebugTimer_timeout"]

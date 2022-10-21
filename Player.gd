@@ -23,6 +23,7 @@ var mag_size = 12
 var sprint = false
 var exertion = false #for checking sprint stamina drain
 var hurt = false #ticks for hurt sound and possibly stuns?
+var dead = false
 
 var disease = false #checked for flesh damage and checked briefly afterwards
 var immunity = 20 #out of 100, subtracted from random integers to check infection
@@ -42,7 +43,7 @@ var dashing = false
 
 #inventory stuff
 var inv_weapons = []
-var powerups = 1
+var powerups = 5
 
 #inventory swapping variables
 var id = 2
@@ -64,6 +65,7 @@ var weapons = ["Handgun", "Knife", "Nothing", "Fairy Wand"]
 var equipped = ["Nothing"]
 var status_effects = []
 var vaccinated = false
+var serum_overdose = false
 
 var direction = Vector3()
 var velocity = Vector3()
@@ -77,6 +79,7 @@ onready var StabZone = $Head/Camera/EquipNode/StabZone
 onready var wand = $Head/Camera/EquipNode/FairyWand
 onready var handgun = $Head/Camera/EquipNode/PistolRight
 
+onready var OD = $ODTimer
 onready var crunch = $Cronch
 
 onready var interact_range = $Head/Camera/InteractPoint
@@ -87,6 +90,7 @@ onready var AoE = $Head/Camera/EquipNode/AoE_area
 func _ready():
 	#print(global_transform.origin)
 	#print(weapons)
+	hud.undie()
 	inv_weapons.append(weapons[2])
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	equipped = weapons[2]
@@ -136,49 +140,58 @@ func _process(delta):
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			mouse_hidden = false
 		elif mouse_hidden == false:
+			mouse_hidden = true
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 	if Input.is_action_pressed("jump") and is_on_floor():
-		sprint_check()
-		fall.y += speed
+		if dead == false:
+			sprint_check()
+			fall.y += speed
 		
 	if Input.is_action_pressed("LMB"):
-		if equipped == "Nothing":
-			pass
-		elif equipped == "Knife":
-			knife_stab()
-		elif equipped == "Fairy Wand":
-			wand_aoe()
-		elif equipped == "Handgun":
-			shoot()
+		if dead == false:
+			if equipped == "Nothing":
+				pass
+			elif equipped == "Knife":
+				knife_stab()
+			elif equipped == "Fairy Wand":
+				wand_aoe()
+			elif equipped == "Handgun":
+				shoot()
 	
 	if Input.is_action_pressed("RMB"):
-		if equipped == "Nothing":
-			pass 
-		elif equipped == "Knife":
-			pass
-		elif equipped == "Fairy Wand":
-			wand_dash()
-		elif equipped == "Handgun":
-			reload()
+		if dead == false:
+			if equipped == "Nothing":
+				pass 
+			elif equipped == "Knife":
+				pass
+			elif equipped == "Fairy Wand":
+				wand_dash()
+			elif equipped == "Handgun":
+				reload()
 	if Input.is_action_just_released("RMB"):
-		dashing = false
-		if equipped == 'Fairy Wand':
-			anim.play("IdleReturn")
+		if dead == false:
+			dashing = false
+			if equipped == 'Fairy Wand':
+				anim.play("IdleReturn")
 
 
 	if Input.is_action_pressed("forward"):
-		direction -= transform.basis.z
-		sprint_check()
+		if dead == false:
+			direction -= transform.basis.z
+			sprint_check()
 	elif Input.is_action_pressed("backward"):
-		direction += transform.basis.z
-		sprint_check()
+		if dead == false:
+			direction += transform.basis.z
+			sprint_check()
 	if Input.is_action_pressed("left"):
-		direction -= transform.basis.x
-		sprint_check()
+		if dead == false:
+			direction -= transform.basis.x
+			sprint_check()
 	elif Input.is_action_pressed("right"):
-		direction += transform.basis.x
-		sprint_check()
+		if dead == false:
+			direction += transform.basis.x
+			sprint_check()
 	direction = direction.normalized()
 	
 	velocity = velocity.linear_interpolate(direction * speed, acceleration * delta)
@@ -399,7 +412,13 @@ func weapon_chooser():
 	
 func handle_death():
 	if health < 0:
-		get_tree().change_scene("res://Levels/TestWorld.tscn")
+		if dead == false:
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+			dead = true
+			status_text = "You are dead!"
+			hud.status()
+			hud.die()
+
 
 func sprint_check():
 	if sprint == true:
@@ -566,17 +585,38 @@ func _on_E_cooldown_timeout():
 func _on_DiseaseTimer_timeout():
 	if disease == true:
 		if vaccinated == false:
-			status_text = "You feel an an achey chill in your muscles."
+			status_text = "You feel an an achey, pulsating chill in your flesh."
 			hud.status()
 			health -= 1
 			if stamina_regen >= -1:
 				stamina_regen -= 0.2
-		if vaccinated == true:
-			status_text = "You feel an light ache, and somewhat feverish"
+		elif vaccinated == true and serum_overdose == false:
+			status_text = "You feel an light ache, and somewhat feverish."
 			hud.status()
 			health -= 0.5
 			if stamina_regen >= -1:
 				stamina_regen -= 0.05
+		elif serum_overdose == true:
+			status_text = "You feel incredibly feverish in addition the chills."
+			hud.status()
+			take_damage(15)
+			stamina_regen = -3
 	elif disease == false:
 		stamina_regen = 1
-		
+		if serum_overdose == true:
+			status_text = "You feel incredibly feverish, like you're burning up from the inside."
+			hud.status()
+			take_damage(10)
+			stamina_regen = -2
+
+
+func _on_ODTimer_timeout():
+	serum_overdose = false
+	print('Outlasted Overdose')
+	if disease == true:
+		status_text = "Your fever subsides, you feel awful, but the creeping chill is gone."
+		disease = false
+	elif disease == false:
+		status_text = "Your fever subsides and you feel awful."
+	hud.status()
+	stamina_regen = 1

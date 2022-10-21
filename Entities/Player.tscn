@@ -1376,6 +1376,10 @@ stream = ExtResource( 26 )
 wait_time = 20.0
 autostart = true
 
+[node name="ODTimer" type="Timer" parent="."]
+wait_time = 120.0
+one_shot = true
+
 [connection signal="body_entered" from="Head/Camera/EquipNode/StabZone" to="." method="_on_StabZone_body_entered"]
 [connection signal="body_entered" from="Head/Camera/EquipNode/StabZone" to="Head/Camera/EquipNode/StabZone" method="_on_StabZone_body_entered"]
 [connection signal="body_entered" from="Head/Camera/EquipNode/AoE_area" to="." method="_on_AoE_area_body_entered"]
@@ -1388,5 +1392,6 @@ autostart = true
 [connection signal="timeout" from="ReloadTimer" to="." method="_on_ReloadTimer_timeout"]
 [connection signal="timeout" from="E_cooldown" to="." method="_on_E_cooldown_timeout"]
 [connection signal="timeout" from="DiseaseTimer" to="." method="_on_DiseaseTimer_timeout"]
+[connection signal="timeout" from="ODTimer" to="." method="_on_ODTimer_timeout"]
 
 [editable path="Head/Camera/EquipNode/Magazine"]

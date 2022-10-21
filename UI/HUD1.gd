@@ -64,7 +64,14 @@ func unsee_e():
 	interactable_seen = false
 	interact_text.hide()
 	examine_display.hide()
-	
+
+func die():
+	$DeathReturn.disabled = false
+	$DeathReturn.visible = true
+
+func undie():
+	$DeathReturn.disabled = true
+	$DeathReturn.visible = false
 
 
 func _on_DialogueTimer_timeout():
@@ -73,3 +80,7 @@ func _on_DialogueTimer_timeout():
 
 func _on_StatusTimer_timeout():
 	status_display.hide()
+
+
+func _on_Button_pressed():
+	get_tree().change_scene("res://Levels/TestWorld.tscn")

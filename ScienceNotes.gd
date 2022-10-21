@@ -6,7 +6,7 @@ var Name = "Read Messy Science Notes"
 var pickup = "Notes"
 onready var radius = $Area
 var active = true
-var n1 = "...flesh phage highly adaptable, but high load of fluid contact required for infection"
+var n1 = "...flesh phage highly adaptable, requires high fluid contact for infection. Unstable in open air."
 var n2 = "of three potential modes of cellular action at least two have been observed...avoid touching them at all costs.."
 var n3 = "Subversion of IFN pathway leads to chills but no fever. Still working on potential treatments..."
 

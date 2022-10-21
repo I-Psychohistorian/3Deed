@@ -110,5 +110,15 @@ one_shot = true
 wait_time = 3.0
 one_shot = true
 
+[node name="DeathReturn" type="Button" parent="."]
+visible = false
+margin_left = 421.0
+margin_top = 473.0
+margin_right = 552.0
+margin_bottom = 493.0
+disabled = true
+text = "Return To TestMap"
+
 [connection signal="timeout" from="DialogueTimer" to="." method="_on_DialogueTimer_timeout"]
 [connection signal="timeout" from="StatusTimer" to="." method="_on_StatusTimer_timeout"]
+[connection signal="pressed" from="DeathReturn" to="." method="_on_Button_pressed"]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Assets/asset package custom/particlePack_1.1/PNG (Transparent)/scorch_03.png" type="Texture" id=1]
 [ext_resource path="res://Entities/InteractableObjects/transparent.tres" type="Material" id=2]
 [ext_resource path="res://Sounds/SoundEffects/Breaking-glass-sound-effect.mp3" type="AudioStream" id=3]
+[ext_resource path="res://Entities/InteractableObjects/Glassware.gd" type="Script" id=4]
 
 [sub_resource type="CapsuleMesh" id=1]
 material = ExtResource( 2 )
@@ -34,7 +35,8 @@ scale = 0.1
 
 [sub_resource type="QuadMesh" id=5]
 
-[node name="Glassware" type="KinematicBody"]
+[node name="Glassware" type="KinematicBody" groups=["Destructible"]]
+script = ExtResource( 4 )
 
 [node name="Beaker" type="CSGCylinder" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0146535, -0.0475248, 0 )
@@ -83,7 +85,7 @@ height = 0.3
 cone = true
 material = ExtResource( 2 )
 
-[node name="CSGCylinder2" type="CSGCylinder" parent="Glass"]
+[node name="sda" type="CSGCylinder" parent="Glass"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.151934, -0.415913 )
 radius = 0.04
 height = 0.15
@@ -96,7 +98,7 @@ radius = 0.03
 height = 0.16
 material = ExtResource( 2 )
 
-[node name="MeshInstance" type="MeshInstance" parent="."]
+[node name="Stir" type="MeshInstance" parent="."]
 transform = Transform( 0.585396, 0.693855, -0.419376, -0.61426, 0.0419727, -0.787987, -0.529147, 0.71889, 0.450778, 0.0263315, 0.0390839, 0 )
 mesh = SubResource( 1 )
 
@@ -105,6 +107,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0502574, 0, -0.147487 )
 shape = SubResource( 2 )
 
 [node name="BreakTimer" type="Timer" parent="."]
+wait_time = 0.2
 
 [node name="BrokenGlass" type="Particles" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0473896, 0.177101, -0.264831 )
@@ -116,3 +119,5 @@ speed_scale = 2.0
 explosiveness = 1.0
 process_material = SubResource( 4 )
 draw_pass_1 = SubResource( 5 )
+
+[connection signal="timeout" from="BreakTimer" to="." method="_on_BreakTimer_timeout"]

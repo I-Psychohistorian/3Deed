@@ -137,10 +137,11 @@ func movement():
 					self.rotation.x = clamp(self.rotation.x, deg2rad(0), deg2rad(-0))
 					self.rotation.z = clamp(self.rotation.z, deg2rad(0), deg2rad(-0))
 	elif reorient_behavior == true:
-
 		if reorienting == false:
 			$AnimationPlayer.play("WalkCycle1")
 			reorienting = true
+			print('timerstart')
+			$BehaviorTimer.start()
 			rng.randomize()
 			var choice = rng.randi_range(1,2)
 			var x_z = rng.randi_range(0,3)
@@ -180,7 +181,7 @@ func movement():
 					move_modify_x = neg_pos
 				#print(move_modify_x)
 				#print(move_modify_z)
-			$BehaviorTimer.start()
+			
 		var direction = player_last_seen - self.global_transform.origin
 		direction.x += move_modify_x
 		direction.z += move_modify_z
@@ -209,7 +210,7 @@ func take_damage(damage):
 		elif hurt == true:
 			headblood.emitting = true
 	###
-		if aggro ==  false:
+		if aggro == false:
 			unseen_attacker = true
 			reorient_behavior = true
 	die()
@@ -249,8 +250,8 @@ func _on_Sight_radius_body_exited(body):
 	if body.is_in_group('Player'):
 		aggro = false
 		chase = false
-		decide_chase = false
-		reorient_behavior = true
+		if reorient_behavior == false:
+			reorient_behavior = true
 		player_last_seen = body.global_transform.origin
 	if body.is_in_group('Blob'):
 		slime_aggro = false
@@ -269,6 +270,7 @@ func _on_Behavior_radius_body_exited(body):
 
 func _on_WakeUpTimer_timeout():
 	chase = true
+	decide_chase = false
 
 
 func _on_BarfCooldown_timeout():
@@ -284,6 +286,8 @@ func _on_AttackTimer_timeout():
 		#print('Heightmax colliding')
 	#print(fall.y)
 	#climbing debug
+	
+	#wallstuck debug
 	var attack_zone = $attack_area.get_overlapping_bodies()
 	for body in attack_zone:
 		if body.is_in_group('Player'):
@@ -362,3 +366,12 @@ func _on_Behavior_radius_body_entered(body):
 
 func _on_HurtTimer_timeout():
 	hurt = false
+
+
+func _on_DebugTimer_timeout():
+	print("aggro is ", aggro)
+	print("reorienting behavior is ", reorient_behavior)
+	print("reorienting is", reorienting)
+	print('walking is ', walking)
+	print('chase is ', chase)
+	

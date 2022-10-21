@@ -36,3 +36,4 @@ func take_damage(damage):
 
 func die():
 	emit_signal("die_space")
+	queue_free()

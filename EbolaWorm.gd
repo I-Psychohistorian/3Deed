@@ -17,13 +17,14 @@ onready var damage_zone = $DamageArea
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Spawn_Antigrav.start()
+	$SuckAttack.play()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if shot == true:
 		gravity = 0
-		move_speed = 3.1
+		move_speed = 3
 	elif shot == false:
 		gravity = 2
 		move_speed = 2.2

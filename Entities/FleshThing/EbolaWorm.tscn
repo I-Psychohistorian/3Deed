@@ -242,15 +242,17 @@ one_shot = true
 
 [node name="SuckAttack" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 4 )
+unit_size = 3.0
 pitch_scale = 2.03
 
 [node name="Hurt" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 5 )
+unit_size = 5.0
 
 [node name="Ambient" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 6 )
 unit_size = 10.0
-max_db = -5.23
+max_db = 1.938
 pitch_scale = 1.43
 autoplay = true
 

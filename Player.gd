@@ -74,6 +74,8 @@ var direction = Vector3()
 var velocity = Vector3()
 var fall = Vector3()
 
+onready var micro_image = $Head/Camera/MicroscopeImage
+
 onready var head = $Head
 onready var hud = $Head/Camera/HUD
 onready var knife = $Head/Camera/EquipNode/Knife

@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=2]
+[gd_scene load_steps=69 format=2]
 
 [ext_resource path="res://Assets/asset package custom/kenneyretrourban/Models/GLTF format/roof.material" type="Material" id=1]
 [ext_resource path="res://Assets/asset package custom/kenneyretrourban/Models/GLTF format/asphalt.material" type="Material" id=2]
@@ -45,6 +45,12 @@
 [ext_resource path="res://Levels/ExplosionManager.gd" type="Script" id=43]
 [ext_resource path="res://Levels/Glass.gd" type="Script" id=44]
 [ext_resource path="res://Levels/Knockback.gd" type="Script" id=45]
+[ext_resource path="res://Entities/InteractableObjects/MicroscopeAndSlides.tscn" type="PackedScene" id=46]
+[ext_resource path="res://Entities/InteractableObjects/MicroscopeAlone.tscn" type="PackedScene" id=47]
+[ext_resource path="res://Entities/InteractableObjects/Bucket.tscn" type="PackedScene" id=48]
+[ext_resource path="res://Entities/InteractableObjects/Mop.tscn" type="PackedScene" id=49]
+[ext_resource path="res://Assets/asset package custom/retro medieval 3d/Models/GLTF format/planks.material" type="Material" id=50]
+[ext_resource path="res://Entities/FleshThing/BudPustule.tscn" type="PackedScene" id=51]
 
 [sub_resource type="Image" id=26]
 data = {
@@ -185,6 +191,9 @@ width = 1.39948
 height = 1.12232
 depth = 1.2347
 material = ExtResource( 10 )
+
+[node name="Pustule" parent="CSGCombiner/FirstRoom" instance=ExtResource( 51 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.85188, 0, 5.3982 )
 
 [node name="Hall1" type="CSGBox" parent="CSGCombiner"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.98245, -0.163481, 0 )
@@ -419,7 +428,7 @@ transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -10.103
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75422, 1.62707, 2.38419e-07 )
 
 [node name="Spatial3" type="Spatial" parent="CSGCombiner/DoorRoom"]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -10.1227, -1.49175, 2.94413 )
+transform = Transform( -1, 0, -1.50996e-07, 0, 1.1, 0, 1.50996e-07, 0, -1, -10.1227, -1.75568, 2.94413 )
 
 [node name="Door" parent="CSGCombiner/DoorRoom/Spatial3" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75422, 1.62707, 2.38419e-07 )
@@ -431,30 +440,36 @@ width = 3.45463
 height = 3.09576
 material = ExtResource( 1 )
 
-[node name="Room3" type="CSGBox" parent="CSGCombiner"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14.2408, 0, -23.1121 )
+[node name="Closet" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14.2408, 0, -24.604 )
 invert_faces = true
-width = 8.0
+width = 4.58618
 height = 3.2
-depth = 8.0
-material = ExtResource( 4 )
+depth = 5.08434
+material = ExtResource( 10 )
 
-[node name="CSGBox" type="CSGBox" parent="CSGCombiner/Room3"]
+[node name="CSGBox" type="CSGBox" parent="CSGCombiner/Closet"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.39744, 0 )
 invert_faces = true
-width = 7.89604
+width = 4.46157
 height = 0.427182
-depth = 7.96274
-material = ExtResource( 2 )
+depth = 4.97964
+material = ExtResource( 1 )
 
-[node name="CSGBox2" type="CSGBox" parent="CSGCombiner/Room3"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.14423, -1.09135, 3.32344 )
+[node name="CSGBox2" type="CSGBox" parent="CSGCombiner/Closet"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.363845, 0.240433, 2.17636 )
 operation = 2
 invert_faces = true
-width = 1.39948
-height = 1.12232
-depth = 1.2347
-material = ExtResource( 10 )
+width = 3.80562
+height = 0.219229
+depth = 0.765893
+material = ExtResource( 50 )
+
+[node name="Bucket" parent="CSGCombiner/Closet" instance=ExtResource( 48 )]
+transform = Transform( -0.343159, 0, -0.492181, 0, 0.6, 0, 0.492181, 0, -0.343159, -1.8568, -1.28528, 1.4373 )
+
+[node name="Mop" parent="CSGCombiner/Closet/Bucket" instance=ExtResource( 49 )]
+transform = Transform( -1.44658, -0.413349, -0.717171, 0.0928829, -1.51593, 0.686372, -0.822535, 0.555766, 1.33878, 0.479331, 2.11494, -0.738247 )
 
 [node name="Lab" type="CSGBox" parent="CSGCombiner"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.9972, 0, -66.4396 )
@@ -521,6 +536,9 @@ script = ExtResource( 43 )
 
 [node name="OxygenTank" parent="CSGCombiner/Lab/Lab Spatial/ExplosionManager" instance=ExtResource( 42 )]
 transform = Transform( -0.973841, 0, 0.227229, 0, 1, 0, -0.227229, 0, -0.973841, -0.189527, -0.59941, 4.31837 )
+
+[node name="MicroscopeAlone" parent="CSGCombiner/Lab/Lab Spatial/ExplosionManager/OxygenTank" instance=ExtResource( 47 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3884, 0.0766958, 9.24253 )
 
 [node name="Explosion" type="Area" parent="CSGCombiner/Lab/Lab Spatial/ExplosionManager"]
 
@@ -659,6 +677,9 @@ transform = Transform( 0.208347, 0.545421, -0.00288066, -4.36546e-08, 0.0031689,
 [node name="EmptyNeedleModel" parent="CSGCombiner/Lab Office/FridgeUnit" instance=ExtResource( 37 )]
 transform = Transform( 0.0216702, 0.599436, -2.62022e-08, 0, -2.62268e-08, -0.6, -0.49953, 0.0260042, -1.13668e-09, 1.90735e-06, -0.395952, -0.22818 )
 
+[node name="Microscope" parent="CSGCombiner/Lab Office" instance=ExtResource( 46 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.43572, -0.518942, 1.51051 )
+
 [node name="Hall7" type="CSGBox" parent="CSGCombiner"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.1223, -0.163481, -66.6166 )
 invert_faces = true
@@ -695,6 +716,90 @@ height = 3.09576
 depth = 4.38292
 material = ExtResource( 16 )
 
+[node name="ConcreteRoom" type="CSGBox" parent="CSGCombiner/HallChamber"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -24.3054, 3.88564, -26.0306 )
+invert_faces = true
+width = 20.0
+height = 12.0
+depth = 20.0
+material = ExtResource( 10 )
+
+[node name="FleshLump" parent="CSGCombiner/HallChamber/ConcreteRoom" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 2, 6.01316, 0 )
+
+[node name="FleshLump2" parent="CSGCombiner/HallChamber/ConcreteRoom" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.05252, -6.02618, -0.997723 )
+
+[node name="Pustule" parent="CSGCombiner/HallChamber/ConcreteRoom" instance=ExtResource( 51 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0383, 5.65574, 0 )
+
+[node name="FleshLump3" parent="CSGCombiner/HallChamber/ConcreteRoom" instance=ExtResource( 7 )]
+transform = Transform( 2, 0, 0, 0, -1.5, 4.52987e-07, 0, -2.26494e-07, -3, -2.56404, 6.01316, 0 )
+
+[node name="FleshLump4" parent="CSGCombiner/HallChamber/ConcreteRoom" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0.204063, 6.01316, -4.19315 )
+
+[node name="FleshLump5" parent="CSGCombiner/HallChamber/ConcreteRoom" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -1.90735e-06, -10.0182 )
+
+[node name="FleshLump6" parent="CSGCombiner/HallChamber/ConcreteRoom" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.99173, 2.02684 )
+
+[node name="FleshLump7" parent="CSGCombiner/HallChamber/ConcreteRoom" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.05954, -6.01002, 1.16475 )
+
+[node name="FleshLump8" parent="CSGCombiner/HallChamber/ConcreteRoom" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.94262, -3.58826 )
+
+[node name="Pustule2" parent="CSGCombiner/HallChamber/ConcreteRoom" instance=ExtResource( 51 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.21579, -5.659, -0.0378227 )
+
+[node name="Pustule3" parent="CSGCombiner/HallChamber/ConcreteRoom" instance=ExtResource( 51 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.192394, 0.0191202, -9.85893 )
+
+[node name="Pustule4" parent="CSGCombiner/HallChamber/ConcreteRoom" instance=ExtResource( 51 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.04438, -5.51974, 1.22799 )
+
+[node name="Branch" type="CSGBox" parent="CSGCombiner/HallChamber"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -42.2154, 0.397454, -26.0306 )
+invert_faces = true
+width = 4.75163
+height = 5.0
+depth = 17.5793
+material = ExtResource( 10 )
+
+[node name="Branch2" type="CSGBox" parent="CSGCombiner/HallChamber"]
+transform = Transform( 0.94228, 0, -0.334827, 0, 1, 0, 0.334827, 0, 0.94228, -50.9881, 0.397454, -20.5728 )
+invert_faces = true
+width = 4.75163
+height = 5.0
+depth = 17.5793
+material = ExtResource( 10 )
+
+[node name="Branch3" type="CSGBox" parent="CSGCombiner/HallChamber"]
+transform = Transform( 0.931368, 0, 0.36408, 0, 1, 0, -0.36408, 0, 0.931368, -50.9881, 0.397454, -35.319 )
+invert_faces = true
+width = 4.75163
+height = 5.0
+depth = 17.5793
+material = ExtResource( 10 )
+
+[node name="ConcreteRoom2" type="CSGBox" parent="CSGCombiner/HallChamber"]
+transform = Transform( -0.354471, 0, -0.935067, 0, 1, 0, 0.935067, 0, -0.354471, -56.7348, 0.397454, -8.25197 )
+invert_faces = true
+width = 20.0
+height = 5.0
+depth = 20.0
+material = ExtResource( 10 )
+
+[node name="ConcreteRoom3" type="CSGBox" parent="CSGCombiner/HallChamber"]
+transform = Transform( -0.900698, 0, -0.434445, 0, 1, 0, 0.434445, 0, -0.900698, -56.7348, 0.397454, -47.9261 )
+invert_faces = true
+width = 20.0
+height = 5.0
+depth = 20.0
+material = ExtResource( 10 )
+
 [node name="Hall11" type="CSGBox" parent="CSGCombiner"]
 transform = Transform( 1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, -11.4262, -0.0777954, -58.9645 )
 invert_faces = true
@@ -708,8 +813,16 @@ transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.37679
 [node name="Door" parent="CSGCombiner/Hall11/Spatial4" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75422, 1.62707, 2.38419e-07 )
 
+[node name="Nesthall" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( 1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, -26.5855, -0.0777954, -30.9453 )
+invert_faces = true
+width = 22.5213
+height = 3.09576
+depth = 3.62396
+material = ExtResource( 1 )
+
 [node name="Player" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.831, 0, -68.0253 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.559481, 0, -0.898098 )
 
 [node name="RigidKnifePowerup" parent="." instance=ExtResource( 5 )]
 transform = Transform( 0.103539, -0.994625, 0, 0.994625, 0.103539, 0, 0, 0, 1, 2.952, -0.403724, 2.93164 )

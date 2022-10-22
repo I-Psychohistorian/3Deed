@@ -269,6 +269,7 @@ shape = SubResource( 3 )
 mesh = SubResource( 4 )
 skin = SubResource( 5 )
 parent_collision_ignore = NodePath("../CollisionShape")
+ray_pickable = false
 pinned_points = [ 1204, 1168, 1122, 1152, 208, 231, 221, 249, 1133, 1048, 1159, 1144, 238 ]
 attachments/0/point_index = 1204
 attachments/0/spatial_attachment_path = NodePath("../Skeleton/CoreBone")

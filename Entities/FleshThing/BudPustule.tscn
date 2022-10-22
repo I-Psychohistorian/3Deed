@@ -1,0 +1,165 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://Assets/asset package custom/particlePack_1.1/PNG (Transparent)/dirt_02.png" type="Texture" id=1]
+[ext_resource path="res://Entities/FleshThing/FleshBud.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Pustule.gd" type="Script" id=3]
+[ext_resource path="res://Sounds/CompleteMouthSounds/FleshyBlorp.mp3" type="AudioStream" id=4]
+
+[sub_resource type="SphereShape" id=52]
+radius = 0.6
+
+[sub_resource type="OpenSimplexNoise" id=47]
+
+[sub_resource type="NoiseTexture" id=48]
+width = 1000
+height = 1000
+seamless = true
+noise = SubResource( 47 )
+
+[sub_resource type="NoiseTexture" id=49]
+width = 700
+height = 700
+seamless = true
+noise = SubResource( 47 )
+noise_offset = Vector2( 400, 0 )
+
+[sub_resource type="NoiseTexture" id=50]
+width = 800
+height = 500
+seamless = true
+noise = SubResource( 47 )
+noise_offset = Vector2( -100, 0 )
+
+[sub_resource type="AnimatedTexture" id=51]
+flags = 7
+frames = 3
+fps = 2.0
+frame_0/texture = SubResource( 48 )
+frame_1/texture = SubResource( 49 )
+frame_1/delay_sec = 0.0
+frame_2/texture = SubResource( 50 )
+frame_2/delay_sec = 0.0
+
+[sub_resource type="SpatialMaterial" id=53]
+flags_transparent = true
+albedo_color = Color( 0.643137, 0.164706, 0.164706, 0.756863 )
+albedo_texture = SubResource( 51 )
+metallic = 1.0
+
+[sub_resource type="SphereMesh" id=54]
+material = SubResource( 53 )
+radius = 0.6
+height = 1.0
+radial_segments = 4
+rings = 4
+
+[sub_resource type="Curve" id=55]
+_data = [ Vector2( 0, 0.5125 ), 0.0, 0.56855, 0, 0, Vector2( 1, 0.154545 ), -0.723923, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=41]
+curve = SubResource( 55 )
+
+[sub_resource type="ParticlesMaterial" id=56]
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 1.0
+angular_velocity = 800.0
+angular_velocity_random = 1.0
+radial_accel = 3.0
+tangential_accel = 3.0
+scale = 0.5
+scale_curve = SubResource( 41 )
+color = Color( 0.196078, 0.0117647, 0.0117647, 1 )
+
+[sub_resource type="SpatialMaterial" id=42]
+flags_transparent = true
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 1 )
+
+[sub_resource type="QuadMesh" id=57]
+material = SubResource( 42 )
+
+[sub_resource type="CapsuleShape" id=58]
+radius = 3.93006
+height = 40.0
+
+[node name="Pustule" type="KinematicBody" groups=["Enemy"]]
+script = ExtResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 52 )
+
+[node name="Shell" type="Skeleton" parent="."]
+
+[node name="BoneAttachment" type="BoneAttachment" parent="Shell"]
+
+[node name="SoftBody" type="SoftBody" parent="Shell"]
+mesh = SubResource( 54 )
+skeleton = NodePath("../..")
+ray_pickable = false
+pinned_points = [ 0, 11, 12, 13, 10, 6, 5, 8, 7, 17, 18, 16 ]
+attachments/0/point_index = 0
+attachments/0/spatial_attachment_path = NodePath("../BoneAttachment")
+attachments/0/offset = Vector3( 0, 0.5, 0 )
+attachments/1/point_index = 11
+attachments/1/spatial_attachment_path = NodePath("../BoneAttachment")
+attachments/1/offset = Vector3( 0, -0.154509, 0.570634 )
+attachments/2/point_index = 12
+attachments/2/spatial_attachment_path = NodePath("../BoneAttachment")
+attachments/2/offset = Vector3( 0.570634, -0.154509, 3.49401e-17 )
+attachments/3/point_index = 13
+attachments/3/spatial_attachment_path = NodePath("../BoneAttachment")
+attachments/3/offset = Vector3( 6.98802e-17, -0.154509, -0.570634 )
+attachments/4/point_index = 10
+attachments/4/spatial_attachment_path = NodePath("../BoneAttachment")
+attachments/4/offset = Vector3( -1.3976e-16, 0.154508, 0.570634 )
+attachments/5/point_index = 6
+attachments/5/spatial_attachment_path = NodePath("../BoneAttachment")
+attachments/5/offset = Vector3( 0, 0.154508, 0.570634 )
+attachments/6/point_index = 5
+attachments/6/spatial_attachment_path = NodePath("../BoneAttachment")
+attachments/6/offset = Vector3( -8.63767e-17, 0.404509, 0.352671 )
+attachments/7/point_index = 8
+attachments/7/spatial_attachment_path = NodePath("../BoneAttachment")
+attachments/7/offset = Vector3( 6.98802e-17, 0.154508, -0.570634 )
+attachments/8/point_index = 7
+attachments/8/spatial_attachment_path = NodePath("../BoneAttachment")
+attachments/8/offset = Vector3( 0.570634, 0.154508, 3.49401e-17 )
+attachments/9/point_index = 17
+attachments/9/spatial_attachment_path = NodePath("../BoneAttachment")
+attachments/9/offset = Vector3( 0.352671, -0.404509, 2.15942e-17 )
+attachments/10/point_index = 18
+attachments/10/spatial_attachment_path = NodePath("../BoneAttachment")
+attachments/10/offset = Vector3( 4.31883e-17, -0.404509, -0.352671 )
+attachments/11/point_index = 16
+attachments/11/spatial_attachment_path = NodePath("../BoneAttachment")
+attachments/11/offset = Vector3( 0, -0.404509, 0.352671 )
+
+[node name="FleshBud" parent="." instance=ExtResource( 2 )]
+
+[node name="HeadSplatter2" type="Particles" parent="."]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.0573053, 0.0324844 )
+emitting = false
+amount = 16
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.75
+process_material = SubResource( 56 )
+draw_pass_1 = SubResource( 57 )
+
+[node name="pop_radius" type="Area" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="pop_radius"]
+transform = Transform( -4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 0, 0, 0 )
+shape = SubResource( 58 )
+
+[node name="popsound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 4 )
+unit_size = 10.0
+
+[connection signal="body_entered" from="pop_radius" to="." method="_on_pop_radius_body_entered"]

@@ -35,46 +35,47 @@ func use():
 	for n in bodies:
 		if n.is_in_group("Player"):
 			if current == 1:
-				Name = "Read Messier Science Notes 2/9"
+				Name = "Messier Science Notes 2/9"
 				n.dialogue_text = n1
 				n.tick_dialogue()
 				current = 2
 			elif current == 2:
+				Name = "Messier Science Notes 3/9"
 				n.dialogue_text = n2
 				n.tick_dialogue()
 				current = 3
 			elif current == 3:
-				Name = "Read Messier Science Notes 3/9"
+				Name = "Messier Science Notes 4/9"
 				n.dialogue_text = n3
 				n.tick_dialogue()
 				current = 4
 			elif current == 4:
-				Name = "Read Messier Science Notes 4/9"
+				Name = "Messier Science Notes 5/9"
 				n.dialogue_text = n4
 				n.tick_dialogue()
 				current = 5
 			elif current == 5:
-				Name = "Messier Science Notes 5/9"
+				Name = "Messier Science Notes 6/9"
 				n.dialogue_text = n5
 				n.tick_dialogue()
 				current = 6
 			elif current == 6:
-				Name = "Read Messier Science Notes 6/9"
+				Name = "Messier Science Notes 7/9"
 				n.dialogue_text = n6
 				n.tick_dialogue()
 				current = 7
 			elif current == 7:
-				Name = "Read Messier Science Notes7/9"
+				Name = "Messier Science Notes 8/9"
 				n.dialogue_text = n7
 				n.tick_dialogue()
 				current = 8
 			elif current == 8:
-				Name = "Read Messier Science Notes 9/9"
+				Name = "Messier Science Notes 9/9"
 				n.dialogue_text = n8
 				n.tick_dialogue()
 				current = 9
 			elif current == 9:
-				Name = "Read Messier Science Notes 1/9"
+				Name = "Messier Science Notes 1/9"
 				n.dialogue_text = n9
 				n.tick_dialogue()
 				current = 1

@@ -12,8 +12,10 @@ var hurt = false
 
 var dead = false
 var disease = true
+var vaccinated = true
 
 onready var parasite = preload("res://Entities/FleshThing/FleshBud.tscn")
+onready var ebolaparasite = preload("res://Entities/FleshThing/EbolaWorm.tscn")
 
 
 # Called when the node enters the scene tree for the first time.
@@ -64,6 +66,12 @@ func die():
 	#deathtimer
 	#deaethsound
 	#SpawnEbolaWorm
+
+func check_vax():
+	if vaccinated == false:
+		parasite = ebolaparasite
+	elif vaccinated == true:
+		parasite = parasite
 
 func _on_DeathTimer_timeout():
 	pass

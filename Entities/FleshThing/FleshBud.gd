@@ -4,6 +4,7 @@ extends KinematicBody
 var Name = "FleshFlu"
 var health = 25
 var damage = 2
+var awake = true
 var aggro = false
 var dead = false
 var anim_playing = false
@@ -13,8 +14,11 @@ var gravity = 5
 var fall = Vector3()
 var falling = true
 
+signal bud_died
+
 onready var aggro_zone = $Sight
 onready var damage_zone = $damage_zone
+onready var collisions = $CollisionShape
 
 var random = RandomNumberGenerator.new()
 var x_spin = 0
@@ -56,7 +60,8 @@ func _process(delta):
 	elif is_on_ceiling():
 		fall.y = 0
 	elif not is_on_floor():
-		fall.y -= gravity * delta
+		if awake == true:
+			fall.y -= gravity * delta
 	elif is_on_floor():
 		fall.y = 0
 	
@@ -83,6 +88,7 @@ func die():
 	if health <= 0:
 		if dead == false:
 			dead = true
+			emit_signal("bud_died")
 			$DeathTimer.start()
 			$HurtSound.play()
 			$HeadSplatter2.emitting = true
@@ -92,9 +98,12 @@ func _on_DeathTimer_timeout():
 
 func _on_Sight_body_entered(body):
 	if body.is_in_group('Player'):
-		aggro = true
-		sound_check = false
+		if awake == true:
+			aggro = true
+			sound_check = false
 
+func collide():
+	collisions.disabled = false
 
 func _on_Sight_body_exited(body):
 	if body.is_in_group('Player'):

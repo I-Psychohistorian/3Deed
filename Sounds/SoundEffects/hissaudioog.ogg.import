@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/hissaudioog.ogg-9f5d327617664b596519fbeadbf1205f.oggstr"
+
+[deps]
+
+source_file="res://Sounds/SoundEffects/hissaudioog.ogg"
+dest_files=[ "res://.import/hissaudioog.ogg-9f5d327617664b596519fbeadbf1205f.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

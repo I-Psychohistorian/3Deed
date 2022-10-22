@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/debrisexplodereimport.mp3-ed8e553ba58fff04510b0065eb114f66.mp3str"
+
+[deps]
+
+source_file="res://Sounds/SoundEffects/debrisexplodereimport.mp3"
+dest_files=[ "res://.import/debrisexplodereimport.mp3-ed8e553ba58fff04510b0065eb114f66.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

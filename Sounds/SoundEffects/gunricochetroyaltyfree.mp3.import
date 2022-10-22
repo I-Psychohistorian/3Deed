@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/gunricochetroyaltyfree.mp3-2f0eef1a97f846bb15421da98ee47d5f.mp3str"
+
+[deps]
+
+source_file="res://Sounds/SoundEffects/gunricochetroyaltyfree.mp3"
+dest_files=[ "res://.import/gunricochetroyaltyfree.mp3-2f0eef1a97f846bb15421da98ee47d5f.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

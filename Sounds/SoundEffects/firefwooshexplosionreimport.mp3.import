@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/firefwooshexplosionreimport.mp3-952766daddebfaa48cfefc7ba69c9de9.mp3str"
+
+[deps]
+
+source_file="res://Sounds/SoundEffects/firefwooshexplosionreimport.mp3"
+dest_files=[ "res://.import/firefwooshexplosionreimport.mp3-952766daddebfaa48cfefc7ba69c9de9.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -67,6 +67,9 @@ var status_effects = []
 var vaccinated = false
 var serum_overdose = false
 
+signal gunshot #for starting gas fires
+var muzzle_coords = Vector3()
+
 var direction = Vector3()
 var velocity = Vector3()
 var fall = Vector3()
@@ -86,6 +89,7 @@ onready var interact_range = $Head/Camera/InteractPoint
 onready var gun_range = $Head/Camera/GunRayCast
 onready var AoE = $Head/Camera/EquipNode/AoE_area
 
+onready var muzzle_explode = preload("res://Effects/GasFirespread.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#print(global_transform.origin)
@@ -416,6 +420,7 @@ func handle_death():
 		if dead == false:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			dead = true
+			$Head/Camera/EquipNode.visible = false
 			status_text = "You are dead!"
 			hud.status()
 			hud.die()
@@ -484,6 +489,8 @@ func shoot():
 		if ammo_in_gun > 0:
 			ammo_in_gun -= 1
 			anim.play("Shoot")
+			muzzle_coords = $Head/Camera/EquipNode/PistolRight.global_transform.origin
+			emit_signal("gunshot")
 			if gun_range.is_colliding():
 				var target = gun_range.get_collider()
 				if target.is_in_group('Enemy'):
@@ -492,6 +499,11 @@ func shoot():
 					target.take_damage(gun_damage)
 		elif ammo_in_gun == 0:
 			$Click.play()
+
+func muzzle_fire():
+	var e = muzzle_explode.instance()
+	$Head/Camera/EquipNode.add_child(e)
+	
 
 func reload():
 	var ejected_mag = 0

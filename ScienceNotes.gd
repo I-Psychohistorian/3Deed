@@ -49,3 +49,7 @@ func use():
 				note3.visible = false
 				note1.visible = true
 				current = 1
+
+
+func _on_OxygenTank_explode():
+	queue_free()

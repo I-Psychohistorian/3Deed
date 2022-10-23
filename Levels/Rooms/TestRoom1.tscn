@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Assets/asset package custom/kenneyretrourban/Models/GLTF format/roof.material" type="Material" id=1]
+[ext_resource path="res://Entities/FleshThing/FleshLump.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Entities/InteractableObjects/laptopalt.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Entities/FleshThing/BudPustule.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Entities/InteractableObjects/RollerChair.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/asset package custom/kenneyretrourban/Models/GLTF format/metal.material" type="Material" id=6]
+
+[node name="TestRoom1" type="CSGBox"]
+invert_faces = true
+width = 0.3
+height = 2.9
+material = ExtResource( 1 )
+
+[node name="Room" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.11354, 0.50643, 0 )
+invert_faces = true
+width = 6.0
+height = 4.0
+depth = 6.0
+material = ExtResource( 1 )
+
+[node name="CSGBox" type="CSGBox" parent="Room"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.47199, -1.44234, -2.03346 )
+operation = 2
+invert_faces = true
+width = 1.0
+height = 1.2
+material = ExtResource( 6 )
+
+[node name="FleshLump" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.78683, -1.45887, 0 )
+
+[node name="Pustule" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.80626, -1.12835, 0 )
+
+[node name="RollerChair" parent="." instance=ExtResource( 5 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 3.51403, -0.736753, -1.94986 )
+
+[node name="laptop2" parent="." instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6.01339, 0.182623, -2.05394 )

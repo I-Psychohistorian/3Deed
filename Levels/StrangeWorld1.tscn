@@ -269,7 +269,7 @@ wait_time = 3.0
 one_shot = true
 
 [node name="Tripod" parent="." instance=ExtResource( 12 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02179, 1.52417 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.954151, 1.83867, 1.52417 )
 
 [connection signal="body_exited" from="Portal Manager/Area" to="Portal Manager" method="_on_Area_body_exited"]
 [connection signal="timeout" from="Portal Manager/CloseTimer" to="Portal Manager" method="_on_CloseTimer_timeout"]

@@ -1,0 +1,276 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://Assets/asset package custom/AllSkyFree_Godot-10e858fef0a9c5fa071de8bc191c3b4bef00edda/Screenshots/_0007_AllSkyFree_Screen_03.jpg" type="Texture" id=1]
+[ext_resource path="res://Entities/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://CSGSphere.gd" type="Script" id=3]
+[ext_resource path="res://Effects/PurpleGrass.tres" type="Material" id=4]
+[ext_resource path="res://Levels/CSGSphere2.gd" type="Script" id=5]
+[ext_resource path="res://Levels/SkySphere3.gd" type="Script" id=6]
+[ext_resource path="res://Levels/SkySphere5.gd" type="Script" id=7]
+[ext_resource path="res://Sounds/SoundEffects/MagicSounds/MagicShort2.mp3" type="AudioStream" id=8]
+[ext_resource path="res://Assets/asset package custom/kenney sci fi sounds/spaceEngineLow_001.ogg" type="AudioStream" id=9]
+[ext_resource path="res://Effects/PortalTexture.tres" type="Material" id=10]
+[ext_resource path="res://Levels/Portal Manager.gd" type="Script" id=11]
+[ext_resource path="res://Entities/Tripod.tscn" type="PackedScene" id=12]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_texture = ExtResource( 1 )
+
+[sub_resource type="SpatialMaterial" id=2]
+flags_transparent = true
+albedo_color = Color( 0.901961, 0.854902, 0.470588, 0.670588 )
+albedo_texture = ExtResource( 1 )
+
+[sub_resource type="CylinderShape" id=3]
+
+[sub_resource type="SpatialMaterial" id=4]
+flags_transparent = true
+albedo_color = Color( 1, 1, 1, 0 )
+
+[node name="StrangeWorld1" type="Spatial"]
+
+[node name="SkySphere1" type="CSGSphere" parent="."]
+use_collision = true
+invert_faces = true
+radius = 90.0
+radial_segments = 16
+rings = 8
+material = SubResource( 1 )
+script = ExtResource( 3 )
+
+[node name="SkySphere2" type="CSGSphere" parent="."]
+transform = Transform( 0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0, 0 )
+use_collision = true
+invert_faces = true
+radius = 90.0
+radial_segments = 16
+rings = 8
+material = SubResource( 2 )
+script = ExtResource( 5 )
+
+[node name="SkySphere3" type="CSGSphere" parent="."]
+transform = Transform( 0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 21.5374, 0, 0 )
+use_collision = true
+invert_faces = true
+radius = 90.0
+radial_segments = 16
+rings = 8
+material = SubResource( 2 )
+script = ExtResource( 6 )
+
+[node name="SkySphere4" type="CSGSphere" parent="."]
+transform = Transform( 0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -21.537, 0, 0 )
+use_collision = true
+invert_faces = true
+radius = 90.0
+radial_segments = 16
+rings = 8
+material = SubResource( 2 )
+script = ExtResource( 6 )
+
+[node name="SkySphere5" type="CSGSphere" parent="."]
+transform = Transform( 0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0, -21.537 )
+use_collision = true
+invert_faces = true
+radius = 90.0
+radial_segments = 16
+rings = 8
+material = SubResource( 2 )
+script = ExtResource( 7 )
+
+[node name="SkySphere6" type="CSGSphere" parent="."]
+transform = Transform( 0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0, 21.537 )
+use_collision = true
+invert_faces = true
+radius = 90.0
+radial_segments = 16
+rings = 8
+material = SubResource( 2 )
+script = ExtResource( 7 )
+
+[node name="OmniLight" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15.7958, 0 )
+light_color = Color( 0.894118, 0.360784, 0.0431373, 1 )
+light_energy = 4.187
+omni_range = 200.0
+
+[node name="OmniLight2" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 61.2555, 0 )
+light_color = Color( 1, 0.537255, 0, 1 )
+light_energy = 0.183
+omni_range = 200.0
+
+[node name="CSGCombiner" type="CSGCombiner" parent="."]
+use_collision = true
+
+[node name="Island1" type="CSGCylinder" parent="CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, -0.296412, 0 )
+radius = 5.0
+height = 1.5
+cone = true
+material = ExtResource( 4 )
+
+[node name="CSGSphere" type="CSGSphere" parent="CSGCombiner/Island1"]
+transform = Transform( 3.34807, 7.64347e-09, 0.582874, -8.91738e-08, 0.3, -7.59003e-09, -1.02003, -1.1385e-09, 1.91318, -1.03132, -0.600612, -3.14428 )
+radius = 0.955178
+material = ExtResource( 4 )
+
+[node name="CSGSphere2" type="CSGSphere" parent="CSGCombiner/Island1"]
+transform = Transform( 2.86977, 2.03826e-09, 0.874311, -7.64347e-08, 0.08, -1.13851e-08, -0.874311, -3.03601e-10, 2.86977, -1.26359, -0.731563, 2.64798 )
+radius = 0.955178
+material = ExtResource( 4 )
+
+[node name="CSGSphere3" type="CSGSphere" parent="CSGCombiner/Island1"]
+transform = Transform( -0.582265, 5.68597e-09, 1.626, -7.10746e-08, 0.08, -2.76652e-07, -0.812999, -1.10661e-08, -1.16453, 2.5684, -0.731563, 3.19156 )
+radius = 0.955178
+material = ExtResource( 4 )
+
+[node name="UpBump2" type="CSGCylinder" parent="CSGCombiner/Island1"]
+transform = Transform( 1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 2.50527, -0.84547, -1.72736 )
+radius = 1.41613
+height = 0.2
+cone = true
+material = ExtResource( 4 )
+
+[node name="UpBump" type="CSGCylinder" parent="CSGCombiner/Island1"]
+transform = Transform( 1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, -2.2699, -0.990809, 0.423265 )
+radius = 3.0
+height = 0.5
+cone = true
+material = ExtResource( 4 )
+
+[node name="Downbump" type="CSGCylinder" parent="CSGCombiner/Island1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.68715, 0.00661489, 2.49797 )
+radius = 2.0
+height = 1.5
+cone = true
+material = ExtResource( 4 )
+
+[node name="Neg" type="CSGCylinder" parent="CSGCombiner/Island1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.26721, -0.677964, 3.03254 )
+operation = 2
+radius = 1.41613
+height = 0.35
+cone = true
+material = ExtResource( 4 )
+
+[node name="CSGSphere4" type="CSGSphere" parent="CSGCombiner/Island1"]
+transform = Transform( 1.51145, 0.0137404, -1.80157, 0.0459599, 0.299485, 0.114108, 3.15649, -0.0109401, 0.861003, 3.15552, -0.540648, -0.934912 )
+radius = 0.955178
+material = ExtResource( 4 )
+
+[node name="Island2" type="CSGCylinder" parent="CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -6.68258, -5.31849, -17.1169 )
+radius = 7.29653
+height = 3.0
+cone = true
+material = ExtResource( 4 )
+
+[node name="UpBump3" type="CSGCylinder" parent="CSGCombiner/Island2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.17985, -0.994473, 1.72736 )
+radius = 5.04933
+cone = true
+material = ExtResource( 4 )
+
+[node name="Neg" type="CSGCylinder" parent="CSGCombiner/Island2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.22365, -1.05009, 1.89449 )
+operation = 2
+radius = 1.72505
+height = 0.911082
+cone = true
+material = ExtResource( 4 )
+
+[node name="CSGSphere" type="CSGSphere" parent="CSGCombiner/Island2"]
+transform = Transform( 3, 0, 0, 0, 0.4, 0, 0, 0, 3, -4.29927, -1.43003, 0.0678139 )
+material = ExtResource( 4 )
+
+[node name="CSGSphere2" type="CSGSphere" parent="CSGCombiner/Island2"]
+transform = Transform( 3.49073, 6.35703e-10, 0.145432, -2.22496e-08, 0.1, -4.62862e-10, -0.254506, -2.31442e-11, 1.99471, 3.36824, -1.46959, 5.49398 )
+radius = 0.955178
+material = ExtResource( 4 )
+
+[node name="CSGSphere3" type="CSGSphere" parent="CSGCombiner/Island2"]
+transform = Transform( 3, 0, 0, 0, 0.5, 0, 0, 0, 3, 0.431983, -1.39089, 1.07084 )
+operation = 2
+material = ExtResource( 4 )
+
+[node name="CSGSphere4" type="CSGSphere" parent="CSGCombiner/Island2"]
+transform = Transform( 4.99102, 1.04761e-09, 0.179748, -2.61902e-08, 0.2, -4.71175e-10, -0.299581, -3.14131e-11, 2.99461, -0.712283, -1.37937, -5.22206 )
+material = ExtResource( 4 )
+
+[node name="CSGSphere5" type="CSGSphere" parent="CSGCombiner/Island2"]
+transform = Transform( 2.42868, 1.02641e-08, 3.52222, -1.53961e-07, 0.2, -9.98925e-08, -1.76111, -3.32975e-09, 4.85736, 6.25572, -1.27639, -1.93462 )
+material = ExtResource( 4 )
+
+[node name="CSGSphere6" type="CSGSphere" parent="CSGCombiner/Island2"]
+transform = Transform( 3, 0, 0, 0, 0.4, 0, 0, 0, 3, 8.07234, -1.23348, 3.35977 )
+material = ExtResource( 4 )
+
+[node name="CSGCylinder" type="CSGCylinder" parent="CSGCombiner/Island2/CSGSphere6"]
+transform = Transform( 1, 0, 0, 0, 0.999999, 1.7053e-13, 0, 0, 1, -0.313494, 1.44497, 0 )
+height = 3.16455
+cone = true
+material = ExtResource( 4 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0 )
+
+[node name="Portal Manager" type="Spatial" parent="."]
+script = ExtResource( 11 )
+
+[node name="Area" type="Area" parent="Portal Manager"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.4465, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Portal Manager/Area"]
+shape = SubResource( 3 )
+
+[node name="ZenPortal" type="CSGCylinder" parent="Portal Manager"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 41.0985, 0 )
+invert_faces = true
+radius = 1.5
+height = 60.0
+material = ExtResource( 10 )
+
+[node name="PortalClose" type="AudioStreamPlayer" parent="Portal Manager/ZenPortal"]
+stream = ExtResource( 8 )
+pitch_scale = 0.74
+
+[node name="Ambient" type="AudioStreamPlayer" parent="Portal Manager/ZenPortal"]
+stream = ExtResource( 9 )
+volume_db = -2.622
+pitch_scale = 0.88
+autoplay = true
+
+[node name="OmniLight" type="OmniLight" parent="Portal Manager/ZenPortal"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 19.499, 0 )
+light_color = Color( 0.27451, 0.0117647, 1, 1 )
+light_energy = 16.0
+omni_range = 62.033
+
+[node name="Iris" type="CSGCylinder" parent="Portal Manager/ZenPortal"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -29.6984, 0 )
+radius = 0.001
+material = ExtResource( 10 )
+
+[node name="CSGCylinder" type="CSGCylinder" parent="Portal Manager"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16.5893, 0 )
+use_collision = true
+invert_faces = true
+radius = 1.6
+height = 100.0
+material = SubResource( 4 )
+
+[node name="CloseTimer" type="Timer" parent="Portal Manager"]
+wait_time = 0.2
+one_shot = true
+
+[node name="LeaveTimer" type="Timer" parent="Portal Manager"]
+wait_time = 3.0
+one_shot = true
+
+[node name="Tripod" parent="." instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02179, 1.52417 )
+
+[connection signal="body_exited" from="Portal Manager/Area" to="Portal Manager" method="_on_Area_body_exited"]
+[connection signal="timeout" from="Portal Manager/CloseTimer" to="Portal Manager" method="_on_CloseTimer_timeout"]
+[connection signal="timeout" from="Portal Manager/LeaveTimer" to="Portal Manager" method="_on_LeaveTimer_timeout"]

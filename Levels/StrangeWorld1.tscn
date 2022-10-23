@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Assets/asset package custom/AllSkyFree_Godot-10e858fef0a9c5fa071de8bc191c3b4bef00edda/Screenshots/_0007_AllSkyFree_Screen_03.jpg" type="Texture" id=1]
 [ext_resource path="res://Entities/Player.tscn" type="PackedScene" id=2]
@@ -12,6 +12,9 @@
 [ext_resource path="res://Effects/PortalTexture.tres" type="Material" id=10]
 [ext_resource path="res://Levels/Portal Manager.gd" type="Script" id=11]
 [ext_resource path="res://Entities/Tripod.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Entities/InteractableObjects/OrangeStorm.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Sounds/SoundEffects/PhysicalSounds/WindLoop.mp3" type="AudioStream" id=14]
+[ext_resource path="res://Entities/InteractableObjects/PortalDiamond1.tscn" type="PackedScene" id=15]
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_texture = ExtResource( 1 )
@@ -26,6 +29,9 @@ albedo_texture = ExtResource( 1 )
 [sub_resource type="SpatialMaterial" id=4]
 flags_transparent = true
 albedo_color = Color( 1, 1, 1, 0 )
+
+[sub_resource type="SphereShape" id=5]
+radius = 60.0
 
 [node name="StrangeWorld1" type="Spatial"]
 
@@ -212,6 +218,9 @@ height = 3.16455
 cone = true
 material = ExtResource( 4 )
 
+[node name="PortalDiamond1" parent="CSGCombiner" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, -0.053312, 0.998578, 0, -0.998578, -0.053312, -6.54114, -4.23555, -17.1878 )
+
 [node name="Player" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0 )
 
@@ -268,9 +277,51 @@ one_shot = true
 wait_time = 3.0
 one_shot = true
 
-[node name="Tripod" parent="." instance=ExtResource( 12 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.954151, 1.83867, 1.52417 )
+[node name="TripodStorm" type="Spatial" parent="."]
+
+[node name="Tripod" parent="TripodStorm" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.17779, 1.83867, 9.83268 )
+
+[node name="OrangeStorm" parent="TripodStorm" instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.60265, 9.3941 )
+
+[node name="OrangeStorm2" parent="TripodStorm" instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.5811, 3.50019, 2.04534 )
+
+[node name="Tripod2" parent="TripodStorm" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.85846, -12.3764 )
+
+[node name="OrangeStorm3" parent="TripodStorm" instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5262, 12.1928, 14.429 )
+
+[node name="OrangeStorm4" parent="TripodStorm" instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11.2796, 3.54642, -8.96336 )
+
+[node name="OrangeStorm5" parent="TripodStorm" instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10.9771, 0 )
+
+[node name="OrangeStorm6" parent="TripodStorm" instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.74791, -14.6289, 17.5059 )
+
+[node name="OrangeStorm7" parent="TripodStorm" instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11.1268, 0, -30.5612 )
+
+[node name="OrangeStorm8" parent="TripodStorm" instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.3305, 0, -22.1828 )
+
+[node name="OrangeStorm9" parent="TripodStorm" instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11.6613, 5.51942, -17.2593 )
+
+[node name="Wind" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )
+autoplay = true
+
+[node name="DeathZone" type="Area" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="DeathZone"]
+shape = SubResource( 5 )
 
 [connection signal="body_exited" from="Portal Manager/Area" to="Portal Manager" method="_on_Area_body_exited"]
 [connection signal="timeout" from="Portal Manager/CloseTimer" to="Portal Manager" method="_on_CloseTimer_timeout"]
 [connection signal="timeout" from="Portal Manager/LeaveTimer" to="Portal Manager" method="_on_LeaveTimer_timeout"]
+[connection signal="body_exited" from="DeathZone" to="SkySphere1" method="_on_DeathZone_body_exited"]

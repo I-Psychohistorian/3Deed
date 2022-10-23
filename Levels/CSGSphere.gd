@@ -13,9 +13,4 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	self.rotate_y(deg2rad(0.1))
-
-
-func _on_DeathZone_body_exited(body):
-	if body.is_in_group('Player'):
-		body.take_damage(1000)
+	rotate_x(0.0001)

@@ -66,6 +66,7 @@ var equipped = ["Nothing"]
 var status_effects = []
 var vaccinated = false
 var serum_overdose = false
+var hungry = true
 
 signal gunshot #for starting gas fires
 var muzzle_coords = Vector3()

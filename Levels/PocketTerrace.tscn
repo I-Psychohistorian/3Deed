@@ -1,0 +1,151 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://CSGSphere2.gd" type="Script" id=1]
+[ext_resource path="res://Assets/asset package custom/kenneyretrourban/Models/GLTF format/grass.material" type="Material" id=2]
+[ext_resource path="res://Assets/asset package custom/kenney sci fi sounds/spaceEngineLow_001.ogg" type="AudioStream" id=3]
+[ext_resource path="res://Effects/PortalTexture.tres" type="Material" id=4]
+[ext_resource path="res://Entities/Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/asset package custom/kenneyretrourban/Models/GLTF format/wall_lines.material" type="Material" id=6]
+[ext_resource path="res://Assets/asset package custom/AllSkyFree_Godot-10e858fef0a9c5fa071de8bc191c3b4bef00edda/Screenshots/_0009_AllSkyFree_Screen_01.jpg" type="Texture" id=7]
+[ext_resource path="res://Sounds/SoundEffects/MagicSounds/MagicShort2.mp3" type="AudioStream" id=8]
+[ext_resource path="res://Entities/Static/tree1.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Assets/kenneyfood/Models/DAE format/apple.dae" type="PackedScene" id=10]
+[ext_resource path="res://Entities/InteractableObjects/Apple.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Levels/CSGSphere.gd" type="Script" id=12]
+[ext_resource path="res://Entities/InteractableObjects/PortalDiamond1.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Entities/InteractableObjects/Door.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Assets/asset package custom/retro medieval 3d/Models/GLTF format/bricks.material" type="Material" id=15]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_texture = ExtResource( 7 )
+
+[sub_resource type="SpatialMaterial" id=2]
+flags_transparent = true
+albedo_color = Color( 1, 1, 1, 0 )
+
+[sub_resource type="CapsuleShape" id=3]
+radius = 1.17896
+
+[sub_resource type="CapsuleShape" id=4]
+radius = 0.526667
+
+[node name="PocketTerrace" type="Spatial"]
+
+[node name="CSGSphere" type="CSGSphere" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.662646, -0.748933, 0, 0.748933, 0.662646, 0, 8.80567, 0 )
+invert_faces = true
+radius = 16.027
+material = SubResource( 1 )
+script = ExtResource( 12 )
+
+[node name="CSGCylinder" type="CSGCylinder" parent="."]
+transform = Transform( 1.2, 0, 0, 0, 1, 0, 0, 0, 1.2, 0, 0, 0 )
+use_collision = true
+invert_faces = true
+radius = 5.0
+height = 4.0
+material = ExtResource( 6 )
+
+[node name="Ground" type="CSGCylinder" parent="CSGCylinder"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.0275, 0 )
+invert_faces = true
+radius = 5.0
+height = 0.1
+material = ExtResource( 2 )
+
+[node name="Sky" type="CSGCylinder" parent="CSGCylinder"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0318, 0 )
+invert_faces = true
+radius = 5.0
+height = 0.1
+material = SubResource( 2 )
+
+[node name="CSGBox" type="CSGBox" parent="CSGCylinder"]
+transform = Transform( 0.920757, 0, 0.390137, 0, 1, 0, -0.390137, 0, 0.920757, -1.93329, -0.441264, -5.2654 )
+invert_faces = true
+height = 3.0
+material = ExtResource( 15 )
+
+[node name="Door" parent="CSGCylinder/CSGBox" instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 1.1, 0, 0, 0, 1, -0.996972, 0.0635116, 0.930459 )
+
+[node name="Player" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.685844, 3.87832 )
+
+[node name="CSGSphere2" type="CSGSphere" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.32093 )
+invert_faces = true
+radius = 2.00827
+material = ExtResource( 4 )
+script = ExtResource( 1 )
+
+[node name="CSGSphere2" type="CSGSphere" parent="CSGSphere2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.174022 )
+radius = 2.08211
+material = ExtResource( 4 )
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="CSGSphere2"]
+stream = ExtResource( 8 )
+autoplay = true
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="CSGSphere2"]
+stream = ExtResource( 3 )
+autoplay = true
+
+[node name="Timer" type="Timer" parent="CSGSphere2"]
+wait_time = 1.5
+one_shot = true
+autostart = true
+
+[node name="Tree" type="KinematicBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.12399, 0 )
+
+[node name="tree1" parent="Tree" instance=ExtResource( 9 )]
+transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0 )
+
+[node name="Apple" parent="Tree/tree1" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.458095, 1.17244, 0.305964 )
+
+[node name="Apple2" parent="Tree/tree1" instance=ExtResource( 11 )]
+transform = Transform( 0.986005, -0.166717, 0, 0.166717, 0.986005, 0, 0, 0, 1, 0.60239, 1.41839, 0.527699 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Tree"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 3.02543, 0.0630949 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="Tree"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.656241, 0 )
+shape = SubResource( 4 )
+
+[node name="apple" parent="Tree" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.335739, 1.60595, 0.946226 )
+
+[node name="apple2" parent="Tree" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.588897, 2.35757, 1.21705 )
+
+[node name="apple3" parent="Tree" instance=ExtResource( 10 )]
+transform = Transform( -0.984458, 0.0113215, -0.175255, 0.0712756, 0.937796, -0.339793, 0.160507, -0.347003, -0.924027, 0.335739, 3.72994, 0.946226 )
+
+[node name="apple4" parent="Tree" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.193233, 2.05005, -0.887602 )
+
+[node name="apple5" parent="Tree" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.872959, 1.85081, -0.475427 )
+
+[node name="apple6" parent="Tree" instance=ExtResource( 10 )]
+transform = Transform( 0.953995, -0.299823, 0, 0.299823, 0.953995, 0, 0, 0, 1, 1.0213, 2.54074, 0.00297016 )
+
+[node name="apple7" parent="Tree" instance=ExtResource( 10 )]
+transform = Transform( 0.340191, 0.871978, 0.352029, -0.254727, 0.445812, -0.858117, -0.905198, 0.202253, 0.373778, -0.793172, 3.70883, -0.552863 )
+
+[node name="CSGBox" type="CSGBox" parent="."]
+transform = Transform( 1.10491, 0, 0.468164, 0, 1, 0, -0.468164, 0, 1.10491, -3.17014, -0.441264, -8.72115 )
+width = 4.0
+height = 4.0
+depth = 3.0
+material = ExtResource( 15 )
+
+[node name="PortalDiamond1" parent="CSGBox" instance=ExtResource( 13 )]
+transform = Transform( 0.747043, 0.446101, 0.0076533, -0.50162, 0.663137, 0.0426379, 0.0174319, -0.0352508, 0.898957, -0.624418, -0.168819, 1.581 )
+
+[connection signal="timeout" from="CSGSphere2/Timer" to="CSGSphere2" method="_on_Timer_timeout"]

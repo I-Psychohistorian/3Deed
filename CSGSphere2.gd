@@ -8,14 +8,16 @@ extends CSGSphere
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	$Timer.start()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	self.rotate_y(deg2rad(0.1))
+	self.radius -= 0.05
+	$CSGSphere2.radius -= 0.05
+	
 
 
-func _on_DeathZone_body_exited(body):
-	if body.is_in_group('Player'):
-		body.take_damage(1000)
+
+func _on_Timer_timeout():
+	queue_free()

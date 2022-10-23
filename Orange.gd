@@ -21,6 +21,7 @@ func use():
 			body.stamina += 5
 			body.health += 1
 			body.crunch.play()
+			body.hungry = false
 			body.dialogue_text = eat_text
 			body.tick_dialogue()
 			queue_free()

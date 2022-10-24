@@ -28,7 +28,13 @@ onready var examine_display = $TextOverlay/Text
 onready var dialogue_display = $DialogueBox/DialogueLabel
 onready var status_display = $DialogueBox/Status
 # Called when the node enters the scene tree for the first time.
+
+#menu and save ui
+var menu_toggle = false
+
 func _ready():
+	$MainMenu.enabled = false
+	$MainMenu.toggle()
 	pass # Replace with function body.
 
 
@@ -46,6 +52,16 @@ func _process(delta):
 		sprint_display.text = "Sprint Off"
 	if sprint == true:
 		sprint_display.text = "Sprint On"
+
+func menu_visible():
+	if menu_toggle == true:
+		menu_toggle = false
+		$MainMenu.visible = true
+		$MainMenu.toggle()
+	elif menu_toggle == false:
+		menu_toggle = true
+		$MainMenu.visible = false
+		$MainMenu.toggle()
 
 func dialogue():
 	dialogue_display.show()

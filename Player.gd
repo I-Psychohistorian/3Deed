@@ -188,10 +188,13 @@ func _process(delta):
 		if mouse_hidden == true:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			mouse_hidden = false
+			hud.menu_toggle = true
+			hud.menu_visible()
 		elif mouse_hidden == false:
-			mouse_hidden = true
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	
+			mouse_hidden = true
+			hud.menu_toggle = false
+			hud.menu_visible()
 	if Input.is_action_pressed("jump") and is_on_floor():
 		if dead == false:
 			sprint_check()

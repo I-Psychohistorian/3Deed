@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://UI/HUD1.gd" type="Script" id=1]
+[ext_resource path="res://UI/MainMenu.tscn" type="PackedScene" id=2]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource( 1 )
@@ -118,6 +119,9 @@ margin_right = 552.0
 margin_bottom = 493.0
 disabled = true
 text = "Return To TestMap"
+
+[node name="MainMenu" parent="." instance=ExtResource( 2 )]
+visible = false
 
 [connection signal="timeout" from="DialogueTimer" to="." method="_on_DialogueTimer_timeout"]
 [connection signal="timeout" from="StatusTimer" to="." method="_on_StatusTimer_timeout"]

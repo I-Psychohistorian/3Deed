@@ -646,6 +646,18 @@ tracks/23/keys = {
 "update": 0,
 "values": [ false ]
 }
+tracks/24/type = "value"
+tracks/24/path = NodePath("PistolRight/BangLight:visible")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
 
 [sub_resource type="Animation" id=32]
 resource_name = "Reload"
@@ -833,6 +845,18 @@ tracks/6/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("PistolRight/BangLight:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -1267,6 +1291,13 @@ explosiveness = 0.29
 randomness = 0.79
 process_material = SubResource( 41 )
 draw_pass_1 = SubResource( 42 )
+
+[node name="BangLight" type="OmniLight" parent="Head/Camera/EquipNode/PistolRight"]
+transform = Transform( 0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, -3.72529e-09, 0.0128287, 0.0344905 )
+visible = false
+light_color = Color( 0.980392, 0.901961, 0.466667, 1 )
+light_energy = 1.172
+omni_range = 7.0
 
 [node name="FairyWand" type="MeshInstance" parent="Head/Camera/EquipNode"]
 transform = Transform( -0.0991378, -0.0131028, 8.65192e-09, -0.0129674, 0.0981132, -0.0143406, 0.00187901, -0.014217, -0.0989664, 0.344526, -0.342276, 0.280668 )

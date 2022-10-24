@@ -12,10 +12,12 @@ var stamina_max = 100
 var stamina_regen = 1
 var stamina = 100
 var health = 100
-var status = false
-
 var ammo = 0 
 var ammo_in_gun = 0
+
+var status = false
+
+
 var loaded = true
 var mag_size = 12
 
@@ -63,10 +65,14 @@ var mouse_sensitivity = 0.05
 
 var weapons = ["Handgun", "Knife", "Nothing", "Fairy Wand"]
 var equipped = ["Nothing"]
+
 var status_effects = []
 var vaccinated = false
 var serum_overdose = false
+var keycard = false
+var dimensional_keys = 0
 var hungry = true
+var Murders = 0
 
 signal gunshot #for starting gas fires
 var muzzle_coords = Vector3()
@@ -94,9 +100,15 @@ onready var AoE = $Head/Camera/EquipNode/AoE_area
 
 onready var muzzle_explode = preload("res://Effects/GasFirespread.tscn")
 # Called when the node enters the scene tree for the first time.
+
+#screen position stuff
+var screen_size = OS.get_screen_size()
+var window_size = OS.get_window_size()
+
+
 func _ready():
-	#print(global_transform.origin)
-	#print(weapons)
+	OS.set_window_position(screen_size*0.5 - window_size*0.5)
+	get_start_stats()
 	hud.undie()
 	$Head/FluDeath.visible = false
 	inv_weapons.append(weapons[2])
@@ -119,6 +131,35 @@ func _input(event):
 	if event.is_action_pressed("quit"):
 		get_tree().quit()
 
+func get_start_stats():
+	powerups = GameManager.powerups
+	inv_weapons = GameManager.unlocked_weapons
+	health = GameManager.health
+	stamina = GameManager.stamina
+	disease = GameManager.disease
+	vaccinated = GameManager.vaccinated
+	immunity = GameManager.immunity
+	serum_overdose = GameManager.serum_overdose
+	ammo = GameManager.ammo
+	ammo_in_gun = GameManager.ammo_in_gun
+	Murders = GameManager.Murders
+	keycard = GameManager.keycard
+	dimensional_keys = GameManager.dimensional_keys
+
+func update_stats_GM():
+	GameManager.powerups = powerups
+	GameManager.unlocked_weapons = inv_weapons
+	GameManager.health = health
+	GameManager.stamina = stamina
+	GameManager.disease = disease
+	GameManager.vaccinated = vaccinated
+	GameManager.immunity = immunity
+	GameManager.serum_overdose = serum_overdose
+	GameManager.ammo = ammo
+	GameManager.ammo_in_gun = ammo_in_gun
+	GameManager.Murders = Murders
+	GameManager.keycard = keycard
+	GameManager.dimensional_keys = dimensional_keys
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -430,6 +471,21 @@ func handle_death():
 			if disease == true:
 				$Head/FluDeath.visible = true
 				print('diseased death')
+			powerups = 1
+			stamina = 100
+			health = 100
+			ammo = 0 
+			ammo_in_gun = 0
+			vaccinated = false
+			immunity = 20
+			serum_overdose = false
+			keycard = false
+			dimensional_keys = 0
+			hungry = true
+			Murders = 0
+			inv_weapons = []
+			update_stats_GM()
+
 
 
 func sprint_check():

@@ -1,7 +1,58 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Effects/brownnoise.tres" type="Material" id=1]
 [ext_resource path="res://Tripod.gd" type="Script" id=2]
+
+[sub_resource type="Animation" id=8]
+resource_name = "Death"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Skeleton/Central/LeftLeg2:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 38.525, -50.998, -37.5642 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Skeleton/Central/RightLeg:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 78.786, 48.6257, 59.0726 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Skeleton/Central/TopLeg:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( -38.3479, -60.2812, 47.3847 ), Vector3( -47.0407, -97.1355, 92.5934 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ), Vector3( 0.3, 0.3, 0.3 ) ]
+}
 
 [sub_resource type="Animation" id=5]
 resource_name = "Pulse"
@@ -82,6 +133,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [ Vector3( -38.3479, -60.2812, 47.3847 ) ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ) ]
+}
 
 [sub_resource type="Animation" id=2]
 resource_name = "Test"
@@ -102,6 +165,7 @@ radius = 20.0
 script = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Death = SubResource( 8 )
 anims/Pulse = SubResource( 5 )
 anims/RESET = SubResource( 1 )
 anims/Test = SubResource( 2 )
@@ -126,6 +190,7 @@ radius = 0.1
 material = ExtResource( 1 )
 
 [node name="RightLeg" type="Spatial" parent="Skeleton/Central"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 
 [node name="Rightleg" type="MeshInstance" parent="Skeleton/Central/RightLeg"]
 transform = Transform( 0.648033, 0.466406, 0.602095, -0.232391, 0.873944, -0.426869, -0.725291, 0.136703, 0.674733, 0.243044, -0.112181, 0.264928 )
@@ -169,4 +234,18 @@ shape = SubResource( 7 )
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 
+[node name="HealthDegen" type="Timer" parent="."]
+wait_time = 4.0
+autostart = true
+
+[node name="DeathTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Attention" type="Timer" parent="."]
+wait_time = 12.0
+autostart = true
+
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="HealthDegen" to="." method="_on_HealthDegen_timeout"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_DeathTimer_timeout"]
+[connection signal="timeout" from="Attention" to="." method="_on_Attention_timeout"]

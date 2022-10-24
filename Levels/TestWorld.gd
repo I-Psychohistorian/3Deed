@@ -18,9 +18,11 @@ func _ready():
 
 func _on_Teleporter_body_entered(body):
 	if body.is_in_group("Player"):
+		body.update_stats_GM
 		get_tree().change_scene("res://Levels/GlorpChamber.tscn")
 
 
 func _on_SecondTeleporter_body_entered(body):
 	if body.is_in_group("Player"):
+		body.update_stats_GM
 		get_tree().change_scene("res://Levels/TestDungeon.tscn")

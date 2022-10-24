@@ -18,6 +18,7 @@ func _ready():
 
 func _on_TeleportArea_body_entered(body):
 	if body.is_in_group("Player"):
+		body.update_stats_GM()
 		var choice = rng.randi_range(1,2)
 		if choice == 1:
 			get_tree().change_scene(hub)

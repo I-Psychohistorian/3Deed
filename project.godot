@@ -14,6 +14,10 @@ config/name="ESCAPE FROM THE BOZO DIMENSION"
 run/main_scene="res://Levels/TestWorld.tscn"
 config/icon="res://Assets/weaponsk/Sprites/Silhouette/knife_sharp.png"
 
+[autoload]
+
+GameManager="*res://UI/GameManager.gd"
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true

@@ -6,6 +6,7 @@ var health = 10
 var active = true
 var searching = true
 var target_chosen = false
+var alive = true
 
 var speed = 0.25
 var personality = 1
@@ -34,7 +35,14 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	seek_light()
-	move()
+	if alive == true:
+		move()
+	
+
+
+func die():
+	$AnimationPlayer.play("Death")
+	$DeathTimer.start()
 
 func move():
 	if target_chosen == true:
@@ -58,8 +66,23 @@ func seek_light():
 func take_damage(damage):
 	health -= damage
 	if health <= 0:
-		queue_free()
+		if alive == true:
+			alive = false
+			die()
 
 #sprinter behavior
 func _on_Timer_timeout():
 	speed -= 1
+
+
+func _on_HealthDegen_timeout():
+	take_damage(1)
+	print("Tripod Health ", health)
+
+
+func _on_DeathTimer_timeout():
+	queue_free()
+
+
+func _on_Attention_timeout():
+	target_chosen = false

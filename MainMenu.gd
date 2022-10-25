@@ -18,10 +18,10 @@ func _ready():
 	var dir = Directory.new()
 	if not dir.file_exists(save_path):
 		$VBoxContainer/Load.disabled = true
-		$VBoxContainer/Save.text = "Save"
+		$VBoxContainer/Save.text = "Save Checkpoint"
 	else:
 		$VBoxContainer/Load.disabled = false
-		$VBoxContainer/Save.text = "Overwrite Save"
+		$VBoxContainer/Save.text = "Overwrite Save Checkpoint"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

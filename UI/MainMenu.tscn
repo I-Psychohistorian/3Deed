@@ -12,40 +12,40 @@ margin_right = 40.0
 margin_bottom = 40.0
 
 [node name="StartResume" type="Button" parent="VBoxContainer"]
-margin_right = 82.0
+margin_right = 117.0
 margin_bottom = 20.0
 text = "New Game"
 
 [node name="Load" type="Button" parent="VBoxContainer"]
 margin_top = 24.0
-margin_right = 82.0
+margin_right = 117.0
 margin_bottom = 44.0
-text = "Load"
+text = "Load Checkpoint"
 
 [node name="Save" type="Button" parent="VBoxContainer"]
 margin_top = 48.0
-margin_right = 82.0
+margin_right = 117.0
 margin_bottom = 68.0
 disabled = true
-text = "Save"
+text = "Save Checkpoint"
 
 [node name="Controls" type="Button" parent="VBoxContainer"]
 margin_top = 72.0
-margin_right = 82.0
+margin_right = 117.0
 margin_bottom = 92.0
 disabled = true
 text = "Controls"
 
 [node name="Settings" type="Button" parent="VBoxContainer"]
 margin_top = 96.0
-margin_right = 82.0
+margin_right = 117.0
 margin_bottom = 116.0
 disabled = true
 text = "Settings"
 
 [node name="Quit" type="Button" parent="VBoxContainer"]
 margin_top = 120.0
-margin_right = 82.0
+margin_right = 117.0
 margin_bottom = 140.0
 text = "Quit"
 

@@ -51,4 +51,6 @@ margin_bottom = 140.0
 text = "Quit"
 
 [connection signal="pressed" from="VBoxContainer/StartResume" to="." method="_on_StartResume_pressed"]
+[connection signal="pressed" from="VBoxContainer/Save" to="." method="_on_Save_pressed"]
+[connection signal="pressed" from="VBoxContainer/Load" to="." method="_on_Load_pressed"]
 [connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_Quit_pressed"]

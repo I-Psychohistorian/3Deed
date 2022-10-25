@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Assets/asset package custom/kenney impact sounds/impactMetal_medium_002.ogg" type="AudioStream" id=1]
+[ext_resource path="res://Assets/asset package custom/kenneyretrourban/Models/GLTF format/metal.material" type="Material" id=2]
+[ext_resource path="res://Assets/asset package custom/kenneyretrourban/Models/GLTF format/roof.material" type="Material" id=4]
+[ext_resource path="res://SmallSafeDoor.gd" type="Script" id=5]
+
+[sub_resource type="CubeMesh" id=1]
+material = ExtResource( 2 )
+size = Vector3( 0.05, 0.45, 0.55 )
+
+[sub_resource type="CubeMesh" id=2]
+material = ExtResource( 2 )
+size = Vector3( 0.05, 0.2, 0.05 )
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 0.025, 0.225, 0.255 )
+
+[node name="OpenSafe" type="CSGBox"]
+use_collision = true
+width = 0.6
+height = 0.5
+depth = 0.6
+material = ExtResource( 2 )
+
+[node name="CSGBox" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0602299 )
+operation = 2
+width = 0.5
+height = 0.4
+depth = 0.5
+material = ExtResource( 4 )
+
+[node name="SmallSafeDoor" type="KinematicBody" parent="." groups=["Interactable"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.242384, 0, 0.254453 )
+script = ExtResource( 5 )
+
+[node name="MeshInstance" type="MeshInstance" parent="SmallSafeDoor"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0619138, 0, 0.258599 )
+mesh = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="SmallSafeDoor/MeshInstance"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0335782, 0.0256482, 0.197755 )
+mesh = SubResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="SmallSafeDoor"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0616612, 0, 0.27948 )
+shape = SubResource( 3 )
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SmallSafeDoor"]
+stream = ExtResource( 1 )

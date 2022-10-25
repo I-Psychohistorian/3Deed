@@ -1,7 +1,7 @@
 extends KinematicBody
 
 
-var Name = "BasicDoor"
+var Name = "Door"
 var active = true
 var health = 50
 # Called when the node enters the scene tree for the first time.

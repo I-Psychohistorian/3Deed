@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Sounds/SoundEffects/PhysicalSounds/Smack.mp3" type="AudioStream" id=1]
+[ext_resource path="res://Crate.gd" type="Script" id=2]
+[ext_resource path="res://Assets/asset package custom/kenney platform models/crate.glb" type="PackedScene" id=3]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 0.271234, 0.263641, 0.300981 )
+
+[node name="Crate" type="KinematicBody" groups=["Destructible"]]
+transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0 )
+script = ExtResource( 2 )
+
+[node name="crate" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.987422, -0.30418, -0.492679 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0143666, -0.0554987, 0.00140864 )
+shape = SubResource( 1 )
+
+[node name="Hit" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 1 )
+pitch_scale = 0.75
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

@@ -77,6 +77,8 @@ var Murders = 0
 signal gunshot #for starting gas fires
 var muzzle_coords = Vector3()
 
+var current_level = 0
+
 var direction = Vector3()
 var velocity = Vector3()
 var fall = Vector3()
@@ -107,6 +109,8 @@ var window_size = OS.get_window_size()
 
 
 func _ready():
+	current_level = get_parent()
+	print(current_level)
 	OS.set_window_position(screen_size*0.5 - window_size*0.5)
 	get_start_stats()
 	hud.undie()

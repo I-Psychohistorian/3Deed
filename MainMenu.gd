@@ -35,3 +35,11 @@ func _on_StartResume_pressed():
 
 func _on_Quit_pressed():
 	get_tree().quit()
+
+
+func _on_Save_pressed():
+	var state_data = GameManager.instance()
+	var level_data = 0
+
+func _on_Load_pressed():
+	pass # Replace with function body.

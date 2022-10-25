@@ -1,0 +1,139 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Assets/asset package custom/kenneyretrourban/Models/GLTF format/metal.material" type="Material" id=1]
+[ext_resource path="res://Assets/asset package custom/kenney rpg audio/doorClose_2.ogg" type="AudioStream" id=2]
+[ext_resource path="res://KeyCardDoor.gd" type="Script" id=3]
+[ext_resource path="res://Hinge.gd" type="Script" id=4]
+[ext_resource path="res://Assets/asset package custom/kenneyretrourban/Models/GLTF format/roof_plates.material" type="Material" id=5]
+[ext_resource path="res://Assets/asset package custom/kenney sci fi sounds/doorOpen_002.ogg" type="AudioStream" id=6]
+[ext_resource path="res://Assets/asset package custom/kenney sci fi sounds/forceField_004.ogg" type="AudioStream" id=7]
+
+[sub_resource type="CubeMesh" id=1]
+material = ExtResource( 5 )
+size = Vector3( 2, 3, 0.25 )
+
+[sub_resource type="SpatialMaterial" id=2]
+resource_name = "_defaultMat"
+vertex_color_use_as_albedo = true
+albedo_color = Color( 0.129412, 0.129412, 0.129412, 1 )
+metallic = 0.35
+roughness = 0.5
+emission_enabled = true
+emission = Color( 0, 0, 0, 1 )
+emission_energy = 1.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="SpatialMaterial" id=3]
+flags_transparent = true
+albedo_color = Color( 0.960784, 0.937255, 0.745098, 0.168627 )
+
+[sub_resource type="SphereMesh" id=4]
+material = SubResource( 3 )
+radius = 0.05
+height = 0.1
+
+[sub_resource type="BoxShape" id=5]
+extents = Vector3( 1, 1.5, 0.15 )
+
+[sub_resource type="BoxShape" id=6]
+extents = Vector3( 3, 3, 3 )
+
+[node name="Hinge" type="Spatial"]
+script = ExtResource( 4 )
+
+[node name="KeyCardDoor" type="KinematicBody" parent="." groups=["Destructible", "Interactable"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.961189, 0, 0 )
+script = ExtResource( 3 )
+
+[node name="MeshInstance" type="MeshInstance" parent="KeyCardDoor"]
+mesh = SubResource( 1 )
+
+[node name="CSGBox" type="CSGBox" parent="KeyCardDoor/MeshInstance"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.640836, 0.281583, 0.168442 )
+width = 0.1
+height = 0.2
+depth = 0.2
+material = ExtResource( 1 )
+
+[node name="CSGBox" type="CSGBox" parent="KeyCardDoor/MeshInstance/CSGBox"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0266335, 0, 0.0540998 )
+operation = 2
+width = 0.05
+height = 0.2
+depth = 0.02
+material = SubResource( 2 )
+
+[node name="MeshInstance" type="MeshInstance" parent="KeyCardDoor/MeshInstance"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.638591, 0.388706, 0.14746 )
+mesh = SubResource( 4 )
+
+[node name="RedLight" type="OmniLight" parent="KeyCardDoor/MeshInstance/MeshInstance"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.00274768 )
+light_color = Color( 1, 0, 0, 1 )
+
+[node name="GreenLight" type="OmniLight" parent="KeyCardDoor/MeshInstance/MeshInstance"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.00118959 )
+visible = false
+light_color = Color( 0.00784314, 1, 0, 1 )
+
+[node name="KeycardFacingAway" type="CSGBox" parent="KeyCardDoor/MeshInstance"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.640836, 0.281583, -0.173464 )
+width = 0.1
+height = 0.2
+depth = 0.2
+material = ExtResource( 1 )
+
+[node name="CSGBox" type="CSGBox" parent="KeyCardDoor/MeshInstance/KeycardFacingAway"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0266335, 0, 0.0540998 )
+operation = 2
+width = 0.05
+height = 0.2
+depth = 0.02
+material = SubResource( 2 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="KeyCardDoor/MeshInstance"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.638591, 0.388706, -0.158928 )
+mesh = SubResource( 4 )
+
+[node name="RedLight" type="OmniLight" parent="KeyCardDoor/MeshInstance/MeshInstance2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.00274768 )
+light_color = Color( 1, 0, 0, 1 )
+
+[node name="GreenLight" type="OmniLight" parent="KeyCardDoor/MeshInstance/MeshInstance2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.00118959 )
+visible = false
+light_color = Color( 0.00784314, 1, 0, 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="KeyCardDoor"]
+shape = SubResource( 5 )
+
+[node name="Area" type="Area" parent="KeyCardDoor"]
+
+[node name="CollisionShape" type="CollisionShape" parent="KeyCardDoor/Area"]
+shape = SubResource( 6 )
+
+[node name="Green" type="AudioStreamPlayer3D" parent="KeyCardDoor"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.961189, 0, 0 )
+stream = ExtResource( 7 )
+unit_db = 1.547
+
+[node name="Red" type="AudioStreamPlayer3D" parent="KeyCardDoor"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.961189, 0, 0 )
+stream = ExtResource( 6 )
+unit_db = 4.364
+
+[node name="Open" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 2 )
+unit_db = 1.979
+unit_size = 3.0
+
+[node name="Close" type="AudioStreamPlayer3D" parent="."]
+
+[node name="Cooldown" type="Timer" parent="."]
+
+[node name="Timer2" type="Timer" parent="."]
+
+[connection signal="close" from="KeyCardDoor" to="." method="_on_KeyCardDoor_close"]
+[connection signal="open" from="KeyCardDoor" to="." method="_on_KeyCardDoor_open"]
+[connection signal="timeout" from="Cooldown" to="." method="_on_Cooldown_timeout"]

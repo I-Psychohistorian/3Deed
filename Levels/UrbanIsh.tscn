@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=2]
+[gd_scene load_steps=73 format=2]
 
 [ext_resource path="res://Assets/asset package custom/kenneyretrourban/Models/GLTF format/roof.material" type="Material" id=1]
 [ext_resource path="res://Assets/asset package custom/kenneyretrourban/Models/GLTF format/asphalt.material" type="Material" id=2]
@@ -51,6 +51,10 @@
 [ext_resource path="res://Entities/InteractableObjects/Mop.tscn" type="PackedScene" id=49]
 [ext_resource path="res://Assets/asset package custom/retro medieval 3d/Models/GLTF format/planks.material" type="Material" id=50]
 [ext_resource path="res://Entities/FleshThing/BudPustule.tscn" type="PackedScene" id=51]
+[ext_resource path="res://Entities/InteractableObjects/Crate.tscn" type="PackedScene" id=52]
+[ext_resource path="res://Entities/InteractableObjects/Keycard.tscn" type="PackedScene" id=53]
+[ext_resource path="res://Entities/InteractableObjects/KeyCardDoor.tscn" type="PackedScene" id=54]
+[ext_resource path="res://Entities/InteractableObjects/OpenSafe.tscn" type="PackedScene" id=55]
 
 [sub_resource type="Image" id=26]
 data = {
@@ -194,6 +198,15 @@ material = ExtResource( 10 )
 
 [node name="Pustule" parent="CSGCombiner/FirstRoom" instance=ExtResource( 51 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.85188, 0, 5.3982 )
+
+[node name="Crate" parent="CSGCombiner/FirstRoom" instance=ExtResource( 52 )]
+transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 1.77843, -1.16142, 3.1635 )
+
+[node name="Keycard" parent="CSGCombiner/FirstRoom" instance=ExtResource( 53 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 3.39064, -0.477166, 2.84022 )
+
+[node name="Hinge" parent="CSGCombiner/FirstRoom" instance=ExtResource( 54 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.13821, -0.204035, -0.97841 )
 
 [node name="Hall1" type="CSGBox" parent="CSGCombiner"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.98245, -0.163481, 0 )
@@ -825,12 +838,7 @@ material = ExtResource( 1 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.559481, 0, -0.898098 )
 
 [node name="RigidKnifePowerup" parent="." instance=ExtResource( 5 )]
-transform = Transform( 0.103539, -0.994625, 0, 0.994625, 0.103539, 0, 0, 0, 1, 2.952, -0.403724, 2.93164 )
-
-[node name="Spatial" type="Spatial" parent="."]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.06558, -1.76762, -0.75283 )
-
-[node name="Door" parent="Spatial" instance=ExtResource( 6 )]
+transform = Transform( 0.103539, -0.994625, 0, 0.994625, 0.103539, 0, 0, 0, 1, 2.83952, -0.328545, 2.92946 )
 
 [node name="HandgunKinematic" parent="." instance=ExtResource( 8 )]
 transform = Transform( -0.0110768, -0.0907236, 0.995815, 0.999235, -0.0383505, 0.00762091, 0.0374986, 0.995137, 0.091079, 16.4663, -0.439009, 3.505 )
@@ -1021,6 +1029,9 @@ speed_scale = 2.0
 explosiveness = 1.0
 process_material = SubResource( 21 )
 draw_pass_1 = SubResource( 22 )
+
+[node name="OpenSafe" parent="." instance=ExtResource( 55 )]
+transform = Transform( -0.997298, 0, 0.0734646, 0, 1, 0, -0.0734646, 0, -0.997298, 2.82229, -0.223786, 2.94888 )
 
 [connection signal="boom" from="CSGCombiner/Lab/Lab Spatial/ExplosionManager" to="CSGCombiner/Lab/Lab Spatial/ExplosionManager/Knockback" method="_on_ExplosionManager_boom"]
 [connection signal="boom" from="CSGCombiner/Lab/Lab Spatial/ExplosionManager" to="Glass" method="_on_ExplosionManager_boom"]

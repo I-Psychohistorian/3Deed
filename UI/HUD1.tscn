@@ -126,3 +126,4 @@ visible = false
 [connection signal="timeout" from="DialogueTimer" to="." method="_on_DialogueTimer_timeout"]
 [connection signal="timeout" from="StatusTimer" to="." method="_on_StatusTimer_timeout"]
 [connection signal="pressed" from="DeathReturn" to="." method="_on_Button_pressed"]
+[connection signal="hud_to_player_GM" from="MainMenu" to="." method="_on_MainMenu_hud_to_player_GM"]

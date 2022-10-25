@@ -9,16 +9,25 @@ onready var Load = $VBoxContainer/Load
 onready var Controls = $VBoxContainer/Controls
 onready var Settings = $VBoxContainer/Settings
 onready var Quit = $VBoxContainer/Quit
+var save_path = "user://save.tres"
 
+signal hud_to_player_GM
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
+	var dir = Directory.new()
+	if not dir.file_exists(save_path):
+		$VBoxContainer/Load.disabled = true
+		$VBoxContainer/Save.text = "Save"
+	else:
+		$VBoxContainer/Load.disabled = false
+		$VBoxContainer/Save.text = "Overwrite Save"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+func can_save():
+	$VBoxContainer/Save.disabled = false
 
 func toggle():
 	pass
@@ -38,8 +47,24 @@ func _on_Quit_pressed():
 
 
 func _on_Save_pressed():
-	var state_data = GameManager.instance()
-	var level_data = 0
-
+	#emit_signal("hud_to_player_GM") #this sets current state for save
+	#save should only start level though
+	var new_save = Save_Slot.new()
+	new_save.take_save_data()
+	#print(new_save)
+	#print(new_save.health)
+	#print(new_save.current_level)
+	ResourceSaver.save(save_path, new_save)
+	
 func _on_Load_pressed():
+	var dir = Directory.new()
+	if not dir.file_exists(save_path):
+		print('fail')
+		return false
+	var old_save = load(save_path)
+	#print(old_save)
+	#print(old_save.health)
+	#print(old_save.current_level)
+	old_save.set_save()
+	get_tree().change_scene(old_save.current_level)
 	pass # Replace with function body.

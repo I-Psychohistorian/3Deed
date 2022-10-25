@@ -1471,6 +1471,7 @@ autostart = true
 wait_time = 120.0
 one_shot = true
 
+[connection signal="playerupdate" from="Head/Camera/HUD" to="." method="_on_HUD_playerupdate"]
 [connection signal="body_entered" from="Head/Camera/EquipNode/StabZone" to="." method="_on_StabZone_body_entered"]
 [connection signal="body_entered" from="Head/Camera/EquipNode/StabZone" to="Head/Camera/EquipNode/StabZone" method="_on_StabZone_body_entered"]
 [connection signal="body_entered" from="Head/Camera/EquipNode/AoE_area" to="." method="_on_AoE_area_body_entered"]

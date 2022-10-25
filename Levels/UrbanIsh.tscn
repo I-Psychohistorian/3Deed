@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=2]
+[gd_scene load_steps=74 format=2]
 
 [ext_resource path="res://Assets/asset package custom/kenneyretrourban/Models/GLTF format/roof.material" type="Material" id=1]
 [ext_resource path="res://Assets/asset package custom/kenneyretrourban/Models/GLTF format/asphalt.material" type="Material" id=2]
@@ -55,6 +55,7 @@
 [ext_resource path="res://Entities/InteractableObjects/Keycard.tscn" type="PackedScene" id=53]
 [ext_resource path="res://Entities/InteractableObjects/KeyCardDoor.tscn" type="PackedScene" id=54]
 [ext_resource path="res://Entities/InteractableObjects/OpenSafe.tscn" type="PackedScene" id=55]
+[ext_resource path="res://Levels/UrbanIsh.gd" type="Script" id=56]
 
 [sub_resource type="Image" id=26]
 data = {
@@ -168,6 +169,7 @@ scale = 0.1
 [sub_resource type="QuadMesh" id=22]
 
 [node name="Level" type="Spatial"]
+script = ExtResource( 56 )
 
 [node name="CSGCombiner" type="CSGCombiner" parent="."]
 use_collision = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://CSGSphere2.gd" type="Script" id=1]
 [ext_resource path="res://Assets/asset package custom/kenneyretrourban/Models/GLTF format/grass.material" type="Material" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://Entities/InteractableObjects/Door.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Assets/asset package custom/retro medieval 3d/Models/GLTF format/bricks.material" type="Material" id=15]
 [ext_resource path="res://Entities/InteractableObjects/FairyWandKinematic.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Levels/PocketTerrace.gd" type="Script" id=17]
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_texture = ExtResource( 7 )
@@ -31,6 +32,7 @@ radius = 1.17896
 radius = 0.526667
 
 [node name="PocketTerrace" type="Spatial"]
+script = ExtResource( 17 )
 
 [node name="CSGSphere" type="CSGSphere" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.662646, -0.748933, 0, 0.748933, 0.662646, 0, 8.80567, 0 )

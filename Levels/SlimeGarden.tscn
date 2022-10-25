@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Assets/asset package custom/retro medieval 3d/Models/GLTF format/stonesPainted.material" type="Material" id=1]
 [ext_resource path="res://Assets/asset package custom/retro medieval 3d/Models/GLTF format/stones.material" type="Material" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Entities/SpawnersAndManagers/GlorperMitosisManager.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Entities/InteractableObjects/RigidKnifePowerup.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Levels/Fertile_area.gd" type="Script" id=9]
+[ext_resource path="res://Levels/SlimeGarden.gd" type="Script" id=10]
 
 [sub_resource type="Image" id=7]
 data = {
@@ -43,6 +44,7 @@ uv1_triplanar = true
 radius = 4.0
 
 [node name="SlimeGarden" type="Spatial"]
+script = ExtResource( 10 )
 
 [node name="CSGCombiner" type="CSGCombiner" parent="."]
 use_collision = true

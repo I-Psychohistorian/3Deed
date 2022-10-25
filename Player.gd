@@ -109,10 +109,11 @@ var window_size = OS.get_window_size()
 
 
 func _ready():
-	current_level = get_parent()
-	print(current_level)
+	current_level = get_parent().current_level
+	hud.allow_save() #toggles saving button from menu
+	GameManager.current_level = current_level #tells GameManager directory for current level
 	OS.set_window_position(screen_size*0.5 - window_size*0.5)
-	get_start_stats()
+	get_start_stats() #grabs starting stats from GameManager
 	hud.undie()
 	$Head/FluDeath.visible = false
 	inv_weapons.append(weapons[2])
@@ -703,3 +704,7 @@ func _on_ODTimer_timeout():
 		status_text = "Your fever subsides and you feel awful."
 	hud.status()
 	stamina_regen = 1
+
+
+func _on_HUD_playerupdate():
+	update_stats_GM()

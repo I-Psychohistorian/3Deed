@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Assets/asset package custom/retro medieval 3d/Models/GLTF format/stones.material" type="Material" id=1]
 [ext_resource path="res://Assets/asset package custom/Hypno's Fantsy Village Pack/wood_sharpened.material" type="Material" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://Levels/Garden_Pipe.gd" type="Script" id=17]
 [ext_resource path="res://Levels/SecretExit.gd" type="Script" id=18]
 [ext_resource path="res://Entities/SpawnersAndManagers/GlorperMitosisManager.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Levels/GlorpChamber.gd" type="Script" id=20]
 
 [sub_resource type="AnimatedTexture" id=1]
 flags = 23
@@ -42,6 +43,7 @@ height = 1.0985
 radius = 0.706105
 
 [node name="GlorpChamber" type="Spatial"]
+script = ExtResource( 20 )
 __meta__ = {
 "_edit_lock_": true
 }

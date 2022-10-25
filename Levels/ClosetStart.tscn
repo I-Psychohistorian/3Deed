@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Assets/asset package custom/kenneyretrourban/Models/GLTF format/concreteSmooth.material" type="Material" id=1]
 [ext_resource path="res://Entities/Player.tscn" type="PackedScene" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://Entities/InteractableObjects/Door.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Assets/asset package custom/kenneyretrourban/Models/GLTF format/asphalt.material" type="Material" id=14]
 [ext_resource path="res://Levels/ConnectorNodeTest.gd" type="Script" id=15]
+[ext_resource path="res://Levels/ClosetStart.gd" type="Script" id=16]
 
 [sub_resource type="PlaneMesh" id=6]
 size = Vector2( 5, 5 )
@@ -53,6 +54,7 @@ emission_on_uv2 = false
 uv1_triplanar = true
 
 [node name="Level" type="Spatial"]
+script = ExtResource( 16 )
 __meta__ = {
 "_edit_lock_": true
 }

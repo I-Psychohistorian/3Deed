@@ -1,6 +1,5 @@
 extends Node
 
-
 # Declare member variables here. Examples:
 var powerups = 1
 var unlocked_weapons = []
@@ -17,6 +16,8 @@ var keycard = false
 var dimensional_keys = 0
 var hungry = true
 var Murders = 0
+
+var current_level = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

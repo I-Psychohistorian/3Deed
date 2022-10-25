@@ -8,6 +8,7 @@ var sprint = false
 var ammo = 0 
 var ammo2 = 0
 var powerups = 0
+var current_level = 0
 var tooltip = 'testing'
 var equipped = []
 var examine_text = 'N'
@@ -28,7 +29,7 @@ onready var examine_display = $TextOverlay/Text
 onready var dialogue_display = $DialogueBox/DialogueLabel
 onready var status_display = $DialogueBox/Status
 # Called when the node enters the scene tree for the first time.
-
+signal playerupdate
 #menu and save ui
 var menu_toggle = false
 
@@ -90,6 +91,12 @@ func undie():
 	$DeathReturn.visible = false
 
 
+func updateGM():
+	emit_signal("playerupdate")
+
+func allow_save():
+	$MainMenu.can_save()
+
 func _on_DialogueTimer_timeout():
 	dialogue_display.hide()
 
@@ -100,3 +107,7 @@ func _on_StatusTimer_timeout():
 
 func _on_Button_pressed():
 	get_tree().change_scene("res://Levels/TestWorld.tscn")
+
+
+func _on_MainMenu_hud_to_player_GM():
+	updateGM()

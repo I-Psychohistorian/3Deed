@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Resource",
+"class": "Save_Slot",
+"language": "GDScript",
+"path": "res://SaveSlot.gd"
+} ]
+_global_script_class_icons={
+"Save_Slot": ""
+}
+
 [application]
 
 config/name="ESCAPE FROM THE BOZO DIMENSION"

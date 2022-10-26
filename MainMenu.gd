@@ -18,10 +18,10 @@ func _ready():
 	var dir = Directory.new()
 	if not dir.file_exists(save_path):
 		$VBoxContainer/Load.disabled = true
-		$VBoxContainer/Save.text = "Save Checkpoint"
+		$VBoxContainer/Save.text = "Save Checkpoint Progress"
 	else:
 		$VBoxContainer/Load.disabled = false
-		$VBoxContainer/Save.text = "Overwrite Save Checkpoint"
+		$VBoxContainer/Save.text = "Overwrite Saved Checkpoint"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -40,7 +40,7 @@ func toggle():
 			
 func _on_StartResume_pressed():
 	get_tree().change_scene("res://Levels/TestWorld.tscn")
-
+	#perhaps make scene distinct from all other start points?
 
 func _on_Quit_pressed():
 	get_tree().quit()

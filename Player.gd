@@ -72,7 +72,15 @@ var serum_overdose = false
 var keycard = false
 var dimensional_keys = 0
 var hungry = true
+
+#npc relation
 var Murders = 0
+var blungus_friend = true
+var fairy_friend = true
+var fairy_quest_failed = false
+var fairy_quest_succeeded = false
+var goblin_spared = true
+
 
 signal gunshot #for starting gas fires
 var muzzle_coords = Vector3()
@@ -150,6 +158,12 @@ func get_start_stats():
 	Murders = GameManager.Murders
 	keycard = GameManager.keycard
 	dimensional_keys = GameManager.dimensional_keys
+	
+	blungus_friend = GameManager.blungus_friend
+	fairy_friend = GameManager.fairy_friend
+	fairy_quest_failed = GameManager.fairy_friend
+	fairy_quest_succeeded = GameManager.fairy_quest_succeeded
+	goblin_spared = GameManager.goblin_spared
 
 func update_stats_GM():
 	GameManager.powerups = powerups
@@ -165,6 +179,12 @@ func update_stats_GM():
 	GameManager.Murders = Murders
 	GameManager.keycard = keycard
 	GameManager.dimensional_keys = dimensional_keys
+	
+	GameManager.blungus_friend = blungus_friend
+	GameManager.fairy_friend = fairy_friend
+	GameManager.fairy_quest_failed = fairy_quest_failed
+	GameManager.fairy_quest_succeeded = fairy_quest_succeeded
+	GameManager.goblin_spared = goblin_spared
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

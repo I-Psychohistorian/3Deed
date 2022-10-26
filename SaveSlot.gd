@@ -19,6 +19,12 @@ export var dimensional_keys = 0
 export var hungry = true
 export var Murders = 0
 
+export var blungus_friend = true
+export var fairy_friend = true
+export var fairy_quest_failed = false
+export var fairy_quest_succeeded = false
+export var goblin_spared = true
+
 export var current_level = 0
 
 
@@ -42,6 +48,12 @@ func take_save_data():
 	keycard = GameManager.keycard
 	dimensional_keys = GameManager.dimensional_keys
 	current_level = GameManager.current_level
+	
+	blungus_friend = GameManager.blungus_friend
+	fairy_friend = GameManager.fairy_friend
+	fairy_quest_failed = GameManager.fairy_friend
+	fairy_quest_succeeded = GameManager.fairy_quest_succeeded
+	goblin_spared = GameManager.goblin_spared
 
 func set_save():
 	GameManager.powerups = powerups
@@ -59,6 +71,11 @@ func set_save():
 	GameManager.dimensional_keys = dimensional_keys
 	GameManager.current_level = current_level
 	
+	GameManager.blungus_friend = blungus_friend
+	GameManager.fairy_friend = fairy_friend
+	GameManager.fairy_quest_failed = fairy_quest_failed
+	GameManager.fairy_quest_succeeded = fairy_quest_succeeded
+	GameManager.goblin_spared = goblin_spared
 
 func save_game() -> void:
 	take_save_data()

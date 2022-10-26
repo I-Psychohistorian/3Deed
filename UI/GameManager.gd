@@ -15,7 +15,15 @@ var ammo_in_gun = 0
 var keycard = false
 var dimensional_keys = 0
 var hungry = true
+
 var Murders = 0
+var blungus_friend = true
+var fairy_friend = true
+var fairy_quest_failed = false
+var fairy_quest_succeeded = false
+var goblin_spared = true
+
+
 
 var current_level = 0
 

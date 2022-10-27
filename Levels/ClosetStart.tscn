@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Assets/asset package custom/kenneyretrourban/Models/GLTF format/concreteSmooth.material" type="Material" id=1]
 [ext_resource path="res://Entities/Player.tscn" type="PackedScene" id=2]
@@ -20,6 +20,8 @@
 [ext_resource path="res://Levels/LightSconce.gd" type="Script" id=18]
 [ext_resource path="res://Levels/BasementConnector.gd" type="Script" id=19]
 [ext_resource path="res://Assets/asset package custom/kenneyretrourban/Models/GLTF format/wall_metal.material" type="Material" id=20]
+[ext_resource path="res://Entities/InteractableObjects/HandgunKinematic.tscn" type="PackedScene" id=21]
+[ext_resource path="res://Entities/InteractableObjects/AmmoKinematic.tscn" type="PackedScene" id=22]
 
 [sub_resource type="PlaneMesh" id=6]
 size = Vector2( 5, 5 )
@@ -72,6 +74,7 @@ radius = 0.2
 mid_height = 0.6
 
 [sub_resource type="Environment" id=9]
+background_energy = 0.2
 
 [node name="Level" type="Spatial"]
 script = ExtResource( 16 )
@@ -479,6 +482,12 @@ transform = Transform( 1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 2.11833, 
 width = 2.10155
 height = 0.370744
 material = ExtResource( 3 )
+
+[node name="HandgunKinematic" parent="." instance=ExtResource( 21 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75255, 0, 0 )
+
+[node name="AmmoKinematic" parent="HandgunKinematic" instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.377982 )
 
 [connection signal="portal_closed" from="Portal" to="CSGCombiner" method="_on_Portal_portal_closed"]
 [connection signal="body_exited" from="Portal/PlayerDetector" to="Portal" method="_on_PlayerDetector_body_exited"]

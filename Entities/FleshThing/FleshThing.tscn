@@ -62,9 +62,9 @@ frame_2/texture = SubResource( 9 )
 frame_2/delay_sec = 0.0
 
 [sub_resource type="SpatialMaterial" id=37]
+flags_unshaded = true
 albedo_color = Color( 1, 0.0117647, 0.0117647, 1 )
 albedo_texture = SubResource( 33 )
-metallic = 1.0
 
 [sub_resource type="Gradient" id=18]
 offsets = PoolRealArray( 0.270968, 1 )

@@ -4,8 +4,8 @@ extends StaticBody
 var up = true
 var position = Vector3()
 var y_distance = Vector3()
-var y_inc_p = 0.04
-var y_inc_n = -0.04
+var y_inc_p = 0.039
+var y_inc_n = -0.039
 var moving = false
 
 
@@ -13,6 +13,7 @@ onready var door1 = $DoorRight
 onready var door2 = $DoorLeft
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$Sound.stream_paused = true
 	pass # Replace with function body.
 
 
@@ -25,6 +26,7 @@ func _on_ElevatorButton_use_elevator():
 	close_doors()
 	$MoveTime.start()
 	moving = true
+	$Sound.stream_paused = false
 
 func elevate():
 	if moving == true:
@@ -41,12 +43,13 @@ func elevate():
 func close_doors():
 	door1.translate_object_local(Vector3(0.9, 0, 0))
 	door2.translate_object_local(Vector3(-0.9, 0, 0))
-	#close sound
+	$Close.play()
 	
 func open_doors():
+	$Sound.stream_paused = true
 	door2.translate_object_local(Vector3(0.9, 0, 0))
 	door1.translate_object_local(Vector3(-0.9, 0, 0))
-	#open sound
+	$Open.play()
 func _on_MoveTime_timeout():
 	moving = false
 	if up == true:

@@ -11,5 +11,5 @@ dest_files=[ "res://.import/StoneDoorOpen.mp3-b7cca45650bac8cb4d4077e5d462675e.m
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

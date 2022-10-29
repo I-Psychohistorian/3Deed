@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Entities/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/asset package custom/kenneyretrourban/Models/GLTF format/concreteSmooth.material" type="Material" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Entities/InteractableObjects/HandgunKinematic.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Entities/InteractableObjects/AmmoKinematic.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Entities/SpawnersAndManagers/FleshManager.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Entities/Elevator.tscn" type="PackedScene" id=8]
 
 [node name="BullTest" type="Spatial"]
 script = ExtResource( 3 )
@@ -21,7 +22,10 @@ depth = 100.0
 material = ExtResource( 2 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10.0074 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.0911, 10.0074 )
+
+[node name="Elevator" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.0911, 9.47568 )
 
 [node name="CSGCylinder" type="CSGCylinder" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.53288, 17.2882 )

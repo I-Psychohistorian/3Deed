@@ -7,13 +7,13 @@
 material = ExtResource( 2 )
 size = Vector3( 0.2, 0.25, 0.4 )
 
-[sub_resource type="SpatialMaterial" id=2]
+[sub_resource type="SpatialMaterial" id=6]
 albedo_color = Color( 0.611765, 0.12549, 0.12549, 1 )
 metallic = 1.0
 metallic_specular = 1.0
 
 [sub_resource type="CylinderMesh" id=3]
-material = SubResource( 2 )
+material = SubResource( 6 )
 top_radius = 0.05
 bottom_radius = 0.05
 height = 0.1

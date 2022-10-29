@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://Assets/asset package custom/kenneyretrourban/Models/GLTF format/concreteSmooth.material" type="Material" id=1]
 [ext_resource path="res://Entities/Player.tscn" type="PackedScene" id=2]
@@ -26,6 +26,7 @@
 [ext_resource path="res://Entities/InteractableObjects/CeilingLightOn.tscn" type="PackedScene" id=24]
 [ext_resource path="res://Entities/InteractableObjects/CeilingLightOff.tscn" type="PackedScene" id=25]
 [ext_resource path="res://Assets/asset package custom/kenneyretrourban/Models/GLTF format/concrete.material" type="Material" id=26]
+[ext_resource path="res://Entities/Elevator.tscn" type="PackedScene" id=27]
 
 [sub_resource type="PlaneMesh" id=6]
 size = Vector2( 5, 5 )
@@ -97,7 +98,7 @@ mesh = SubResource( 6 )
 material/0 = ExtResource( 4 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 19.8552, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.8552, 0 )
 
 [node name="Portal" type="CSGCombiner" parent="."]
 script = ExtResource( 7 )
@@ -184,7 +185,13 @@ light_color = Color( 0.545098, 0.419608, 1, 1 )
 [node name="OmniLight2" type="OmniLight" parent="CSGCombiner/CeilingTube"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -13.0685, 0 )
 light_color = Color( 0.545098, 0.419608, 1, 1 )
-omni_range = 12.5818
+omni_range = 44.158
+
+[node name="OmniLight3" type="OmniLight" parent="CSGCombiner/CeilingTube"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -14.0685, 0 )
+light_color = Color( 0.545098, 0.419608, 1, 1 )
+light_energy = 0.1
+omni_range = 44.158
 
 [node name="CSGBox2" type="CSGBox" parent="CSGCombiner"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.65538, 0, 0.620019 )
@@ -244,7 +251,7 @@ transform = Transform( -4.37114e-08, 0, -1, 0, 1.1, 0, 1, 0, -4.37114e-08, -0.03
 [node name="ElevatorShaft" type="CSGBox" parent="CSGCombiner/FirstHall"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.30215, 8.97613 )
 invert_faces = true
-width = 3.0
+width = 3.87335
 height = 25.0
 depth = 3.1
 material = ExtResource( 17 )
@@ -298,6 +305,9 @@ width = 0.882241
 height = 0.5
 depth = 2.25006
 material = ExtResource( 26 )
+
+[node name="Elevator" parent="CSGCombiner/FirstHall/ElevatorShaft" instance=ExtResource( 27 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 6.90616, -9.53674e-07 )
 
 [node name="StairsDown" type="CSGBox" parent="CSGCombiner/FirstHall"]
 transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -3.49217, -0.559699, 4.33024 )

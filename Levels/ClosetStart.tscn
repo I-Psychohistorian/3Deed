@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://Assets/asset package custom/kenneyretrourban/Models/GLTF format/concreteSmooth.material" type="Material" id=1]
 [ext_resource path="res://Entities/Player.tscn" type="PackedScene" id=2]
@@ -22,6 +22,10 @@
 [ext_resource path="res://Assets/asset package custom/kenneyretrourban/Models/GLTF format/wall_metal.material" type="Material" id=20]
 [ext_resource path="res://Entities/InteractableObjects/HandgunKinematic.tscn" type="PackedScene" id=21]
 [ext_resource path="res://Entities/InteractableObjects/AmmoKinematic.tscn" type="PackedScene" id=22]
+[ext_resource path="res://Entities/InteractableObjects/LightSwitch.tscn" type="PackedScene" id=23]
+[ext_resource path="res://Entities/InteractableObjects/CeilingLightOn.tscn" type="PackedScene" id=24]
+[ext_resource path="res://Entities/InteractableObjects/CeilingLightOff.tscn" type="PackedScene" id=25]
+[ext_resource path="res://Assets/asset package custom/kenneyretrourban/Models/GLTF format/concrete.material" type="Material" id=26]
 
 [sub_resource type="PlaneMesh" id=6]
 size = Vector2( 5, 5 )
@@ -74,7 +78,7 @@ radius = 0.2
 mid_height = 0.6
 
 [sub_resource type="Environment" id=9]
-background_energy = 0.2
+background_energy = 0.25
 
 [node name="Level" type="Spatial"]
 script = ExtResource( 16 )
@@ -238,23 +242,23 @@ material = ExtResource( 3 )
 transform = Transform( -4.37114e-08, 0, -1, 0, 1.1, 0, 1, 0, -4.37114e-08, -0.0392265, 0.0680346, -1 )
 
 [node name="ElevatorShaft" type="CSGBox" parent="CSGCombiner/FirstHall"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.39877, 8.97613 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.30215, 8.97613 )
 invert_faces = true
 width = 3.0
-height = 12.0
+height = 25.0
 depth = 3.1
 material = ExtResource( 17 )
 
 [node name="BasementAtrium" type="CSGBox" parent="CSGCombiner/FirstHall/ElevatorShaft"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.508494, -3.80724, -4.02272 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.31351, -5.10724, -4.02272 )
 invert_faces = true
-width = 8.0
-height = 3.0
+width = 9.58758
+height = 4.24533
 depth = 5.0
 material = ExtResource( 1 )
 
 [node name="BasementConnector" type="CSGBox" parent="CSGCombiner/FirstHall/ElevatorShaft/BasementAtrium"]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.0832925, -0.0219345, -2.54762 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.83561, -0.650279, 0.452376 )
 use_collision = true
 invert_faces = true
 width = 0.37224
@@ -265,6 +269,36 @@ script = ExtResource( 19 )
 [node name="Door" parent="CSGCombiner/FirstHall/ElevatorShaft/BasementAtrium/BasementConnector" instance=ExtResource( 13 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1.1, 0, 1, 0, -4.37114e-08, -0.0392265, 0.0680346, -1 )
 
+[node name="CeilingLightOff" parent="CSGCombiner/FirstHall/ElevatorShaft/BasementAtrium" instance=ExtResource( 25 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.508494, 2.0511, 0.144999 )
+
+[node name="Step" type="CSGBox" parent="CSGCombiner/FirstHall/ElevatorShaft/BasementAtrium"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.98394, -1.80344, 1.25737 )
+operation = 2
+invert_faces = true
+width = 1.62313
+height = 0.5
+depth = 2.25006
+material = ExtResource( 26 )
+
+[node name="Step2" type="CSGBox" parent="CSGCombiner/FirstHall/ElevatorShaft/BasementAtrium"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.98394, -1.80344, 1.25737 )
+operation = 2
+invert_faces = true
+width = 1.62313
+height = 0.5
+depth = 2.25006
+material = ExtResource( 26 )
+
+[node name="Step3" type="CSGBox" parent="CSGCombiner/FirstHall/ElevatorShaft/BasementAtrium"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.41338, -1.35321, 1.25737 )
+operation = 2
+invert_faces = true
+width = 0.882241
+height = 0.5
+depth = 2.25006
+material = ExtResource( 26 )
+
 [node name="StairsDown" type="CSGBox" parent="CSGCombiner/FirstHall"]
 transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -3.49217, -0.559699, 4.33024 )
 use_collision = true
@@ -273,33 +307,16 @@ width = 0.37224
 height = 2.9
 material = ExtResource( 3 )
 
-[node name="Door" parent="CSGCombiner/FirstHall/StairsDown" instance=ExtResource( 13 )]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1.1, 0, 1, 0, -4.37114e-08, -0.0392265, 0.0680346, -1 )
-
-[node name="Ceiling" type="CSGBox" parent="CSGCombiner/FirstHall/StairsDown/Door"]
-transform = Transform( -4.37114e-08, 0, 1, 0, 0.909091, 0, -1, 0, -4.37114e-08, -0.313999, 1.61772, -2.8906 )
-width = 5.65836
-height = 0.1
-depth = 6.08552
-material = ExtResource( 14 )
-
-[node name="Floor" type="CSGBox" parent="CSGCombiner/FirstHall/StairsDown/Door"]
-transform = Transform( -4.37114e-08, 0, 1, 0, 0.909091, 0, -1, 0, -4.37114e-08, -0.313999, -7.46727, -2.8906 )
-width = 5.65836
-height = 0.1
-depth = 6.10613
-material = ExtResource( 1 )
-
 [node name="Staircase" type="CSGBox" parent="CSGCombiner/FirstHall/StairsDown"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.85138, -3.14631, -1.314 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.85284, -5.57976, -1.33576 )
 invert_faces = true
 width = 5.65836
-height = 9.91339
+height = 15.0
 depth = 6.2528
 material = ExtResource( 20 )
 
 [node name="StairsDown" type="CSGBox" parent="CSGCombiner/FirstHall/StairsDown"]
-transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.0222197, -6.74608, -2.04 )
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.0222192, -11.2231, -2.04 )
 use_collision = true
 invert_faces = true
 width = 0.37224
@@ -307,7 +324,10 @@ height = 2.9
 material = ExtResource( 3 )
 
 [node name="Door" parent="CSGCombiner/FirstHall/StairsDown/StairsDown" instance=ExtResource( 13 )]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1.1, 0, 1, 0, -4.37114e-08, -0.0392265, 0.0680346, -1 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1.1, 0, 1, 0, -4.37114e-08, -0.0392265, -0.0869293, -1 )
+
+[node name="Door" parent="CSGCombiner/FirstHall/StairsDown" instance=ExtResource( 13 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1.1, 0, -1, 0, -4.37114e-08, -0.0392261, 0.0680346, 1 )
 
 [node name="LightSconce" type="MeshInstance" parent="CSGCombiner/FirstHall"]
 transform = Transform( -4.37114e-08, 0, 2, 0, 1, 0, -1, 0, -8.74228e-08, -0.00389385, 2.09992, -0.000178695 )
@@ -336,7 +356,7 @@ wait_time = 2.0
 autostart = true
 
 [node name="ConnectorNodeTest" type="CSGBox" parent="CSGCombiner"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.2484, -0.512161, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.7176, -0.512161, -11.7136 )
 use_collision = true
 invert_faces = true
 width = 0.38
@@ -346,6 +366,34 @@ script = ExtResource( 15 )
 
 [node name="Door" parent="CSGCombiner/ConnectorNodeTest" instance=ExtResource( 13 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1.1, 0, 1, 0, -4.37114e-08, -0.0392265, 0.0680346, -1 )
+
+[node name="FirstChoiceRoom" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.63443, -0.166608, -11.5376 )
+invert_faces = true
+width = 12.0
+height = 4.0
+depth = 8.0
+material = ExtResource( 1 )
+
+[node name="FirstChoiceRoom" type="CSGBox" parent="CSGCombiner/FirstChoiceRoom"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.95514, 0 )
+invert_faces = true
+width = 12.0
+height = 0.1
+depth = 8.0
+material = ExtResource( 3 )
+
+[node name="LightSwitch" parent="CSGCombiner/FirstChoiceRoom" instance=ExtResource( 23 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.69124, 0, 3.98777 )
+
+[node name="CeilingLightOn" parent="CSGCombiner/FirstChoiceRoom/LightSwitch" instance=ExtResource( 24 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.98777, 1.91343, 6.52297 )
+
+[node name="CeilingLightOn2" parent="CSGCombiner/FirstChoiceRoom/LightSwitch" instance=ExtResource( 24 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.06268, 1.94217, -0.741889 )
+
+[node name="CeilingLightOn3" parent="CSGCombiner/FirstChoiceRoom/LightSwitch" instance=ExtResource( 24 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.98777, 1.94217, 2.69124 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 9 )
@@ -483,11 +531,127 @@ width = 2.10155
 height = 0.370744
 material = ExtResource( 3 )
 
+[node name="SmallStep18" type="CSGBox" parent="Stairs"]
+transform = Transform( -2.18557e-07, 0, -1, 0, 1, 0, 1, 0, -2.18557e-07, 2.1734, -8.84032, 4.70867 )
+width = 1.0
+height = 0.3
+material = ExtResource( 3 )
+
+[node name="SmallStep19" type="CSGBox" parent="Stairs"]
+transform = Transform( -2.18557e-07, 0, -1, 0, 1, 0, 1, 0, -2.18557e-07, 2.1734, -9.14032, 5.20867 )
+width = 1.0
+height = 0.3
+material = ExtResource( 3 )
+
+[node name="SmallStep20" type="CSGBox" parent="Stairs"]
+transform = Transform( -2.18557e-07, 0, -1, 0, 1, 0, 1, 0, -2.18557e-07, 2.1734, -9.44032, 5.70867 )
+width = 1.0
+height = 0.3
+material = ExtResource( 3 )
+
+[node name="Step6" type="CSGBox" parent="Stairs"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.19282, -9.72668, 7.40686 )
+width = 2.69795
+height = 0.3
+material = ExtResource( 3 )
+
+[node name="SmallStep23" type="CSGBox" parent="Stairs"]
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.38606, -10.0202, 7.76584 )
+width = 1.0
+height = 0.3
+material = ExtResource( 3 )
+
+[node name="SmallStep24" type="CSGBox" parent="Stairs"]
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.886058, -10.3202, 7.76584 )
+width = 1.0
+height = 0.3
+material = ExtResource( 3 )
+
+[node name="SmallStep25" type="CSGBox" parent="Stairs"]
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.386058, -10.6202, 7.76584 )
+width = 1.0
+height = 0.3
+material = ExtResource( 3 )
+
+[node name="SmallStep26" type="CSGBox" parent="Stairs"]
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.113942, -10.9202, 7.76584 )
+width = 1.0
+height = 0.3
+material = ExtResource( 3 )
+
+[node name="Step7" type="CSGBox" parent="Stairs"]
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -1.13873, -11.1674, 7.75514 )
+width = 2.69795
+height = 0.3
+material = ExtResource( 3 )
+
+[node name="SmallStep27" type="CSGBox" parent="Stairs"]
+transform = Transform( 1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -1.49771, -11.4609, 6.94837 )
+width = 1.0
+height = 0.3
+material = ExtResource( 3 )
+
+[node name="SmallStep28" type="CSGBox" parent="Stairs"]
+transform = Transform( 1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -1.49771, -11.7609, 6.44837 )
+width = 1.0
+height = 0.3
+material = ExtResource( 3 )
+
+[node name="SmallStep29" type="CSGBox" parent="Stairs"]
+transform = Transform( 1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -1.49771, -12.0609, 5.94837 )
+width = 1.0
+height = 0.3
+material = ExtResource( 3 )
+
+[node name="SmallStep30" type="CSGBox" parent="Stairs"]
+transform = Transform( 1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -1.49771, -12.3609, 5.44837 )
+width = 1.0
+height = 0.3
+material = ExtResource( 3 )
+
+[node name="SmallStep31" type="CSGBox" parent="Stairs"]
+transform = Transform( 1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -1.50366, -12.6556, 5.17442 )
+width = 1.0
+height = 0.3
+material = ExtResource( 3 )
+
+[node name="SmallStep32" type="CSGBox" parent="Stairs"]
+transform = Transform( 1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -1.50367, -12.9556, 4.67442 )
+width = 1.0
+height = 0.3
+material = ExtResource( 3 )
+
+[node name="Step8" type="CSGBox" parent="Stairs"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.51419, -13.2671, 3.69084 )
+width = 2.30785
+height = 0.3
+material = ExtResource( 3 )
+
+[node name="SmallStep33" type="CSGBox" parent="Stairs"]
+transform = Transform( 1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -0.338809, -13.5275, 3.49965 )
+width = 1.0
+height = 0.3
+material = ExtResource( 3 )
+
 [node name="HandgunKinematic" parent="." instance=ExtResource( 21 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75255, 0, 0 )
 
 [node name="AmmoKinematic" parent="HandgunKinematic" instance=ExtResource( 22 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.377982 )
+
+[node name="Ceiling" type="CSGBox" parent="."]
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.313822, 1.29813, 5.64424 )
+width = 5.65836
+height = 0.1
+depth = 6.08552
+material = ExtResource( 14 )
+
+[node name="Floor" type="CSGBox" parent="."]
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.313822, -13.6603, 5.64424 )
+width = 5.65836
+height = 0.1
+depth = 6.10613
+material = ExtResource( 1 )
 
 [connection signal="portal_closed" from="Portal" to="CSGCombiner" method="_on_Portal_portal_closed"]
 [connection signal="body_exited" from="Portal/PlayerDetector" to="Portal" method="_on_PlayerDetector_body_exited"]

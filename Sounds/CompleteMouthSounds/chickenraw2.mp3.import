@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/chickenraw2.mp3-c6adb6ec48c01dc51ce3df0b38646634.mp3str"
+
+[deps]
+
+source_file="res://Sounds/CompleteMouthSounds/chickenraw2.mp3"
+dest_files=[ "res://.import/chickenraw2.mp3-c6adb6ec48c01dc51ce3df0b38646634.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,53 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://LightSwitch.gd" type="Script" id=1]
+[ext_resource path="res://Entities/InteractableObjects/lightswitchbeige.tres" type="Material" id=2]
+[ext_resource path="res://Sounds/SoundEffects/PhysicalSounds/Snap.mp3" type="AudioStream" id=3]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 0.662745, 0.615686, 0.478431, 1 )
+
+[sub_resource type="CubeMesh" id=2]
+material = SubResource( 1 )
+size = Vector3( 0.05, 0.2, 0.1 )
+
+[sub_resource type="CubeMesh" id=3]
+material = ExtResource( 2 )
+size = Vector3( 0.03, 0.15, 0.06 )
+
+[sub_resource type="CubeMesh" id=4]
+material = ExtResource( 2 )
+size = Vector3( 0.03, 0.15, 0.06 )
+
+[sub_resource type="BoxShape" id=5]
+extents = Vector3( 0.05, 0.1, 0.05 )
+
+[sub_resource type="BoxShape" id=6]
+extents = Vector3( 3, 3, 3 )
+
+[node name="LightSwitch" type="KinematicBody" groups=["Interactable"]]
+script = ExtResource( 1 )
+
+[node name="Case" type="MeshInstance" parent="."]
+mesh = SubResource( 2 )
+
+[node name="On" type="MeshInstance" parent="Case"]
+transform = Transform( 0.993501, 0.113827, 0, -0.113827, 0.993501, 0, 0, 0, 1, 0.0180112, 0, 0 )
+visible = false
+mesh = SubResource( 3 )
+
+[node name="Off" type="MeshInstance" parent="Case"]
+transform = Transform( 0.987675, -0.156521, 0, 0.156521, 0.987675, 0, 0, 0, 1, 0.0180112, 0, 0 )
+mesh = SubResource( 4 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 5 )
+
+[node name="Switch" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 3 )
+pitch_scale = 1.94
+
+[node name="Area" type="Area" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+shape = SubResource( 6 )

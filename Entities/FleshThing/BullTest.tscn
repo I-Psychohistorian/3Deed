@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Entities/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/asset package custom/kenneyretrourban/Models/GLTF format/concreteSmooth.material" type="Material" id=2]
+[ext_resource path="res://BullTest.gd" type="Script" id=3]
+[ext_resource path="res://Entities/FleshThing/FleshBull.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Entities/InteractableObjects/HandgunKinematic.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Entities/InteractableObjects/AmmoKinematic.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Entities/SpawnersAndManagers/FleshManager.tscn" type="PackedScene" id=7]
+
+[node name="BullTest" type="Spatial"]
+script = ExtResource( 3 )
+
+[node name="CSGBox" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.11153, 0 )
+use_collision = true
+invert_faces = true
+width = 100.0
+height = 20.0
+depth = 100.0
+material = ExtResource( 2 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10.0074 )
+
+[node name="CSGCylinder" type="CSGCylinder" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.53288, 17.2882 )
+use_collision = true
+
+[node name="HandgunKinematic" parent="CSGCylinder" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.986922, 0.0575466 )
+
+[node name="AmmoKinematic" parent="CSGCylinder" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.320978, 0.75913, 0.29999 )
+
+[node name="AmmoKinematic2" parent="CSGCylinder" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.320978, 0.75913, 0.29999 )
+
+[node name="AmmoKinematic3" parent="CSGCylinder" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.320978, 0.75913, 0.29999 )
+
+[node name="FleshManager" parent="." instance=ExtResource( 7 )]
+
+[node name="FleshBull" parent="FleshManager" instance=ExtResource( 4 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, -7.5794 )

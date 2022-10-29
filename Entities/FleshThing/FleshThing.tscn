@@ -62,9 +62,9 @@ frame_2/texture = SubResource( 9 )
 frame_2/delay_sec = 0.0
 
 [sub_resource type="SpatialMaterial" id=37]
-flags_unshaded = true
 albedo_color = Color( 1, 0.0117647, 0.0117647, 1 )
 albedo_texture = SubResource( 33 )
+metallic = 1.0
 
 [sub_resource type="Gradient" id=18]
 offsets = PoolRealArray( 0.270968, 1 )
@@ -105,7 +105,7 @@ material = SubResource( 23 )
 [sub_resource type="Curve" id=34]
 _data = [ Vector2( 0, 0.5125 ), 0.0, 0.56855, 0, 0, Vector2( 1, 0.154545 ), -0.723923, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=28]
+[sub_resource type="CurveTexture" id=38]
 curve = SubResource( 34 )
 
 [sub_resource type="ParticlesMaterial" id=35]
@@ -117,10 +117,10 @@ angular_velocity_random = 1.0
 radial_accel = 3.0
 tangential_accel = 3.0
 scale = 0.5
-scale_curve = SubResource( 28 )
+scale_curve = SubResource( 38 )
 color = Color( 0.196078, 0.0117647, 0.0117647, 1 )
 
-[sub_resource type="SpatialMaterial" id=29]
+[sub_resource type="SpatialMaterial" id=39]
 flags_transparent = true
 flags_unshaded = true
 vertex_color_use_as_albedo = true
@@ -131,7 +131,7 @@ particles_anim_loop = false
 albedo_texture = ExtResource( 3 )
 
 [sub_resource type="QuadMesh" id=36]
-material = SubResource( 29 )
+material = SubResource( 39 )
 
 [sub_resource type="Animation" id=3]
 resource_name = "Attack1Fast"

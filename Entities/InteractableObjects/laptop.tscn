@@ -46,11 +46,16 @@ albedo_color = Color( 0, 0, 0, 1 )
 metallic = 0.19
 metallic_texture = SubResource( 27 )
 
-[sub_resource type="SpatialMaterial" id=28]
+[sub_resource type="SpatialMaterial" id=34]
 albedo_texture = ExtResource( 6 )
+emission_enabled = true
+emission = Color( 0.490196, 0.596078, 0.647059, 1 )
+emission_energy = 0.1
+emission_operator = 0
+emission_on_uv2 = false
 
 [sub_resource type="PlaneMesh" id=11]
-material = SubResource( 28 )
+material = SubResource( 34 )
 size = Vector2( 1.1, 0.8 )
 
 [sub_resource type="OpenSimplexNoise" id=1]

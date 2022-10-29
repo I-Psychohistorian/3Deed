@@ -86,7 +86,7 @@ material = SubResource( 42 )
 
 [sub_resource type="CapsuleShape" id=58]
 radius = 3.93006
-height = 40.0
+height = 10.0
 
 [node name="Pustule" type="KinematicBody" groups=["Enemy"]]
 script = ExtResource( 3 )

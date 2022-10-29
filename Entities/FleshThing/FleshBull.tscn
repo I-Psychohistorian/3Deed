@@ -1,8 +1,17 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://Entities/FleshThing/FleshPoker.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Effects/glorpcore.tres" type="Material" id=2]
 [ext_resource path="res://Assets/asset package custom/particlePack_1.1/PNG (Transparent)/dirt_02.png" type="Texture" id=3]
+[ext_resource path="res://Entities/FleshThing/FleshBull.gd" type="Script" id=4]
+[ext_resource path="res://Entities/FleshThing/FleshHead.gd" type="Script" id=5]
+[ext_resource path="res://Entities/FleshThing/Tumor2.gd" type="Script" id=6]
+[ext_resource path="res://Entities/FleshThing/Tumor.gd" type="Script" id=7]
+[ext_resource path="res://Sounds/CompleteMouthSounds/FleshiestBlorp.mp3" type="AudioStream" id=8]
+[ext_resource path="res://Sounds/CompleteMouthSounds/Rip1Reverse.mp3" type="AudioStream" id=9]
+[ext_resource path="res://Sounds/CompleteMouthSounds/Rip1.mp3" type="AudioStream" id=10]
+[ext_resource path="res://Sounds/CompleteMouthSounds/WetSoundLong.mp3" type="AudioStream" id=11]
+[ext_resource path="res://Sounds/CompleteMouthSounds/RGurk4.mp3" type="AudioStream" id=12]
 
 [sub_resource type="CapsuleMesh" id=52]
 material = ExtResource( 2 )
@@ -43,6 +52,43 @@ material = SubResource( 29 )
 [sub_resource type="CapsuleShape" id=53]
 radius = 0.3
 height = 0.5
+
+[sub_resource type="OpenSimplexNoise" id=47]
+
+[sub_resource type="NoiseTexture" id=48]
+width = 1000
+height = 1000
+seamless = true
+noise = SubResource( 47 )
+
+[sub_resource type="NoiseTexture" id=49]
+width = 700
+height = 700
+seamless = true
+noise = SubResource( 47 )
+noise_offset = Vector2( 400, 0 )
+
+[sub_resource type="NoiseTexture" id=50]
+width = 800
+height = 500
+seamless = true
+noise = SubResource( 47 )
+noise_offset = Vector2( -100, 0 )
+
+[sub_resource type="AnimatedTexture" id=51]
+flags = 7
+frames = 3
+fps = 2.0
+frame_0/texture = SubResource( 48 )
+frame_1/texture = SubResource( 49 )
+frame_1/delay_sec = 0.0
+frame_2/texture = SubResource( 50 )
+frame_2/delay_sec = 0.0
+
+[sub_resource type="SpatialMaterial" id=64]
+albedo_color = Color( 1, 0, 0, 1 )
+albedo_texture = SubResource( 51 )
+metallic = 1.0
 
 [sub_resource type="SphereShape" id=58]
 radius = 0.2
@@ -98,6 +144,59 @@ tracks/3/keys = {
 "values": [ Vector3( 4.22504e-13, -120.411, 180 ) ]
 }
 
+[sub_resource type="Animation" id=65]
+resource_name = "Run"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body/Leg:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 2.18948e-13, 57.673, -180 ), Vector3( 20.6123, 15.431, -174.45 ), Vector3( -43.904, 20.222, -165.671 ), Vector3( -35.2426, 58.4261, -175.49 ), Vector3( 2.18948e-13, 57.673, -180 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Body/Leg2:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, -66.634, -180 ), Vector3( 10.01, -16.343, -177.082 ), Vector3( -43.087, -22.2977, -164.351 ), Vector3( -31.8493, -45.0241, -178.525 ), Vector3( 0, -66.634, -180 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Body/Leg3:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 2.18948e-13, 115.846, -180 ), Vector3( 22.8848, 90.5738, -175.433 ), Vector3( -0.534, 78.15, -179.686 ), Vector3( -0.534, 105.632, -179.686 ), Vector3( 2.18948e-13, 115.846, -180 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Body/Leg4:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 4.22504e-13, -120.411, 180 ), Vector3( 27.8827, -89.29, 177.091 ), Vector3( 2.26841, -79.1017, 171.686 ), Vector3( 2.35363, -105.138, 175.048 ), Vector3( 4.22504e-13, -120.411, 180 ) ]
+}
+
 [sub_resource type="Animation" id=63]
 resource_name = "Walk"
 length = 3.0
@@ -151,61 +250,331 @@ tracks/3/keys = {
 "values": [ Vector3( 0, -120.411, -180 ), Vector3( 0, -120.411, -180 ), Vector3( 28.8007, -114.079, -175.134 ), Vector3( 27.3607, -78.8114, -175.377 ), Vector3( -0.527008, -74.9112, -179.656 ), Vector3( 0, -120.411, -180 ) ]
 }
 
-[sub_resource type="SphereShape" id=54]
-radius = 0.3
+[sub_resource type="CylinderShape" id=66]
+radius = 8.7901
 
-[sub_resource type="OpenSimplexNoise" id=47]
+[sub_resource type="BoxShape" id=72]
+extents = Vector3( 0.119579, 0.330076, 8.68938 )
 
-[sub_resource type="NoiseTexture" id=48]
-width = 1000
-height = 1000
-seamless = true
-noise = SubResource( 47 )
-
-[sub_resource type="NoiseTexture" id=49]
-width = 700
-height = 700
-seamless = true
-noise = SubResource( 47 )
-noise_offset = Vector2( 400, 0 )
-
-[sub_resource type="NoiseTexture" id=50]
-width = 800
-height = 500
-seamless = true
-noise = SubResource( 47 )
-noise_offset = Vector2( -100, 0 )
-
-[sub_resource type="AnimatedTexture" id=51]
-flags = 7
-frames = 3
-fps = 2.0
-frame_0/texture = SubResource( 48 )
-frame_1/texture = SubResource( 49 )
-frame_1/delay_sec = 0.0
-frame_2/texture = SubResource( 50 )
-frame_2/delay_sec = 0.0
+[sub_resource type="SphereShape" id=56]
+radius = 0.2
 
 [sub_resource type="SpatialMaterial" id=55]
 albedo_color = Color( 0.929412, 0.0509804, 0.0509804, 1 )
 albedo_texture = SubResource( 51 )
 metallic = 1.0
 
-[sub_resource type="SphereShape" id=56]
-radius = 0.2
+[sub_resource type="SpatialMaterial" id=78]
+flags_transparent = true
+albedo_color = Color( 0.643137, 0.164706, 0.164706, 0.972549 )
+albedo_texture = SubResource( 51 )
+metallic = 1.0
 
 [sub_resource type="SpatialMaterial" id=57]
 albedo_color = Color( 0.854902, 0.0784314, 0.0784314, 1 )
 albedo_texture = SubResource( 51 )
 metallic = 1.0
 
-[node name="FleshBull" type="KinematicBody"]
+[sub_resource type="Animation" id=74]
+resource_name = "Bite"
+
+[sub_resource type="Animation" id=75]
+resource_name = "BiteOpen"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Head/Hole:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, -0.0935518 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Pincer1:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -29.1852, 49.0627, -161.43 ), Vector3( -33.571, 61.1583, -158.685 ), Vector3( -24.805, 6.56037, -139.043 ), Vector3( -29.1852, 49.0627, -161.43 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Pincer2:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.025, 0.1, 0.2, 0.425 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -21.9582, -44.6556, 68.8623 ), Vector3( -24.3294, -62.8964, 78.3535 ), Vector3( -27.7971, 6.73531, 30.3864 ), Vector3( -21.9582, -44.6556, 68.8623 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Pincer3:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.025, 0.1, 0.2, 0.425 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 61.9173, -2.83686, 174.794 ), Vector3( 82.0612, -9.71146, 167.677 ), Vector3( 20.7886, -1.428, 176.791 ), Vector3( 61.9173, -2.83686, 174.794 ) ]
+}
+
+[sub_resource type="Animation" id=67]
+resource_name = "Idle"
+length = 1.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Head/Hole:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, -0.35097 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Pincer1:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2, 0.3, 0.4, 0.6, 0.7, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -11.9758, 22.7037, -153.621 ), Vector3( -12.1827, 23.7581, -151.953 ), Vector3( -11.9758, 22.7037, -153.621 ), Vector3( -11.9758, 22.7037, -153.621 ), Vector3( -13.2714, 24.309, -150.393 ), Vector3( -11.9758, 22.7037, -153.621 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Pincer2:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.1, 0.2, 0.3, 0.7, 0.8, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -13.3567, -22.8693, 61.2904 ), Vector3( -15.2279, -24.3482, 56.5822 ), Vector3( -13.3567, -22.8693, 61.2904 ), Vector3( -13.3567, -22.8693, 61.2904 ), Vector3( -16.2281, -23.1917, 62.5527 ), Vector3( -13.3567, -22.8693, 61.2904 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Pincer3:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.5, 1, 1.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 26.2628, -1.48872, 176.639 ), Vector3( 26.302, 0.066, 179.852 ), Vector3( 26.2628, -1.48872, 176.639 ), Vector3( 26.302, 0.066, 179.852 ), Vector3( 26.1675, -2.98489, 173.23 ), Vector3( 26.2628, -1.48872, 176.639 ) ]
+}
+
+[sub_resource type="Animation" id=76]
+resource_name = "NeckStab"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Torso/HiddenPoker:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 10.1281, -1.72855e-06, -180 ), Vector3( 22.9393, -1.97769e-06, -180 ), Vector3( 4.91224, -1.68347e-06, -180 ), Vector3( 10.1281, -1.72855e-06, -180 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Torso/HiddenPoker:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0.040765, 0.0608979 ), Vector3( 0, 0.0408854, -0.0623438 ), Vector3( 0, -0.118046, -0.245862 ), Vector3( 0, 0.040765, 0.0608979 ) ]
+}
+
+[sub_resource type="Animation" id=68]
+resource_name = "Open"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Head/Hole:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, -0.35097 ), Vector3( 0, 0, -0.0935518 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Pincer1:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( -22.406, 19.9893, -145.725 ), Vector3( -29.1852, 49.0627, -161.43 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Pincer2:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( -28.3834, -7.94203, 40.0332 ), Vector3( -21.9582, -44.6556, 68.8623 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Pincer3:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 24.1126, -1.46266, 176.7 ), Vector3( 61.9173, -2.83686, 174.794 ) ]
+}
+
+[sub_resource type="Animation" id=69]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Head/Hole:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, -0.35097 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Pincer1:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -11.9758, 22.7037, -153.621 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Pincer2:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( -0.025 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -13.3567, -22.8693, 61.2904 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Pincer3:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( -0.025 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 26.2628, -1.48872, 176.639 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Pincer2/FleshPoker:translation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, -0.132769 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Torso/HiddenPoker:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 10.1281, -1.72855e-06, -180 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Torso/HiddenPoker:translation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0.040765, 0.0608979 ) ]
+}
+
+[sub_resource type="SphereShape" id=70]
+radius = 12.1548
+
+[sub_resource type="BoxShape" id=71]
+extents = Vector3( 0.34952, 0.441547, 0.27553 )
+
+[sub_resource type="SphereShape" id=77]
+radius = 0.2
+
+[sub_resource type="SphereMesh" id=73]
+radius = 0.1
+height = 0.1
+
+[sub_resource type="CylinderShape" id=79]
+height = 1.23935
+radius = 3.07827
+
+[node name="FleshBull" type="KinematicBody" groups=["Enemy", "Flesh", "FleshShooter"]]
+transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0 )
+script = ExtResource( 4 )
 
 [node name="Body" type="MeshInstance" parent="."]
 mesh = SubResource( 52 )
 
 [node name="Leg" type="Spatial" parent="Body"]
-transform = Transform( -0.534751, 8.07451e-08, 0.84501, -1.50996e-07, -1, -3.82137e-15, 0.84501, -1.27593e-07, 0.534751, -0.117594, -0.142425, -0.360759 )
+transform = Transform( -0.534751, 8.07451e-08, 0.84501, -1.50996e-07, -1, -3.82137e-15, 0.84501, -1.27593e-07, 0.53475, -0.117594, -0.142425, -0.360759 )
 
 [node name="FleshPoker" parent="Body/Leg" instance=ExtResource( 1 )]
 transform = Transform( 3, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, -0.234833 )
@@ -217,7 +586,7 @@ transform = Transform( -0.396603, -5.98854e-08, -0.91799, 1.50996e-07, -1, -3.82
 transform = Transform( 3, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, -0.234833 )
 
 [node name="Leg3" type="Spatial" parent="Body"]
-transform = Transform( 0.435953, -6.58272e-08, 0.899969, -1.50996e-07, -1, -3.82137e-15, 0.899969, -1.35892e-07, -0.435954, -0.135825, -0.0606358, 0.446525 )
+transform = Transform( 0.435954, -6.58272e-08, 0.899969, -1.50996e-07, -1, -3.82137e-15, 0.899969, -1.35892e-07, -0.435954, -0.135825, -0.0606358, 0.446525 )
 
 [node name="FleshPoker" parent="Body/Leg3" instance=ExtResource( 1 )]
 transform = Transform( 3.5, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, -0.234833 )
@@ -244,34 +613,121 @@ shape = SubResource( 53 )
 
 [node name="Tumor" type="KinematicBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.221587, 0.143945, -0.0938294 )
+script = ExtResource( 7 )
 
 [node name="CSGSphere" type="CSGSphere" parent="Tumor"]
 radius = 0.2
 material = ExtResource( 2 )
 
+[node name="TumorHole" type="CSGSphere" parent="Tumor/CSGSphere"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0981487, 0.100636, -0.0021372 )
+visible = false
+operation = 2
+radius = 0.182113
+material = SubResource( 64 )
+
+[node name="HeadSplatter2" type="Particles" parent="Tumor/CSGSphere"]
+transform = Transform( 2, 0, 0, 0, 2, 1.19209e-07, 0, 0, 2, 0.25194, 0.138495, -0.0435404 )
+emitting = false
+amount = 16
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.75
+process_material = SubResource( 60 )
+draw_pass_1 = SubResource( 61 )
+
 [node name="CollisionShape" type="CollisionShape" parent="Tumor"]
 shape = SubResource( 58 )
+disabled = true
+
+[node name="WormSpawn" type="Spatial" parent="Tumor"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.271248, 0.223392, 0 )
 
 [node name="Tumor2" type="KinematicBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.140337, 0.143945, 0.203899 )
+script = ExtResource( 6 )
 
 [node name="CSGSphere" type="CSGSphere" parent="Tumor2"]
 radius = 0.2
 material = ExtResource( 2 )
 
+[node name="TumorHole" type="CSGSphere" parent="Tumor2/CSGSphere"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.153792, 0.141823, 0.0229411 )
+visible = false
+operation = 2
+radius = 0.182113
+material = SubResource( 64 )
+
+[node name="HeadSplatter2" type="Particles" parent="Tumor2/CSGSphere"]
+transform = Transform( 2, 0, 0, 0, 2, 1.19209e-07, 0, 0, 2, 0, 0.00101332, -0.216312 )
+emitting = false
+amount = 16
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.75
+process_material = SubResource( 60 )
+draw_pass_1 = SubResource( 61 )
+
 [node name="CollisionShape" type="CollisionShape" parent="Tumor2"]
 shape = SubResource( 58 )
+disabled = true
+
+[node name="WormSpawn" type="Spatial" parent="Tumor2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.363294, 0.223392, -0.0337029 )
 
 [node name="BodyAnimation" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 62 )
+anims/Run = SubResource( 65 )
 anims/Walk = SubResource( 63 )
 
-[node name="FleshHead" type="KinematicBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0744375, -0.462973 )
+[node name="ChargeTimer" type="Timer" parent="."]
+one_shot = true
 
-[node name="CollisionShape2" type="CollisionShape" parent="FleshHead"]
-transform = Transform( 1, 0, 0, 0, 0.895285, -0.668242, 0, 0.445495, 1.34293, 0, 0.0368424, -0.0747712 )
-shape = SubResource( 54 )
+[node name="ChargeTick" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[node name="GravCast" type="RayCast" parent="."]
+enabled = true
+cast_to = Vector3( 0, -0.7, 0 )
+
+[node name="GroundCast" type="RayCast" parent="."]
+enabled = true
+
+[node name="BodySight" type="Area" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="BodySight"]
+shape = SubResource( 66 )
+
+[node name="SightLineAreaneg" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.106792, 0, -3.84976 )
+
+[node name="CollisionShape" type="CollisionShape" parent="SightLineAreaneg"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.10825 )
+shape = SubResource( 72 )
+
+[node name="SightLineAreaPos" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.130111, 0, -3.84976 )
+
+[node name="CollisionShape" type="CollisionShape" parent="SightLineAreaPos"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.10825 )
+shape = SubResource( 72 )
+
+[node name="SightLine" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.018906, -1.24124 )
+enabled = true
+cast_to = Vector3( 0, 0, -0.4 )
+
+[node name="Debugtimer" type="Timer" parent="."]
+autostart = true
+
+[node name="FleshHead" type="KinematicBody" parent="." groups=["Enemy", "Flesh"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0744375, -0.462973 )
+script = ExtResource( 5 )
+
+[node name="HeadColide" type="CollisionShape" parent="FleshHead"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.261383, -0.454535 )
+shape = SubResource( 56 )
 
 [node name="Head" type="CSGSphere" parent="FleshHead"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.261383, -0.454535 )
@@ -279,34 +735,37 @@ radius = 0.2
 material = ExtResource( 2 )
 
 [node name="Hole" type="CSGCylinder" parent="FleshHead/Head"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.0698667 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.35097 )
 operation = 2
 radius = 0.1
 height = 0.27037
 cone = true
 material = SubResource( 55 )
 
-[node name="CollisionShape3" type="CollisionShape" parent="FleshHead"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.261383, -0.454535 )
-shape = SubResource( 56 )
-
 [node name="Pincer1" type="Spatial" parent="FleshHead"]
-transform = Transform( -0.902435, 7.88934e-08, 0.430826, -8.74228e-08, -1, -3.82137e-15, 0.430826, -3.7664e-08, 0.902435, -0.168188, 0.275271, -0.518306 )
+transform = Transform( -0.790871, 0.481632, 0.377565, -0.434641, -0.876374, 0.207499, 0.430826, -5.96047e-08, 0.902435, -0.168188, 0.239551, -0.518306 )
 
 [node name="FleshPoker" parent="FleshHead/Pincer1" instance=ExtResource( 1 )]
 transform = Transform( -4.37114e-08, -1, -4.37114e-08, 1, -4.37114e-08, 4.37114e-08, -4.37114e-08, -4.37114e-08, 1, 5.96046e-08, 0, -0.0682893 )
 
 [node name="Pincer2" type="Spatial" parent="FleshHead"]
-transform = Transform( 9.81893e-08, -0.896471, -0.443103, 1, 1.31134e-07, -4.37114e-08, 9.72919e-08, -0.443103, 0.896471, 0.113417, 0.275271, -0.477345 )
+transform = Transform( 0.521353, -0.764996, -0.378118, 0.853343, 0.467377, 0.231013, 1.19209e-07, -0.443103, 0.896471, 0.113417, 0.222033, -0.478796 )
 
 [node name="FleshPoker" parent="FleshHead/Pincer2" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.132769 )
+skeleton = NodePath("../../Leg2")
+
+[node name="Pincer3" type="Spatial" parent="FleshHead"]
+transform = Transform( -0.998617, -0.0471365, -0.0232983, 0.0525801, -0.895231, -0.44249, 1.00583e-07, -0.443103, 0.896471, 0.000684783, 0.394717, -0.477345 )
+
+[node name="FleshPoker" parent="FleshHead/Pincer3" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.132769 )
 skeleton = NodePath("../../Leg2")
 
 [node name="Torso" type="CSGSphere" parent="FleshHead"]
 transform = Transform( 1, 0, 0, 0, 0.866025, -0.75, 0, 0.5, 1.29904, 0, 0.0348751, -0.091595 )
 radius = 0.3
-material = ExtResource( 2 )
+material = SubResource( 78 )
 
 [node name="Hole2" type="CSGCylinder" parent="FleshHead/Torso"]
 transform = Transform( 1, 0, 0, 0, 0.020822, -1.04526, 0, 0.960491, -0.190073, 0, 0.0775473, -0.164196 )
@@ -327,7 +786,131 @@ cone = true
 material = SubResource( 57 )
 
 [node name="HiddenPoker" parent="FleshHead/Torso" instance=ExtResource( 1 )]
-transform = Transform( -1, 1.56301e-07, -5.93976e-08, -1.48643e-07, -0.984417, -0.351698, -5.67214e-08, -0.175849, 1.96884, 0, 0.040765, 0.0608979 )
+transform = Transform( -1, 1.46771e-07, -6.93433e-08, -1.48643e-07, -0.924398, -0.410587, -5.67214e-08, -0.165127, 2.2985, 0, 0.040765, 0.0608979 )
 visible = false
 
+[node name="HeadSplatter2" type="Particles" parent="FleshHead/Torso"]
+transform = Transform( 2, 0, 0, 0, 2, 1.19209e-07, 0, 0, 2, 0, 0.00101332, -0.216312 )
+emitting = false
+amount = 16
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.75
+process_material = SubResource( 60 )
+draw_pass_1 = SubResource( 61 )
+
 [node name="UpperAnimation" type="AnimationPlayer" parent="FleshHead"]
+anims/Bite = SubResource( 74 )
+anims/BiteOpen = SubResource( 75 )
+anims/Idle = SubResource( 67 )
+anims/NeckStab = SubResource( 76 )
+anims/Open = SubResource( 68 )
+anims/RESET = SubResource( 69 )
+
+[node name="HeadSight" type="Area" parent="FleshHead"]
+
+[node name="CollisionShape" type="CollisionShape" parent="FleshHead/HeadSight"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.117931, -7.57128 )
+shape = SubResource( 70 )
+
+[node name="Hurtzone" type="Area" parent="FleshHead"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.284043, -0.71025 )
+
+[node name="CollisionShape" type="CollisionShape" parent="FleshHead/Hurtzone"]
+shape = SubResource( 71 )
+
+[node name="Bite" type="AudioStreamPlayer3D" parent="FleshHead"]
+stream = ExtResource( 10 )
+unit_size = 5.0
+
+[node name="Stab" type="AudioStreamPlayer3D" parent="FleshHead"]
+stream = ExtResource( 9 )
+unit_size = 5.0
+
+[node name="AttackTimer" type="Timer" parent="FleshHead"]
+wait_time = 0.5
+autostart = true
+
+[node name="Splorch" type="AudioStreamPlayer3D" parent="FleshHead"]
+stream = ExtResource( 8 )
+unit_size = 5.0
+
+[node name="Scream" type="AudioStreamPlayer3D" parent="FleshHead"]
+
+[node name="CollisionShape" type="CollisionShape" parent="FleshHead"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.158861, -0.331898 )
+shape = SubResource( 77 )
+disabled = true
+
+[node name="Timer2" type="Timer" parent="FleshHead"]
+
+[node name="InFront" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.158341, -1.61323 )
+visible = false
+
+[node name="DebugMesh" type="MeshInstance" parent="InFront"]
+mesh = SubResource( 73 )
+
+[node name="Splorch2" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 8 )
+unit_size = 5.0
+
+[node name="Run" type="AudioStreamPlayer3D" parent="."]
+transform = Transform( 0.666667, 0, 0, 0, 0.666667, 0, 0, 0, 0.666667, 0, 0.0744375, -0.462973 )
+stream = ExtResource( 11 )
+unit_db = 10.0
+unit_size = 30.0
+max_db = 6.0
+pitch_scale = 2.0
+autoplay = true
+
+[node name="Walk" type="AudioStreamPlayer3D" parent="."]
+transform = Transform( 0.666667, 0, 0, 0, 0.666667, 0, 0, 0, 0.666667, 0, 0.0744375, -0.462973 )
+stream = ExtResource( 11 )
+unit_db = 4.0
+unit_size = 20.0
+pitch_scale = 0.6
+autoplay = true
+
+[node name="ChargeAggro" type="Area" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="ChargeAggro"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.47307 )
+shape = SubResource( 79 )
+
+[node name="ChargePrelude" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 12 )
+unit_db = 3.0
+unit_size = 10.0
+max_db = 6.0
+pitch_scale = 0.48
+
+[node name="BackupTimer" type="Timer" parent="."]
+wait_time = 6.0
+one_shot = true
+
+[node name="InBack" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.662184 )
+visible = false
+
+[node name="DebugMesh" type="MeshInstance" parent="InBack"]
+mesh = SubResource( 73 )
+
+[connection signal="timeout" from="ChargeTimer" to="." method="_on_ChargeTimer_timeout"]
+[connection signal="timeout" from="ChargeTick" to="." method="_on_ChargeTick_timeout"]
+[connection signal="body_entered" from="BodySight" to="." method="_on_BodySight_body_entered"]
+[connection signal="body_exited" from="BodySight" to="." method="_on_BodySight_body_exited"]
+[connection signal="body_entered" from="SightLineAreaneg" to="." method="_on_SightLineAreaneg_body_entered"]
+[connection signal="body_exited" from="SightLineAreaneg" to="." method="_on_SightLineAreaneg_body_exited"]
+[connection signal="body_entered" from="SightLineAreaPos" to="." method="_on_SightLineArea_body_entered"]
+[connection signal="body_exited" from="SightLineAreaPos" to="." method="_on_SightLineArea_body_exited"]
+[connection signal="timeout" from="Debugtimer" to="." method="_on_Debugtimer_timeout"]
+[connection signal="player_seen" from="FleshHead" to="." method="_on_FleshHead_player_seen"]
+[connection signal="player_unseen" from="FleshHead" to="." method="_on_FleshHead_player_unseen"]
+[connection signal="transfer_damage" from="FleshHead" to="." method="_on_FleshHead_transfer_damage"]
+[connection signal="body_entered" from="FleshHead/HeadSight" to="FleshHead" method="_on_HeadSight_body_entered"]
+[connection signal="body_exited" from="FleshHead/HeadSight" to="FleshHead" method="_on_HeadSight_body_exited"]
+[connection signal="body_entered" from="FleshHead/Hurtzone" to="FleshHead" method="_on_Hurtzone_body_entered"]
+[connection signal="timeout" from="FleshHead/AttackTimer" to="FleshHead" method="_on_AttackTimer_timeout"]
+[connection signal="body_exited" from="ChargeAggro" to="." method="_on_ChargeAggro_body_exited"]
+[connection signal="timeout" from="BackupTimer" to="." method="_on_BackupTimer_timeout"]

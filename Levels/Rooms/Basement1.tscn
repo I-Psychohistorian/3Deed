@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Assets/asset package custom/kenneyretrourban/Models/GLTF format/concreteSmooth.material" type="Material" id=1]
 [ext_resource path="res://Entities/InteractableObjects/laptopalt.tscn" type="PackedScene" id=2]
@@ -18,6 +18,7 @@
 [ext_resource path="res://Entities/FleshThing/FleshLump.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Entities/InteractableObjects/FirstAid.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Entities/InteractableObjects/Crate.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Entities/Static/HazardLight.tscn" type="PackedScene" id=19]
 
 [node name="Basement1" type="CSGBox"]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -0.0256574 )
@@ -175,6 +176,9 @@ transform = Transform( 1.42373, 0, -0.472231, 0, 1.5, 0, 0.472231, 0, 1.42373, -
 [node name="Crate3" parent="CSGBox/CSGBox2/StorageRoom" instance=ExtResource( 18 )]
 transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -1.48357, -0.653312, 2.3958 )
 
+[node name="HazardLight" parent="CSGBox/CSGBox2/StorageRoom" instance=ExtResource( 19 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.50224, 1.12572, 0 )
+
 [node name="Door" parent="CSGBox/CSGBox2" instance=ExtResource( 14 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1.1, 0, -1, 0, -4.37114e-08, 0.00624752, -0.0811597, 0.983557 )
 
@@ -285,6 +289,9 @@ width = 3.85677
 height = 0.1
 depth = 6.75456
 material = ExtResource( 6 )
+
+[node name="HazardLight" parent="CSGBox/CSGBox4/StorageRoom" instance=ExtResource( 19 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.45969, 1.20331, 0 )
 
 [node name="Door" parent="CSGBox/CSGBox4" instance=ExtResource( 14 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1.1, 0, -1, 0, -4.37114e-08, 0.00624752, -0.0811597, 0.983557 )

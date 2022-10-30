@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Assets/asset package custom/kenneyretrourban/Models/GLTF format/roof.material" type="Material" id=1]
 [ext_resource path="res://Entities/FleshThing/FleshThing.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/asset package custom/kenneyretrourban/Models/GLTF format/wall_metal.material" type="Material" id=3]
+[ext_resource path="res://Entities/Static/HazardLight.tscn" type="PackedScene" id=4]
 
 [node name="Testroom2" type="CSGBox"]
 invert_faces = true
@@ -20,3 +21,6 @@ material = ExtResource( 3 )
 
 [node name="FleshThing" parent="." instance=ExtResource( 2 )]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 4.63801, 0, 0 )
+
+[node name="HazardLight" parent="." instance=ExtResource( 4 )]
+transform = Transform( -1, 0, 8.9407e-08, 0, 1, 0, -8.9407e-08, 0, -1, 6.08262, 1.77966, 0 )

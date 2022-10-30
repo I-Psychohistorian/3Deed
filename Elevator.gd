@@ -7,7 +7,8 @@ var y_distance = Vector3()
 var y_inc_p = 0.039
 var y_inc_n = -0.039
 var moving = false
-
+signal toggle_call_basement
+signal toggle_call_upper
 
 onready var door1 = $DoorRight
 onready var door2 = $DoorLeft
@@ -50,6 +51,10 @@ func open_doors():
 	door2.translate_object_local(Vector3(0.9, 0, 0))
 	door1.translate_object_local(Vector3(-0.9, 0, 0))
 	$Open.play()
+	if up == true:
+		emit_signal("toggle_call_basement")
+	elif up == false:
+		emit_signal("toggle_call_upper")
 func _on_MoveTime_timeout():
 	moving = false
 	if up == true:
@@ -64,3 +69,18 @@ func _on_MoveTime_timeout():
 
 func _on_Close_Open_timeout():
 	open_doors()
+
+
+func _on_ElevatorCall_call():
+	close_doors()
+	$MoveTime.start()
+	moving = true
+	$Sound.stream_paused = false
+
+
+func _on_BottomCall_call_basement():
+	close_doors()
+	$MoveTime.start()
+	moving = true
+	$Sound.stream_paused = false
+

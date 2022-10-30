@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Doorframe2.gd" type="Script" id=1]
 [ext_resource path="res://Assets/asset package custom/kenneyretrourban/Models/GLTF format/concrete.material" type="Material" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Entities/InteractableObjects/Door.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Assets/asset package custom/kenneyretrourban/Models/GLTF format/metal.material" type="Material" id=8]
 [ext_resource path="res://Assets/asset package custom/kenneyretrourban/Models/GLTF format/wall_metal.material" type="Material" id=9]
+[ext_resource path="res://Entities/Static/HazardLight.tscn" type="PackedScene" id=10]
 
 [node name="TestRoom3" type="CSGBox"]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
@@ -83,3 +84,6 @@ script = ExtResource( 1 )
 
 [node name="Door" parent="." instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0956, 0.0440788, 2.03582 )
+
+[node name="HazardLight" parent="." instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.05053, 1.9668, -5.28955e-07 )

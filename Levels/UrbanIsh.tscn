@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=2]
+[gd_scene load_steps=74 format=2]
 
 [ext_resource path="res://Assets/asset package custom/kenneyretrourban/Models/GLTF format/roof.material" type="Material" id=1]
 [ext_resource path="res://Assets/asset package custom/kenneyretrourban/Models/GLTF format/asphalt.material" type="Material" id=2]
@@ -56,7 +56,6 @@
 [ext_resource path="res://Entities/InteractableObjects/KeyCardDoor.tscn" type="PackedScene" id=54]
 [ext_resource path="res://Entities/InteractableObjects/OpenSafe.tscn" type="PackedScene" id=55]
 [ext_resource path="res://Levels/UrbanIsh.gd" type="Script" id=56]
-[ext_resource path="res://Entities/FleshThing/FleshBull.tscn" type="PackedScene" id=57]
 
 [sub_resource type="Image" id=26]
 data = {
@@ -838,7 +837,7 @@ depth = 3.62396
 material = ExtResource( 1 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.84576, 0, -24.6199 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.838721, 0, 0.341034 )
 
 [node name="RigidKnifePowerup" parent="." instance=ExtResource( 5 )]
 transform = Transform( 0.103539, -0.994625, 0, 0.994625, 0.103539, 0, 0, 0, 1, 2.83952, -0.328545, 2.92946 )
@@ -871,9 +870,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.590561, 1.09465, 5.38643 )
 [node name="FleshThing2" parent="HallAreaNode/FleshManager" instance=ExtResource( 14 )]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -72.0315, 0.254474, 19.9025 )
 
-[node name="FleshBull" parent="HallAreaNode/FleshManager" instance=ExtResource( 57 )]
-transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -0.0884457, 1.06725, -13.4186 )
-
 [node name="GlorperMitosisManager" parent="HallAreaNode" instance=ExtResource( 19 )]
 
 [node name="Glorper" parent="HallAreaNode/GlorperMitosisManager" instance=ExtResource( 18 )]
@@ -888,7 +884,7 @@ transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 51.9043
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6.98245, 14.2598, -66.426 )
 invert_faces = true
 width = 500.0
-height = 500.0
+height = 45.0
 depth = 500.0
 material = SubResource( 9 )
 

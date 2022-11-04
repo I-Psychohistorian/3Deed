@@ -109,6 +109,7 @@ onready var gun_range = $Head/Camera/GunRayCast
 onready var AoE = $Head/Camera/EquipNode/AoE_area
 
 onready var muzzle_explode = preload("res://Effects/GasFirespread.tscn")
+onready var yeeter = preload("res://Entities/TemporaryObjects/Yeeter.tscn")
 # Called when the node enters the scene tree for the first time.
 
 #screen position stuff
@@ -728,3 +729,12 @@ func _on_ODTimer_timeout():
 
 func _on_HUD_playerupdate():
 	update_stats_GM()
+
+
+func _on_YeetTimer_timeout():
+	if dashing == true:
+		if stamina > 0:
+			stamina -= 5
+			var y = yeeter.instance()
+			$Head/Yeet.add_child(y)
+	dashing = false

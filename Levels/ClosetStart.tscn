@@ -433,7 +433,7 @@ shape = SubResource( 25 )
 stream = ExtResource( 30 )
 
 [node name="CSGBox2" type="CSGBox" parent="CSGCombiner/FirstHall/ElevatorShaft"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.8394, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.7656, 0 )
 operation = 2
 invert_faces = true
 width = 3.86095
@@ -762,7 +762,14 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.32768, 0, 4.76837e-07 )
 transform = Transform( 2, 0, 0, 0, 1, 0, 0, 0, 1, -5.13646, -2.00789, -2.09097 )
 
 [node name="FleshThing" parent="CSGCombiner/FirstChoiceRoom/FleshManager" instance=ExtResource( 36 )]
-transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -12.7038, -0.614937, 0 )
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -11.3209, -0.614937, -1.03544 )
+
+[node name="Hall2" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.71305, -0.0640173, -35.4943 )
+invert_faces = true
+width = 10.0
+height = 5.0
+depth = 10.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 9 )

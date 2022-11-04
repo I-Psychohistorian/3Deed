@@ -8,7 +8,7 @@ var Name = "FleshPhage"
 var gravity = 8
 var spin_factor = 9
 var spin_speed = 15
-var move_speed = 0.8
+var move_speed = 0.9
 var hurt = false
 
 onready var NotWall = $NotWall #must not intersect wall to allow climbing

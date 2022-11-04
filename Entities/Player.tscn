@@ -1383,6 +1383,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.357316 )
 visible = false
 mesh = SubResource( 53 )
 
+[node name="Yeet" type="Spatial" parent="Head"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.704237 )
+
 [node name="StatusTick" type="Timer" parent="."]
 wait_time = 0.5
 autostart = true
@@ -1471,6 +1474,10 @@ autostart = true
 wait_time = 120.0
 one_shot = true
 
+[node name="YeetTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
 [connection signal="playerupdate" from="Head/Camera/HUD" to="." method="_on_HUD_playerupdate"]
 [connection signal="body_entered" from="Head/Camera/EquipNode/StabZone" to="." method="_on_StabZone_body_entered"]
 [connection signal="body_entered" from="Head/Camera/EquipNode/StabZone" to="Head/Camera/EquipNode/StabZone" method="_on_StabZone_body_entered"]
@@ -1485,5 +1492,6 @@ one_shot = true
 [connection signal="timeout" from="E_cooldown" to="." method="_on_E_cooldown_timeout"]
 [connection signal="timeout" from="DiseaseTimer" to="." method="_on_DiseaseTimer_timeout"]
 [connection signal="timeout" from="ODTimer" to="." method="_on_ODTimer_timeout"]
+[connection signal="timeout" from="YeetTimer" to="." method="_on_YeetTimer_timeout"]
 
 [editable path="Head/Camera/EquipNode/Magazine"]

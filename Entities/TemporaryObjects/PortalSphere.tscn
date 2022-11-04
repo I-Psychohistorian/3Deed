@@ -1,0 +1,94 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Sounds/SoundEffects/MagicSounds/MagicShort2.mp3" type="AudioStream" id=1]
+[ext_resource path="res://Assets/asset package custom/kenney sci fi sounds/spaceEngineLow_001.ogg" type="AudioStream" id=2]
+[ext_resource path="res://PortalSphere.gd" type="Script" id=3]
+
+[sub_resource type="OpenSimplexNoise" id=1]
+
+[sub_resource type="NoiseTexture" id=2]
+noise = SubResource( 1 )
+
+[sub_resource type="OpenSimplexNoise" id=3]
+
+[sub_resource type="NoiseTexture" id=4]
+noise = SubResource( 3 )
+noise_offset = Vector2( -10, 30 )
+
+[sub_resource type="OpenSimplexNoise" id=5]
+
+[sub_resource type="NoiseTexture" id=6]
+noise = SubResource( 5 )
+noise_offset = Vector2( 54, 43 )
+
+[sub_resource type="AnimatedTexture" id=7]
+flags = 7
+frames = 3
+fps = 10.0
+frame_0/texture = SubResource( 2 )
+frame_1/texture = SubResource( 4 )
+frame_1/delay_sec = 0.0
+frame_2/texture = SubResource( 6 )
+frame_2/delay_sec = 0.0
+
+[sub_resource type="SpatialMaterial" id=8]
+flags_transparent = true
+albedo_color = Color( 0.407843, 0.415686, 0.933333, 1 )
+albedo_texture = SubResource( 7 )
+
+[sub_resource type="SpatialMaterial" id=9]
+flags_transparent = true
+albedo_color = Color( 0.407843, 0.415686, 0.933333, 1 )
+albedo_texture = SubResource( 7 )
+
+[sub_resource type="SphereMesh" id=10]
+material = SubResource( 9 )
+radius = 3.0
+height = 6.0
+
+[node name="PortalSphere" type="Spatial"]
+script = ExtResource( 3 )
+
+[node name="CSGSphere" type="CSGSphere" parent="."]
+invert_faces = true
+radius = 3.0
+material = SubResource( 8 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = SubResource( 10 )
+
+[node name="Close" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 1 )
+unit_size = 5.0
+autoplay = true
+
+[node name="Ambient" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 2 )
+unit_db = -7.273
+unit_size = 5.0
+pitch_scale = 0.86
+autoplay = true
+
+[node name="Despawn" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="OmniLight" type="OmniLight" parent="."]
+light_color = Color( 0.313726, 0.180392, 0.964706, 1 )
+light_energy = 6.132
+omni_range = 5.87778
+
+[node name="OmniLight2" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.753047, 5.2733, -0.668306 )
+light_color = Color( 0.313726, 0.180392, 0.964706, 1 )
+light_energy = 6.132
+omni_range = 10.1487
+
+[node name="OmniLight3" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.753047, -6.947, -0.668306 )
+light_color = Color( 0.313726, 0.180392, 0.964706, 1 )
+light_energy = 6.132
+omni_range = 10.1487
+
+[connection signal="timeout" from="Despawn" to="." method="_on_Despawn_timeout"]

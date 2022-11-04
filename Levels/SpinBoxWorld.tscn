@@ -1,0 +1,163 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://Assets/asset package custom/kenneyretrourban/Models/GLTF format/roof_plates.material" type="Material" id=1]
+[ext_resource path="res://Entities/TemporaryObjects/PortalSphere.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Entities/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Levels/SpinBoxWorld.gd" type="Script" id=4]
+[ext_resource path="res://Levels/Hallway.gd" type="Script" id=5]
+[ext_resource path="res://Levels/SpinnyBox1.gd" type="Script" id=6]
+[ext_resource path="res://Levels/SpinnyCylinder.gd" type="Script" id=7]
+[ext_resource path="res://Levels/EndOval.gd" type="Script" id=8]
+[ext_resource path="res://Levels/Backhall.gd" type="Script" id=9]
+[ext_resource path="res://Levels/Hallswitch.gd" type="Script" id=10]
+[ext_resource path="res://Levels/LHall.gd" type="Script" id=11]
+[ext_resource path="res://Assets/asset package custom/kenneyretrourban/Models/GLTF format/roof.material" type="Material" id=12]
+[ext_resource path="res://Effects/transparent.tres" type="Material" id=13]
+[ext_resource path="res://Entities/InteractableObjects/PortalDiamond1.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Levels/World.gd" type="Script" id=15]
+[ext_resource path="res://Levels/Switchc.gd" type="Script" id=16]
+[ext_resource path="res://Levels/Window.gd" type="Script" id=17]
+[ext_resource path="res://Levels/GlassBox.gd" type="Script" id=18]
+[ext_resource path="res://Assets/asset package custom/kenney sci fi sounds/impactMetal_004.ogg" type="AudioStream" id=19]
+
+[sub_resource type="CylinderMesh" id=1]
+material = ExtResource( 12 )
+top_radius = 0.1
+bottom_radius = 0.1
+height = 1.0
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 0.348612, 0.423591, 0.407107 )
+
+[node name="SpinBoxWorld" type="Spatial"]
+script = ExtResource( 4 )
+
+[node name="CSGCombiner" type="CSGCombiner" parent="."]
+use_collision = true
+
+[node name="SpinnyBox1" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.79458 )
+use_collision = true
+invert_faces = true
+width = 6.0
+height = 6.0
+depth = 6.0
+material = ExtResource( 1 )
+script = ExtResource( 6 )
+
+[node name="Hallway" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.119791, -0.466742, -5.74308 )
+invert_faces = true
+width = 3.0
+height = 4.0
+depth = 15.4197
+material = ExtResource( 1 )
+script = ExtResource( 5 )
+
+[node name="SpinnyCylinder" type="CSGCylinder" parent="CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -18.1983 )
+invert_faces = true
+radius = 3.7645
+height = 10.0
+material = ExtResource( 1 )
+script = ExtResource( 7 )
+
+[node name="Backhall" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( -0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, -0.965926, -3, -0.437785, 15.767 )
+invert_faces = true
+width = 3.0
+height = 4.0
+depth = 20.0
+material = ExtResource( 1 )
+script = ExtResource( 9 )
+
+[node name="Hallswitch" type="CSGTorus" parent="CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.53225, -0.343869, 29.246 )
+invert_faces = true
+inner_radius = 1.71402
+outer_radius = 6.80799
+material = ExtResource( 1 )
+script = ExtResource( 10 )
+
+[node name="Switchc" type="KinematicBody" parent="CSGCombiner/Hallswitch" groups=["Interactable"]]
+transform = Transform( -1, 0, 8.9407e-08, 0, 1, 0, -8.9407e-08, 0, -1, -0.0582891, 0, 2.05584 )
+script = ExtResource( 16 )
+
+[node name="SwitchUp" type="MeshInstance" parent="CSGCombiner/Hallswitch/Switchc"]
+transform = Transform( 1, 0, 0, 0, 0.733588, 0.679595, 0, -0.679595, 0.733588, 0, 7.15256e-07, 0 )
+mesh = SubResource( 1 )
+
+[node name="SwitchDown" type="MeshInstance" parent="CSGCombiner/Hallswitch/Switchc"]
+transform = Transform( 1, 0, 0, 0, -0.309415, 0.950927, 0, -0.950927, -0.309415, 0, -0.317714, -0.0236664 )
+visible = false
+mesh = SubResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="CSGCombiner/Hallswitch/Switchc"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.161121 )
+shape = SubResource( 2 )
+
+[node name="Flip" type="AudioStreamPlayer3D" parent="CSGCombiner/Hallswitch/Switchc"]
+stream = ExtResource( 19 )
+unit_db = 10.0
+unit_size = 4.0
+pitch_scale = 4.0
+
+[node name="LHall" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.592279, -28.5565 )
+invert_faces = true
+width = 3.0
+height = 4.0
+depth = 11.6671
+material = ExtResource( 1 )
+script = ExtResource( 11 )
+
+[node name="CSGBox" type="CSGBox" parent="CSGCombiner/LHall"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.26902, 0, -4.51101 )
+invert_faces = true
+width = 3.0
+height = 4.0
+depth = 11.6671
+material = ExtResource( 1 )
+
+[node name="Window" type="CSGBox" parent="CSGCombiner/LHall"]
+transform = Transform( 1.1, 0, 0, 0, 1, 0, 0, 0, 1, -4.59785, -0.00680399, -4.52531 )
+invert_faces = true
+height = 3.61603
+depth = 3.63919
+material = ExtResource( 13 )
+script = ExtResource( 17 )
+
+[node name="EndOval" type="CSGSphere" parent="CSGCombiner"]
+transform = Transform( 1.5, 0, 0, 0, 0.5, 0, 0, 0, 1.4, -20.2856, 0.219853, -33.2811 )
+invert_faces = true
+radius = 8.42885
+material = ExtResource( 1 )
+script = ExtResource( 8 )
+
+[node name="World" type="CSGSphere" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.75, 0, 0, 0, 2, -6.57137, 0, -14.2889 )
+invert_faces = true
+radius = 35.6676
+material = ExtResource( 1 )
+script = ExtResource( 15 )
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.19442 )
+
+[node name="PortalSphere" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.75873 )
+
+[node name="GlassBox" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.3195, -0.397669, -33.3663 )
+use_collision = true
+width = 4.5
+height = 4.5
+depth = 4.5
+material = ExtResource( 13 )
+script = ExtResource( 18 )
+
+[node name="PortalDiamond1" parent="." instance=ExtResource( 14 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -20.4984, -1, -32.8283 )
+
+[connection signal="case_off" from="CSGCombiner/Hallswitch/Switchc" to="GlassBox" method="_on_Switchc_case_off"]
+[connection signal="case_on" from="CSGCombiner/Hallswitch/Switchc" to="GlassBox" method="_on_Switchc_case_on"]

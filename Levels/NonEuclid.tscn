@@ -1,0 +1,194 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Effects/transparent.tres" type="Material" id=1]
+[ext_resource path="res://Assets/asset package custom/kenneyretrourban/Models/GLTF format/asphalt.material" type="Material" id=2]
+[ext_resource path="res://Assets/asset package custom/kenneyretrourban/Models/GLTF format/metal.material" type="Material" id=3]
+[ext_resource path="res://Entities/InteractableObjects/PortalDiamond1.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Entities/Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/asset package custom/kenneycityurban/Models/GLTF format/pavement.material" type="Material" id=6]
+[ext_resource path="res://Assets/asset package custom/AllSkyFree_Godot-10e858fef0a9c5fa071de8bc191c3b4bef00edda/Screenshots/_0008_AllSkyFree_Screen_02.jpg" type="Texture" id=7]
+[ext_resource path="res://NonEuclid.gd" type="Script" id=8]
+[ext_resource path="res://Entities/TemporaryObjects/PortalSphere.tscn" type="PackedScene" id=9]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_texture = ExtResource( 7 )
+emission_enabled = true
+emission = Color( 1, 1, 1, 1 )
+emission_energy = 0.5
+emission_operator = 0
+emission_on_uv2 = false
+emission_texture = ExtResource( 7 )
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 1.78292, 1.78009, 0.240547 )
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 1.19808, 1.08724, 0.11624 )
+
+[node name="NonEuclid" type="Spatial"]
+script = ExtResource( 8 )
+
+[node name="Big" type="Spatial" parent="."]
+
+[node name="Bigland" type="CSGCombiner" parent="Big"]
+use_collision = true
+
+[node name="Room" type="CSGBox" parent="Big/Bigland"]
+invert_faces = true
+width = 15.4891
+height = 10.0
+depth = 20.7877
+material = ExtResource( 6 )
+
+[node name="Room2" type="CSGBox" parent="Big/Bigland"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.97934, 0 )
+invert_faces = true
+width = 25.465
+height = 0.05
+depth = 24.6868
+material = SubResource( 1 )
+
+[node name="PortalDiamond1" parent="Big/Bigland" instance=ExtResource( 4 )]
+transform = Transform( 0.360693, 0.346267, 0, -0.346267, 0.360693, 0, 0, 0, 0.5, -6.31821, -3.74355, 10.2728 )
+
+[node name="Glassbox" type="CSGBox" parent="Big"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.10455, -3.53368, 7.37796 )
+use_collision = true
+width = 3.29397
+height = 2.81344
+depth = 5.9914
+material = ExtResource( 1 )
+
+[node name="Glassbox" type="CSGBox" parent="Big/Glassbox"]
+operation = 2
+width = 2.99761
+height = 2.3946
+depth = 5.79885
+material = ExtResource( 1 )
+
+[node name="Closed" type="CSGBox" parent="Big"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.11116, -3.53805, 4.68695 )
+use_collision = true
+width = 3.35061
+height = 3.14507
+depth = 1.05228
+material = ExtResource( 3 )
+
+[node name="Black" type="CSGBox" parent="Big/Closed"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.343776 )
+operation = 2
+width = 2.48851
+height = 2.37168
+depth = 0.548627
+material = ExtResource( 2 )
+
+[node name="Closed2" type="CSGBox" parent="Big"]
+transform = Transform( -1.5, 0, -7.54979e-08, 0, 1.5, 0, 2.26494e-07, 0, -0.5, 4.52681, -2.76923, 10.2048 )
+use_collision = true
+width = 3.35061
+height = 3.14507
+depth = 1.05228
+material = ExtResource( 3 )
+
+[node name="Black" type="CSGBox" parent="Big/Closed2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.343776 )
+operation = 2
+width = 2.48851
+height = 2.37168
+depth = 0.548627
+material = ExtResource( 2 )
+
+[node name="Big_Teleport" type="Area" parent="Big"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.53358, -2.85814, 10.3337 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Big/Big_Teleport"]
+shape = SubResource( 2 )
+
+[node name="Small" type="Spatial" parent="."]
+transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, 52.6292, 6.5743, 0 )
+
+[node name="Bigland" type="CSGCombiner" parent="Small"]
+use_collision = true
+
+[node name="Room" type="CSGBox" parent="Small/Bigland"]
+invert_faces = true
+width = 15.4891
+height = 10.0
+depth = 20.7877
+material = ExtResource( 6 )
+
+[node name="Room2" type="CSGBox" parent="Small/Bigland"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.97934, 0 )
+invert_faces = true
+width = 25.465
+height = 0.05
+depth = 24.6868
+material = SubResource( 1 )
+
+[node name="PortalDiamond1" parent="Small/Bigland" instance=ExtResource( 4 )]
+transform = Transform( 0.360693, 0.346267, 0, -0.346267, 0.360693, 0, 0, 0, 0.5, -6.31821, -3.74355, 10.2728 )
+
+[node name="Glassbox" type="CSGBox" parent="Small"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.10455, -3.53368, 7.37796 )
+use_collision = true
+width = 3.29397
+height = 2.81344
+depth = 5.9914
+material = ExtResource( 1 )
+
+[node name="Glassbox" type="CSGBox" parent="Small/Glassbox"]
+operation = 2
+width = 2.99761
+height = 2.3946
+depth = 5.79885
+material = ExtResource( 1 )
+
+[node name="Closed" type="CSGBox" parent="Small"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.11116, -3.53805, 4.68695 )
+use_collision = true
+width = 3.35061
+height = 3.14507
+depth = 1.05228
+material = ExtResource( 3 )
+
+[node name="Black" type="CSGBox" parent="Small/Closed"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.343776 )
+operation = 2
+width = 2.48851
+height = 2.37168
+depth = 0.548627
+material = ExtResource( 2 )
+
+[node name="Closed2" type="CSGBox" parent="Small"]
+transform = Transform( -2, 0, -3.01992e-07, 0, 2, 0, 3.01992e-07, 0, -2, 4.52681, -2.03844, 10.4895 )
+use_collision = true
+width = 3.35061
+height = 3.14507
+depth = 1.05228
+material = ExtResource( 3 )
+
+[node name="Black" type="CSGBox" parent="Small/Closed2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.343776 )
+operation = 2
+width = 2.48851
+height = 2.37168
+depth = 0.548627
+material = ExtResource( 2 )
+
+[node name="Small_teleport" type="Area" parent="Small"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.12681, -3.44942, 4.90556 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Small/Small_teleport"]
+shape = SubResource( 3 )
+
+[node name="Player2" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.76586, -5.37848 )
+
+[node name="PortalSphere" parent="." instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.19399, -5.34115 )
+
+[node name="KinematicBody" type="KinematicBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 34.3675, -3.32402, 17.0035 )
+
+[connection signal="body_entered" from="Big/Big_Teleport" to="." method="_on_Big_Teleport_body_entered"]
+[connection signal="body_entered" from="Small/Small_teleport" to="." method="_on_Small_teleport_body_entered"]

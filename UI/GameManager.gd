@@ -22,6 +22,8 @@ var fairy_friend = true
 var fairy_quest_failed = false
 var fairy_quest_succeeded = false
 var goblin_spared = true
+var intro_complete = false
+var end_ready = false
 
 
 

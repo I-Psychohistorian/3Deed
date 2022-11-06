@@ -574,25 +574,25 @@ script = ExtResource( 4 )
 mesh = SubResource( 52 )
 
 [node name="Leg" type="Spatial" parent="Body"]
-transform = Transform( -0.534751, 8.07451e-08, 0.84501, -1.50996e-07, -1, -3.82137e-15, 0.84501, -1.27593e-07, 0.53475, -0.117594, -0.142425, -0.360759 )
+transform = Transform( -0.534751, -4.67494e-08, 0.84501, 8.74228e-08, -1, -3.82136e-15, 0.84501, 7.38731e-08, 0.53475, -0.117594, -0.142425, -0.360759 )
 
 [node name="FleshPoker" parent="Body/Leg" instance=ExtResource( 1 )]
 transform = Transform( 3, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, -0.234833 )
 
 [node name="Leg2" type="Spatial" parent="Body"]
-transform = Transform( -0.396603, -5.98854e-08, -0.91799, 1.50996e-07, -1, -3.82137e-15, -0.91799, -1.38613e-07, 0.396603, 0.134693, -0.142425, -0.371269 )
+transform = Transform( -0.396603, 3.46721e-08, -0.91799, -8.74228e-08, -1, -3.82136e-15, -0.91799, 8.02533e-08, 0.396603, 0.134693, -0.142425, -0.371269 )
 
 [node name="FleshPoker" parent="Body/Leg2" instance=ExtResource( 1 )]
 transform = Transform( 3, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, -0.234833 )
 
 [node name="Leg3" type="Spatial" parent="Body"]
-transform = Transform( 0.435954, -6.58272e-08, 0.899969, -1.50996e-07, -1, -3.82137e-15, 0.899969, -1.35892e-07, -0.435954, -0.135825, -0.0606358, 0.446525 )
+transform = Transform( 0.435954, 3.81123e-08, 0.899969, 8.74228e-08, -1, -3.82136e-15, 0.899969, 7.86778e-08, -0.435954, -0.135825, -0.0606358, 0.446525 )
 
 [node name="FleshPoker" parent="Body/Leg3" instance=ExtResource( 1 )]
 transform = Transform( 3.5, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, -0.234833 )
 
 [node name="Leg4" type="Spatial" parent="Body"]
-transform = Transform( 0.506199, 7.6434e-08, -0.862416, 1.50996e-07, -1, -7.37408e-15, -0.862416, -1.30221e-07, -0.506199, 0.146224, -0.0521494, 0.446525 )
+transform = Transform( 0.506199, -4.42534e-08, -0.862416, -8.74227e-08, -1, -7.37408e-15, -0.862416, 7.53948e-08, -0.506199, 0.146224, -0.0521494, 0.446525 )
 
 [node name="FleshPoker" parent="Body/Leg4" instance=ExtResource( 1 )]
 transform = Transform( 3.5, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, -0.234833 )
@@ -743,20 +743,20 @@ cone = true
 material = SubResource( 55 )
 
 [node name="Pincer1" type="Spatial" parent="FleshHead"]
-transform = Transform( -0.790871, 0.481632, 0.377565, -0.434641, -0.876374, 0.207499, 0.430826, -5.96047e-08, 0.902435, -0.168188, 0.239551, -0.518306 )
+transform = Transform( -0.790873, 0.481627, 0.377565, -0.434637, -0.876377, 0.207499, 0.430826, 1.3411e-06, 0.902435, -0.168188, 0.239551, -0.518306 )
 
 [node name="FleshPoker" parent="FleshHead/Pincer1" instance=ExtResource( 1 )]
 transform = Transform( -4.37114e-08, -1, -4.37114e-08, 1, -4.37114e-08, 4.37114e-08, -4.37114e-08, -4.37114e-08, 1, 5.96046e-08, 0, -0.0682893 )
 
 [node name="Pincer2" type="Spatial" parent="FleshHead"]
-transform = Transform( 0.521353, -0.764996, -0.378118, 0.853343, 0.467377, 0.231013, 1.19209e-07, -0.443103, 0.896471, 0.113417, 0.222033, -0.478796 )
+transform = Transform( 0.521353, -0.764996, -0.378118, 0.853343, 0.467377, 0.231013, -1.19209e-07, -0.443103, 0.896471, 0.113417, 0.222033, -0.478796 )
 
 [node name="FleshPoker" parent="FleshHead/Pincer2" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.132769 )
 skeleton = NodePath("../../Leg2")
 
 [node name="Pincer3" type="Spatial" parent="FleshHead"]
-transform = Transform( -0.998617, -0.0471365, -0.0232983, 0.0525801, -0.895231, -0.44249, 1.00583e-07, -0.443103, 0.896471, 0.000684783, 0.394717, -0.477345 )
+transform = Transform( -0.998617, -0.0471309, -0.0232983, 0.052575, -0.895232, -0.442489, -2.50712e-06, -0.443102, 0.896472, 0.000684783, 0.394717, -0.477345 )
 
 [node name="FleshPoker" parent="FleshHead/Pincer3" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.132769 )
@@ -786,7 +786,7 @@ cone = true
 material = SubResource( 57 )
 
 [node name="HiddenPoker" parent="FleshHead/Torso" instance=ExtResource( 1 )]
-transform = Transform( -1, 1.46771e-07, -6.93433e-08, -1.48643e-07, -0.924398, -0.410587, -5.67214e-08, -0.165127, 2.2985, 0, 0.040765, 0.0608979 )
+transform = Transform( -1, -7.71109e-08, -6.93432e-08, 8.60605e-08, -0.924398, -0.410588, -1.47956e-08, -0.165128, 2.2985, 0, 0.040765, 0.0608979 )
 visible = false
 
 [node name="HeadSplatter2" type="Particles" parent="FleshHead/Torso"]

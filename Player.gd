@@ -80,7 +80,8 @@ var fairy_friend = true
 var fairy_quest_failed = false
 var fairy_quest_succeeded = false
 var goblin_spared = true
-
+var intro_complete = false
+var end_ready = false
 
 signal gunshot #for starting gas fires
 var muzzle_coords = Vector3()
@@ -165,7 +166,8 @@ func get_start_stats():
 	fairy_quest_failed = GameManager.fairy_friend
 	fairy_quest_succeeded = GameManager.fairy_quest_succeeded
 	goblin_spared = GameManager.goblin_spared
-
+	intro_complete = GameManager.intro_complete
+	end_ready = GameManager.end_ready
 func update_stats_GM():
 	GameManager.powerups = powerups
 	GameManager.unlocked_weapons = inv_weapons
@@ -186,6 +188,8 @@ func update_stats_GM():
 	GameManager.fairy_quest_failed = fairy_quest_failed
 	GameManager.fairy_quest_succeeded = fairy_quest_succeeded
 	GameManager.goblin_spared = goblin_spared
+	GameManager.intro_complete = intro_complete
+	GameManager.end_ready = end_ready
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

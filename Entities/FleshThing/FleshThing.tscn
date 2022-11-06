@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=51 format=2]
 
 [ext_resource path="res://Effects/glorpcore.tres" type="Material" id=1]
 [ext_resource path="res://Entities/FleshThing/FleshPoker.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Sounds/CompleteMouthSounds/DeepHurl2.mp3" type="AudioStream" id=10]
 [ext_resource path="res://Sounds/CompleteMouthSounds/Rip1.mp3" type="AudioStream" id=11]
 [ext_resource path="res://Sounds/CompleteMouthSounds/WetSoundLong.mp3" type="AudioStream" id=12]
+[ext_resource path="res://Effects/transparent.tres" type="Material" id=13]
 
 [sub_resource type="SphereShape" id=17]
 radius = 0.2
@@ -973,7 +974,11 @@ height = 1.20451
 radius = 4.16314
 
 [sub_resource type="BoxShape" id=27]
-extents = Vector3( 0.347223, 0.458761, 0.3 )
+extents = Vector3( 0.136669, 0.458761, 0.3 )
+
+[sub_resource type="CubeMesh" id=40]
+material = ExtResource( 13 )
+size = Vector3( 0.274, 0.918, 0.6 )
 
 [node name="FleshThing" type="KinematicBody" groups=["Enemy", "Flesh", "FleshShooter"]]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
@@ -1201,11 +1206,16 @@ shape = SubResource( 25 )
 shape = SubResource( 26 )
 
 [node name="attack_area" type="Area" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.16315, 0.282883, 0 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.283, -0.0427912 )
 
 [node name="CollisionShape" type="CollisionShape" parent="attack_area"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.200567, -0.160634, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.165124, -0.160634, -1.54927e-09 )
 shape = SubResource( 27 )
+
+[node name="MeshInstance" type="MeshInstance" parent="attack_area/CollisionShape"]
+visible = false
+mesh = SubResource( 40 )
+skeleton = NodePath("../..")
 
 [node name="BarfCooldown" type="Timer" parent="."]
 wait_time = 3.0

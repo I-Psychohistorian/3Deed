@@ -6,7 +6,7 @@
 
 [sub_resource type="OpenSimplexNoise" id=1]
 
-[sub_resource type="NoiseTexture" id=2]
+[sub_resource type="NoiseTexture" id=10]
 noise = SubResource( 1 )
 
 [sub_resource type="OpenSimplexNoise" id=3]
@@ -25,7 +25,7 @@ noise_offset = Vector2( 54, 43 )
 flags = 7
 frames = 3
 fps = 10.0
-frame_0/texture = SubResource( 2 )
+frame_0/texture = SubResource( 10 )
 frame_1/texture = SubResource( 4 )
 frame_1/delay_sec = 0.0
 frame_2/texture = SubResource( 6 )
@@ -41,7 +41,7 @@ flags_transparent = true
 albedo_color = Color( 0.407843, 0.415686, 0.933333, 1 )
 albedo_texture = SubResource( 7 )
 
-[sub_resource type="SphereMesh" id=10]
+[sub_resource type="SphereMesh" id=11]
 material = SubResource( 9 )
 radius = 3.0
 height = 6.0
@@ -55,7 +55,7 @@ radius = 3.0
 material = SubResource( 8 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
-mesh = SubResource( 10 )
+mesh = SubResource( 11 )
 
 [node name="Close" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 1 )

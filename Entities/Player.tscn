@@ -37,7 +37,7 @@ radius = 0.5
 mid_height = 1.5
 
 [sub_resource type="BoxShape" id=3]
-extents = Vector3( 0.667062, 0.766306, 0.846291 )
+extents = Vector3( 0.324, 0.323, 1 )
 
 [sub_resource type="Animation" id=6]
 resource_name = "AoESpell"
@@ -1242,7 +1242,7 @@ visible = false
 mesh = ExtResource( 3 )
 
 [node name="StabZone" type="Area" parent="Head/Camera/EquipNode"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.150657 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.218539 )
 script = ExtResource( 4 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Head/Camera/EquipNode/StabZone"]
@@ -1343,7 +1343,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0650048 )
 shape = SubResource( 31 )
 
 [node name="Magazine" parent="Head/Camera/EquipNode" instance=ExtResource( 24 )]
-transform = Transform( 0.821271, 0.561038, 0.103672, -0.56625, 0.823763, 0.0277976, -0.0698054, -0.0815334, 0.994223, 0.229374, -0.376916, 0.406957 )
+transform = Transform( 0.821271, 0.561038, 0.103672, -0.56625, 0.823763, 0.0277976, -0.0698055, -0.0815334, 0.994223, 0.229374, -0.376916, 0.406957 )
 visible = false
 
 [node name="round" parent="Head/Camera/EquipNode/Magazine" index="1"]

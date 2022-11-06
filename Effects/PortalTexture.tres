@@ -2,7 +2,7 @@
 
 [sub_resource type="OpenSimplexNoise" id=1]
 
-[sub_resource type="NoiseTexture" id=2]
+[sub_resource type="NoiseTexture" id=10]
 noise = SubResource( 1 )
 
 [sub_resource type="OpenSimplexNoise" id=3]
@@ -21,7 +21,7 @@ noise_offset = Vector2( 54, 43 )
 flags = 7
 frames = 3
 fps = 10.0
-frame_0/texture = SubResource( 2 )
+frame_0/texture = SubResource( 10 )
 frame_1/texture = SubResource( 4 )
 frame_1/delay_sec = 0.0
 frame_2/texture = SubResource( 6 )

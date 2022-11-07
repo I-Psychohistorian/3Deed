@@ -5,7 +5,7 @@ var health = 25
 var dead = false
 var aggro = false
 signal die
-var damage = 1
+var damage = 5
 
 
 # Called when the node enters the scene tree for the first time.

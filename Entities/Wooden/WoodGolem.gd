@@ -99,6 +99,7 @@ func move():
 
 func take_damage(damage):
 	health -= damage
+	$Damage.play()
 	if health <= 0:
 		die()
 
@@ -106,9 +107,12 @@ func die():
 	#crystal break sound
 	$AnimationPlayer.play("RESET")
 	core.visible = false
+	$Glass.emitting = true
+	$CrystalBreak.play()
 	$IdleAggro.stream_paused = true
 	$Death.start()
 	aggro = false
+	$FloatyOn.visible = false
 
 func _on_Chase_radius_body_entered(body):
 	print('Golem radius entered')
@@ -116,29 +120,33 @@ func _on_Chase_radius_body_entered(body):
 
 
 func _on_Chase_radius_body_exited(body):
-	if body.is_in_group('Player'):
-		aggro = false
-		core.spinning = false
-		core_fire.visible = false
-		$IdleAggro.stream_paused = true
-		emit_signal("enemy_lost")
-		$AnimationPlayer.play("DeAggro")
-		up_thrust = 3
+	if dead == false:
+		if body.is_in_group('Player'):
+			aggro = false
+			$FloatyOn.visible = false
+			core.spinning = false
+			core_fire.visible = false
+			$IdleAggro.stream_paused = true
+			emit_signal("enemy_lost")
+			$AnimationPlayer.play("DeAggro")
+			up_thrust = 3
 
 
 func _on_Chase_trigger_body_entered(body):
-	if aggro == false:
-		if body.is_in_group('Player'):
-			$BeginChase.start()
-			core.spinning = true
-			core_fire.visible = true
-			$IdleAggro.stream_paused = false
-			emit_signal("enemy_spotted")
-			$AnimationPlayer.play("Awaken")
+	if dead == false:
+		if aggro == false:
+			if body.is_in_group('Player'):
+				$BeginChase.start()
+				core.spinning = true
+				core_fire.visible = true
+				$IdleAggro.stream_paused = false
+				emit_signal("enemy_spotted")
+				$AnimationPlayer.play("Awaken")
 
 
 func _on_BeginChase_timeout():
 	aggro = true
+	$FloatyOn.visible = true
 	up_thrust = 3
 	$AnimationPlayer.play("Aggro")
 
@@ -173,3 +181,17 @@ func _on_RotationTimer_timeout():
 
 func _on_Death_timeout():
 	dead = true 
+	$Floaty.visible = false
+	$SplodeTime.start()
+
+
+func _on_SplodeTime_timeout():
+	$Explode.play()
+	$Splode.emitting = true
+	$CSGSphere.visible = false
+	$RightShoulder.visible = false
+	$LeftShoulder.visible = false
+	$DeleteTime.start()
+
+func _on_DeleteTime_timeout():
+	queue_free()

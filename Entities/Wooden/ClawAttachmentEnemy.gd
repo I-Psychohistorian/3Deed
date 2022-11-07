@@ -21,7 +21,10 @@ func pinch():
 		$ArmHitbox.deaggro()
 
 func _on_ArmHitbox_die():
-	queue_free()
+	$ArmHitbox.queue_free()
+	$Dust.emitting = true
+	$Dust2.play()
+	$Death.start()
 
 
 func _on_WoodGolem_enemy_spotted():
@@ -30,3 +33,7 @@ func _on_WoodGolem_enemy_spotted():
 
 func _on_WoodGolem_enemy_lost():
 	pinch()
+
+
+func _on_Death_timeout():
+	queue_free()

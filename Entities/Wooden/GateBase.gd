@@ -46,3 +46,10 @@ func _on_WallGear_lower():
 func _on_WallGear_raise():
 	raising = true
 	#sound
+
+
+func _on_Timer_timeout():
+	if raising == true:
+		$Gatecreak.play()
+	if lowering == true:
+		$Gatecreak.play()

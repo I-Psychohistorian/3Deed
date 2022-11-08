@@ -25,10 +25,12 @@ func take_damage(damage):
 
 func aggro():
 	aggro = true
+	$Spike_zone/CollisionShape.disabled = false
 	$AnimationPlayer.play("IdleVibrate")
 
 func deaggro():
 	aggro = false
+	$Spike_zone/CollisionShape.disabled = true
 	$AnimationPlayer.play("RESET")
 
 func die():

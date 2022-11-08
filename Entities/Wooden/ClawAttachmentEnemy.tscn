@@ -170,6 +170,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.401044 )
 [node name="CollisionShape" type="CollisionShape" parent="ArmHitbox/Spike_zone"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.131559, 0, 0 )
 shape = SubResource( 4 )
+disabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ArmHitbox"]
 root_node = NodePath("../..")

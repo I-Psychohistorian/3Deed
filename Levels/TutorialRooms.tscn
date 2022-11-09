@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Assets/asset package custom/retro medieval 3d/Models/GLTF format/bricks.material" type="Material" id=1]
 [ext_resource path="res://Entities/Wooden/WoodGolem.tscn" type="PackedScene" id=2]
@@ -13,6 +13,10 @@
 [ext_resource path="res://Assets/asset package custom/retro medieval 3d/Models/GLTF format/planks.material" type="Material" id=11]
 [ext_resource path="res://Assets/asset package custom/kenneyretrourban/Models/GLTF format/metal.material" type="Material" id=12]
 [ext_resource path="res://Assets/asset package custom/kenneyretrourban/Models/GLTF format/asphalt.material" type="Material" id=13]
+[ext_resource path="res://Entities/Wooden/WoodCapsule.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Entities/InteractableObjects/Crate.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Assets/asset package custom/AllSkyFree_Godot-10e858fef0a9c5fa071de8bc191c3b4bef00edda/Screenshots/_0009_AllSkyFree_Screen_01.jpg" type="Texture" id=16]
+[ext_resource path="res://Assets/asset package custom/retro medieval 3d/Models/GLTF format/fence.material" type="Material" id=17]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.163404
@@ -20,6 +24,18 @@ height = 1.31347
 
 [sub_resource type="BoxShape" id=2]
 extents = Vector3( 2, 0.1, 0.3 )
+
+[sub_resource type="SpatialMaterial" id=6]
+albedo_texture = ExtResource( 16 )
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 1.98482, 2.54703, 1 )
+
+[sub_resource type="BoxShape" id=4]
+extents = Vector3( 3.8245, 2.85626, 0.64039 )
+
+[sub_resource type="BoxShape" id=5]
+extents = Vector3( 3.8527, 3.48233, 1 )
 
 [node name="Tutorial" type="Spatial"]
 script = ExtResource( 4 )
@@ -113,6 +129,20 @@ transform = Transform( -0.458867, 0.888505, 0, 0, 0, -1, -0.888505, -0.458867, 0
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.74411, 0 )
 shape = SubResource( 1 )
 
+[node name="Duct" type="CSGBox" parent="Rooms/FirstRoom"]
+transform = Transform( 0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 7.60438, 0, -4.29195 )
+invert_faces = true
+width = 8.0
+height = 1.5
+material = ExtResource( 1 )
+
+[node name="Duct" type="CSGBox" parent="Rooms/FirstRoom/Duct"]
+transform = Transform( 0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 4.0413, 0, -1.17113 )
+invert_faces = true
+width = 4.0
+height = 1.5
+material = ExtResource( 1 )
+
 [node name="FirstHall" type="CSGBox" parent="Rooms"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0996002, -0.961474, -10.1015 )
 invert_faces = true
@@ -144,27 +174,84 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.13363, 0 )
 [node name="CollisionShape" type="CollisionShape" parent="Rooms/FirstHall/GateSpace/Open_stop"]
 shape = SubResource( 2 )
 
-[node name="SecondHall" type="CSGBox" parent="Rooms"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.966957, -15.7944 )
+[node name="JumpingRoom" type="CSGBox" parent="Rooms/FirstHall"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.48695, -14.8078 )
 invert_faces = true
-width = 10.0
+width = 8.0
+height = 6.0
+depth = 20.0
+material = ExtResource( 1 )
+
+[node name="CSGBox" type="CSGBox" parent="Rooms/FirstHall/JumpingRoom"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.51719, -1.00147, -10.4031 )
+invert_faces = true
+width = 3.0
+height = 4.0
+depth = 3.0
+material = ExtResource( 1 )
+
+[node name="CSGBox" type="CSGBox" parent="Rooms/FirstHall"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0977, 0.827405, -2.27038 )
+invert_faces = true
+width = 0.2
+height = 1.0
+material = ExtResource( 1 )
+
+[node name="Intersection" type="CSGBox" parent="Rooms"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.02058, -0.966957, -38.6906 )
+invert_faces = true
+width = 17.0807
 height = 3.0
 depth = 4.0
 material = ExtResource( 1 )
 
-[node name="GolemChambertest" type="CSGCylinder" parent="Rooms/SecondHall"]
-transform = Transform( 0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -8.6738, 2.49429, 0 )
+[node name="GolemChambertest" type="CSGCylinder" parent="Rooms/Intersection"]
+transform = Transform( 0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -8.65289, 2.49429, 0 )
 invert_faces = true
-radius = 4.51172
+radius = 2.07306
 height = 8.0
 sides = 6
 material = ExtResource( 1 )
 
+[node name="WoodGolem" parent="Rooms/Intersection/GolemChambertest" instance=ExtResource( 2 )]
+transform = Transform( 0.866026, 0, 0.500001, 0, 1, 0, -0.500001, 0, 0.866026, 0.10968, -2.02193, -0.14502 )
+
+[node name="CSGBox" type="CSGBox" parent="Rooms/Intersection/GolemChambertest"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.62962, 0 )
+invert_faces = true
+width = 5.0
+depth = 5.0
+material = ExtResource( 1 )
+
+[node name="Sky" type="CSGBox" parent="Rooms/Intersection/GolemChambertest/CSGBox"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01023, 0 )
+invert_faces = true
+width = 5.0
+height = 0.05
+depth = 5.0
+material = SubResource( 6 )
+
+[node name="OmniLight" type="OmniLight" parent="Rooms/Intersection/GolemChambertest/CSGBox/Sky"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.57348, 0 )
+light_energy = 0.2
+omni_range = 8.66454
+
+[node name="Sky2" type="CSGBox" parent="Rooms/Intersection/GolemChambertest/CSGBox"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.581423, 0 )
+operation = 2
+invert_faces = true
+width = 4.40925
+height = 0.05
+depth = 4.70479
+material = ExtResource( 17 )
+
+[node name="OmniLight" type="OmniLight" parent="Rooms/Intersection/GolemChambertest/CSGBox/Sky2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.57348, 0 )
+light_energy = 0.2
+omni_range = 8.66454
+
 [node name="Player" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0493605, 0.720241 )
-
-[node name="WoodGolem" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.03182, -0.494598, -16.1457 )
 
 [node name="KnifeKinematic" parent="." instance=ExtResource( 5 )]
 transform = Transform( -0.205641, 0.978628, 0, -0.978628, -0.205641, 0, 0, 0, 1, 2.02718, -1.85692, -5.02855 )
@@ -207,6 +294,124 @@ material = ExtResource( 13 )
 [node name="WallGear2" parent="Gearbox2" instance=ExtResource( 9 )]
 transform = Transform( 0.985429, -0.170089, 0, 0.170089, 0.985429, 0, 0, 0, 1, -0.0606713, 0.489926, -0.0381637 )
 
+[node name="Boxes" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.73413 )
+
+[node name="Box1" type="CSGBox" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.80284, -1.51596, -19.3518 )
+use_collision = true
+material = ExtResource( 11 )
+
+[node name="Box2" type="CSGBox" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.675596, -1.51596, -20.0393 )
+use_collision = true
+material = ExtResource( 11 )
+
+[node name="Box3" type="CSGBox" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.80284, -1.51596, -21.5228 )
+use_collision = true
+material = ExtResource( 11 )
+
+[node name="Box4" type="CSGBox" parent="Boxes"]
+transform = Transform( 0.936525, 0, -0.3506, 0, 1, 0, 0.3506, 0, 0.936525, 2.21996, 0.480116, -20.1151 )
+use_collision = true
+material = ExtResource( 11 )
+
+[node name="Box5" type="CSGBox" parent="Boxes"]
+transform = Transform( 0.907316, 0, 0.42045, 0, 1, 0, -0.42045, 0, 0.907316, -2.36139, -1.71698, -20.2024 )
+use_collision = true
+width = 1.87477
+height = 1.5
+material = ExtResource( 11 )
+
+[node name="Box6" type="CSGBox" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.80284, -1.51596, -13.4703 )
+use_collision = true
+material = ExtResource( 11 )
+
+[node name="RectBox" type="CSGBox" parent="Boxes"]
+transform = Transform( 0.916258, 0, -0.400589, 0, 1, 0, 0.400589, 0, 0.916258, -0.447216, -2.16254, -12.528 )
+use_collision = true
+width = 3.63608
+height = 0.671171
+depth = 0.776835
+material = ExtResource( 11 )
+
+[node name="RectBox2" type="CSGBox" parent="Boxes"]
+transform = Transform( 0.984371, 0, 0.176106, 0, 1, 0, -0.176106, 0, 0.984371, -2.17309, -2.16254, -14.2504 )
+use_collision = true
+width = 3.63608
+height = 0.671171
+depth = 0.776835
+material = ExtResource( 11 )
+
+[node name="WoodCapsule" parent="Boxes" instance=ExtResource( 14 )]
+transform = Transform( -1.00803e-08, -0.23061, -0.973046, 1, -4.37114e-08, 0, -4.25332e-08, -0.973046, 0.23061, 2.40803, -1.528, -17.0727 )
+
+[node name="WoodCapsule2" parent="Boxes" instance=ExtResource( 14 )]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 2.43049, -2.20106, -16.7242 )
+
+[node name="WoodCapsule3" parent="Boxes" instance=ExtResource( 14 )]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 2.50685, -2.21326, -17.2239 )
+
+[node name="WoodCapsule4" parent="Boxes" instance=ExtResource( 14 )]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 2.3553, -2.12288, -17.6166 )
+
+[node name="Box7" type="CSGBox" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.80284, -1.51596, -29.1543 )
+use_collision = true
+material = ExtResource( 11 )
+
+[node name="Box8" type="CSGBox" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.686976, -1.51596, -29.1259 )
+use_collision = true
+material = ExtResource( 11 )
+
+[node name="Box9" type="CSGBox" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.58879, 0.490825, -29.1189 )
+use_collision = true
+material = ExtResource( 11 )
+
+[node name="Box10" type="CSGBox" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4092, -1.51596, -28.785 )
+use_collision = true
+material = ExtResource( 11 )
+
+[node name="Box11" type="CSGBox" parent="Boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.777969, 0.461233, -28.7622 )
+use_collision = true
+material = ExtResource( 11 )
+
+[node name="Crate" parent="Boxes" instance=ExtResource( 15 )]
+transform = Transform( 0.971375, -2.61305, 0, 0.23755, 10.6851, 0, 0, 0, 3, -3.29469, 0.227621, -29.1963 )
+
+[node name="Tutorial_area_1" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.70102, -15.0833 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Tutorial_area_1"]
+shape = SubResource( 3 )
+
+[node name="Tutorial_area_2" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.870081, -21.965 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Tutorial_area_2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.37348, 0 )
+shape = SubResource( 4 )
+
+[node name="TutorialTimer1" type="Timer" parent="Tutorial_area_2"]
+wait_time = 5.0
+one_shot = true
+
+[node name="Tutorial_area_3" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.110049, -28.5307 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Tutorial_area_3"]
+shape = SubResource( 5 )
+
+[node name="TutorialTimer2" type="Timer" parent="Tutorial_area_3"]
+wait_time = 5.0
+one_shot = true
+
 [connection signal="lower" from="Rooms/FirstRoom/WallGear" to="Rooms/FirstHall/GateSpace/Gate" method="_on_WallGear_lower"]
 [connection signal="raise" from="Rooms/FirstRoom/WallGear" to="Rooms/FirstHall/GateSpace/Gate" method="_on_WallGear_raise"]
 [connection signal="sister" from="Rooms/FirstRoom/WallGear" to="Gearbox2/WallGear2" method="_on_WallGear_sister"]
@@ -219,3 +424,8 @@ transform = Transform( 0.985429, -0.170089, 0, 0.170089, 0.985429, 0, 0, 0, 1, -
 [connection signal="lower" from="Gearbox2/WallGear2" to="Rooms/FirstHall/GateSpace/Gate" method="_on_WallGear_lower"]
 [connection signal="raise" from="Gearbox2/WallGear2" to="Rooms/FirstHall/GateSpace/Gate" method="_on_WallGear_raise"]
 [connection signal="sister" from="Gearbox2/WallGear2" to="Rooms/FirstRoom/WallGear" method="_on_WallGear2_sister"]
+[connection signal="body_entered" from="Tutorial_area_1" to="." method="_on_Tutorial_area_1_body_entered"]
+[connection signal="body_entered" from="Tutorial_area_2" to="." method="_on_Tutorial_area_2_body_entered"]
+[connection signal="timeout" from="Tutorial_area_2/TutorialTimer1" to="." method="_on_TutorialTimer1_timeout"]
+[connection signal="body_entered" from="Tutorial_area_3" to="." method="_on_Tutorial_area_3_body_entered"]
+[connection signal="timeout" from="Tutorial_area_3/TutorialTimer2" to="." method="_on_TutorialTimer2_timeout"]

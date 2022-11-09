@@ -121,15 +121,16 @@ func _on_Chase_radius_body_entered(body):
 
 func _on_Chase_radius_body_exited(body):
 	if dead == false:
-		if body.is_in_group('Player'):
-			aggro = false
-			$FloatyOn.visible = false
-			core.spinning = false
-			core_fire.visible = false
-			$IdleAggro.stream_paused = true
-			emit_signal("enemy_lost")
-			$AnimationPlayer.play("DeAggro")
-			up_thrust = 3
+		if aggro == true:
+			if body.is_in_group('Player'):
+				aggro = false
+				$FloatyOn.visible = false
+				core.spinning = false
+				core_fire.visible = false
+				$IdleAggro.stream_paused = true
+				emit_signal("enemy_lost")
+				$AnimationPlayer.play("DeAggro")
+				up_thrust = 3
 
 
 func _on_Chase_trigger_body_entered(body):

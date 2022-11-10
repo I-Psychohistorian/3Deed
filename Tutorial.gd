@@ -9,6 +9,13 @@ var jump_t = true
 var sprint_t = true
 var equip_t = true
 
+var fake_bozo_1 = "Bozo: Hmm, you aren't allowed to be back here"
+var d1 = true
+var waited = false
+var wait_text = "Bozo: You're a curious creature. Perhaps you will do..."
+var fake_bozo_2 = "Bozo: Why don't we have some fun? Ehehehe."
+var d2 = true
+
 onready var player = $Player
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -64,3 +71,31 @@ func _on_TutorialTimer2_timeout():
 	player.dialogue_text = instructions[textnum]
 	player.tick_dialogue()
 	textnum +=1
+
+
+func _on_Dialogue1_body_entered(body):
+	if body.is_in_group("Player"):
+		if d1 == true:
+			d1 = false
+			player.dialogue_text = fake_bozo_1
+			player.tick_dialogue()
+			$Dialogue1/Followup.start()
+
+func _on_Followup_timeout():
+	if waited == false:
+		waited = true
+		player.dialogue_text = wait_text
+		player.tick_dialogue()
+
+
+func _on_DialogueTrap_body_entered(body):
+	if body.is_in_group("Player"):
+		if d2 == true:
+			d2 = false
+			waited = true
+			player.dialogue_text = fake_bozo_2
+			player.tick_dialogue()
+			$TrapTime.start()
+
+
+

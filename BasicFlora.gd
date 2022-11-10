@@ -54,6 +54,7 @@ func use():
 		if body.is_in_group('Player'):
 			body.stamina += health
 			body.health += 1
+			body.hungry = false
 			if body.disease == true:
 				body.dialogue_text = "As you chew the plant you feel tension leave your muscles."
 				body.tick_dialogue()

@@ -7,8 +7,8 @@ var lowering = false
 var speed = 0.3
 signal stopped
 
-var up = Vector3(0, 1, 0)
-var down = Vector3(0, -1, 0)
+var up = Vector3(0, 2, 0)
+var down = Vector3(0, -2, 0)
 
 
 # Called when the node enters the scene tree for the first time.

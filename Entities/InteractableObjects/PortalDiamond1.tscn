@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://TeleportArea.gd" type="Script" id=1]
 [ext_resource path="res://Effects/PortalTexture.tres" type="Material" id=2]
 [ext_resource path="res://Assets/asset package custom/kenney sci fi sounds/spaceEngineLow_000.ogg" type="AudioStream" id=3]
+[ext_resource path="res://Entities/InteractableObjects/PortalDiamond1.gd" type="Script" id=4]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.609005
@@ -13,6 +14,7 @@ operation = 2
 polygon = PoolVector2Array( 0, 0, -1, 2, 1, 1, 2, -1 )
 depth = 0.3
 material = ExtResource( 2 )
+script = ExtResource( 4 )
 
 [node name="TeleportArea" type="Area" parent="."]
 script = ExtResource( 1 )

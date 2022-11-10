@@ -681,7 +681,7 @@ angular_velocity_random = 1.0
 scale = 0.3
 color_ramp = SubResource( 47 )
 
-[node name="WoodGolem" type="KinematicBody" groups=["Enemy"]]
+[node name="WoodGolem" type="KinematicBody" groups=["Enemy", "Golem"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.496805, 0 )
 script = ExtResource( 5 )
 
@@ -884,6 +884,14 @@ visibility_aabb = AABB( -0.966581, -0.64636, -0.760673, 1.93316, 1.29272, 1.5213
 process_material = SubResource( 52 )
 draw_pass_1 = SubResource( 49 )
 
+[node name="ReturnTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="DeaggroTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
 [connection signal="enemy_lost" from="." to="RightShoulder/ArmBase/MeshInstance/Joint/ClawAttachmentEnemy" method="_on_WoodGolem_enemy_lost"]
 [connection signal="enemy_lost" from="." to="LeftShoulder/ArmBase/MeshInstance/Joint/ClawAttachmentEnemy" method="_on_WoodGolem_enemy_lost"]
 [connection signal="enemy_spotted" from="." to="RightShoulder/ArmBase/MeshInstance/Joint/ClawAttachmentEnemy" method="_on_WoodGolem_enemy_spotted"]
@@ -899,3 +907,5 @@ draw_pass_1 = SubResource( 49 )
 [connection signal="timeout" from="Death" to="." method="_on_Death_timeout"]
 [connection signal="timeout" from="SplodeTime" to="." method="_on_SplodeTime_timeout"]
 [connection signal="timeout" from="DeleteTime" to="." method="_on_DeleteTime_timeout"]
+[connection signal="timeout" from="ReturnTimer" to="." method="_on_ReturnTimer_timeout"]
+[connection signal="timeout" from="DeaggroTimer" to="." method="_on_DeaggroTimer_timeout"]

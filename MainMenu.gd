@@ -45,16 +45,18 @@ func _on_StartResume_pressed():
 func _on_Quit_pressed():
 	get_tree().quit()
 
-
-func _on_Save_pressed():
-	#emit_signal("hud_to_player_GM") #this sets current state for save
-	#save should only start level though
+func save_checkpoint():
 	var new_save = Save_Slot.new()
 	new_save.take_save_data()
+	ResourceSaver.save(save_path, new_save)
+	#emit_signal("hud_to_player_GM") #this sets current state for save
+	#save should only start level though
 	#print(new_save)
 	#print(new_save.health)
 	#print(new_save.current_level)
-	ResourceSaver.save(save_path, new_save)
+	
+func _on_Save_pressed():
+	save_checkpoint()
 	
 func _on_Load_pressed():
 	var dir = Directory.new()

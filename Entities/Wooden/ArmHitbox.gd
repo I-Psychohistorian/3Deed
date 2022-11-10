@@ -33,6 +33,7 @@ func deaggro():
 	$Spike_zone/CollisionShape.disabled = true
 	$AnimationPlayer.play("RESET")
 
+
 func die():
 	emit_signal('die')
 

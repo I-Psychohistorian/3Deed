@@ -45,13 +45,13 @@ func gear_functions():
 		active = false
 
 func counter_clockwise_raise():
-	turn_degree = -5
+	turn_degree = -6
 	turning = true
 	emit_signal("raise")
 	#sounds?
 
 func clockwise_lower():
-	turn_degree = 5
+	turn_degree = 6
 	turning = true
 	emit_signal("lower")
 

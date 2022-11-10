@@ -742,3 +742,8 @@ func _on_YeetTimer_timeout():
 			var y = yeeter.instance()
 			$Head/Yeet.add_child(y)
 	dashing = false
+
+
+func _on_Hunger_timeout():
+	hungry = true
+	print('could eat again')

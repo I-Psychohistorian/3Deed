@@ -6,6 +6,10 @@ var dead = false
 var Name = "Wooden Apparatus"
 var active = true
 
+#returning to station
+var guarding = false
+var guardpoint_found = true
+var guard_point = Vector3()
 
 var aggro = false
 
@@ -27,8 +31,10 @@ var rng = RandomNumberGenerator.new()
 onready var sight_radius = $Chase_radius
 onready var sightline = $SightLine
 onready var target_ball = $Target
+
 var fall = Vector3()
 var last_seen = Vector3()
+
 
 var down_collide = false
 # Called when the node enters the scene tree for the first time.
@@ -63,6 +69,11 @@ func _process(delta):
 				if rotation_cooldown == false:
 					move()
 					pass #attacks commence and movement
+		if guarding == true:
+			if aggro == false:
+				if guardpoint_found == false:
+					var direction = guard_point - target_ball.global_transform.origin
+					move_and_slide(direction * (speed), Vector3.UP)
 	if dead == true:
 		fall.y -= gravity
 		move_and_slide(fall, Vector3.UP)
@@ -114,34 +125,44 @@ func die():
 	aggro = false
 	$FloatyOn.visible = false
 
+func deactivate():
+	$FloatyOn.visible = false
+	core.spinning = false
+	core_fire.visible = false
+	$IdleAggro.stream_paused = true
+	$AnimationPlayer.play("DeAggro")
+	up_thrust = 3
+
 func _on_Chase_radius_body_entered(body):
-	print('Golem radius entered')
-	#pass
+	#print('Golem radius entered')
+	pass
 
 
 func _on_Chase_radius_body_exited(body):
+	#print('golem radius exited')
 	if dead == false:
-		if aggro == true:
-			if body.is_in_group('Player'):
+		emit_signal("enemy_lost")
+		if guarding == false:
+			if aggro == true:
 				aggro = false
-				$FloatyOn.visible = false
-				core.spinning = false
-				core_fire.visible = false
-				$IdleAggro.stream_paused = true
-				emit_signal("enemy_lost")
-				$AnimationPlayer.play("DeAggro")
-				up_thrust = 3
-
+				if body.is_in_group('Player'):
+					deactivate()
+		elif guarding == true:
+			if body.is_in_group('Player'):
+				if aggro == true:
+					aggro = false
+				$DeaggroTimer.start()
+				
 
 func _on_Chase_trigger_body_entered(body):
 	if dead == false:
+		emit_signal("enemy_spotted")
 		if aggro == false:
 			if body.is_in_group('Player'):
 				$BeginChase.start()
 				core.spinning = true
 				core_fire.visible = true
 				$IdleAggro.stream_paused = false
-				emit_signal("enemy_spotted")
 				$AnimationPlayer.play("Awaken")
 
 
@@ -196,3 +217,14 @@ func _on_SplodeTime_timeout():
 
 func _on_DeleteTime_timeout():
 	queue_free()
+
+
+func _on_ReturnTimer_timeout():
+	deactivate()
+	guardpoint_found = true
+
+
+func _on_DeaggroTimer_timeout():
+	aggro = false
+	guardpoint_found = false
+	$ReturnTimer.start()

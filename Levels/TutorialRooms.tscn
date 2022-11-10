@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=2]
+[gd_scene load_steps=64 format=2]
 
 [ext_resource path="res://Assets/asset package custom/retro medieval 3d/Models/GLTF format/bricks.material" type="Material" id=1]
 [ext_resource path="res://Entities/Wooden/WoodGolem.tscn" type="PackedScene" id=2]
@@ -29,6 +29,7 @@
 [ext_resource path="res://Levels/SlimeChute.gd" type="Script" id=27]
 [ext_resource path="res://Levels/SlimeTrap.gd" type="Script" id=28]
 [ext_resource path="res://Assets/asset package custom/kenney impact sounds/impactMetal_medium_001.ogg" type="AudioStream" id=29]
+[ext_resource path="res://Entities/SpawnersAndManagers/GlorperMitosisManager.tscn" type="PackedScene" id=30]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.163404
@@ -554,9 +555,6 @@ shape = SubResource( 33 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.221392, 0.00635719 )
 shape = SubResource( 35 )
 
-[node name="Glorper" parent="Rooms/SlimeTrap/SlimeChute" instance=ExtResource( 25 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3212, 0.0247097 )
-
 [node name="SlimeChute2" type="CSGCylinder" parent="Rooms/SlimeTrap"]
 transform = Transform( -1, -5.96046e-08, -2.98023e-08, 0, 0.5, -0.866025, 5.96046e-08, -0.866025, -0.5, -5.86276, 1.77198, -6.05707 )
 invert_faces = true
@@ -611,66 +609,6 @@ shape = SubResource( 33 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.221392, 0.00635719 )
 shape = SubResource( 35 )
 
-[node name="Glorper" parent="Rooms/SlimeTrap/SlimeChute2" instance=ExtResource( 25 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3212, 0.0247097 )
-
-[node name="SlimeChute3" type="CSGCylinder" parent="Rooms/SlimeTrap"]
-transform = Transform( 5.96046e-08, -0.866025, -0.5, 0, 0.5, -0.866025, 1, 7.45058e-08, 2.98023e-08, -13.8256, 4.88466, -0.0988312 )
-invert_faces = true
-radius = 1.1
-height = 8.46486
-material = ExtResource( 19 )
-script = ExtResource( 27 )
-
-[node name="CSGCylinder" type="CSGCylinder" parent="Rooms/SlimeTrap/SlimeChute3"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -2.38419e-07 )
-invert_faces = true
-radius = 1.1
-height = 0.483362
-material = ExtResource( 24 )
-
-[node name="Lid" type="RigidBody" parent="Rooms/SlimeTrap/SlimeChute3"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.83009, -0.0309982 )
-mode = 1
-mass = 1.53469
-physics_material_override = SubResource( 29 )
-sleeping = true
-script = ExtResource( 26 )
-
-[node name="MeshInstance" type="MeshInstance" parent="Rooms/SlimeTrap/SlimeChute3/Lid"]
-mesh = SubResource( 30 )
-
-[node name="CollisionShape" type="CollisionShape" parent="Rooms/SlimeTrap/SlimeChute3/Lid"]
-shape = SubResource( 31 )
-disabled = true
-
-[node name="Area" type="Area" parent="Rooms/SlimeTrap/SlimeChute3/Lid"]
-
-[node name="CollisionShape" type="CollisionShape" parent="Rooms/SlimeTrap/SlimeChute3/Lid/Area"]
-shape = SubResource( 32 )
-
-[node name="Thunk" type="AudioStreamPlayer3D" parent="Rooms/SlimeTrap/SlimeChute3/Lid"]
-stream = ExtResource( 29 )
-unit_size = 5.0
-pitch_scale = 0.71
-
-[node name="Timer" type="Timer" parent="Rooms/SlimeTrap/SlimeChute3/Lid"]
-wait_time = 2.0
-one_shot = true
-
-[node name="Blocker" type="KinematicBody" parent="Rooms/SlimeTrap/SlimeChute3"]
-
-[node name="CollisionShape" type="CollisionShape" parent="Rooms/SlimeTrap/SlimeChute3/Blocker"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.35283, -0.0364771 )
-shape = SubResource( 33 )
-
-[node name="CollisionShape2" type="CollisionShape" parent="Rooms/SlimeTrap/SlimeChute3/Blocker"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.221392, 0.00635719 )
-shape = SubResource( 35 )
-
-[node name="Glorper" parent="Rooms/SlimeTrap/SlimeChute3" instance=ExtResource( 25 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3212, 0.0247097 )
-
 [node name="SlimeChute4" type="CSGCylinder" parent="Rooms/SlimeTrap"]
 transform = Transform( 1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 5.69697, 6.66169, 3.51205 )
 invert_faces = true
@@ -723,14 +661,14 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.35283, -0.0364771 )
 shape = SubResource( 33 )
 
 [node name="CollisionShape2" type="CollisionShape" parent="Rooms/SlimeTrap/SlimeChute4/Blocker"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.221392, 0.00635719 )
+transform = Transform( 1, 0, 0, 0, 0.167526, -0.985868, 0, 0.985868, 0.167526, 0, -1.05698, 1.45922 )
 shape = SubResource( 35 )
 
 [node name="CSGBox" type="CSGBox" parent="Rooms/SlimeTrap/SlimeChute4"]
-transform = Transform( 1, 0, 0, 0, 0.5, 0.866026, 0, -0.866026, 0.5, 0.0995979, -3.92751, -0.221447 )
+transform = Transform( 1, 0, 0, 0, 0.5, 0.866026, 0, -0.866026, 0.5, 0.0995979, -3.53095, -0.908318 )
 invert_faces = true
 width = 3.0
-height = 3.0
+height = 4.16723
 depth = 3.0
 material = ExtResource( 20 )
 
@@ -927,6 +865,21 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 39.2171, -2.47074, -39.1349 )
 [node name="CollisionShape" type="CollisionShape" parent="DialogueTrap"]
 shape = SubResource( 27 )
 
+[node name="GlorperMitosisManager" parent="." instance=ExtResource( 30 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 0, -39 )
+
+[node name="Glorper" parent="GlorperMitosisManager" instance=ExtResource( 25 )]
+transform = Transform( 1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, -4.34241, -3.63726, 4.87743 )
+
+[node name="Glorper2" parent="GlorperMitosisManager" instance=ExtResource( 25 )]
+transform = Transform( -1, -5.96046e-08, -2.98023e-08, 0, 0.5, -0.866025, 5.96046e-08, -0.866025, -0.5, -4.34241, -3.63726, -4.85889 )
+
+[node name="Glorper3" parent="GlorperMitosisManager" instance=ExtResource( 25 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0.643918, -0.460552 )
+
+[node name="Glorper4" parent="GlorperMitosisManager" instance=ExtResource( 25 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.74668, 1.98267, 0 )
+
 [connection signal="timeout" from="TrapTime" to="Rooms/SlimeTrap" method="_on_TrapTime_timeout"]
 [connection signal="lower" from="Rooms/FirstRoom/WallGear" to="Rooms/FirstHall/GateSpace/Gate" method="_on_WallGear_lower"]
 [connection signal="raise" from="Rooms/FirstRoom/WallGear" to="Rooms/FirstHall/GateSpace/Gate" method="_on_WallGear_raise"]
@@ -942,8 +895,6 @@ shape = SubResource( 27 )
 [connection signal="timeout" from="Rooms/SlimeTrap/SlimeChute/Lid/Timer" to="Rooms/SlimeTrap/SlimeChute/Lid" method="_on_Timer_timeout"]
 [connection signal="body_entered" from="Rooms/SlimeTrap/SlimeChute2/Lid/Area" to="Rooms/SlimeTrap/SlimeChute2/Lid" method="_on_Area_body_entered"]
 [connection signal="timeout" from="Rooms/SlimeTrap/SlimeChute2/Lid/Timer" to="Rooms/SlimeTrap/SlimeChute2/Lid" method="_on_Timer_timeout"]
-[connection signal="body_entered" from="Rooms/SlimeTrap/SlimeChute3/Lid/Area" to="Rooms/SlimeTrap/SlimeChute3/Lid" method="_on_Area_body_entered"]
-[connection signal="timeout" from="Rooms/SlimeTrap/SlimeChute3/Lid/Timer" to="Rooms/SlimeTrap/SlimeChute3/Lid" method="_on_Timer_timeout"]
 [connection signal="body_entered" from="Rooms/SlimeTrap/SlimeChute4/Lid/Area" to="Rooms/SlimeTrap/SlimeChute4/Lid" method="_on_Area_body_entered"]
 [connection signal="timeout" from="Rooms/SlimeTrap/SlimeChute4/Lid/Timer" to="Rooms/SlimeTrap/SlimeChute4/Lid" method="_on_Timer_timeout"]
 [connection signal="jam" from="KnifeKinematic" to="Rooms/FirstRoom/WallGear" method="_on_KnifeKinematic_jam"]

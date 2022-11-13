@@ -952,6 +952,7 @@ transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 5.12433, -0.277435, 1.78
 [node name="SewerGrate" type="CSGCylinder" parent="Items"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 54.8501, -5.5403, -27.878 )
 operation = 2
+use_collision = true
 invert_faces = true
 radius = 2.1
 height = 0.322269

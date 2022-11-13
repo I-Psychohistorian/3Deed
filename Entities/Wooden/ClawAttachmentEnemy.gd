@@ -1,5 +1,5 @@
 extends Spatial
-
+var dead = false
 
 
 
@@ -14,6 +14,7 @@ func _ready():
 #	pass
 
 func _on_ArmHitbox_die():
+	dead = true
 	$ArmHitbox.queue_free()
 	$Dust.emitting = true
 	$Dust2.play()
@@ -22,12 +23,14 @@ func _on_ArmHitbox_die():
 
 func _on_WoodGolem_enemy_spotted():
 	#print('pinching')
-	$ArmHitbox.aggro()
+	if dead == false:
+		$ArmHitbox.aggro()
 
 
 func _on_WoodGolem_enemy_lost():
 	#print('stopped pinching')
-	$ArmHitbox.deaggro()
+	if dead == false:
+		$ArmHitbox.deaggro()
 
 
 func _on_Death_timeout():

@@ -128,7 +128,7 @@ radius = 0.9
 height = 0.15
 
 [sub_resource type="BoxShape" id=33]
-extents = Vector3( 3, 0.1, 3 )
+extents = Vector3( 2.71929, 0.1, 2.72751 )
 
 [sub_resource type="BoxShape" id=35]
 extents = Vector3( 1, 0.109305, 1 )
@@ -461,7 +461,7 @@ operation = 0
 invert_faces = true
 
 [node name="PipeLid" type="CSGCylinder" parent="Rooms/SewerStart"]
-transform = Transform( 0.887419, -0.377019, 0.265223, 0.377019, 0.262593, -0.888201, 0.265223, 0.888201, 0.375174, 1.44987, -3.14197, -5.14207 )
+transform = Transform( 0.887419, -0.377019, 0.265223, 0.377019, 0.262593, -0.888201, 0.265223, 0.888201, 0.375174, 1.42823, -3.14197, -5.09108 )
 operation = 2
 invert_faces = true
 height = 0.1
@@ -664,6 +664,26 @@ shape = SubResource( 33 )
 transform = Transform( 1, 0, 0, 0, 0.167526, -0.985868, 0, 0.985868, 0.167526, 0, -0.836608, 2.38033 )
 shape = SubResource( 35 )
 
+[node name="CollisionShape3" type="CollisionShape" parent="Rooms/SlimeTrap/SlimeChute4/Blocker"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.27791, -0.0364761 )
+shape = SubResource( 33 )
+
+[node name="CollisionShape4" type="CollisionShape" parent="Rooms/SlimeTrap/SlimeChute4/Blocker"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.744669, -1.91061 )
+shape = SubResource( 33 )
+
+[node name="CollisionShape5" type="CollisionShape" parent="Rooms/SlimeTrap/SlimeChute4/Blocker"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.744671, 1.87092 )
+shape = SubResource( 33 )
+
+[node name="CollisionShape6" type="CollisionShape" parent="Rooms/SlimeTrap/SlimeChute4/Blocker"]
+transform = Transform( -4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 0, 1.93865, -0.744669, 0.115864 )
+shape = SubResource( 33 )
+
+[node name="CollisionShape7" type="CollisionShape" parent="Rooms/SlimeTrap/SlimeChute4/Blocker"]
+transform = Transform( -4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 0, 2.00183, -0.744669, -0.107464 )
+shape = SubResource( 33 )
+
 [node name="CSGBox" type="CSGBox" parent="Rooms/SlimeTrap/SlimeChute4"]
 transform = Transform( 1, 0, 0, 0, 0.5, 0.866026, 0, -0.866026, 0.5, 0.0995979, -3.53095, -0.908318 )
 invert_faces = true
@@ -671,6 +691,115 @@ width = 5.0
 height = 4.16723
 depth = 5.0
 material = ExtResource( 20 )
+
+[node name="Windowroom" type="CSGCylinder" parent="Rooms"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 54.8501, -4.1529, -38.5762 )
+invert_faces = true
+radius = 6.0
+height = 8.0
+sides = 10
+material = ExtResource( 1 )
+
+[node name="Exithall" type="CSGBox" parent="Rooms/Windowroom"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.212246, -1.22655, -14.1344 )
+invert_faces = true
+width = 4.54928
+height = 4.0
+depth = 19.5511
+material = ExtResource( 1 )
+
+[node name="Exitroom" type="CSGCylinder" parent="Rooms/Windowroom/Exithall"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.97889, -12.15 )
+invert_faces = true
+radius = 6.0
+height = 10.0
+material = ExtResource( 1 )
+
+[node name="Window" type="CSGCylinder" parent="Rooms/Windowroom/Exithall/Exitroom"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.209705, -1.51305, -11.1671 )
+invert_faces = true
+radius = 2.0
+height = 11.8413
+material = ExtResource( 1 )
+
+[node name="CSGSphere" type="CSGSphere" parent="Rooms/Windowroom/Exithall/Exitroom/Window"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -5.63543, 0.0402951 )
+invert_faces = true
+radius = 2.14651
+material = ExtResource( 1 )
+
+[node name="Window" type="CSGCylinder" parent="Rooms/Windowroom/Exithall/Exitroom/Window"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -5.5905, -4.9437 )
+invert_faces = true
+radius = 2.0
+height = 11.8413
+material = ExtResource( 1 )
+
+[node name="Window" type="CSGCylinder" parent="Rooms/Windowroom/Exithall/Exitroom/Window/Window"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.77216, 0 )
+invert_faces = true
+radius = 2.0
+height = 0.462571
+material = ExtResource( 24 )
+
+[node name="PortalDiamond1" parent="Rooms/Windowroom/Exithall/Exitroom/Window" instance=ExtResource( 21 )]
+transform = Transform( 0.705174, 0.705174, -0.0738823, 0.0329864, -0.136717, -0.990061, -0.708266, 0.695728, -0.11967, -1, -7.5971, -0.769525 )
+operation = 0
+invert_faces = true
+
+[node name="Window2" type="CSGCylinder" parent="Rooms/Windowroom/Exithall/Exitroom"]
+transform = Transform( -4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, -9.2456, -1.51305, 0.0600357 )
+invert_faces = true
+radius = 2.0
+height = 8.31043
+material = ExtResource( 1 )
+
+[node name="Window2" type="CSGCylinder" parent="Rooms/Windowroom/Exithall/Exitroom/Window2"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -3.06701, -3.10246 )
+invert_faces = true
+radius = 2.0
+height = 8.31043
+material = ExtResource( 1 )
+
+[node name="Window2" type="CSGCylinder" parent="Rooms/Windowroom/Exithall/Exitroom/Window2/Window2"]
+transform = Transform( 1, 0, 4.23516e-22, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -3.06701, 3.38149 )
+invert_faces = true
+radius = 2.0
+height = 8.31043
+material = ExtResource( 1 )
+
+[node name="CSGSphere" type="CSGSphere" parent="Rooms/Windowroom/Exithall/Exitroom/Window2/Window2/Window2"]
+transform = Transform( 1, -1.69407e-21, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -3.36474, 0.0402954 )
+invert_faces = true
+radius = 2.14651
+material = ExtResource( 1 )
+
+[node name="Window" type="CSGCylinder" parent="Rooms/Windowroom/Exithall/Exitroom/Window2/Window2/Window2"]
+transform = Transform( 1, 0, 0, 0, 1, -2.50556e-22, 0, -2.50556e-22, 1, 0, 3.96502, -4.76837e-07 )
+invert_faces = true
+radius = 2.0
+height = 0.438898
+material = ExtResource( 24 )
+
+[node name="CSGSphere" type="CSGSphere" parent="Rooms/Windowroom/Exithall/Exitroom/Window2"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -3.20472, 0.0402956 )
+invert_faces = true
+radius = 2.14651
+material = ExtResource( 1 )
+
+[node name="Window" type="CSGCylinder" parent="Rooms/Windowroom"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -1.37772, 5.72885 )
+invert_faces = true
+radius = 2.0
+material = ExtResource( 1 )
+
+[node name="CSGBox" type="CSGBox" parent="Rooms"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 56.9409, -4.77312, -27.35 )
+invert_faces = true
+width = 40.0
+height = 8.0
+depth = 10.0
+material = ExtResource( 1 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0.389961, 0.598166, 0.763689 )
@@ -820,6 +949,14 @@ mesh = SubResource( 20 )
 [node name="Crate2" parent="Items" instance=ExtResource( 15 )]
 transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 5.12433, -0.277435, 1.78026 )
 
+[node name="SewerGrate" type="CSGCylinder" parent="Items"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 54.8501, -5.5403, -27.878 )
+operation = 2
+invert_faces = true
+radius = 2.1
+height = 0.322269
+material = ExtResource( 17 )
+
 [node name="Tutorial_area_1" type="Area" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.70102, -15.0833 )
 
@@ -871,14 +1008,11 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 0, -39 )
 [node name="Glorper" parent="GlorperMitosisManager" instance=ExtResource( 25 )]
 transform = Transform( 1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, -4.34241, -3.63726, 4.87743 )
 
-[node name="Glorper2" parent="GlorperMitosisManager" instance=ExtResource( 25 )]
-transform = Transform( -1, -5.96046e-08, -2.98023e-08, 0, 0.5, -0.866025, 5.96046e-08, -0.866025, -0.5, -4.34241, -3.63726, -4.85889 )
-
 [node name="Glorper3" parent="GlorperMitosisManager" instance=ExtResource( 25 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0.643918, -0.460552 )
 
 [node name="Glorper4" parent="GlorperMitosisManager" instance=ExtResource( 25 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.74668, 1.98267, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.56768, 0.386972, 0.907444 )
 
 [connection signal="timeout" from="TrapTime" to="Rooms/SlimeTrap" method="_on_TrapTime_timeout"]
 [connection signal="lower" from="Rooms/FirstRoom/WallGear" to="Rooms/FirstHall/GateSpace/Gate" method="_on_WallGear_lower"]

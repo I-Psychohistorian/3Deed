@@ -3,7 +3,7 @@ extends RigidBody
 
 var player = 0
 var contains = "Nothing"
-var Name = "Bingo Bean"
+var Name = "Take Bingo Bean"
 var active = true
 # Called when the node enters the scene tree for the first time.
 func _ready():

@@ -308,6 +308,12 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.20683, 0.846127, 0.1284 )
 stream = ExtResource( 3 )
 unit_db = 42.478
 
+[node name="Midpoint" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+
+[node name="Aim" type="Spatial" parent="Midpoint"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.08377, 0, 0 )
+
 [connection signal="body_entered" from="spike_barrier/hurt_zone" to="." method="_on_hurt_zone_body_entered"]
 [connection signal="body_entered" from="sight_radius" to="." method="_on_sight_radius_body_entered"]
 [connection signal="body_exited" from="sight_radius" to="." method="_on_sight_radius_body_exited"]

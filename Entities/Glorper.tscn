@@ -268,6 +268,8 @@ shape = SubResource( 3 )
 [node name="SoftBody" type="SoftBody" parent="."]
 mesh = SubResource( 4 )
 skin = SubResource( 5 )
+collision_layer = 0
+collision_mask = 0
 parent_collision_ignore = NodePath("../CollisionShape")
 ray_pickable = false
 pinned_points = [ 1204, 1168, 1122, 1152, 208, 231, 221, 249, 1133, 1048, 1159, 1144, 238 ]

@@ -1,12 +1,9 @@
 extends KinematicBody
 
-
-var Name = "Crate"
-var pickup = "Crate"
-var health = 40
-var dead = false
-
-
+var player = 0
+var contains = "Nothing"
+var Name = "Take Bingo Bean"
+var active = true
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -16,15 +13,12 @@ func _ready():
 #func _process(delta):
 #	pass
 
-func take_damage(damage):
-	health -= damage
-	$Hit.play()
-	if health <= 0:
-		if dead == false:
-			dead = true
-			$Break.play()
-			$Timer.start()
-
-
-func _on_Timer_timeout():
+func use():
+	player.powerups +=1
+	player.bingo()
 	queue_free()
+
+func _on_Area_body_entered(body):
+	if body.is_in_group("Player"):
+		player = body
+		print('player in range of bean')

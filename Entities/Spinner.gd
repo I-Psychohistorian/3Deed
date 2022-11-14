@@ -15,7 +15,8 @@ var chase = false
 var dead = false
 
 onready var sight_area = $sight_radius
-
+onready var midpoint = $Midpoint
+onready var target = $Midpoint/Aim
 
 var fall = Vector3()
 
@@ -34,7 +35,10 @@ func _process(delta):
 	if chase == true:
 		for body in sight_area.get_overlapping_bodies():
 			if body.is_in_group("Player"):
-				var direction = body.global_transform.origin - self.global_transform.origin
+				midpoint.look_at(body.global_transform.origin, Vector3.UP)
+				midpoint.rotation.x = clamp(self.rotation.x, deg2rad(0), deg2rad(-0))
+				midpoint.rotation.z = clamp(self.rotation.z, deg2rad(0), deg2rad(-0))
+				var direction = body.global_transform.origin - target.global_transform.origin
 				move_and_slide(direction * (move_speed), Vector3.UP)
 	if not is_on_floor():
 		fall.y -= gravity * delta

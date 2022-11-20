@@ -1,0 +1,176 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Effects/greennoise.tres" type="Material" id=1]
+[ext_resource path="res://Entities/Gobbo/GobboBody.gd" type="Script" id=2]
+[ext_resource path="res://Effects/gobbopurple.tres" type="Material" id=3]
+[ext_resource path="res://Effects/eyewhite.tres" type="Material" id=4]
+[ext_resource path="res://Assets/asset package custom/kenneyretrourban/Models/GLTF format/asphalt.material" type="Material" id=5]
+[ext_resource path="res://Effects/glorpcore.tres" type="Material" id=6]
+
+[sub_resource type="CapsuleMesh" id=1]
+radius = 0.1
+mid_height = 0.2
+
+[sub_resource type="SpatialMaterial" id=6]
+albedo_color = Color( 0.498039, 0.0509804, 0.0509804, 1 )
+
+[sub_resource type="Animation" id=7]
+resource_name = "Blink"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Head/EyeSocket1:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1, 0.7, 1 ), Vector3( 1, 0, 1 ), Vector3( 1, 0.7, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Head/EyeSocket2:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1, 0.7, 1 ), Vector3( 1, 0, 1 ), Vector3( 1, 0.7, 1 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Head/EyeSocket1:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 1, 0.7, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Head/EyeSocket2:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 1, 0.7, 1 ) ]
+}
+
+[sub_resource type="CapsuleShape" id=4]
+radius = 0.4
+height = 0.6
+
+[sub_resource type="CylinderShape" id=3]
+height = 10.0
+radius = 30.0
+
+[sub_resource type="CapsuleMesh" id=5]
+material = ExtResource( 3 )
+radius = 0.4
+mid_height = 0.6
+
+[node name="GobboBody" type="KinematicBody"]
+script = ExtResource( 2 )
+
+[node name="GobboHead" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.17388, 0 )
+
+[node name="Head" type="CSGSphere" parent="GobboHead"]
+radius = 0.6
+material = ExtResource( 1 )
+
+[node name="Facing" type="MeshInstance" parent="GobboHead/Head"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -1.547 )
+mesh = SubResource( 1 )
+
+[node name="Mouthhole" type="CSGTorus" parent="GobboHead/Head"]
+transform = Transform( 1.5, 0, 0, 0, 0.943755, -0.330646, 0, 0.330646, 0.943755, 0, -0.0873657, -0.67384 )
+operation = 2
+inner_radius = 0.1
+outer_radius = 0.2
+material = SubResource( 6 )
+
+[node name="EyeSpatial" type="Spatial" parent="GobboHead/Head"]
+
+[node name="Eye" type="CSGSphere" parent="GobboHead/Head/EyeSpatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.137053, 0.248963, -0.412774 )
+radius = 0.08
+material = ExtResource( 4 )
+
+[node name="Pupil" type="CSGSphere" parent="GobboHead/Head/EyeSpatial/Eye"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0723211 )
+radius = 0.01
+material = ExtResource( 5 )
+
+[node name="Eye2" type="CSGSphere" parent="GobboHead/Head/EyeSpatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.13513, 0.248963, -0.413062 )
+radius = 0.08
+material = ExtResource( 4 )
+
+[node name="Pupil" type="CSGSphere" parent="GobboHead/Head/EyeSpatial/Eye2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0723211 )
+radius = 0.01
+material = ExtResource( 5 )
+
+[node name="EyeSocket1" type="CSGSphere" parent="GobboHead/Head"]
+transform = Transform( 1, 0, 0, 0, 0.7, 0, 0, 0, 1, 0.144367, 0.26399, -0.496855 )
+operation = 2
+radius = 0.07
+material = ExtResource( 6 )
+
+[node name="EyeSocket2" type="CSGSphere" parent="GobboHead/Head"]
+transform = Transform( 1, 0, 0, 0, 0.7, 0, 0, 0, 1, -0.144, 0.264, -0.497 )
+operation = 2
+radius = 0.07
+material = ExtResource( 6 )
+
+[node name="CSGSphere" type="CSGSphere" parent="GobboHead/Head"]
+transform = Transform( 1, 0, 0, 0, 0.986283, 0.495194, 0, -0.165065, 2.95885, 0, 0.102943, -0.531028 )
+radius = 0.05
+material = ExtResource( 1 )
+
+[node name="Eyebrow1" type="CSGBox" parent="GobboHead/Head"]
+transform = Transform( 0.951166, -0.291333, -0.102017, 0.266143, 0.941432, -0.20706, 0.156366, 0.169797, 0.972995, 0.141833, 0.331666, -0.465033 )
+width = 0.1
+height = 0.02
+depth = 0.03
+material = ExtResource( 5 )
+
+[node name="Eyebrow2" type="CSGBox" parent="GobboHead/Head"]
+transform = Transform( 0.962046, 0.269334, 0.0438891, -0.258819, 0.951545, -0.166054, -0.0864866, 0.148392, 0.985139, -0.139327, 0.331666, -0.465033 )
+width = 0.1
+height = 0.02
+depth = 0.03
+material = ExtResource( 5 )
+
+[node name="FaceAnim" type="AnimationPlayer" parent="GobboHead"]
+anims/Blink = SubResource( 7 )
+anims/RESET = SubResource( 8 )
+
+[node name="BodyShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+shape = SubResource( 4 )
+
+[node name="Sight" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.41623, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Sight"]
+shape = SubResource( 3 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+mesh = SubResource( 5 )
+
+[node name="BodyAnim" type="AnimationPlayer" parent="."]

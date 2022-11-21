@@ -10,6 +10,7 @@ onready var head_joint = $GobboHead
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$GobboHead/FaceAnim.play("Blink")
 	pass # Replace with function body.
 
 

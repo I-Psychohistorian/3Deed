@@ -23,6 +23,7 @@ func test_look():
 	var bodies = sight_area.get_overlapping_bodies()
 	for body in bodies:
 		if body.is_in_group("Player"):
-			head_joint.look_at(body.global_transform.origin, Vector3.UP)
-			#head_joint.rotation.x = clamp(self.rotation.x, deg2rad(50), deg2rad(-30))
+			var look_point = body.global_transform.origin + Vector3(0, 1, 0)
+			head_joint.look_at(look_point, Vector3.UP)
+			head_joint.rotation.z = clamp(self.rotation.z, deg2rad(-50), deg2rad(80))
 			#clamping broken, will need to fix

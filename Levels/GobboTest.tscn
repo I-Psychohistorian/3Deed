@@ -807,7 +807,7 @@ material = ExtResource( 13 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16.9319, -0.519353, -19.5772 )
 
 [node name="GobboBody" parent="." instance=ExtResource( 24 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14.0346, -2.16504, -23.9452 )
+transform = Transform( 0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 14.0346, -1.86781, -23.9452 )
 
 [connection signal="lower" from="Rooms/FirstRoom/WallGear" to="Rooms/FirstHall/GateSpace/Gate" method="_on_WallGear_lower"]
 [connection signal="raise" from="Rooms/FirstRoom/WallGear" to="Rooms/FirstHall/GateSpace/Gate" method="_on_WallGear_raise"]

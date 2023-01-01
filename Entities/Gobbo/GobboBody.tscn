@@ -76,9 +76,8 @@ tracks/1/keys = {
 radius = 0.4
 height = 0.6
 
-[sub_resource type="CylinderShape" id=3]
-height = 10.0
-radius = 30.0
+[sub_resource type="SphereShape" id=13]
+radius = 40.0
 
 [sub_resource type="CapsuleMesh" id=5]
 material = ExtResource( 3 )
@@ -404,7 +403,7 @@ shape = SubResource( 4 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.41623, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Sight"]
-shape = SubResource( 3 )
+shape = SubResource( 13 )
 
 [node name="Body" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
@@ -421,6 +420,9 @@ anims/TestAnim = SubResource( 12 )
 
 [node name="GobArm" parent="." instance=ExtResource( 7 )]
 transform = Transform( 1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, -0.35, 0.5, 0 )
+
+[node name="pinkiefingerjoint" parent="GobArm/bra/elbow/forearm/palm" index="3"]
+transform = Transform( 0.865563, 0, -0.219181, 0, 0.8, 0, 0.246578, 0, 0.769389, 0.109244, 4.47035e-08, -0.0587534 )
 
 [node name="GobArmFlip" parent="." instance=ExtResource( 8 )]
 transform = Transform( 1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, 0.35, 0.5, 0 )

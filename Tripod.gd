@@ -7,6 +7,7 @@ var active = true
 var searching = true
 var target_chosen = false
 var alive = true
+var text = "It seems rather friendly"
 
 var speed = 0.25
 var personality = 1
@@ -26,6 +27,9 @@ func _ready():
 	personality = num
 	if personality == 2:
 		health += 10
+		text = "It seems rather docile"
+	elif personality == 1:
+		text = "It seems quite curious"
 	print(personality)
 	print(speed)
 	pass
@@ -38,7 +42,12 @@ func _process(delta):
 	if alive == true:
 		move()
 	
-
+func use():
+	var bodies = sight.get_overlapping_bodies()
+	for body in bodies:
+		if body.is_in_group('Player'):
+			body.dialogue_text = text
+			body.tick_dialogue()
 
 func die():
 	$AnimationPlayer.play("Death")

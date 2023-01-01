@@ -161,7 +161,7 @@ radius = 0.2
 [sub_resource type="SphereShape" id=7]
 radius = 20.0
 
-[node name="Tripod" type="KinematicBody" groups=["Destructible", "Tripod"]]
+[node name="Tripod" type="KinematicBody" groups=["Destructible", "Interactable", "Tripod"]]
 script = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -175,7 +175,6 @@ anims/Test = SubResource( 2 )
 [node name="Central" type="BoneAttachment" parent="Skeleton"]
 
 [node name="LeftLeg2" type="Spatial" parent="Skeleton/Central"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 
 [node name="LeftLeg" type="MeshInstance" parent="Skeleton/Central/LeftLeg2"]
 transform = Transform( 0.64803, -0.46641, -0.602095, 0.232393, 0.873941, -0.426873, 0.725293, 0.136704, 0.674731, -0.250195, -0.112181, 0.264928 )
@@ -190,7 +189,6 @@ radius = 0.1
 material = ExtResource( 1 )
 
 [node name="RightLeg" type="Spatial" parent="Skeleton/Central"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 
 [node name="Rightleg" type="MeshInstance" parent="Skeleton/Central/RightLeg"]
 transform = Transform( 0.648033, 0.466406, 0.602095, -0.232391, 0.873944, -0.426869, -0.725291, 0.136703, 0.674733, 0.243044, -0.112181, 0.264928 )
@@ -205,7 +203,7 @@ radius = 0.1
 material = ExtResource( 1 )
 
 [node name="TopLeg" type="Spatial" parent="Skeleton/Central"]
-transform = Transform( 0.732186, -2.98023e-08, -0.681104, 0.577149, 0.530999, 0.620434, 0.361666, -0.847372, 0.38879, 0, 0, 0 )
+transform = Transform( 0.732187, 2.98023e-08, -0.681103, 0.577148, 0.530999, 0.620435, 0.361666, -0.847372, 0.388791, 0, 0, 0 )
 
 [node name="Topleg" type="MeshInstance" parent="Skeleton/Central/TopLeg"]
 transform = Transform( 0.648033, 0.466406, 0.602095, -0.232391, 0.873944, -0.426869, -0.725291, 0.136703, 0.674733, 0.243044, -0.112181, 0.264928 )

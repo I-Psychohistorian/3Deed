@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=2]
+[gd_scene load_steps=66 format=2]
 
 [ext_resource path="res://Assets/asset package custom/retro medieval 3d/Models/GLTF format/bricks.material" type="Material" id=1]
 [ext_resource path="res://Entities/Wooden/WoodGolem.tscn" type="PackedScene" id=2]
@@ -31,6 +31,7 @@
 [ext_resource path="res://Assets/asset package custom/kenney impact sounds/impactMetal_medium_001.ogg" type="AudioStream" id=29]
 [ext_resource path="res://Entities/SpawnersAndManagers/GlorperMitosisManager.tscn" type="PackedScene" id=30]
 [ext_resource path="res://Entities/InteractableObjects/BingoBeanKinematic.tscn" type="PackedScene" id=31]
+[ext_resource path="res://Entities/Gobbo/GobboBody.tscn" type="PackedScene" id=32]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.163404
@@ -1054,6 +1055,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.56768, 0.386972, 0.907444 )
 
 [node name="Glorper2" parent="GlorperMitosisManager" instance=ExtResource( 25 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.49505, -4.06323, -5.01041 )
+
+[node name="GobboBody" parent="." instance=ExtResource( 32 )]
+transform = Transform( 0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 15.0745, -0.743749, -32.4806 )
 
 [connection signal="timeout" from="TrapTime" to="Rooms/SlimeTrap" method="_on_TrapTime_timeout"]
 [connection signal="lower" from="Rooms/FirstRoom/WallGear" to="Rooms/FirstHall/GateSpace/Gate" method="_on_WallGear_lower"]
